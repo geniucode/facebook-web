@@ -22,14 +22,13 @@ const Signup = () => {
   };
   
   const onClickBtn = async () => {
-    const res = await axios.post("/user/signup", {
+    const res = await axios.post("http://localhost:3001/user/signup", {
         email,
         password,
         birthDay,
         gender,
         country,
       });
-      console.log(res.data);
   };
 
   return (
@@ -91,7 +90,7 @@ const Signup = () => {
             time.
           </p>
           <button onClick={onClickBtn}>Sign Up</button>
-          <a href="/signin">Already have an account?</a>
+          <a href="http://localhost:3001/user/signin">Already have an account?</a>
         </div>
       </div>
     </div>
