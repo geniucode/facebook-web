@@ -39,23 +39,21 @@ const Login = () => {
           Connect with friends and the world around you on Facebook.
         </p>
       </div>
-      <form>
-        <div className="login-box">
-          <input onChange={onChangeEmail} type="email" placeholder="Email" />
-          <input
-            onChange={onChangePassword}
-            type="password"
-            placeholder="Password"
-          />
-          <button onClick={checkLogin} type="submit" className="loginBtn">
-            Log In
-          </button>
-          <hr />
-          <button type="submit" className="signupBtn">
-            <a href="../signup">Create new account</a>
-          </button>
-        </div>
-      </form>
+      <div className="login-box">
+        <input onChange={onChangeEmail} type="email" placeholder="Email" />
+        <input
+          onChange={onChangePassword}
+          type="password"
+          placeholder="Password"
+        />
+        <button onClick={checkLogin} type="submit" className="loginBtn">
+          Log In
+        </button>
+        <hr />
+        <button type="submit" className="signupBtn">
+          <a href="../signup">Create new account</a>
+        </button>
+      </div>
     </div>
   );
 };
