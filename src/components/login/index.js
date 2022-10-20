@@ -6,31 +6,45 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [isValid, setIsValid] = useState(true);
+  const [emailIsValid, setEmailIsValid] = useState(true);
+  const [passwordIsValid, setPasswordIsValid] = useState(true);
 
   const onChangeEmail = (event) => {
     const finalEmail = event.target.value;
-    setIsValid(true);
+    setEmailIsValid(true);
     setEmail(finalEmail);
   };
 
   const onChangePassword = (event) => {
     const finalPassword = event.target.value;
-    setIsValid(true);
+    setPasswordIsValid(true);
     setPassword(finalPassword);
   };
 
   const checkLogin = async (event) => {
-    if (email.trim().length === 0 || password.trim().length === 0) {
-      setIsValid(false);
-      setError("Please enter both a valid email and password");
-      return;
-    }
-
-    const response = await axios.post("http://localhost:3001/user/login", {
-      email,
-      password,
-    });
+    const response = await axios
+      .post("http://localhost:3001/user/login", {
+        email,
+        password,
+      })
+      .then(function (response) {
+        if (!response.data.sucess) {
+          setError("Invalid Credintials");
+          return;
+        }
+        setError("");
+      })
+      .catch(function (error) {
+        if (error.response.data.errors[0].param === "email") {
+          setEmailIsValid(false);
+          setError("Please enter a valid email ");
+          return;
+        } else if (error.response.data.errors[0].param === "password") {
+          setPasswordIsValid(false);
+          setError("Please enter a valid password ");
+          return;
+        }
+      });
   };
 
   return (
@@ -51,13 +65,13 @@ const Login = () => {
         <div className="login-box">
           <input
             onChange={onChangeEmail}
-            className={`${!isValid && "input-error"}`}
+            className={`${!emailIsValid && "input-error"}`}
             type="email"
             placeholder="Email"
           />
           <input
             onChange={onChangePassword}
-            className={`${!isValid && "input-error"}`}
+            className={`${!passwordIsValid && "input-error"}`}
             type="password"
             placeholder="Password"
           />
