@@ -12,7 +12,7 @@ const ForgetPassword = () => {
           <input type="email" placeholder="Email or phone" onChange="" />
           <input type="password" placeholder="Password" onChange="" />
           <button onClick="">Log in</button>
-          <a href="/forgetPassword">Forgotten account?</a>
+          <a href="/forget-password">Forgotten account?</a>
         </div>
       </div>
       <div className="forget-password-container">
