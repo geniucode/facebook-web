@@ -12,12 +12,10 @@ const CountrySelector = (props) => {
   });
 
   const onChangeCountry = (event) => {
-    if (event.target.value !== "") {
-      props.setCountry(event.target.value);
-    } else{
-      props.setCountry("");
-      console.log("Invalid country");
-    }
+    props.setCountry({
+      value: event.target.value,
+      accepted: event.target.value.length !== 0,
+    });
   };
 
   return (
