@@ -22,29 +22,24 @@ const Login = () => {
   };
 
   const checkLogin = async (event) => {
-    const response = await axios
-      .post("http://localhost:3001/user/login", {
+    try {
+      const response = await axios.post("http://localhost:3001/user/login", {
         email,
         password,
-      })
-      .then(function (response) {
-        if (!response.data.sucess) {
-          setError("Invalid Credintials");
-          return;
-        }
-        setError("");
-      })
-      .catch(function (error) {
-        if (error.response.data.errors[0].param === "email") {
-          setEmailIsValid(false);
-          setError("Please enter a valid email ");
-          return;
-        } else if (error.response.data.errors[0].param === "password") {
-          setPasswordIsValid(false);
-          setError("Please enter a valid password ");
-          return;
-        }
       });
+      if (!response.data.sucess) {
+        setError("Invalid Credintials");
+      }
+    } catch (error) {
+      const response = error.response;
+      if (response.data.errors[0].param === "email") {
+        setEmailIsValid(false);
+        setError("Please enter a valid email ");
+      } else if (response.data.errors[0].param === "password") {
+        setPasswordIsValid(false);
+        setError("Please enter a valid password ");
+      }
+    }
   };
 
   return (
