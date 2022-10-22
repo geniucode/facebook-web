@@ -1,35 +1,68 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CountrySelector } from "./countrySelector";
 import { DateSelector } from "./dateSelector";
 import "./style.css";
 
 const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [birthDay, setBirthDay] = useState(new Date());
-  const [gender, setGender] = useState("");
-  const [country, setCountry] = useState("");
+  const [email, setEmail] = useState({ value: "", accepted: true });
+  const [password, setPassword] = useState({ value: "", accepted: true });
+  const [birthDay, setBirthDay] = useState({ value: "", accepted: true });
+  const [gender, setGender] = useState({ value: "", accepted: true });
+  const [country, setCountry] = useState({ value: "", accepted: true });
 
   const onChangeEmail = (event) => {
-    setEmail(event.target.value);
+    setEmail({
+      value: event.target.value,
+      accepted: event.target.value.length !== 0,
+    });
   };
   const onChangePassword = (event) => {
-    setPassword(event.target.value);
+    setPassword({
+      value: event.target.value,
+      accepted: event.target.value.length !== 0,
+    });
   };
   const onChangeGender = (event) => {
-    setGender(event.target.value);
+    setGender({
+      value: event.target.value,
+      accepted: event.target.value.length !== 0,
+    });
   };
-  
+
   const onClickBtn = async () => {
-    const res = await axios.post("http://localhost:3001/user/signup", {
-        email,
-        password,
-        birthDay,
-        gender,
-        country,
+    try {
+      await axios.post("http://localhost:3001/user/signup", {
+        email: email.value,
+        password: password.value,
+        birthDay: birthDay.value,
+        gender: gender.value,
+        country: country.value,
       });
+    } catch (error) {
+      const errors = error.response?.data?.errors?.map((error) => error.param);
+      if (errors) {
+        console.log(errors);
+        if (errors.includes("email")) {
+          setEmail({ value: "", accepted: false });
+        }
+        if (errors.includes("password")) {
+          setPassword({ value: "", accepted: false });
+        }
+        if (errors.includes("birthDay")) {
+          setBirthDay({ value: "", accepted: false });
+        }
+        if (errors.includes("gender")) {
+          setGender({ value: "", accepted: false });
+        }
+        if (errors.includes("country")) {
+          setCountry({ value: "", accepted: false });
+        }
+      }
+    }
   };
+
+  useEffect(() => {}, [email, password, birthDay, gender, country]);
 
   return (
     <div className="signup-container">
@@ -45,28 +78,72 @@ const Signup = () => {
           <div className="form-heading-2">It’s quick and easy.</div>
         </div>
         <div className="form-details">
-          <input type="email" placeholder="Email" onChange={onChangeEmail}/>
-          <input type="password" placeholder="New password" onChange={onChangePassword}/>
-          <div className="birthday-section">
-            <div className="section-title">Birthday</div>
-            <DateSelector setBirthDay={setBirthDay}/>
+          <div
+            className={`input-container ${
+              email.accepted ? "error-hidden" : "error-shown"
+            }`}
+          >
+            <input type="email" placeholder="Email" onChange={onChangeEmail} />
           </div>
-          <div className="gender-section">
-            <div className="section-title">Gender</div>
-            <div className="gender-selectors-container">
-              <div className="gender-selector">
-                <label>Female</label>
-                <input type="radio" name="gender" value="Female" onChange={onChangeGender}/>
-              </div>
-              <div className="gender-selector">
-                <label>Male</label>
-                <input type="radio" name="gender" value="Male" onChange={onChangeGender}/>
+          <div
+            className={`input-container ${
+              password.accepted ? "error-hidden" : "error-shown"
+            }`}
+          >
+            <input
+              type="password"
+              placeholder="New password"
+              onChange={onChangePassword}
+            />
+          </div>
+          <div
+            className={`section-container ${
+              birthDay.accepted ? "error-hidden" : "error-shown"
+            }`}
+          >
+            <div className="birthday-section">
+              <div className="section-title">Birthday</div>
+              <DateSelector birthDay={birthDay} setBirthDay={setBirthDay} />
+            </div>
+          </div>
+          <div
+            className={`section-container ${
+              gender.accepted ? "error-hidden" : "error-shown"
+            }`}
+          >
+            <div className="gender-section">
+              <div className="section-title">Gender</div>
+              <div className="gender-selectors-container">
+                <div className="gender-selector">
+                  <label>Female</label>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="Female"
+                    onChange={onChangeGender}
+                  />
+                </div>
+                <div className="gender-selector">
+                  <label>Male</label>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="Male"
+                    onChange={onChangeGender}
+                  />
+                </div>
               </div>
             </div>
           </div>
-          <div className="country-section">
-            <div className="section-title">Country</div>
-            <CountrySelector setCountry={setCountry}/>
+          <div
+            className={`section-container ${
+              country.accepted ? "error-hidden" : "error-shown"
+            }`}
+          >
+            <div className="country-section">
+              <div className="section-title">Country</div>
+              <CountrySelector setCountry={setCountry} />
+            </div>
           </div>
           <p>
             People who use our service may have uploaded your contact
@@ -90,7 +167,7 @@ const Signup = () => {
             time.
           </p>
           <button onClick={onClickBtn}>Sign Up</button>
-          <a href="/user/login">Already have an account?</a>
+          <a href="login">Already have an account?</a>
         </div>
       </div>
     </div>
