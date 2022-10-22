@@ -3,11 +3,13 @@ import { Signup } from "./components/signup/index.js";
 import "./App.css";
 import { Login } from "./components/login";
 import { Signup } from "./components/signup";
+import { ForgetPassword } from "./components/forgetPassword";
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/forgetPassword" element={<ForgetPassword />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Routes>
