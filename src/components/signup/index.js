@@ -67,9 +67,9 @@ const Signup = () => {
     try {
       await axios.post("http://localhost:3001/user/signup", {
         email: email.value,
+        gender: gender.value,
         password: password.value,
         birthDay: birthDay.value,
-        gender: gender.value,
         country: country.value,
       });
     } catch (error) {
