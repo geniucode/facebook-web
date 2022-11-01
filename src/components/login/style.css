@@ -63,16 +63,51 @@ body {
   gap: 10px;
 }
 
-.login-box > input[type="email"],
-.login-box > input[type="password"] {
+.email-field,
+.password-field {
+  display: flex;
+  position: relative;
+}
+
+.login-box > .email-field > input[type="email"],
+.login-box > .password-field > input[type="password"],
+.login-box > .password-field > input[type="text"] {
   padding-left: 20px;
   height: 50px;
   border-radius: 5px;
   border: 1px solid silver;
+  flex: 1;
 }
 
-.login-box > input[type="email"]::placeholder,
-.login-box > input[type="password"]::placeholder {
+.email-field > span.not-active,
+.password-field > span.not-active {
+  display: none;
+  right: 4%;
+  top: 30%;
+  position: absolute;
+}
+
+.email-field > span.active,
+.password-field > span.active {
+  display: block;
+}
+
+.email-field > span.not-active,
+.password-field > span.not-active {
+  display: none;
+  right: 4%;
+  top: 30%;
+  position: absolute;
+}
+
+.email-field > span.active,
+.password-field > span.active {
+  display: block;
+}
+
+.login-box > .email-field > input[type="email"]::placeholder,
+.login-box > .password-field > input[type="password"]::placeholder,
+.login-box > .password-field > input[type="text"]::placeholder {
   color: grey;
   font-size: 15px;
 }
@@ -109,13 +144,12 @@ hr {
 }
 
 .input-error {
-  outline: red !important;
-  background-color: red;
+  border-color: red !important;
 }
 
 .error-message {
   color: red;
-  font-weight: bold;
+  font-weight: light;
   text-align: center;
 }
 
@@ -141,6 +175,10 @@ hr {
   font-weight: bolder;
 }
 
+span > img.clickable {
+  cursor: pointer;
+}
+
 @media (max-width: 770px) {
   .login-container {
     flex-direction: column;
@@ -161,5 +199,6 @@ hr {
   .header-content {
     text-align: center;
     font-weight: 400;
+    font-size: 20px;
   }
 }

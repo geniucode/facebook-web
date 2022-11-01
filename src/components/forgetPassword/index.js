@@ -10,7 +10,9 @@ const ForgetPassword = () => {
         </div>
         <div className="signin-inputs">
           <input type="email" placeholder="Email or phone" onChange="" />
-          <input type="password" placeholder="Password" onChange="" />
+          <input type="password" placeholder="Password" onChange="">
+            <input type="text" />
+          </input>
           <button onClick="">Log in</button>
           <a href="/forget-password">Forgotten account?</a>
         </div>
