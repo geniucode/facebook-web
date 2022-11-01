@@ -5,9 +5,19 @@ import { DateSelector } from "./dateSelector";
 import "./style.css";
 
 const Signup = () => {
+  const date = new Date();
+  const [currYear, currMonth, currDay] = [
+    date.getFullYear(),
+    date.getMonth() + 1,
+    date.getDate(),
+  ];
+
   const [email, setEmail] = useState({ value: "", accepted: true });
   const [password, setPassword] = useState({ value: "", accepted: true });
-  const [birthDay, setBirthDay] = useState({ value: "", accepted: true });
+  const [birthDay, setBirthDay] = useState({
+    value: `${currYear}-${currMonth}-${currDay}`,
+    accepted: true,
+  });
   const [gender, setGender] = useState({ value: "", accepted: true });
   const [country, setCountry] = useState({ value: "", accepted: true });
 
@@ -23,20 +33,43 @@ const Signup = () => {
       accepted: event.target.value.length !== 0,
     });
   };
-  const onChangeGender = (event) => {
-    setGender({
-      value: event.target.value,
-      accepted: event.target.value.length !== 0,
-    });
+  const onClickGender = (event) => {
+    if (
+      event.target.childNodes.length === 0 &&
+      event.target.value !== gender.value
+    ) {
+      event.target.checked = true;
+      setGender({
+        value: event.target.value,
+        accepted: event.target.value.length !== 0,
+      });
+    } else if (
+      event.target.childNodes.length === 1 &&
+      event.target.nextSibling.value !== gender.value
+    ) {
+      event.target.nextSibling.checked = true;
+      setGender({
+        value: event.target.nextSibling.value,
+        accepted: event.target.nextSibling.value.length !== 0,
+      });
+    } else if (
+      event.target.childNodes.length === 2 &&
+      event.target.children[1].value !== gender.value
+    ) {
+      event.target.children[1].checked = true;
+      setGender({
+        value: event.target.children[1].value,
+        accepted: event.target.children[1].value.length !== 0,
+      });
+    }
   };
-
   const onClickBtn = async () => {
     try {
       await axios.post("http://localhost:3001/user/signup", {
         email: email.value,
+        gender: gender.value,
         password: password.value,
         birthDay: birthDay.value,
-        gender: gender.value,
         country: country.value,
       });
     } catch (error) {
@@ -114,23 +147,13 @@ const Signup = () => {
             <div className="gender-section">
               <div className="section-title">Gender</div>
               <div className="gender-selectors-container">
-                <div className="gender-selector">
+                <div className="gender-selector" onClick={onClickGender}>
                   <label>Female</label>
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="Female"
-                    onChange={onChangeGender}
-                  />
+                  <input type="radio" name="gender" value="Female" />
                 </div>
-                <div className="gender-selector">
+                <div className="gender-selector" onClick={onClickGender}>
                   <label>Male</label>
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="Male"
-                    onChange={onChangeGender}
-                  />
+                  <input type="radio" name="gender" value="Male" />
                 </div>
               </div>
             </div>
@@ -147,19 +170,19 @@ const Signup = () => {
           </div>
           <p>
             People who use our service may have uploaded your contact
-            information to Facebook.
+            information to Facebook.{" "}
             <a href="https://www.facebook.com/campaign/help/637205020878504">
               Learn more
             </a>
             .
           </p>
           <p>
-            By clicking Sign Up, you agree to our
-            <a href="https://www.facebook.com/legal/terms/update">Terms</a>,
+            By clicking Sign Up, you agree to our{" "}
+            <a href="https://www.facebook.com/legal/terms/update">Terms</a>,{" "}
             <a href="https://www.facebook.com/about/privacy/update">
               Privacy Policy
-            </a>
-            and
+            </a>{" "}
+            and{" "}
             <a href="https://www.facebook.com/policies/cookies/">
               Cookies Policy
             </a>
