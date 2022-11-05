@@ -1,5 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
+import err from "./images/error.png";
+import ShowPasswordImg from "./images/show-password.png";
+import HidePasswordImg from "./images/hide-password.png";
 import "./style.css";
 
 const Login = () => {
@@ -8,21 +11,53 @@ const Login = () => {
   const [error, setError] = useState("");
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
+  const [showHidePasswordBtn, setShowHidePasswordBtn] = useState(false);
 
   const onChangeEmail = (event) => {
     const finalEmail = event.target.value;
-    setEmailIsValid(true);
     setEmail(finalEmail);
+    if (finalEmail.length > 0) {
+      setError();
+      setEmailIsValid(true);
+    }
   };
 
   const onChangePassword = (event) => {
     const finalPassword = event.target.value;
-    setPasswordIsValid(true);
     setPassword(finalPassword);
+    if (finalPassword.length > 0) {
+      setError();
+      setPasswordIsValid(true);
+    } else if (finalPassword.length === 0) {
+      setShowHidePasswordBtn(false);
+    }
+  };
+  const displayShowPasswordBtn = () => {
+    setShowHidePasswordBtn(false);
+  };
+
+  const displayHidePasswordBtn = () => {
+    setShowHidePasswordBtn(true);
   };
 
   const checkLogin = async (event) => {
     try {
+      if (email.length === 0) {
+        setEmailIsValid(false);
+        setError("Please enter a valid email address");
+        if (password.length === 0) {
+          setPasswordIsValid(false);
+          setError("Please enter an email and a password");
+          return;
+        }
+        return;
+      }
+      if (password.length === 0) {
+        setPasswordIsValid(false);
+        setError("Please enter a password");
+        return;
+      }
+
       const response = await axios.post("http://localhost:3001/user/login", {
         email,
         password,
@@ -38,6 +73,7 @@ const Login = () => {
       } else if (response.data.errors[0].param === "password") {
         setPasswordIsValid(false);
         setError("Please enter a valid password ");
+        return;
       }
     }
   };
@@ -58,18 +94,53 @@ const Login = () => {
       </div>
       <div className="outer-box">
         <div className="login-box">
-          <input
-            onChange={onChangeEmail}
-            className={`${!emailIsValid && "input-error"}`}
-            type="email"
-            placeholder="Email"
-          />
-          <input
-            onChange={onChangePassword}
-            className={`${!passwordIsValid && "input-error"}`}
-            type="password"
-            placeholder="Password"
-          />
+          <div className="email-field">
+            <input
+              onChange={onChangeEmail}
+              className={`${!emailIsValid && "input-error"}`}
+              type="email"
+              placeholder="Email"
+            />
+            <span className={`not-active ${!emailIsValid && "active"}`}>
+              <img src={err} alt="error" />
+            </span>
+          </div>
+          <div className="password-field">
+            <input
+              onChange={onChangePassword}
+              id="password"
+              className={`${!passwordIsValid && "input-error"}`}
+              type={showHidePasswordBtn ? "text" : "password"}
+              placeholder="Password"
+            />
+            <span className={`not-active ${!passwordIsValid && "active"}`}>
+              <img src={err} alt="error" />
+            </span>
+            <span
+              className={`not-active ${
+                password.length > 0 && showHidePasswordBtn ? "active" : ""
+              }`}
+            >
+              <img
+                className="clickable"
+                onClick={displayShowPasswordBtn}
+                src={HidePasswordImg}
+                alt="hide-password"
+              />
+            </span>
+            <span
+              className={`not-active ${
+                password.length > 0 && !showHidePasswordBtn ? "active" : ""
+              }`}
+            >
+              <img
+                className="clickable"
+                onClick={displayHidePasswordBtn}
+                src={ShowPasswordImg}
+                alt="hide-password"
+              />
+            </span>
+          </div>
           <button onClick={checkLogin} type="submit" className="loginBtn">
             Log In
           </button>

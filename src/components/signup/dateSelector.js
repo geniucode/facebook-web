@@ -1,8 +1,8 @@
 const DateSelector = (props) => {
   const date = new Date();
-  const [currYear, currMonth, currDay, ] = [
+  const [currYear, currMonth, currDay] = [
     date.getFullYear(),
-    date.getMonth()+1,
+    date.getMonth() + 1,
     date.getDate(),
   ];
   const monthOptions = [
@@ -29,9 +29,11 @@ const DateSelector = (props) => {
   const onChangeBirthDay = (event) => {
     let [year, month, day] = props.birthDay.value.split("-");
     if (isNaN(event.target.value)) {
-      month = monthOptions.indexOf(event.target.value)+1;
+      month = monthOptions.indexOf(event.target.value) + 1;
+      month = month> 10 ? `${month}` : `0${month}`;
     } else if (event.target.value <= 31) {
       day = event.target.value;
+      day = day> 10 ? `${day}` : `0${day}`;
     } else {
       year = event.target.value;
     }
@@ -45,7 +47,7 @@ const DateSelector = (props) => {
     <div className="date-selectors-container">
       <select
         className="date-selector"
-        defaultValue={monthOptions[currMonth-1]}
+        defaultValue={monthOptions[currMonth - 1]}
         onChange={onChangeBirthDay}
       >
         {monthOptions.map((monthOption) => (

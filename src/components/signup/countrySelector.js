@@ -20,7 +20,7 @@ const CountrySelector = (props) => {
 
   return (
     <select className="country-selector" onChange={onChangeCountry}>
-      <option key={""}value={""}></option>
+      <option key={""} value={""}></option>
       {!!countryArr?.length &&
         countryArr.map(({ label, value }) => (
           <option key={value} value={label}>
