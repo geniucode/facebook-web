@@ -1,8 +1,27 @@
 import "./style.css";
 import { HeaderLogin } from "../header";
 import { FbSnackBar } from "../snackBar/index.js";
+import { useState } from "react";
+import { postAxios } from "../../service/axios";
 
 const ForgetPassword = () => {
+  const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const onClickSubmit = async () => {
+    const response = await postAxios("user/forgot-password", {
+      email,
+    });
+    console.log(response);
+    if (response.success) {
+      setMessage("Email sent");
+      setOpen(true);
+    } else {
+      setMessage("Invalid Email");
+      setOpen(true);
+    }
+  };
   return (
     <div className="forget-password">
       <HeaderLogin />
@@ -16,14 +35,14 @@ const ForgetPassword = () => {
             <input
               type="email"
               placeholder="Email address or mobile number"
-              onChange=""
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="forget-button">
-            <button className="showSnackbarBttn" onClick={FbSnackBar}>
+            <button className="showSnackbarBttn" onClick={onClickSubmit}>
               Submit
             </button>
-            <FbSnackBar message="Email has been sent!" />
+            <FbSnackBar open={open} message={message} setOpen={setOpen} />
           </div>
         </div>
       </div>
