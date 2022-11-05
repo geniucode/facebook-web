@@ -3,10 +3,12 @@ import "./App.css";
 import { Login } from "./components/login";
 import { Signup } from "./components/signup";
 import { ForgetPassword } from "./components/forgetPassword";
+import { ResetPassword } from "./screen/resetPassword";
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
