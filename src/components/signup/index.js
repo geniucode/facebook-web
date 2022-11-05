@@ -6,11 +6,13 @@ import "./style.css";
 
 const Signup = () => {
   const date = new Date();
-  const [currYear, currMonth, currDay] = [
+  let [currYear, currMonth, currDay] = [
     date.getFullYear(),
     date.getMonth() + 1,
     date.getDate(),
   ];
+  currMonth = currMonth> 10 ? `${currMonth}` : `0${currMonth}`;
+  currDay = currDay> 10 ? `${currDay}` : `0${currDay}`;
 
   const [email, setEmail] = useState({ value: "", accepted: true });
   const [password, setPassword] = useState({ value: "", accepted: true });
