@@ -1,20 +1,11 @@
 import "./style.css";
-import facebook from "./images/Facebook-Logo.png";
+import { HeaderLogin } from "../header";
+import { FbSnackBar } from "../snackBar/index.js";
 
 const ForgetPassword = () => {
   return (
     <div className="forget-password">
-      <div className="header">
-        <div className="logo">
-          <img src={facebook} alt="Facebook" />
-        </div>
-        <div className="signin-inputs">
-          <input type="email" placeholder="Email or phone" onChange="" />
-          <input type="password" placeholder="Password" onChange="" />
-          <button onClick="">Log in</button>
-          <a href="/forget-password">Forgotten account?</a>
-        </div>
-      </div>
+      <HeaderLogin />
       <div className="forget-password-container">
         <div className="forget-password-form">
           <div className="title">Find Your Account</div>
@@ -29,7 +20,10 @@ const ForgetPassword = () => {
             />
           </div>
           <div className="forget-button">
-            <button onClick="">Submit</button>
+            <button className="showSnackbarBttn" onClick={FbSnackBar}>
+              Submit
+            </button>
+            <FbSnackBar message="Email has been sent!" />
           </div>
         </div>
       </div>
