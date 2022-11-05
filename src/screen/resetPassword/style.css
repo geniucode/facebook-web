@@ -23,6 +23,10 @@
   height: 35px;
 }
 
+.form-details {
+  gap: 20px;
+}
+
 .signin-inputs {
   display: flex;
   gap: 8px;
