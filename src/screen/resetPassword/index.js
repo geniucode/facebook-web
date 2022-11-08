@@ -1,9 +1,10 @@
-import "./style.css";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
 import { HeaderLogin } from "../../components/header";
 import { FbSnackBar } from "../../components/snackBar/index.js";
-import { useEffect, useState } from "react";
 import { getAxios, postAxios } from "../../service/axios";
-import { useSearchParams } from "react-router-dom";
+import "./style.css";
 
 const ResetPassword = () => {
   const [hasAccess, setHasAccess] = useState(false);
