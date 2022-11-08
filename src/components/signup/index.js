@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CountrySelector } from "./countrySelector";
 import { DateSelector } from "./dateSelector";
 import "./style.css";
@@ -11,8 +12,8 @@ const Signup = () => {
     date.getMonth() + 1,
     date.getDate(),
   ];
-  currMonth = currMonth> 10 ? `${currMonth}` : `0${currMonth}`;
-  currDay = currDay> 10 ? `${currDay}` : `0${currDay}`;
+  currMonth = currMonth > 10 ? `${currMonth}` : `0${currMonth}`;
+  currDay = currDay > 10 ? `${currDay}` : `0${currDay}`;
 
   const [email, setEmail] = useState({ value: "", accepted: true });
   const [password, setPassword] = useState({ value: "", accepted: true });
@@ -98,6 +99,12 @@ const Signup = () => {
   };
 
   useEffect(() => {}, [email, password, birthDay, gender, country]);
+
+  const navigate = useNavigate();
+
+  const onClcikGoToSignIn = () => {
+    navigate("/login");
+  };
 
   return (
     <div className="signup-container">
@@ -192,7 +199,9 @@ const Signup = () => {
             time.
           </p>
           <button onClick={onClickBtn}>Sign Up</button>
-          <a href="login">Already have an account?</a>
+          <div style={{ cursor: "pointer" }} onClick={onClcikGoToSignIn}>
+            Already have an account?
+          </div>
         </div>
       </div>
     </div>

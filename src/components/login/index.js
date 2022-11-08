@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import err from "./images/error.png";
 import ShowPasswordImg from "./images/show-password.png";
@@ -12,6 +13,8 @@ const Login = () => {
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
   const [showHidePasswordBtn, setShowHidePasswordBtn] = useState(false);
+
+  const navigate = useNavigate();
 
   const onChangeEmail = (event) => {
     const finalEmail = event.target.value;
@@ -64,6 +67,17 @@ const Login = () => {
       });
       if (!response.data.sucess) {
         setError("Invalid Credintials");
+      } else if (response.data?.sucess && response.data?.jwtToken) {
+        const jwtToken = response.data.jwtToken;
+        const isValidToken = await axios.post(
+          "http://localhost:3001/validate-token",
+          { jwtToken }
+        );
+        if (isValidToken) {
+          navigate("/");
+        } else {
+          navigate("/login");
+        }
       }
     } catch (error) {
       const response = error.response;
@@ -76,6 +90,10 @@ const Login = () => {
         return;
       }
     }
+  };
+
+  const onClcikGoToSignUp = () => {
+    navigate("/signup");
   };
 
   return (
@@ -147,7 +165,7 @@ const Login = () => {
           <hr />
           {error && <div className="error-message">{error}</div>}
           <div className="signUp">
-            <a href="../signup">Create new account</a>
+            <div onClick={onClcikGoToSignUp}>Create new account</div>
           </div>
         </div>
         <div className="page-create">
