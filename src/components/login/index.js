@@ -80,7 +80,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <div className="header">
+      <div className="headers">
         <div className="header-title">
           <h1>facebook</h1>
         </div>
