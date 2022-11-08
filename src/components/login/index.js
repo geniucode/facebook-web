@@ -31,7 +31,7 @@ const Login = () => {
         setError("Invalid Credintials");
       }
       else{
-       // localStorage.setItem('token', response.data.token);
+        localStorage.setItem('token', response.data.token);
       }
     } catch (error) {
       const response = error.response;
