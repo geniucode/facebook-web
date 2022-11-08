@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
 
@@ -8,6 +9,8 @@ const Login = () => {
   const [error, setError] = useState("");
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
+
+  let navigate = useNavigate();
 
   const onChangeEmail = (event) => {
     const finalEmail = event.target.value;
@@ -29,6 +32,18 @@ const Login = () => {
       });
       if (!response.data.sucess) {
         setError("Invalid Credintials");
+      } else if (response.data?.sucess && response.data?.jwtToken) {
+        const jwtToken = response.data.jwtToken;
+        const isValidToken = await axios.post(
+          "http://localhost:3001/validate-token",
+          { jwtToken }
+        );
+        if (isValidToken) {
+          localStorage.setItem("jwtToken", jwtToken);
+          navigate("/");
+        } else {
+          navigate("/login");
+        }
       }
     } catch (error) {
       const response = error.response;
