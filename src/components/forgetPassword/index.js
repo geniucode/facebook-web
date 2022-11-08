@@ -1,20 +1,30 @@
 import "./style.css";
-import facebook from "./images/Facebook-Logo.png";
+import { HeaderLogin } from "../header";
+import { FbSnackBar } from "../snackBar/index.js";
+import { useState } from "react";
+import { postAxios } from "../../service/axios";
 
 const ForgetPassword = () => {
+  const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const onClickSubmit = async () => {
+    const response = await postAxios("user/forgot-password", {
+      email,
+    });
+    console.log(response);
+    if (response.success) {
+      setMessage("Email sent");
+      setOpen(true);
+    } else {
+      setMessage("Invalid Email");
+      setOpen(true);
+    }
+  };
   return (
     <div className="forget-password">
-      <div className="header">
-        <div className="logo">
-          <img src={facebook} alt="Facebook" />
-        </div>
-        <div className="signin-inputs">
-          <input type="email" placeholder="Email or phone" onChange="" />
-          <input type="password" placeholder="Password" onChange="" />
-          <button onClick="">Log in</button>
-          <a href="/forget-password">Forgotten account?</a>
-        </div>
-      </div>
+      <HeaderLogin />
       <div className="forget-password-container">
         <div className="forget-password-form">
           <div className="title">Find Your Account</div>
@@ -25,11 +35,14 @@ const ForgetPassword = () => {
             <input
               type="email"
               placeholder="Email address or mobile number"
-              onChange=""
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="forget-button">
-            <button onClick="">Submit</button>
+            <button className="showSnackbarBttn" onClick={onClickSubmit}>
+              Submit
+            </button>
+            <FbSnackBar open={open} message={message} setOpen={setOpen} />
           </div>
         </div>
       </div>

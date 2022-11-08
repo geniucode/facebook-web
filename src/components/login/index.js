@@ -1,50 +1,26 @@
-import { useState } from "react";
-import axios from "axios";
+import err from "./images/error.png";
+import ShowPasswordImg from "./images/show-password.png";
+import HidePasswordImg from "./images/hide-password.png";
 import "./style.css";
+import { useLogin } from "./useLogin";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [emailIsValid, setEmailIsValid] = useState(true);
-  const [passwordIsValid, setPasswordIsValid] = useState(true);
-
-  const onChangeEmail = (event) => {
-    const finalEmail = event.target.value;
-    setEmailIsValid(true);
-    setEmail(finalEmail);
-  };
-
-  const onChangePassword = (event) => {
-    const finalPassword = event.target.value;
-    setPasswordIsValid(true);
-    setPassword(finalPassword);
-  };
-
-  const checkLogin = async (event) => {
-    try {
-      const response = await axios.post("http://localhost:3001/user/login", {
-        email,
-        password,
-      });
-      if (!response.data.sucess) {
-        setError("Invalid Credintials");
-      }
-    } catch (error) {
-      const response = error.response;
-      if (response.data.errors[0].param === "email") {
-        setEmailIsValid(false);
-        setError("Please enter a valid email ");
-      } else if (response.data.errors[0].param === "password") {
-        setPasswordIsValid(false);
-        setError("Please enter a valid password ");
-      }
-    }
-  };
-
+  const {
+    password,
+    error,
+    emailIsValid,
+    passwordIsValid,
+    showHidePasswordBtn,
+    onChangeEmail,
+    onChangePassword,
+    displayShowPasswordBtn,
+    displayHidePasswordBtn,
+    checkLogin,
+    onClcikGoToSignUp,
+  } = useLogin();
   return (
     <div className="login-container">
-      <div className="header">
+      <div className="headers">
         <div className="header-title">
           <h1>facebook</h1>
         </div>
@@ -58,25 +34,60 @@ const Login = () => {
       </div>
       <div className="outer-box">
         <div className="login-box">
-          <input
-            onChange={onChangeEmail}
-            className={`${!emailIsValid && "input-error"}`}
-            type="email"
-            placeholder="Email"
-          />
-          <input
-            onChange={onChangePassword}
-            className={`${!passwordIsValid && "input-error"}`}
-            type="password"
-            placeholder="Password"
-          />
+          <div className="email-field">
+            <input
+              onChange={onChangeEmail}
+              className={`${!emailIsValid && "input-error"}`}
+              type="email"
+              placeholder="Email"
+            />
+            <span className={`not-active ${!emailIsValid && "active"}`}>
+              <img src={err} alt="error" />
+            </span>
+          </div>
+          <div className="password-field">
+            <input
+              onChange={onChangePassword}
+              id="password"
+              className={`${!passwordIsValid && "input-error"}`}
+              type={showHidePasswordBtn ? "text" : "password"}
+              placeholder="Password"
+            />
+            <span className={`not-active ${!passwordIsValid && "active"}`}>
+              <img src={err} alt="error" />
+            </span>
+            <span
+              className={`not-active ${
+                password.length > 0 && showHidePasswordBtn ? "active" : ""
+              }`}
+            >
+              <img
+                className="clickable"
+                onClick={displayShowPasswordBtn}
+                src={HidePasswordImg}
+                alt="hide-password"
+              />
+            </span>
+            <span
+              className={`not-active ${
+                password.length > 0 && !showHidePasswordBtn ? "active" : ""
+              }`}
+            >
+              <img
+                className="clickable"
+                onClick={displayHidePasswordBtn}
+                src={ShowPasswordImg}
+                alt="hide-password"
+              />
+            </span>
+          </div>
           <button onClick={checkLogin} type="submit" className="loginBtn">
             Log In
           </button>
           <hr />
           {error && <div className="error-message">{error}</div>}
           <div className="signUp">
-            <a href="../signup">Create new account</a>
+            <div onClick={onClcikGoToSignUp}>Create new account</div>
           </div>
         </div>
         <div className="page-create">
