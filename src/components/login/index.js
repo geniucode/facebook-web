@@ -39,7 +39,6 @@ const Login = () => {
           { jwtToken }
         );
         if (isValidToken) {
-          localStorage.setItem("jwtToken", jwtToken);
           navigate("/");
         } else {
           navigate("/login");
