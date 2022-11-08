@@ -10,7 +10,7 @@ const Login = () => {
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const onChangeEmail = (event) => {
     const finalEmail = event.target.value;
@@ -56,6 +56,10 @@ const Login = () => {
     }
   };
 
+  const onClcikGoToSignUp = () => {
+    navigate("/signup");
+  };
+
   return (
     <div className="login-container">
       <div className="header">
@@ -90,7 +94,7 @@ const Login = () => {
           <hr />
           {error && <div className="error-message">{error}</div>}
           <div className="signUp">
-            <a href="../signup">Create new account</a>
+            <div onClick={onClcikGoToSignUp}>Create new account</div>
           </div>
         </div>
         <div className="page-create">
