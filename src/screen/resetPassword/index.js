@@ -46,7 +46,7 @@ const ResetPassword = () => {
     <div className="forget-password">
       <HeaderLogin />
       <div className="forget-password-container">
-        {hasAccess ? (
+        {!hasAccess ? (
           <div className="forget-password-form">
             <div className="title">Change Your Password</div>
             <div className="email-input">
