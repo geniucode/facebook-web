@@ -30,6 +30,9 @@ const Login = () => {
       if (!response.data.sucess) {
         setError("Invalid Credintials");
       }
+      else{
+       // localStorage.setItem('token', response.data.token);
+      }
     } catch (error) {
       const response = error.response;
       if (response.data.errors[0].param === "email") {
