@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { postAxios } from "../../service/axios";
 const useLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,12 +56,12 @@ const useLogin = () => {
         setError("Please enter a password");
         return;
       }
-
-      const response = await axios.post("http://localhost:3001/user/login", {
+      const response = await postAxios("user/login", {
         email,
         password,
       });
-      if (!response.data.sucess) {
+
+      if (!response.data?.sucess) {
         setError("Invalid Credintials");
       } else if (response.data?.sucess && response.data?.jwtToken) {
         const jwtToken = response.data.jwtToken;

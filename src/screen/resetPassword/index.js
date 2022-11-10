@@ -22,10 +22,12 @@ const ResetPassword = () => {
     });
     console.log(response);
     if (response.success) {
-      setMessage("Password chaging sucessc sent");
+      setMessage("Password has been successfully changed!");
       setOpen(true);
     } else {
-      setMessage("Invalid Email");
+      setMessage(
+        "Please have 8 or more characters, have atleast one symbol, one lower case, and one upper case letter."
+      );
       setOpen(true);
     }
   };
