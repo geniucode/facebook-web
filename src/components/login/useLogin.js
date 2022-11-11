@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 const useLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -93,6 +94,10 @@ const useLogin = () => {
     navigate("/signup");
   };
 
+  const onClickGoToForgetPassword = () => {
+    navigate("/forget-password");
+  };
+
   return {
     password,
     error,
@@ -105,6 +110,7 @@ const useLogin = () => {
     displayHidePasswordBtn,
     checkLogin,
     onClcikGoToSignUp,
+    onClickGoToForgetPassword,
   };
 };
 
