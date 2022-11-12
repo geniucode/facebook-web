@@ -18,6 +18,37 @@ const ResetPassword = () => {
   checkAccess,
 }=useResetPassword();
 
+  const onClickSubmit = async () => {
+    const forgetPasswordToken = searchParams.get("hashcode");
+    const response = await postAxios("user/reset-password", {
+      forgetPasswordToken,
+      password,
+    });
+    console.log(response);
+    if (response.success) {
+      setMessage("Password has been successfully changed!");
+      setOpen(true);
+    } else {
+      setMessage(
+        "Please have 8 or more characters, have atleast one symbol, one lower case, and one upper case letter."
+      );
+      setOpen(true);
+    }
+  };
+  const checkAccess = async () => {
+    const forgetPasswordToken = searchParams.get("hashcode");
+    console.log(forgetPasswordToken);
+    const response = await getAxios("user/reset-password", {
+      forgetPasswordToken,
+    });
+    console.log(response);
+    if (response.success) {
+      setHasAccess(true);
+    }
+  };
+  useEffect(() => {
+    checkAccess();
+  }, []);
   return (
     <div className="forget-password">
       <HeaderLogin />
