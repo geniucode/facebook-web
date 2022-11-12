@@ -1,18 +1,22 @@
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 
 import { HeaderLogin } from "../../components/header";
 import { FbSnackBar } from "../../components/snackBar/index.js";
-import { getAxios, postAxios } from "../../service/axios";
+
 import "./style.css";
+import { useResetPassword } from "./useResetPassword";
 
 const ResetPassword = () => {
-  const [hasAccess, setHasAccess] = useState(false);
-  const [password, setPassword] = useState("");
-  const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
-  searchParams.get("__firebase_request_key");
+  const {
+  hasAccess,
+  password,
+  open,
+  message,
+  earchParams,
+  setPassword,
+  setOpen,
+  onClickSubmit,
+  checkAccess,
+}=useResetPassword();
 
   const onClickSubmit = async () => {
     const forgetPasswordToken = searchParams.get("hashcode");
@@ -22,10 +26,12 @@ const ResetPassword = () => {
     });
     console.log(response);
     if (response.success) {
-      setMessage("Password chaging sucessc sent");
+      setMessage("Password has been successfully changed!");
       setOpen(true);
     } else {
-      setMessage("Invalid Email");
+      setMessage(
+        "Please have 8 or more characters, have atleast one symbol, one lower case, and one upper case letter."
+      );
       setOpen(true);
     }
   };

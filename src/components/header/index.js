@@ -10,6 +10,7 @@ const HeaderLogin = () => {
     onChangeEmail,
     onChangePassword,
     checkLogin,
+    onClickGoToForgetPassword,
   } = useLogin();
 
   return (
@@ -32,7 +33,7 @@ const HeaderLogin = () => {
         />
         <button onClick={checkLogin}>Log in</button>
         {error && <div className="error-message">{error}</div>}
-        <a href="/forget-password">Forgotten account?</a>
+        <div onClick={onClickGoToForgetPassword}>Forgotten account?</div>
       </div>
     </div>
   );
