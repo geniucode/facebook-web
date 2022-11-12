@@ -94,6 +94,10 @@ const useLogin = () => {
     navigate("/signup");
   };
 
+  const onClickGoToForgetPassword = () => {
+    navigate("/forget-password");
+  };
+
   return {
     password,
     error,
@@ -106,6 +110,7 @@ const useLogin = () => {
     displayHidePasswordBtn,
     checkLogin,
     onClcikGoToSignUp,
+    onClickGoToForgetPassword,
   };
 };
 
