@@ -38,6 +38,26 @@ const useLogin = () => {
     setShowHidePasswordBtn(true);
   };
 
+  const onLoadValidateToken = async () => {
+    const jwtToken = window.localStorage.getItem("jwtToken");
+    if (jwtToken) {
+      try {
+        const response = await axios.post(
+          "http://localhost:3001/validate-token",
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${jwtToken}`,
+            },
+          }
+        );
+        if (response?.data?.seccuss) {
+          navigate("/");
+        }
+      } catch (error) {}
+    }
+  };
+
   const checkLogin = async (event) => {
     try {
       if (email.length === 0) {
@@ -64,17 +84,8 @@ const useLogin = () => {
         setError("Invalid Credintials");
       } else if (response.data?.sucess && response.data?.jwtToken) {
         const jwtToken = response.data.jwtToken;
-        const isValidToken = await axios.post(
-          "http://localhost:3001/validate-token",
-          { jwtToken }
-        );
-        if (isValidToken) {
-          navigate("/");
-        } else {
-          navigate("/login");
-        }
-      } else {
-        localStorage.setItem("token", response.data.token);
+        window.localStorage.setItem("jwtToken", jwtToken);
+        navigate("/");
       }
     } catch (error) {
       const response = error.response;
@@ -86,6 +97,7 @@ const useLogin = () => {
         setError("Please enter a valid password ");
         return;
       }
+      console.log(error);
     }
   };
 
@@ -105,6 +117,7 @@ const useLogin = () => {
     displayHidePasswordBtn,
     checkLogin,
     onClcikGoToSignUp,
+    onLoadValidateToken,
   };
 };
 

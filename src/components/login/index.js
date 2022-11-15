@@ -17,9 +17,10 @@ const Login = () => {
     displayHidePasswordBtn,
     checkLogin,
     onClcikGoToSignUp,
+    onLoadValidateToken,
   } = useLogin();
   return (
-    <div className="login-container">
+    <div className="login-container" onLoad={onLoadValidateToken}>
       <div className="headers">
         <div className="header-title">
           <h1>facebook</h1>
