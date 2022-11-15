@@ -60,22 +60,13 @@ const useLogin = () => {
         email,
         password,
       });
-
-      if (!response.data?.sucess) {
+      console.log("response", response);
+      if (!response.sucess) {
         setError("Invalid Credintials");
-      } else if (response.data?.sucess && response.data?.jwtToken) {
-        const jwtToken = response.data.jwtToken;
-        const isValidToken = await axios.post(
-          "http://localhost:3001/validate-token",
-          { jwtToken }
-        );
-        if (isValidToken) {
-          navigate("/");
-        } else {
-          navigate("/login");
-        }
       } else {
-        localStorage.setItem("token", response.data.token);
+        const jwtToken = response.jwtToken;
+        localStorage.setItem("token", jwtToken);
+        navigate("/");
       }
     } catch (error) {
       const response = error.response;
