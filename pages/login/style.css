@@ -1,0 +1,203 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #edf0f5;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 90px;
+  gap: 50px;
+}
+
+.headers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  margin-bottom: 60px;
+}
+
+.header-title {
+  align-self: flex-start;
+}
+
+.header-title > h1 {
+  color: #1877f2;
+  font-size: 40px;
+}
+
+.header-content {
+  margin-top: -10px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.outer-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.login-box {
+  box-shadow: 1px 1px 1px 1px silver;
+  outline: none;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  height: 315px;
+  width: 396px;
+  gap: 10px;
+}
+
+.email-field,
+.password-field {
+  display: flex;
+  position: relative;
+}
+
+.login-box > .email-field > input[type="email"],
+.login-box > .password-field > input[type="password"],
+.login-box > .password-field > input[type="text"] {
+  padding-left: 20px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid silver;
+  flex: 1;
+}
+
+.email-field > span.not-active,
+.password-field > span.not-active {
+  display: none;
+  right: 4%;
+  top: 30%;
+  position: absolute;
+}
+
+.email-field > span.active,
+.password-field > span.active {
+  display: block;
+}
+
+.email-field > span.not-active,
+.password-field > span.not-active {
+  display: none;
+  right: 4%;
+  top: 30%;
+  position: absolute;
+}
+
+.email-field > span.active,
+.password-field > span.active {
+  display: block;
+}
+
+.login-box > .email-field > input[type="email"]::placeholder,
+.login-box > .password-field > input[type="password"]::placeholder,
+.login-box > .password-field > input[type="text"]::placeholder {
+  color: grey;
+  font-size: 15px;
+}
+
+input:focus {
+  outline: none !important;
+}
+
+input:focus::placeholder {
+  opacity: 0.4;
+}
+
+.login-box > button {
+  cursor: pointer;
+}
+
+.login-box > button.loginBtn {
+  height: 50px;
+  border-radius: 5px;
+  background-color: #1877f2;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-bottom: 5px;
+}
+
+hr {
+  width: 100%;
+  height: 0.2px;
+  background-color: silver;
+  opacity: 0.5;
+}
+
+.input-error {
+  border-color: red !important;
+}
+
+.error-message {
+  color: red;
+  font-weight: light;
+  text-align: center;
+}
+
+.signUp {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.signUp > div {
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #24b024;
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.page-create > a {
+  text-decoration: none;
+  color: black;
+  font-weight: bolder;
+}
+
+span > img.clickable {
+  cursor: pointer;
+}
+
+@media (max-width: 770px) {
+  .login-container {
+    flex-direction: column;
+  }
+  .header {
+    height: unset;
+    gap: 10px;
+    width: unset;
+    margin-bottom: -20px;
+    margin-right: unset;
+  }
+
+  .header-title {
+    display: flex;
+    align-self: center;
+  }
+
+  .header-content {
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+  }
+}
