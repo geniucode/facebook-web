@@ -7,7 +7,7 @@ const HomeScreen = () => {
       <div className="signup-container">HomeScreen</div>
     </Auth>
   );
-};<br></br>
+}
 
 export { HomeScreen };
 
