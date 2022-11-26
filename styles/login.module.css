@@ -1,0 +1,190 @@
+
+
+.loginContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 90px;
+  gap: 50px;
+}
+
+.headers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  margin-bottom: 60px;
+}
+
+.headerTitle {
+  align-self: flex-start;
+}
+
+.headerTitle > h1 {
+  color: #1877f2;
+  font-size: 40px;
+}
+
+.headerContent {
+  margin-top: -10px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.outerBox {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.loginBox {
+  box-shadow: 1px 1px 1px 1px silver;
+  outline: none;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  height: 315px;
+  width: 396px;
+  gap: 10px;
+}
+
+.emailField,
+.passwordField {
+  display: flex;
+  position: relative;
+}
+
+.loginBox > .emailField > input[type="email"],
+.loginBox > .passwordField > input[type="password"],
+.loginBox > .passwordField > input[type="text"] {
+  padding-left: 20px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid silver;
+  flex: 1;
+}
+
+.emailField > span.notActive,
+.passwordField > span.notActive {
+  display: none;
+  right: 4%;
+  top: 30%;
+  position: absolute;
+}
+
+.emailField > span.active,
+.passwordField > span.active {
+  display: block;
+}
+
+.emailField > span.not-active,
+.passwordField > span.not-active {
+  display: none;
+  right: 4%;
+  top: 30%;
+  position: absolute;
+}
+
+.emailField > span.active,
+.passwordField > span.active {
+  display: block;
+}
+
+.loginBox> .emailField > input[type="email"]::placeholder,
+.loginBox > .passwordField > input[type="password"]::placeholder,
+.loginBox > .passwordField > input[type="text"]::placeholder {
+  color: grey;
+  font-size: 15px;
+}
+
+
+
+.loginBox > button {
+  cursor: pointer;
+}
+
+.loginBox > button.loginBtn {
+  height: 50px;
+  border-radius: 5px;
+  background-color: #1877f2;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-bottom: 5px;
+}
+
+
+
+.inputError {
+  border-color: red !important;
+}
+
+.errorMessage {
+  color: red;
+  font-weight: light;
+  text-align: center;
+}
+
+.signUp {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.signUp > div {
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #24b024;
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.pageCreate > a {
+  text-decoration: none;
+  color: black;
+  font-weight: bolder;
+}
+
+span > Image.clickable {
+  cursor: pointer;
+}
+
+@media (max-width: 770px) {
+  .loginContainer {
+    flex-direction: column;
+  }
+  .header {
+    height: unset;
+    gap: 10px;
+    width: unset;
+    margin-bottom: -20px;
+    margin-right: unset;
+  }
+
+  .headerTitle {
+    display: flex;
+    align-self: center;
+  }
+
+  .headerContent {
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+  }
+}
+.hr {
+  width: 100%;
+  height: 0.2px;
+  background-color: silver;
+  opacity: 0.5;
+}

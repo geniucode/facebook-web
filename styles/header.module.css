@@ -1,0 +1,64 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 56px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  background-color: white;
+}
+
+.logo {
+  /* width: 50%; */
+  margin: 20px 0px 10px 10px;
+}
+
+.logo > img {
+  width: 115px;
+  height: 35px;
+}
+
+.formDetails {
+  gap: 20px;
+}
+
+.signinInputs {
+  display: flex;
+  gap: 8px;
+  margin-right: 50px;
+}
+
+.signinInputs > input {
+  width: 166px;
+  height: 40px;
+  padding: 11px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 16px;
+  color: #1c1e21;
+  border: 1px solid #ccd0d5;
+  border-radius: 5px;
+}
+
+.signinInputs > button {
+  width: 70px;
+  height: 37px;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  background-color: #3578e5;
+  border: none;
+  border-radius: 6px;
+}
+.signinInputs > button:hover {
+  cursor: pointer;
+}
+
+.signinInputs > a {
+  align-self: center;
+  margin-bottom: 6px;
+  text-decoration: none;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  color: #1877f2;
+}
