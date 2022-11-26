@@ -1,13 +1,13 @@
-import { useRouter } from "next/navigation";
+import Head from "next/head";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { userState } from "../atoms/user";
-import { postAxios } from "../src/service/axios";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import { userState } from "../../atoms/user";
+import { postAxios } from "../../src/service/axios";
 
-export default function Home() {
+const Home = () => {
   const router = useRouter();
   const setUser = useSetRecoilState(userState);
-
   const getData = async () => {
     if (localStorage.getItem("token")) {
       const response = await postAxios("validate-token", {
@@ -16,7 +16,7 @@ export default function Home() {
       console.log("response", response);
       if (response.success) {
         setUser(response.user);
-        router.push("/home");
+        // router.push("/home");
       } else {
         router.push("/login");
       }
@@ -27,4 +27,8 @@ export default function Home() {
   useEffect(() => {
     getData();
   }, []);
-}
+  const user = useRecoilValue(userState);
+  return <>Hey {user.email}</>;
+};
+
+export default Home;
