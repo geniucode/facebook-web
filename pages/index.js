@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 export default function Home() {
   const route=useRouter()
   useEffect(()=>{
-    route.push('login')
+    route.push('/login')
   },[])//excute when page load
 
   return (

@@ -68,7 +68,7 @@ const useLogin = () => {
         const jwtToken = response.jwtToken;
         localStorage.setItem("token", jwtToken);
         //navigate("/login");
-        router.push('/')
+        router.push('profile')
         console.log(response)
         
       }
