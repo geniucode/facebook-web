@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import { userState } from "../../atoms/user";
+import { HomePageMneu } from "../../components/homePageMenu";
 import { postAxios } from "../../src/service/axios";
 
 const Home = () => {
@@ -28,7 +29,11 @@ const Home = () => {
     getData();
   }, []);
   const user = useRecoilValue(userState);
-  return <>Hey {user.email}</>;
+  // return <>Hey {user.email}</>;
+  return (<>
+    <HomePageMneu/>
+  </>
+  )
 };
 
 export default Home;
