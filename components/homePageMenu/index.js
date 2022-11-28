@@ -11,9 +11,11 @@ import pagesIcon from "./images/pages-icon.png";
 import seeAllIcon from "./images/see-all-icon.png";
 import seeAllGroupsIcon from "./images/see-all-groups-icon.png";
 import styles from "../../styles/homePageMenu.module.css";
-
+import { useHomePageMenu } from "./useHomePageMenu";
 
 const HomePageMneu = () => {
+  const { user } = useHomePageMenu();
+
   return (
     <>
       <div className={styles.homePageMenuContanier}>
@@ -29,11 +31,11 @@ const HomePageMneu = () => {
           <div className={styles.userIcon}>
             <Image src={userIcon} />
           </div>
-          <div className={styles.userEmail}>ali.rajeh2612@gmail.com</div>
+          <div className={styles.userEmail}>{user.email}</div>
         </div>
         {/* horizontal line */}
         <div className={styles.horizontalLine}>
-          <hr/>
+          <hr />
         </div>
         {/* find friends */}
         <div className={styles.findFriendsContanier}>
@@ -49,46 +51,45 @@ const HomePageMneu = () => {
           </div>
           <div className={styles.marketplaceTitle}>Marketplace</div>
         </div>
-         {/* memories */}
-         <div className={styles.memoriesContanier}>
+        {/* memories */}
+        <div className={styles.memoriesContanier}>
           <div className={styles.memoriesIcon}>
             <Image src={memoriesIcon} />
           </div>
           <div className={styles.memoriesTitle}>Memories</div>
         </div>
-         {/* saved */}
-         <div className={styles.savedContanier}>
+        {/* saved */}
+        <div className={styles.savedContanier}>
           <div className={styles.savedIcon}>
             <Image src={savedIcon} />
           </div>
           <div className={styles.savedTitle}>Saved</div>
         </div>
-          {/* pages */}
-          <div className={styles.pagesContanier}>
+        {/* pages */}
+        <div className={styles.pagesContanier}>
           <div className={styles.pagesIcon}>
             <Image src={pagesIcon} />
           </div>
           <div className={styles.pagesTitle}>Pages</div>
         </div>
-          {/* seeAll */}
-          <div className={styles.seeAllContanier}>
+        {/* seeAll */}
+        <div className={styles.seeAllContanier}>
           <div className={styles.seeAllIcon}>
             <Image src={seeAllIcon} />
           </div>
           <div className={styles.seeAllTitle}>See all</div>
         </div>
-         {/* horizontal line */}
-         <div className={styles.horizontalLine}>
-          <hr/>
+        {/* horizontal line */}
+        <div className={styles.horizontalLine}>
+          <hr />
         </div>
-           {/* seeAllGroups */}
-           <div className={styles.seeAllGroupsContanier}>
+        {/* seeAllGroups */}
+        <div className={styles.seeAllGroupsContanier}>
           <div className={styles.seeAllGroupsIcon}>
             <Image src={seeAllGroupsIcon} />
           </div>
           <div className={styles.seeAllGroupsTitle}>See all groups</div>
         </div>
-
       </div>
     </>
   );
