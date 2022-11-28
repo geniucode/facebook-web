@@ -1,4 +1,4 @@
-.login-container {
+.loginContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -16,30 +16,30 @@
   margin-bottom: 60px;
 }
 
-.header-title {
+.headerTitle {
   align-self: flex-start;
 }
 
-.header-title > h1 {
+.headerTitle > h1 {
   color: #1877f2;
   font-size: 40px;
 }
 
-.header-content {
+.headerContent {
   margin-top: -10px;
   font-size: 20px;
   font-weight: 600;
   text-align: left;
 }
 
-.outer-box {
+.outerBox {
   display: flex;
   flex-direction: column;
   gap: 15px;
   align-items: center;
 }
 
-.login-box {
+.loginBox {
   box-shadow: 1px 1px 1px 1px silver;
   outline: none;
   padding: 15px;
@@ -52,15 +52,15 @@
   gap: 10px;
 }
 
-.email-field,
-.password-field {
+.emailField,
+.passwordField {
   display: flex;
   position: relative;
 }
 
-.login-box > .email-field > input[type="email"],
-.login-box > .password-field > input[type="password"],
-.login-box > .password-field > input[type="text"] {
+.loginBox > .emailField > input[type="email"],
+.loginBox > .passwordField > input[type="password"],
+.loginBox > .passwordField > input[type="text"] {
   padding-left: 20px;
   height: 50px;
   border-radius: 5px;
@@ -68,44 +68,44 @@
   flex: 1;
 }
 
-.email-field > span.not-active,
-.password-field > span.not-active {
+.emailField > span.notActive,
+.passwordField > span.notActive {
   display: none;
   right: 4%;
   top: 30%;
   position: absolute;
 }
 
-.email-field > span.active,
-.password-field > span.active {
+.emailField > span.active,
+.passwordField > span.active {
   display: block;
 }
 
-.email-field > span.not-active,
-.password-field > span.not-active {
+.emailField > span.notActive,
+.passwordField > span.notActive {
   display: none;
   right: 4%;
   top: 30%;
   position: absolute;
 }
 
-.email-field > span.active,
-.password-field > span.active {
+.emailField > span.active,
+.passwordField > span.active {
   display: block;
 }
 
-.login-box > .email-field > input[type="email"]::placeholder,
-.login-box > .password-field > input[type="password"]::placeholder,
-.login-box > .password-field > input[type="text"]::placeholder {
+.loginBox > .emailField > input[type="email"]::placeholder,
+.loginBox > .passwordField > input[type="password"]::placeholder,
+.loginBox > .passwordField > input[type="text"]::placeholder {
   color: grey;
   font-size: 15px;
 }
 
-.login-box > button {
+.loginBox > button {
   cursor: pointer;
 }
 
-.login-box > button.loginBtn {
+.loginBox > button.loginBtn {
   height: 50px;
   border-radius: 5px;
   background-color: #1877f2;
@@ -117,11 +117,11 @@
   margin-bottom: 5px;
 }
 
-.input-error {
+.inputError {
   border-color: red !important;
 }
 
-.error-message {
+.errorMessage {
   color: red;
   font-weight: light;
   text-align: center;
@@ -143,7 +143,7 @@
   text-decoration: none;
 }
 
-.page-create > a {
+.pageCreate > a {
   text-decoration: none;
   color: black;
   font-weight: bolder;
@@ -161,7 +161,7 @@ span > img.clickable {
 }
 
 @media (max-width: 770px) {
-  .login-container {
+  .loginContainer {
     flex-direction: column;
   }
   .header {
@@ -172,12 +172,12 @@ span > img.clickable {
     margin-right: unset;
   }
 
-  .header-title {
+  .headerTitle {
     display: flex;
     align-self: center;
   }
 
-  .header-content {
+  .headerContent {
     text-align: center;
     font-weight: 400;
     font-size: 20px;
