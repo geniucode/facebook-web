@@ -12,4 +12,4 @@ const FbSnackBar = ({ open, message, setOpen }) => {
   );
 };
 
-export { FbSnackBar };
+export default FbSnackBar;
