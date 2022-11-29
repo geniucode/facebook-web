@@ -59,12 +59,12 @@ const useLogin = () => {
         password,
       });
       console.log("response", response);
-      if (!response.sucess) {
+      if (!response.success) {
         setError("Invalid Credintials");
       } else {
         const jwtToken = response.jwtToken;
         localStorage.setItem("token", jwtToken);
-        router.push("/");
+        router.push("/home");
       }
     } catch (error) {
       const response = error.response;

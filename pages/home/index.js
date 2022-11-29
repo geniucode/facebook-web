@@ -10,13 +10,13 @@ const Home = () => {
   const setUser = useSetRecoilState(userState);
   const getData = async () => {
     if (localStorage.getItem("token")) {
-      const response = await postAxios("validate-token", {
-        jwtToken: localStorage.getItem("token"),
-      });
+      const response = await postAxios(
+        "validate-token",
+        { jwtToken: localStorage.getItem("token") }
+      );
       console.log("response", response);
       if (response.success) {
         setUser(response.user);
-        // router.push("/home");
       } else {
         router.push("/login");
       }
