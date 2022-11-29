@@ -1,19 +1,18 @@
-import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import { userState } from "../../atoms/user";
 import { postAxios } from "../../src/service/axios";
+import HomeHeader from "../../components/homeHeader";
 
 const Home = () => {
   const router = useRouter();
   const setUser = useSetRecoilState(userState);
   const getData = async () => {
     if (localStorage.getItem("token")) {
-      const response = await postAxios(
-        "validate-token",
-        { jwtToken: localStorage.getItem("token") }
-      );
+      const response = await postAxios("validate-token", {
+        jwtToken: localStorage.getItem("token"),
+      });
       console.log("response", response);
       if (response.success) {
         setUser(response.user);
@@ -28,7 +27,11 @@ const Home = () => {
     getData();
   }, []);
   const user = useRecoilValue(userState);
-  return <>Hey {user.email}</>;
+  return (
+    <>
+      <HomeHeader />
+    </>
+  );
 };
 
 export default Home;
