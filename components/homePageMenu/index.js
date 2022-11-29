@@ -1,17 +1,15 @@
 import Image from "next/image";
-import Link from "next/link";
-import { useLogin } from "../../pages/login/useLogin";
 import homeIcon from "./images/home-icon.png";
 import userIcon from "./images/user-icon.png";
-import friendsIcon from "./images/friends-icon.png";
-import marketplaceIcon from "./images/marketplace-icon.png";
-import memoriesIcon from "./images/memories-icon.png";
 import savedIcon from "./images/saved-icon.png";
 import pagesIcon from "./images/pages-icon.png";
 import seeAllIcon from "./images/see-all-icon.png";
+import { useHomePageMenu } from "./useHomePageMenu";
+import friendsIcon from "./images/friends-icon.png";
+import memoriesIcon from "./images/memories-icon.png";
+import marketplaceIcon from "./images/marketplace-icon.png";
 import seeAllGroupsIcon from "./images/see-all-groups-icon.png";
 import styles from "../../styles/homePageMenu.module.css";
-import { useHomePageMenu } from "./useHomePageMenu";
 
 const HomePageMneu = () => {
   const { user } = useHomePageMenu();
