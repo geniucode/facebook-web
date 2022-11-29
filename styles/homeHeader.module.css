@@ -88,15 +88,3 @@
 .chevronDown > svg{
     width: 9px;
 }
-/* .headerProfilePic::after{
-    content: "";
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 12px;
-    height: 12px;
-    background: #EBEDF0;
-    border-radius: 100%;
-    border: solid 2px white;
-    z-index: 10;
-} */
