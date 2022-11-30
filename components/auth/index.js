@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { useRouter } from "next/router";
 import { userState } from "../../atoms/user";
 import { postAxios } from "../../service/axios.js";
 
 const Auth = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const setUser = useSetRecoilState(userState);
   const getData = async () => {
@@ -14,7 +15,7 @@ const Auth = ({ children }) => {
       });
       if (response.success) {
         setUser(response.user);
-        router.push("/home");
+        setIsLoading(true);
       } else {
         router.push("/login");
       }
@@ -26,7 +27,7 @@ const Auth = ({ children }) => {
     getData();
   }, []);
 
-  return children;
+  return isLoading && children;
 };
 
 export { Auth };
