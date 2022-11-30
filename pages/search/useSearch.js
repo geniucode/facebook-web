@@ -9,11 +9,18 @@ const useSearch = () => {
   };
 
   const onClickSearch = async () => {
-    console.log(searchValue);
-    const foundFriendsList = friendsList.filter((friend) =>
-      friend.name.includes(searchValue)
-    );
-    console.log(foundFriendsList);
+    if (searchValue) {
+      const foundFriendsList = friendsList.filter((friend) =>
+        friend.name.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      if (foundFriendsList.length === 0) {
+        console.log("no friends found with this name");
+      } else {
+        console.log(foundFriendsList);
+      }
+    } else {
+      console.log("Please enter a name to search for");
+    }
   };
   return {
     onChangeSearchValue,
