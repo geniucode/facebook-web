@@ -62,6 +62,7 @@
 }
 .haederIconsContainer > .haederIcon:hover{
     cursor: pointer;
+    background: #E4E6EB;
 }
 .headerProfilePic > img{
     width: 100%;
