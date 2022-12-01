@@ -47,7 +47,7 @@
   margin-bottom: 17px;
 }
 
-.findFriendsContanier{
+.findFriendsToSeeAllContanier{
   height: 40px;
   display: flex;
   flex-direction: row;
@@ -55,17 +55,17 @@
   gap:15px;
   margin-bottom: 17px;
 }
-.findFriendsTitle{
+.findFriendsToSeeAllTitle{
   font-style: normal;
   font-weight:500; 
   font-size: large;
   padding-bottom:5px ;
 }
-.findFriendsIcon >img{
+.findFriendsToSeeAll >img{
   width: 24px;
 }
 
-.marketplaceContanier{
+/* .marketplaceContanier{
   height: 40px;
   display: flex;
   flex-direction: row;
@@ -136,13 +136,13 @@
 .pagesIcon >img{
   width: 24px;
 }
-
-.seeAllContanier{
+*/
+ .seeAllContanier{
   height: 40px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap:15px;
+  gap:12px;
   margin-bottom: 17px;
 }
 .seeAllTitle{
@@ -153,14 +153,14 @@
 }
 .seeAllIcon >img{
   width: 24px;
-}
+} 
 
 .seeAllGroupsContanier{
   height: 40px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap:15px;
+  gap:13px;
   margin-bottom: 17px;
 }
 .seeAllGroupsTitle{
@@ -175,7 +175,7 @@
 
 
 
-@media screen and (max-width: 850px) {
+/* @media screen and (max-width: 850px) {
   .homePageMenuContanier {
     width: 10%; ;
   }
@@ -246,9 +246,10 @@
     display: none;
   }
  
-}
+} */
 
-@media screen and (max-width: 450px){
+/* @media screen and (max-width: 450px){ */
+  @media screen and (max-width: 850px){
   .homePageMenuContanier {
     display: none;
   }

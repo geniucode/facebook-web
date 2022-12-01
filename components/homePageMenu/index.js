@@ -1,18 +1,13 @@
 import Image from "next/image";
 import homeIcon from "./images/home-icon.png";
 import userIcon from "./images/user-icon.png";
-import savedIcon from "./images/saved-icon.png";
-import pagesIcon from "./images/pages-icon.png";
 import seeAllIcon from "./images/see-all-icon.png";
 import { useHomePageMenu } from "./useHomePageMenu";
-import friendsIcon from "./images/friends-icon.png";
-import memoriesIcon from "./images/memories-icon.png";
-import marketplaceIcon from "./images/marketplace-icon.png";
 import seeAllGroupsIcon from "./images/see-all-groups-icon.png";
 import styles from "../../styles/homePageMenu.module.css";
 
 const HomePageMneu = () => {
-  const { user } = useHomePageMenu();
+  const { user,items } = useHomePageMenu();
 
   return (
     <>
@@ -36,47 +31,24 @@ const HomePageMneu = () => {
           <hr />
         </div>
         {/* find friends */}
-        <div className={styles.findFriendsContanier}>
-          <div className={styles.findFriendsIcon}>
-            <Image src={friendsIcon} />
-          </div>
-          <div className={styles.findFriendsTitle}>Find friends</div>
-        </div>
-        {/* Marketlace */}
-        <div className={styles.marketplaceContanier}>
-          <div className={styles.marketplaceIcon}>
-            <Image src={marketplaceIcon} />
-          </div>
-          <div className={styles.marketplaceTitle}>Marketplace</div>
-        </div>
-        {/* memories */}
-        <div className={styles.memoriesContanier}>
-          <div className={styles.memoriesIcon}>
-            <Image src={memoriesIcon} />
-          </div>
-          <div className={styles.memoriesTitle}>Memories</div>
-        </div>
-        {/* saved */}
-        <div className={styles.savedContanier}>
-          <div className={styles.savedIcon}>
-            <Image src={savedIcon} />
-          </div>
-          <div className={styles.savedTitle}>Saved</div>
-        </div>
-        {/* pages */}
-        <div className={styles.pagesContanier}>
-          <div className={styles.pagesIcon}>
-            <Image src={pagesIcon} />
-          </div>
-          <div className={styles.pagesTitle}>Pages</div>
-        </div>
-        {/* seeAll */}
-        <div className={styles.seeAllContanier}>
+       {
+        items.map((item)=>{
+          return( <div className={styles.findFriendsToSeeAllContanier}>
+            <div className={styles.findFriendsToSeeAllIcon}>
+              {item.icon}
+            </div>
+            <div className={styles.findFriendsToSeeAllTitle}>{item.title}</div>
+          </div>)
+        })
+       }
+       {/* seeAllContainer */}
+       <div className={styles.seeAllContanier}>
           <div className={styles.seeAllIcon}>
             <Image src={seeAllIcon} />
           </div>
           <div className={styles.seeAllTitle}>See all</div>
         </div>
+       
         {/* horizontal line */}
         <div className={styles.horizontalLine}>
           <hr />
