@@ -4,7 +4,7 @@ import { useSearch } from "./useSearch";
 import styles from "../../styles/search.module.css";
 
 const Search = () => {
-  const { onChangeSearchValue, onClickSearch } = useSearch();
+  const { error, onChangeSearchValue, onClickSearch } = useSearch();
   return (
     <>
       <Auth>
@@ -20,6 +20,7 @@ const Search = () => {
             ></input>
             <input type="submit" onClick={onClickSearch} value="Search"></input>
           </div>
+          {error && <p className={styles.errorMsg}>{error}</p>}
         </div>
       </Auth>
     </>

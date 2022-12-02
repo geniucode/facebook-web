@@ -15,21 +15,28 @@
 
 .searchBar > input[type="text"] {
   border-radius: 25px;
-  height: 35px;
-  width: 250px;
+  height: 45px;
+  width: 350px;
   background-color: #e9ebee;
 }
 
 .searchBar > input[type="submit"] {
-  color: white;
-  background-color: blue;
+  background-color: #e9ebee;
   border-radius: 25px;
-  height: 35px;
-  padding: 5px 5px 5px 5px;
-  width: fit-content !important;
+  height: 40px;
+  width: 100px;
+  padding: 5px;
   cursor: pointer;
 }
 
 .searchBar > input[type="text"] {
   padding-left: 15px;
+  font-weight: light;
+  outline: none;
+  border: none;
+  font-size: 15px;
+}
+
+.errorMsg {
+  color: red;
 }
