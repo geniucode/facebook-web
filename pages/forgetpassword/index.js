@@ -3,7 +3,6 @@ import { useForgetPassword } from "./useForgetPassword";
 import { HeaderLogin } from "../../components/header/index.js";
 import { FbSnackBar } from "../../components/snackBar/index.js";
 import styles from "../../styles/forgetPassword.module.css";
-import { FacebookReactPost } from "../../components/facebookReactPost/index.js";
 
 const ForgetPassword = () => {
   const { open, message, setOpen, onClickSubmit, setEmail } =
@@ -41,7 +40,6 @@ const ForgetPassword = () => {
           </div>
         </div>
       </div>
-      <FacebookReactPost />
     </>
   );
 };
