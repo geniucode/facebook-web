@@ -13,6 +13,7 @@ const Auth = ({ children }) => {
       const response = await postAxios("validate-token", {
         jwtToken: localStorage.getItem("token"),
       });
+
       if (response.success) {
         setUser(response.user);
         setIsLoading(true);
