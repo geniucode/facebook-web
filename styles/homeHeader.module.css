@@ -1,0 +1,108 @@
+.headerContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.headerContainer > .headerContent{
+    width: 100%;
+    height: 56px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.4);
+}
+.headerContent > a > svg{
+    fill: #1877F2;
+}
+.headerContent > .inputContainer{
+    width: 600px;
+    height: 40px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    background: #EBEDF0;
+    border-radius: 9999px;
+}
+.inputContainer > .searchIcon{
+    height: 16px;
+    width: 16px;
+    margin-left: 12px;
+}
+.inputContainer > .searchIcon > svg{
+    fill: #606770;
+}
+.inputContainer > .searchInput{
+    padding: 8px;
+    margin: 0;
+    height: 40px;
+    width: 572px;
+    outline: none;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    font-family: 'Segoe UI Historic', 'Segoe UI', Helvetica, Arial, sans-serif sans-serif;
+    color: #050505;
+}
+.headerContent > .haederIconsContainer{
+    width: 136px;
+    height: 40px;
+    gap: 8px;
+    display: flex;
+}
+.haederIconsContainer > .haederIcon{
+    width: 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 100%;
+    background: #EBEDF0;
+}
+.haederIcon[notificationcount]::after{
+    content: attr(notificationcount);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 18px;
+    width: 25px;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    font-size: 13px;
+    border-radius: 1000px;
+    color: white;
+    background-color: red;
+}
+.haederIconsContainer > .haederIcon:hover{
+    cursor: pointer;
+    background: #E4E6EB;
+}
+.headerProfilePic > img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+.headerProfilePic{
+    position: relative;
+}
+.chevronDown{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    color: #050505;
+    background: #EBEDF0;
+    border-radius: 100%;
+    border: solid 2px white;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chevronDown > svg{
+    width: 9px;
+}

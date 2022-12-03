@@ -57,7 +57,13 @@
 .inputContainer,
 .sectionContainer {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
   position: relative;
+}
+
+.inputContainer > .inputContainer{
+  width: 48.5%;
 }
 .inputContainer::after {
   top: 9px;
@@ -78,6 +84,9 @@
   right: 9px;
   display: inline-block;
 }
+
+.errorShown input[type="text"],
+
 .errorShown input[type="email"],
 .errorShown input[type="password"],
 .errorShown .dateSelector,
@@ -85,6 +94,9 @@
 .errorShown .countrySelector {
   border-color: red !important;
 }
+
+.formDetails input[type="text"],
+
 .formDetails input[type="email"],
 .formDetails input[type="password"] {
   width: 93.5%;
@@ -98,6 +110,7 @@
   border: 1px solid #ccd0d5;
   border-radius: 5px;
 }
+.formDetails input[type="text"]::placeholder,
 .formDetails input[type="email"]::placeholder,
 .formDetails input[type="password"]::placeholder {
   color: #8d949e;
@@ -122,7 +135,7 @@
 }
 .countrySection {
   width: 100%;
-  height: 60px;
+  height: 62px;
   margin-bottom: 11px;
 }
 .dateSelectorsContainer {
@@ -152,7 +165,7 @@
 }
 .countrySelector {
   width: 97.5%;
-  height: 36px;
+  height: 34px;
   padding-left: 2%;
   line-height: 20px;
 }
@@ -191,7 +204,7 @@
   font-family: Helvetica, Arial, sans-serif;
   font-size: 11px;
   line-height: 1.34;
-  margin-bottom: 11px;
+  margin: 0 0 11px;
 }
 .formDetails > p > a {
   color: #385898;
@@ -203,7 +216,6 @@
 .formDetails > button {
   width: 194px;
   height: 36px;
-  padding: 0 32px;
   margin: 10px 0;
   font-size: 18px;
   font-weight: 600;

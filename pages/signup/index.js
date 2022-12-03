@@ -1,12 +1,16 @@
 import Head from "next/head.js";
 import Link from "next/link";
-import { CountrySelector } from "./countrySelector.js";
-import { DateSelector } from "./dateSelector.js";
+import CountrySelector from "./countrySelector.js";
+import DateSelector from "./dateSelector.js";
 import { useSignup } from "./useSignup.js";
 import styles from "../../styles/signup.module.css";
 
 const Signup = () => {
   const {
+    firstName,
+    onChangeFirstName,
+    lastName,
+    onChangeLastName,
     email,
     onChangeEmail,
     password,
@@ -38,6 +42,30 @@ const Signup = () => {
             <div className={styles.formHeading2}>It’s quick and easy.</div>
           </div>
           <div className={styles.formDetails}>
+            <div className={styles.inputContainer}>
+              <div
+                className={` ${styles.inputContainer} ${
+                  firstName.accepted ? styles.errorHidden : styles.errorShown
+                }`}
+              >
+                <input
+                  type="text"
+                  placeholder="First name"
+                  onChange={onChangeFirstName}
+                />
+              </div>
+              <div
+                className={` ${styles.inputContainer} ${
+                  lastName.accepted ? styles.errorHidden : styles.errorShown
+                }`}
+              >
+                <input
+                  type="text"
+                  placeholder="Last name"
+                  onChange={onChangeLastName}
+                />
+              </div>
+            </div>
             <div
               className={` ${styles.inputContainer} ${
                 email.accepted ? styles.errorHidden : styles.errorShown
@@ -127,10 +155,7 @@ const Signup = () => {
               time.
             </p>
             <button onClick={onClickBtn}>Sign Up</button>
-            {/* <div style={{ cursor: "pointer" }} onClick={onClcikGoToSignIn}> */}
-            <div>
-              <Link href="/login">Already have an account?</Link>
-            </div>
+            <Link href="/login">Already have an account?</Link>
           </div>
         </div>
       </div>
