@@ -1,0 +1,76 @@
+.fbPost {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 8px;
+  width: 33%;
+}
+
+.profilePic > img {
+  width: 35px;
+  height: 35px;
+  margin-top: 10px;
+}
+
+.postField {
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+.postField > input {
+  width: 400px;
+  height: 40px;
+  background-color: #f2f3f5;
+  border-radius: 30px;
+  border-style: none;
+  text-align: match-parent;
+  padding: 10px;
+}
+
+.post {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.reactButtons {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  border-top: medium solid #f2f3f5;
+}
+
+.reactButtons > div > button {
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  font-weight: 600;
+  padding: 0 10px 0 11px;
+  width: 150px;
+  height: 40px;
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: rgba(217, 213, 213, 0.5) 0 0px 0px 0;
+  cursor: pointer;
+  display: flex;
+  color: #65676b;
+}
+
+.reactButtons > div > button > span {
+  margin-left: 10px;
+}
+
+.reactButtons > div > button:hover {
+  background-color: #f2f3f5;
+}
+
+.reactButtons > div > button > img {
+  width: 25px;
+  height: 25px;
+}
