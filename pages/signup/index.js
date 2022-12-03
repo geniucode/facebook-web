@@ -25,22 +25,22 @@ const Signup = () => {
       <Head>
         <title>Signup</title>
       </Head>
-      <div className={styles["signup-container"]}>
-        <div className={styles["logo-container"]}>
+      <div className={styles.signupContainer}>
+        <div className={styles.logoContainer}>
           <img
             src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg"
             alt="Facebook"
           />
         </div>
-        <div className={styles["form-container"]}>
-          <div className={styles["form-heading"]}>
-            <div className={styles["form-heading-1"]}>Create a new account</div>
-            <div className={styles["form-heading-2"]}>It’s quick and easy.</div>
+        <div className={styles.formContainer}>
+          <div className={styles.formHeading}>
+            <div className={styles.formHeading1}>Create a new account</div>
+            <div className={styles.formHeading2}>It’s quick and easy.</div>
           </div>
-          <div className={styles["form-details"]}>
+          <div className={styles.formDetails}>
             <div
-              className={` ${styles["input-container"]} ${
-                email.accepted ? styles["error-hidden"] : styles["error-shown"]
+              className={` ${styles.inputContainer} ${
+                email.accepted ? styles.errorHidden : styles.errorShown
               }`}
             >
               <input
@@ -50,10 +50,8 @@ const Signup = () => {
               />
             </div>
             <div
-              className={` ${styles["input-container"]} ${
-                password.accepted
-                  ? styles["error-hidden"]
-                  : styles["error-shown"]
+              className={` ${styles.inputContainer} ${
+                password.accepted ? styles.errorHidden : styles.errorShown
               }`}
             >
               <input
@@ -63,34 +61,32 @@ const Signup = () => {
               />
             </div>
             <div
-              className={` ${styles["section-container"]} ${
-                birthDay.accepted
-                  ? styles["error-hidden"]
-                  : styles["error-shown"]
+              className={` ${styles.sectionContainer} ${
+                birthDay.accepted ? styles.errorHidden : styles.errorShown
               }`}
             >
-              <div className={styles["birthday-section"]}>
-                <div className={styles["section-title"]}>Birthday</div>
+              <div className={styles.birthdaySection}>
+                <div className={styles.sectionTitle}>Birthday</div>
                 <DateSelector birthDay={birthDay} setBirthDay={setBirthDay} />
               </div>
             </div>
             <div
-              className={`${styles["section-container"]} ${
-                gender.accepted ? styles["error-hidden"] : styles["error-shown"]
+              className={`${styles.sectionContainer} ${
+                gender.accepted ? styles.errorHidden : styles.errorShown
               }`}
             >
-              <div className={styles["gender-section"]}>
-                <div className={styles["section-title"]}>Gender</div>
-                <div className={styles["gender-selectors-container"]}>
+              <div className={styles.genderSection}>
+                <div className={styles.sectionTitle}>Gender</div>
+                <div className={styles.genderSelectorsContainer}>
                   <div
-                    className={styles["gender-selector"]}
+                    className={styles.genderSelector}
                     onClick={onClickGender}
                   >
                     <label>Female</label>
                     <input type="radio" name="gender" value="Female" />
                   </div>
                   <div
-                    className={styles["gender-selector"]}
+                    className={styles.genderSelector}
                     onClick={onClickGender}
                   >
                     <label>Male</label>
@@ -100,14 +96,12 @@ const Signup = () => {
               </div>
             </div>
             <div
-              className={` ${styles["section-container"]} ${
-                country.accepted
-                  ? styles["error-hidden"]
-                  : styles["error-shown"]
+              className={` ${styles.sectionContainer} ${
+                country.accepted ? styles.errorHidden : styles.errorShown
               }`}
             >
-              <div className={styles["country-section"]}>
-                <div className={styles["section-title"]}>Country</div>
+              <div className={styles.countrySection}>
+                <div className={styles.sectionTitle}>Country</div>
                 <CountrySelector setCountry={setCountry} />
               </div>
             </div>
