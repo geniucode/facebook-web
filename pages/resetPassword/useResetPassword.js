@@ -8,23 +8,22 @@ const useResetPassword = () => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const searchParams = useSearchParams();
-
+  searchParams.get("__firebase_request_key");
   useEffect(() => {
     if (searchParams.get("hashCode")) {
       checkAccess();
     }
   }, [searchParams]);
-  console.log(searchParams?.get("hashCode"));
+
   // const getParam = async () => {
   //   await searchParams.get("__firebase_request_key");
 
   // };
-  searchParams.get("__firebase_request_key");
 
   const onClickSubmit = async () => {
-    const forgetPasswordToken = searchParams.get("hashcode");
+    const forgetPasswordToken = searchParams.get("hashCode");
     console.log("forgetPasswordToken", forgetPasswordToken);
-    const response = await getAxios("user/reset-password", {
+    const response = await postAxios("user/reset-password", {
       forgetPasswordToken,
       password,
     });
@@ -39,6 +38,8 @@ const useResetPassword = () => {
   };
   const checkAccess = async () => {
     const forgetPasswordToken = await searchParams.get("hashCode");
+    console.log(searchParams?.get("hashCode"));
+    console.log("forgetpasswordtoken" + forgetPasswordToken);
     // if (forgetPasswordToken === null) {
     //   console.log("forgetPasswordTokens", forgetPasswordToken);
     //   return setHasAccess(false);
