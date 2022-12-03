@@ -61,6 +61,7 @@
   justify-content: space-between;
   position: relative;
 }
+
 .inputContainer > .inputContainer{
   width: 48.5%;
 }
@@ -83,7 +84,9 @@
   right: 9px;
   display: inline-block;
 }
+
 .errorShown input[type="text"],
+
 .errorShown input[type="email"],
 .errorShown input[type="password"],
 .errorShown .dateSelector,
@@ -91,7 +94,9 @@
 .errorShown .countrySelector {
   border-color: red !important;
 }
+
 .formDetails input[type="text"],
+
 .formDetails input[type="email"],
 .formDetails input[type="password"] {
   width: 93.5%;

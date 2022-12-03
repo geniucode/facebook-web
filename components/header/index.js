@@ -37,7 +37,7 @@ const HeaderLogin = () => {
         {error && <div className={styles.errorMessage}>{error}</div>}
         {/* <div onClick={onClickGoToForgetPassword}>Forgotten account?</div> */}
         <div>
-          <Link href="/forgetpassword">Forgotten account?</Link>
+          <Link href="/forgetPassword">Forgotten account?</Link>
         </div>
       </div>
     </div>
