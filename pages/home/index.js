@@ -1,9 +1,9 @@
-import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import { userState } from "../../atoms/user";
 import { postAxios } from "../../src/service/axios";
+import { FacebookPost } from "../../components/facebookPost";
 
 const Home = () => {
   const router = useRouter();
@@ -28,7 +28,13 @@ const Home = () => {
     getData();
   }, []);
   const user = useRecoilValue(userState);
-  return <>Hey {user.email}</>;
+  return (
+    <>
+      Hey {user.email}
+      <div><FacebookPost/></div>
+      <div><FacebookPost/></div>
+    </>
+  );
 };
 
 export default Home;
