@@ -1,4 +1,4 @@
-.signup-container {
+.signupContainer {
   box-sizing: unset;
   width: 100%;
   display: flex;
@@ -7,46 +7,46 @@
   background-color: #f0f2f5;
   padding-bottom: 30px;
 }
-.signup-container * {
+.signupContainer * {
   box-sizing: unset;
 }
-.logo-container {
+.logoContainer {
   width: 100%;
   height: 100px;
   padding-top: 5px;
   margin-bottom: 9.08px;
   text-align: center;
 }
-.logo-container > img {
+.logoContainer > img {
   width: auto;
   height: 100%;
 }
-.form-container {
+.formContainer {
   width: 432px;
   margin: 0 0 30px 12px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
 }
-.form-heading {
+.formHeading {
   width: 92.6%;
   padding: 10px 3.7%;
   text-align: center;
 }
-.form-heading-1 {
+.formHeading1 {
   color: #1c1e21;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 25px;
   font-weight: bold;
   line-height: 32px;
 }
-.form-heading-2 {
+.formHeading2 {
   color: #606770;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 15px;
   line-height: 24px;
 }
-.form-details {
+.formDetails {
   width: 92.6%;
   padding: 16px 3.7%;
   display: flex;
@@ -54,21 +54,21 @@
   align-items: center;
   border-top: 1px solid #dadde1;
 }
-.input-container,
-.section-container {
+.inputContainer,
+.sectionContainer {
   width: 100%;
   position: relative;
 }
-.input-container::after {
+.inputContainer::after {
   top: 9px;
 }
-.section-container::after {
+.sectionContainer::after {
   top: 0px;
 }
-.error-hidden::after {
+.errorHidden::after {
   display: none;
 }
-.error-shown::after {
+.errorShown::after {
   content: url(https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/EV7ny501e-i.png);
   width: 22px;
   height: 22px;
@@ -78,15 +78,15 @@
   right: 9px;
   display: inline-block;
 }
-.error-shown input[type="email"],
-.error-shown input[type="password"],
-.error-shown .date-selector,
-.error-shown .gender-selector,
-.error-shown .country-selector {
+.errorShown input[type="email"],
+.errorShown input[type="password"],
+.errorShown .dateSelector,
+.errorShown .genderSelector,
+.errorShown .countrySelector {
   border-color: red !important;
 }
-.form-details input[type="email"],
-.form-details input[type="password"] {
+.formDetails input[type="email"],
+.formDetails input[type="password"] {
   width: 93.5%;
   height: 16px;
   padding: 11px 3%;
@@ -98,11 +98,11 @@
   border: 1px solid #ccd0d5;
   border-radius: 5px;
 }
-.form-details input[type="email"]::placeholder,
-.form-details input[type="password"]::placeholder {
+.formDetails input[type="email"]::placeholder,
+.formDetails input[type="password"]::placeholder {
   color: #8d949e;
 }
-.section-title {
+.sectionTitle {
   color: #606770;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 12px;
@@ -110,39 +110,39 @@
   line-height: 20px;
   margin: 2px 0 4px 0;
 }
-.birthday-section {
+.birthdaySection {
   width: 100%;
   height: 60px;
   margin-bottom: 10px;
 }
-.gender-section {
+.genderSection {
   width: 100%;
   height: 62px;
   margin-bottom: 10px;
 }
-.country-section {
+.countrySection {
   width: 100%;
   height: 60px;
   margin-bottom: 11px;
 }
-.date-selectors-container {
+.dateSelectorsContainer {
   width: 100%;
   height: 36px;
   display: flex;
   justify-content: space-between;
 }
-.gender-selectors-container {
+.genderSelectorsContainer {
   width: 100%;
   height: 36px;
   display: flex;
   justify-content: space-between;
 }
-.date-selector {
+.dateSelector {
   padding: 0 5% 0 2%;
   width: 24.25%;
   line-height: 20px;
 }
-.gender-selector {
+.genderSelector {
   width: 43.5%;
   line-height: 36px;
   padding: 0 2.5%;
@@ -150,23 +150,23 @@
   justify-content: space-between;
   align-items: center;
 }
-.country-selector {
+.countrySelector {
   width: 97.5%;
   height: 36px;
   padding-left: 2%;
   line-height: 20px;
 }
-.date-selector,
-.country-selector {
+.dateSelector,
+.countrySelector {
   appearance: none;
   background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yP/r/Yrq8Y9PlN02.png);
   background-position: right 6px center;
   background-repeat: no-repeat;
   background-size: 14px;
 }
-.date-selector,
-.gender-selector,
-.country-selector {
+.dateSelector,
+.genderSelector,
+.countrySelector {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 15px;
   font-weight: normal;
@@ -174,18 +174,18 @@
   border: 1px solid #ccd0d5;
   border-radius: 4px;
 }
-.gender-selector > input[type="radio"] {
+.genderSelector > input[type="radio"] {
   margin: 0;
 }
-.form-details input[type="email"]:focus-visible,
-.form-details input[type="password"]:focus-visible,
-.date-selector:focus-visible,
-.gender-selector:focus-visible,
-.country-selector:focus-visible {
+.formDetails input[type="email"]:focus-visible,
+.formDetails input[type="password"]:focus-visible,
+.dateSelector:focus-visible,
+.genderSelector:focus-visible,
+.countrySelector:focus-visible {
   outline: unset;
   border: 1px solid #ccd0d5;
 }
-.form-details > p {
+.formDetails > p {
   width: 100%;
   color: #777;
   font-family: Helvetica, Arial, sans-serif;
@@ -193,14 +193,14 @@
   line-height: 1.34;
   margin-bottom: 11px;
 }
-.form-details > p > a {
+.formDetails > p > a {
   color: #385898;
   text-decoration: none;
 }
-.form-details > p > a:hover {
+.formDetails > p > a:hover {
   text-decoration: underline;
 }
-.form-details > button {
+.formDetails > button {
   width: 194px;
   height: 36px;
   padding: 0 32px;
@@ -212,10 +212,10 @@
   border: none;
   border-radius: 6px;
 }
-.form-details > button:hover {
+.formDetails > button:hover {
   cursor: pointer;
 }
-.form-details > a {
+.formDetails > a {
   padding: 10px 0;
   color: #1877f2;
   font-family: Helvetica, Arial, sans-serif;
@@ -223,7 +223,7 @@
   line-height: 20px;
   text-decoration: none;
 }
-.error-image {
+.errorImage {
   background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/EV7ny501e-i.png);
   background-size: auto;
   background-repeat: no-repeat;
@@ -234,36 +234,36 @@
 }
 
 @media screen and (max-width: 500px) {
-  .logo-container {
+  .logoContainer {
     height: 90px;
   }
-  .form-container {
+  .formContainer {
     width: 350px;
     margin-left: 0;
   }
 }
 @media screen and (max-width: 400px) {
-  .logo-container {
+  .logoContainer {
     height: 80px;
   }
-  .form-container {
+  .formContainer {
     width: 320px;
     margin-left: 0;
   }
 }
 @media screen and (max-width: 350px) {
-  .logo-container {
+  .logoContainer {
     height: 75px;
   }
-  .form-container {
+  .formContainer {
     width: 280px;
     margin-left: 0;
   }
-  .form-heading-1 {
+  .formHeading1 {
     font-size: 18px;
     line-height: 24px;
   }
-  .form-heading-2 {
+  .formHeading2 {
     font-size: 13px;
     line-height: 18px;
   }

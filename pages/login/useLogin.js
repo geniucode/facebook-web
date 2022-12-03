@@ -64,7 +64,7 @@ const useLogin = () => {
       } else {
         const jwtToken = response.jwtToken;
         localStorage.setItem("token", jwtToken);
-        router.push("/");
+        router.push("/home");
       }
     } catch (error) {
       const response = error.response;

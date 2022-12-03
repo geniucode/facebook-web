@@ -26,13 +26,13 @@ const Login = () => {
       <Head>
         <title>Login</title>
       </Head>
-      <div className={styles[`login-container`]}>
+      <div className={styles.loginContainer}>
         <title>Login</title>
         <div className={styles.headers}>
-          <div className={styles[`header-title`]}>
+          <div className={styles.headerTitle}>
             <h1>facebook</h1>
           </div>
-          <div className={styles[`header-content`]}>
+          <div className={styles.headerContent}>
             <span>
               Connect with friends and the world
               <br />
@@ -40,17 +40,17 @@ const Login = () => {
             </span>
           </div>
         </div>
-        <div className={styles[`outer-box`]}>
-          <div className={styles[`login-box`]}>
-            <div className={styles[`email-field`]}>
+        <div className={styles.outerBox}>
+          <div className={styles.loginBox}>
+            <div className={styles.emailField}>
               <input
                 onChange={onChangeEmail}
-                className={`${!emailIsValid && styles["input-error"]}`}
+                className={`${!emailIsValid && styles.inputError}`}
                 type="email"
                 placeholder="Email"
               />
               <span
-                className={`${styles["not-active"]} ${
+                className={`${styles.notActive} ${
                   !emailIsValid && styles.active
                 }
               }`}
@@ -58,25 +58,25 @@ const Login = () => {
                 <Image src={err} alt="error" />
               </span>
             </div>
-            <div className={styles[`password-field`]}>
+            <div className={styles.passwordField}>
               <input
                 onChange={onChangePassword}
                 id="password"
-                className={`${!passwordIsValid && styles["input-error"]}`}
+                className={`${!passwordIsValid && styles.inputError}`}
                 type={showHidePasswordBtn ? "text" : "password"}
                 placeholder="Password"
               />
               <span
-                className={`${styles["not-active"]} ${
-                  !passwordIsValid && styles["active"]
+                className={`${styles.notActive} ${
+                  !passwordIsValid && styles.active
                 }`}
               >
                 <Image src={err} alt="error" />
               </span>
               <span
-                className={`${styles["not-active"]} ${
+                className={`${styles.notActive} ${
                   password.length > 0 && showHidePasswordBtn
-                    ? styles["active"]
+                    ? styles.active
                     : ""
                 }`}
               >
@@ -88,9 +88,9 @@ const Login = () => {
                 />
               </span>
               <span
-                className={`${styles["not-active"]} ${
+                className={`${styles.notActive} ${
                   password.length > 0 && !showHidePasswordBtn
-                    ? styles["active"]
+                    ? styles.active
                     : ""
                 }`}
               >
@@ -110,7 +110,7 @@ const Login = () => {
               Log In
             </button>
             <hr className={styles.line} />
-            {error && <div className={styles["error-message"]}>{error}</div>}
+            {error && <div className={styles.errorMessage}>{error}</div>}
             <div className={styles.signUp}>
               {/* <div onClick={onClcikGoToSignUp}>Create new account</div> */}
               <div>
@@ -118,7 +118,7 @@ const Login = () => {
               </div>
             </div>
           </div>
-          <div className={styles["page-create"]}>
+          <div className={styles.pageCreate}>
             {/* <a href="/">Create a Page </a>for a celebrity, brand or business. */}
             <Link href="/forgetpassword">Forgot Your Password?</Link>
           </div>
