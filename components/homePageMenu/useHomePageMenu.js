@@ -11,23 +11,28 @@ const useHomePageMenu=()=>{
     const items =[
         {
             icon: <Image src={friendsIcon} />,
-            title:"Find friends"
+            title:"Find friends",
+            href:""
         },
         {
             icon:  <Image src={marketplaceIcon} />,
-            title:"Marketplace"
+            title:"Marketplace",
+            href:""
         },
         {
             icon:  <Image src={memoriesIcon} />,
-            title:"Memories"
+            title:"Memories",
+            href:""
         },
         {
             icon:  <Image src={savedIcon} />,
-            title:"Saved"
+            title:"Saved",
+            href:""
         },
         {
             icon:  <Image src={pagesIcon} />,
-            title:"Pages"
+            title:"Pages",
+            href:""
         },
         // {
         //     icon:  <Image src={seeAllIcon} />,

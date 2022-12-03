@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import homeIcon from "./images/home-icon.png";
 import userIcon from "./images/user-icon.png";
 import seeAllIcon from "./images/see-all-icon.png";
@@ -13,12 +14,12 @@ const HomePageMneu = () => {
     <>
       <div className={styles.homePageMenuContanier}>
         {/* homeContanier */}
-        <div className={styles.homeContanier}>
+        <Link href="/home"><div className={styles.homeContanier} >
           <div className={styles.homeIcon}>
             <Image src={homeIcon} />
           </div>
           <div className={styles.homeTitle}>Home</div>
-        </div>
+        </div></Link>
         {/* userContainer */}
         <div className={styles.userContanier}>
           <div className={styles.userIcon}>
@@ -33,33 +34,33 @@ const HomePageMneu = () => {
         {/* find friends */}
        {
         items.map((item)=>{
-          return( <div className={styles.findFriendsToSeeAllContanier}>
+          return( <Link href={item.href}><div className={styles.findFriendsToSeeAllContanier}>
             <div className={styles.findFriendsToSeeAllIcon}>
               {item.icon}
             </div>
             <div className={styles.findFriendsToSeeAllTitle}>{item.title}</div>
-          </div>)
+          </div></Link>)
         })
        }
        {/* seeAllContainer */}
-       <div className={styles.seeAllContanier}>
+       <Link href=""><div className={styles.seeAllContanier}>
           <div className={styles.seeAllIcon}>
             <Image src={seeAllIcon} />
           </div>
           <div className={styles.seeAllTitle}>See all</div>
-        </div>
+        </div></Link>
        
         {/* horizontal line */}
         <div className={styles.horizontalLine}>
           <hr />
         </div>
         {/* seeAllGroups */}
-        <div className={styles.seeAllGroupsContanier}>
+        <Link href=""><div className={styles.seeAllGroupsContanier}>
           <div className={styles.seeAllGroupsIcon}>
             <Image src={seeAllGroupsIcon} />
           </div>
           <div className={styles.seeAllGroupsTitle}>See all groups</div>
-        </div>
+        </div></Link>
       </div>
     </>
   );
