@@ -57,8 +57,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     border-radius: 100%;
     background: #EBEDF0;
+}
+.haederIcon[notificationcount]::after{
+    content: attr(notificationcount);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 18px;
+    width: 25px;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    font-size: 13px;
+    border-radius: 1000px;
+    color: white;
+    background-color: red;
 }
 .haederIconsContainer > .haederIcon:hover{
     cursor: pointer;
@@ -67,6 +83,7 @@
 .headerProfilePic > img{
     width: 100%;
     height: 100%;
+    border-radius: 100%;
 }
 .headerProfilePic{
     position: relative;

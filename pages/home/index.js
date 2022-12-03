@@ -4,6 +4,7 @@ import { useSetRecoilState, useRecoilValue } from "recoil";
 import { userState } from "../../atoms/user";
 import { postAxios } from "../../src/service/axios";
 import HomeHeader from "../../components/homeHeader";
+import Head from "next/head";
 
 const Home = () => {
   const router = useRouter();
@@ -29,6 +30,9 @@ const Home = () => {
   const user = useRecoilValue(userState);
   return (
     <>
+      <Head>
+        <title>Facebook</title>
+      </Head>
       <HomeHeader />
     </>
   );

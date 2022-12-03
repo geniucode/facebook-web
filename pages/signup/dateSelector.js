@@ -46,9 +46,9 @@ const DateSelector = (props) => {
   };
 
   return (
-    <div className={styles["date-selectors-container"]}>
+    <div className={styles.dateSelectorsContainer}>
       <select
-        className={styles["date-selector"]}
+        className={styles.dateSelector}
         defaultValue={monthOptions[currMonth - 1]}
         onChange={onChangeBirthDay}
       >
@@ -59,7 +59,7 @@ const DateSelector = (props) => {
         ))}
       </select>
       <select
-        className={styles["date-selector"]}
+        className={styles.dateSelector}
         defaultValue={currDay}
         onChange={onChangeBirthDay}
       >
@@ -70,7 +70,7 @@ const DateSelector = (props) => {
         ))}
       </select>
       <select
-        className={styles["date-selector"]}
+        className={styles.dateSelector}
         defaultValue={currYear}
         onChange={onChangeBirthDay}
       >
@@ -84,4 +84,4 @@ const DateSelector = (props) => {
   );
 };
 
-export { DateSelector };
+export default DateSelector;

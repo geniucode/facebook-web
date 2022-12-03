@@ -13,6 +13,8 @@ const useSignup = () => {
   currMonth = currMonth > 10 ? `${currMonth}` : `0${currMonth}`;
   currDay = currDay > 10 ? `${currDay}` : `0${currDay}`;
 
+  const [firstName, setFirstName] = useState({ value: "", accepted: true });
+  const [lastName, setLastName] = useState({ value: "", accepted: true });
   const [email, setEmail] = useState({ value: "", accepted: true });
   const [password, setPassword] = useState({ value: "", accepted: true });
   const [birthDay, setBirthDay] = useState({
@@ -22,6 +24,18 @@ const useSignup = () => {
   const [gender, setGender] = useState({ value: "", accepted: true });
   const [country, setCountry] = useState({ value: "", accepted: true });
 
+  const onChangeFirstName = (event) => {
+    setFirstName({
+      value: event.target.value,
+      accepted: event.target.value.length !== 0,
+    });
+  };
+  const onChangeLastName = (event) => {
+    setLastName({
+      value: event.target.value,
+      accepted: event.target.value.length !== 0,
+    });
+  };
   const onChangeEmail = (event) => {
     setEmail({
       value: event.target.value,
@@ -67,6 +81,7 @@ const useSignup = () => {
   const onClickBtn = async () => {
     try {
       await axios.post("http://localhost:3001/user/signup", {
+        name: `${firstName.value} ${lastName.value}`,
         email: email.value,
         gender: gender.value,
         password: password.value,
@@ -77,6 +92,10 @@ const useSignup = () => {
       const errors = error.response?.data?.errors?.map((error) => error.param);
       if (errors) {
         console.log(errors);
+        if (errors.includes("name")) {
+          setFirstName({ value: "", accepted: false });
+          setLastName({ value: "", accepted: false });
+        }
         if (errors.includes("email")) {
           setEmail({ value: "", accepted: false });
         }
@@ -96,15 +115,25 @@ const useSignup = () => {
     }
   };
 
-  useEffect(() => {}, [email, password, birthDay, gender, country]);
-
-  // const navigate = useNavigate();
+  useEffect(() => {}, [
+    firstName,
+    lastName,
+    email,
+    password,
+    birthDay,
+    gender,
+    country,
+  ]);
 
   const onClcikGoToSignIn = () => {
     router.push("/login");
   };
 
   return {
+    firstName,
+    onChangeFirstName,
+    lastName,
+    onChangeLastName,
     email,
     onChangeEmail,
     password,
