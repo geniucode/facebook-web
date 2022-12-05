@@ -27,7 +27,7 @@ const useSearch = () => {
       if (response?.success) {
         setUsers(response.usersFound);
         console.log(response.usersFound);
-        setError("yes users found");
+        setError("");
       }
     } else {
       setError("Please enter a value to search for");

@@ -2,8 +2,11 @@ import Head from "next/head";
 import Image from "next/image";
 import { useSearch } from "./useSearch";
 import { Auth } from "../../components/auth";
+import { HomePageMneu } from "../../components/homePageMenu";
+import facebookIcon from "./images/facebook-icon.png";
+import searchIcon from "./images/search-icon.png";
+import profilePicture from "./images/profile-picture.jpeg";
 import styles from "../../styles/search.module.css";
-import profilePicture from "./images/profilePicture.jpeg";
 
 const Search = () => {
   const { error, users, onChangeSearchValue, onClickSearch } = useSearch();
@@ -13,17 +16,23 @@ const Search = () => {
         <Head>
           <title>Search</title>
         </Head>
-        <div className={styles.search}>
-          <div className={styles.searchBar}>
-            <input
-              type="text"
-              placeholder="Search Facebook"
-              onChange={onChangeSearchValue}
-            ></input>
-            <input type="submit" onClick={onClickSearch} value="Search"></input>
-          </div>
-          {error && <p className={styles.errorMsg}>{error}</p>}
 
+        <div className={styles.search}>
+          <div className={styles.searchHeader}>
+            <Image src={facebookIcon} alt="Facebook Icon"></Image>
+            <div className={styles.searchBar}>
+              <input
+                type="text"
+                placeholder="Search Facebook"
+                onChange={onChangeSearchValue}
+              ></input>
+              <button type="submit" onClick={onClickSearch}>
+                <Image src={searchIcon} alt="Search"></Image>
+              </button>
+            </div>
+          </div>
+          <HomePageMneu />
+          {error && <p className={styles.errorMsg}>{error}</p>}
           <div className={styles.searchResult}>
             {users.length > 0 &&
               users.map((user) => {
