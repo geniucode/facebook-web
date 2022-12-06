@@ -32,6 +32,7 @@ const Search = () => {
               <button type="submit" onClick={onClickSearch}>
                 <Image src={searchIcon} alt="Search"></Image>
               </button>
+              {error && <p className={styles.errorMsg}>{error}</p>}
             </div>
           </div>
           <div className={styles.bodyContainer}>
@@ -39,7 +40,6 @@ const Search = () => {
               <HomePageMneu />
             </div>
             <div>
-              {error && <p className={styles.errorMsg}>{error}</p>}
               <div className={styles.searchResult}>
                 {users.length > 0 &&
                   users.map((user) => {
@@ -53,9 +53,7 @@ const Search = () => {
                               alt="Profile Picture"
                             ></Image>
                           </div>
-                          <div className={styles.userFullName}>
-                            {user.email}
-                          </div>
+                          <div className={styles.userFullName}>{user.name}</div>
                         </div>
                         <div className={styles.userButtons}>
                           <input
