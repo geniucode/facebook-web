@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { useSearch } from "./useSearch";
 import { Auth } from "../../components/auth";
 import { HomePageMneu } from "../../components/homePageMenu";
@@ -19,7 +20,9 @@ const Search = () => {
 
         <div className={styles.search}>
           <div className={styles.searchHeader}>
-            <Image src={facebookIcon} alt="Facebook Icon"></Image>
+            <Link href="/home">
+              <Image src={facebookIcon} alt="Facebook Icon"></Image>
+            </Link>
             <div className={styles.searchBar}>
               <input
                 type="text"
