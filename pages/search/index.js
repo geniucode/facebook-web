@@ -31,38 +31,46 @@ const Search = () => {
               </button>
             </div>
           </div>
-          <HomePageMneu />
-          {error && <p className={styles.errorMsg}>{error}</p>}
-          <div className={styles.searchResult}>
-            {users.length > 0 &&
-              users.map((user) => {
-                return (
-                  <div className={styles.userWidget}>
-                    <div className={styles.userDetails}>
-                      <div className={styles.userImg}>
-                        <Image
-                          className={styles.profilePicture}
-                          src={profilePicture}
-                          alt="Profile Picture"
-                        ></Image>
+          <div className={styles.bodyContainer}>
+            <div>
+              <HomePageMneu />
+            </div>
+            <div>
+              {error && <p className={styles.errorMsg}>{error}</p>}
+              <div className={styles.searchResult}>
+                {users.length > 0 &&
+                  users.map((user) => {
+                    return (
+                      <div className={styles.userWidget}>
+                        <div className={styles.userDetails}>
+                          <div className={styles.userImg}>
+                            <Image
+                              className={styles.profilePicture}
+                              src={profilePicture}
+                              alt="Profile Picture"
+                            ></Image>
+                          </div>
+                          <div className={styles.userFullName}>
+                            {user.email}
+                          </div>
+                        </div>
+                        <div className={styles.userButtons}>
+                          <input
+                            type="button"
+                            className={styles.addFriend}
+                            value="Add Friend"
+                          ></input>
+                          <input
+                            type="button"
+                            className={styles.removeSuggestion}
+                            value="Remove"
+                          ></input>
+                        </div>
                       </div>
-                      <div className={styles.userFullName}>{user.email}</div>
-                    </div>
-                    <div className={styles.userButtons}>
-                      <input
-                        type="button"
-                        className={styles.addFriend}
-                        value="Add Friend"
-                      ></input>
-                      <input
-                        type="button"
-                        className={styles.removeSuggestion}
-                        value="Remove"
-                      ></input>
-                    </div>
-                  </div>
-                );
-              })}
+                    );
+                  })}
+              </div>
+            </div>
           </div>
         </div>
       </Auth>

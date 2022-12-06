@@ -112,3 +112,8 @@
   background-color: rgba(228, 230, 235, 1);
   font-weight: bolder;
 }
+
+.bodyContainer {
+  display: flex;
+  gap: 60px;
+}
