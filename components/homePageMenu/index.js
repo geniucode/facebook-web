@@ -23,7 +23,7 @@ const HomePageMneu = () => {
           <div className={styles.userIcon}>
             <Image src={userIcon} />
           </div>
-          <div className={styles.userEmail}>{user.email}</div>
+          <div className={styles.userEmail}>{user.name}</div>
         </div>
         {/* horizontal line */}
         <div className={styles.horizontalLine}>
