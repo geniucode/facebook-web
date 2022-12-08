@@ -12,7 +12,7 @@ const Home = () => {
     setHomeIcon(true)
   },[])
 
-  return <Auth> <HomePageMneu/></Auth>;
+  return <Auth> </Auth>;
 };
 
 export default Home;
