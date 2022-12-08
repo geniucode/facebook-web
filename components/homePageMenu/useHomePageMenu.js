@@ -1,4 +1,6 @@
-import { useRecoilState } from 'recoil'
+
+import { useRecoilValue ,useRecoilState} from "recoil";
+import { homeIconState } from "../../atoms/home-icon";
 import Image from "next/image";
 import savedIcon from "./images/saved-icon.png";
 import pagesIcon from "./images/pages-icon.png";
@@ -6,8 +8,17 @@ import friendsIcon from "./images/friends-icon.png";
 import memoriesIcon from "./images/memories-icon.png";
 import marketplaceIcon from "./images/marketplace-icon.png";
 import { userState } from "../../atoms/user.js";
+import { useState } from 'react';
+
 const useHomePageMenu=()=>{
     const [user,setUser]=useRecoilState(userState);
+    const [homeIcon,setHomeIcon]=useRecoilState(homeIconState)
+    const onClickHomeIcon=()=>{
+        setHomeIcon(true);
+    }
+    const onClickNotHomeIcon=()=>{
+        setHomeIcon(false);
+    }
     const items =[
         {
             icon: <Image src={friendsIcon} />,
@@ -39,10 +50,14 @@ const useHomePageMenu=()=>{
         //     title:"See all"
         // },
     ]
+   
     return{
         items,
         user,
-        setUser
+        homeIcon,
+        setUser,
+        onClickHomeIcon,
+        onClickNotHomeIcon
     };
 
 };

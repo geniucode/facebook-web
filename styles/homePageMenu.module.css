@@ -1,16 +1,18 @@
 .homePageMenuContanier{
   background-color: #f0f1f5;  
   width: 30%;
-   padding-top: 25px; 
-  padding-left: 20px; 
+  padding-top: 25px; 
+  padding-left: 7px; 
+  
 }
 .homeContanier{
   height: 40px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap:15px;
-  margin-bottom: 17px;
+  margin-bottom: 10px;
+  padding-left: 10px; 
+  gap:10px;
 }
 .homeTitle{
   font-style: normal;
@@ -18,8 +20,9 @@
   font-size: large;
   padding-bottom:5px ;
 }
-.homeIcon >img{
+.homeIcon{
   width: 24px;
+  height: 24px;
 }
 
 .userContanier{
@@ -27,8 +30,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap:15px;
-  margin-bottom: 17px;
+  padding-left: 10px; 
+  gap:10px;
+  margin-bottom: 12px;
 }
 .userEmail{
   font-style: normal;
@@ -38,12 +42,14 @@
 }
 .userIcon >img{
   width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-top: 3px;
 }
-
 
 .horizontalLine >hr{
   border: 0.5px solid #d7d9dd;
-  margin-right: 30%;
+  margin-right: 25%;
   margin-bottom: 17px;
 }
 
@@ -52,7 +58,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap:15px;
+  padding-left: 10px; 
+  gap:7px;
   margin-bottom: 17px;
 }
 .findFriendsToSeeAllTitle{
@@ -61,10 +68,16 @@
   font-size: large;
   padding-bottom:5px ;
 }
-.findFriendsToSeeAll >img{
+.findFriendsToSeeAllIcon>img{
   width: 24px;
+  height: 24px;
+  margin-top: 3px;
 }
 
+.homeContanier:hover, .userContanier:hover, .findFriendsToSeeAllContanier:hover ,.seeAllContanier:hover,.seeAllGroupsContanier:hover {
+  border-radius: 10px 0 0 10px;
+  background-color: #e4e6eb;
+}
 /* .marketplaceContanier{
   height: 40px;
   display: flex;
@@ -80,7 +93,7 @@
   padding-bottom:5px ;
 }
 .marketplaceIcon >img{
-  width: 24px;
+  width: 28px;
 }
 
 .memoriesContanier{
@@ -98,7 +111,7 @@
   padding-bottom:5px ;
 }
 .memoriesIcon >img{
-  width: 24px;
+  width: 28px;
 }
 
 .savedContanier{
@@ -116,7 +129,7 @@
   padding-bottom:5px ;
 }
 .savedIcon >img{
-  width: 24px;
+  width: 28px;
 }
 
 .pagesContanier{
@@ -134,7 +147,7 @@
   padding-bottom:5px ;
 }
 .pagesIcon >img{
-  width: 24px;
+  width: 28px;
 }
 */
  .seeAllContanier{
@@ -142,50 +155,61 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap:12px;
+  padding-left: 6px; 
+  gap:6px;
   margin-bottom: 17px;
 }
 .seeAllTitle{
   font-style: normal;
   font-weight:500; 
   font-size: large;
-  padding-bottom:5px ;;
+  padding-bottom:5px ;
 }
 .seeAllIcon >img{
-  width: 24px;
+  width: 30px;
+  height: 30px;
+  margin-top: 3px;
 } 
+
 
 .seeAllGroupsContanier{
   height: 40px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap:13px;
+  padding-left: 6px; 
+  gap:6px;
   margin-bottom: 17px;
 }
 .seeAllGroupsTitle{
   font-style: normal;
   font-weight:500; 
   font-size: large;
-  padding-bottom:5px ;;
+  padding-bottom:5px ;
 }
 .seeAllGroupsIcon >img{
-  width: 24px;
+  width: 30px;
+  height: 30px;
+  margin-top: 3px;
 }
 
 
 
-/* @media screen and (max-width: 850px) {
+
+
+@media screen and (max-width: 1160px) {
   .homePageMenuContanier {
-    width: 10%; ;
+    width: 55px ;
   }
   .homeContanier{
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
   }
   .userContanier{
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
   }
   .homeTitle{
     display: none;
@@ -196,7 +220,16 @@
   .horizontalLine >hr{
     border: unset;
   }
-  .findFriendsContanier{
+   .findFriendsToSeeAllContanier{
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .findFriendsToSeeAllTitle{
+    display: none;
+  }
+  
+  /* .findFriendsContanier{
     flex-direction: column;
     align-items: flex-start;
   }
@@ -230,10 +263,11 @@
   }
   .pagesTitle{
     display: none;
-  }
+  } */
   .seeAllContanier{
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
   }
   .seeAllTitle{
     display: none;
@@ -241,17 +275,21 @@
   .seeAllGroupsContanier{
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
   }
   .seeAllGroupsTitle{
     display: none;
   }
+  .homeContanier:hover, .userContanier:hover, .findFriendsToSeeAllContanier:hover ,.seeAllContanier:hover,.seeAllGroupsContanier:hover {
+    border-radius: 10px ;
+  }
  
-} */
+}
 
-/* @media screen and (max-width: 450px){ */
-  @media screen and (max-width: 850px){
+/* @media screen and (max-width: 450px){
+  @media screen and (max-width: 450px){
   .homePageMenuContanier {
     display: none;
   }
-}
+} */
   
