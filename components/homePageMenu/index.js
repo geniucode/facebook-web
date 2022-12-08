@@ -1,13 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import HomeIcon from "./images/home-icon.svg";
-import blueHomeIcon from "./images/blue-home-icon.png";
 import userIcon from "./images/user-icon.png";
 import seeAllIcon from "./images/see-all-icon.png";
 import { useHomePageMenu } from "./useHomePageMenu";
 import seeAllGroupsIcon from "./images/see-all-groups-icon.png";
 import styles from "../../styles/homePageMenu.module.css";
-import { red } from "@mui/material/colors";
 
 const HomePageMneu = () => {
   const { user,items,homeIcon, onClickHomeIcon,onClickNotHomeIcon} = useHomePageMenu();

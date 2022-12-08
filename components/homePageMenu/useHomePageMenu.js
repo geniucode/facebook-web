@@ -8,7 +8,6 @@ import friendsIcon from "./images/friends-icon.png";
 import memoriesIcon from "./images/memories-icon.png";
 import marketplaceIcon from "./images/marketplace-icon.png";
 import { userState } from "../../atoms/user.js";
-import { useState } from 'react';
 
 const useHomePageMenu=()=>{
     const [user,setUser]=useRecoilState(userState);
