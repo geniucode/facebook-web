@@ -1,11 +1,10 @@
-import { Auth } from "../components/auth";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Home() {
-  return (
-    <>
-      <Auth>
-        <div>Hello</div>
-      </Auth>
-    </>
-  );
+  const router = useRouter();
+  useEffect(() => {
+    router.push("/home");
+  }, []);
+  return <></>;
 }

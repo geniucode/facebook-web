@@ -9,17 +9,22 @@ import seeAllGroupsIcon from "./images/see-all-groups-icon.png";
 import styles from "../../styles/homePageMenu.module.css";
 
 const HomePageMneu = () => {
-  const { user,items,homeIcon, onClickHomeIcon,onClickNotHomeIcon} = useHomePageMenu();
-
+  const { user, items, homeIcon, onClickHomeIcon, onClickNotHomeIcon } =
+    useHomePageMenu();
 
   return (
     <>
       <div className={styles.homePageMenuContanier}>
         {/* homeContanier */}
-        <Link href="/home"><div className={styles.homeContanier} onClick={onClickHomeIcon} >
-          <HomeIcon className={styles.homeIcon} fill={`${homeIcon?'#1b74e4':''}`}/>
-          <div className={styles.homeTitle}>Home</div>
-        </div></Link>
+        <Link href="/home">
+          <div className={styles.homeContanier} onClick={onClickHomeIcon}>
+            <HomeIcon
+              className={styles.homeIcon}
+              fill={`${homeIcon ? "#1b74e4" : ""}`}
+            />
+            <div className={styles.homeTitle}>Home</div>
+          </div>
+        </Link>
         {/* userContainer */}
         <div className={styles.userContanier} onClick={onClickNotHomeIcon}>
           <div className={styles.userIcon}>
@@ -32,20 +37,29 @@ const HomePageMneu = () => {
           <hr />
         </div>
         {/* find friends */}
-       {
-        items.map((item)=>{
-          return( <Link href={item.href}><div className={styles.findFriendsToSeeAllContanier} onClick={onClickNotHomeIcon}>
-            <div className={styles.findFriendsToSeeAllIcon}>
-              {item.icon}
+        {items.map((item) => {
+          return (
+            <Link href={item.href}>
+              <div
+                className={styles.findFriendsToSeeAllContanier}
+                onClick={onClickNotHomeIcon}
+              >
+                <div className={styles.findFriendsToSeeAllIcon}>
+                  {item.icon}
+                </div>
+                <div className={styles.findFriendsToSeeAllTitle}>
+                  {item.title}
+                </div>
+              </div>
+            </Link>
+          );
+        })}
+        {/* seeAllContainer */}
+        <Link href="">
+          <div className={styles.seeAllContanier} onClick={onClickNotHomeIcon}>
+            <div className={styles.seeAllIcon}>
+              <Image src={seeAllIcon} />
             </div>
-            <div className={styles.findFriendsToSeeAllTitle}>{item.title}</div>
-          </div></Link>)
-        })
-       }
-       {/* seeAllContainer */}
-       <Link href=""><div className={styles.seeAllContanier} onClick={onClickNotHomeIcon}>
-          <div className={styles.seeAllIcon}>
-            <Image src={seeAllIcon} />
           </div>
         </Link>
 
@@ -54,12 +68,22 @@ const HomePageMneu = () => {
           <hr />
         </div>
         {/* seeAllGroups */}
-        <Link href=""><div className={styles.seeAllGroupsContanier} onClick={onClickNotHomeIcon}>
-          <div className={styles.seeAllGroupsIcon}>
-            <Image src={seeAllGroupsIcon} />
+        <Link href="">
+          <div
+            className={styles.seeAllGroupsContanier}
+            onClick={onClickNotHomeIcon}
+          >
+            <div className={styles.seeAllGroupsIcon}>
+              <Image src={seeAllGroupsIcon} />
+            </div>
+            <div
+              className={styles.seeAllGroupsTitle}
+              onClick={onClickNotHomeIcon}
+            >
+              See all groups
+            </div>
           </div>
-          <div className={styles.seeAllGroupsTitle} onClick={onClickNotHomeIcon}>See all groups</div>
-        </div></Link>
+        </Link>
       </div>
     </>
   );

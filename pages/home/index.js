@@ -1,31 +1,49 @@
-import Link from "next/link";
-import Image from "next/image";
-import { useRecoilValue } from "recoil";
+import { useEffect } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "../../atoms/user";
 import { FacebookPost } from "../../components/facebookPost/index";
+import { FacebookReactPost } from "../../components/facebookReactPost/index.js";
 
 import { Auth } from "../../components/auth";
-import searchIcon from "./images/search-icon.png";
-import styles from "../../styles/homePageMenu.module.css";
+import { homeIconState } from "../../atoms/home-icon";
+import HomeHeader from "../../components/homeHeader";
+import { HomePageMneu } from "../../components/homePageMenu";
 
 const Home = () => {
   const user = useRecoilValue(userState);
-  const [homeIcon,setHomeIcon]=useRecoilState(homeIconState)
-  useEffect(()=>{
-    setHomeIcon(true)
-  },[])
+  const [homeIcon, setHomeIcon] = useRecoilState(homeIconState);
+  useEffect(() => {
+    setHomeIcon(true);
+  }, []);
   return (
     <Auth>
-      Hey {user.email}
-      <Link href="/search">
-        <div className={styles.searchContanier}>
-          <div className={styles.searchIcon}>
-            <Image src={searchIcon} />
+      <HomeHeader />
+      <div
+        style={{
+          display: "flex",
+        }}
+      >
+        <HomePageMneu />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: 50,
+          }}
+        >
+          <div
+            style={{
+              width: "80%",
+              marginBottom: 50,
+            }}
+          >
+            <FacebookReactPost />
           </div>
-          <div className={styles.searchTitle}>Go to search page</div>
+          <FacebookPost />
         </div>
-      </Link>
-        <FacebookPost/> 
+      </div>
     </Auth>
   );
 };

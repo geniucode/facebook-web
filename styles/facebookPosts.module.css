@@ -7,7 +7,7 @@
 
 }
 .posts {
-  width: 40%;
+  width: 80%;
   background-color: white;
   margin:auto;
 height: auto;
@@ -22,7 +22,8 @@ border-radius: 10px;
   user-select: none;
   color: var(--color-primary);
   margin-bottom: 10px;
-  background-color: FFFFFF;
+  background-color: #FFFFFF;
+  width: 100%;
   
 }
 .postHeader {

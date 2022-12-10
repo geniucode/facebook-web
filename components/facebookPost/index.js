@@ -12,7 +12,6 @@ const FacebookPost = () => {
 
   return (
     <div className={styles.postsBlock}>
-      {" "}
       <div className={styles.posts}>
         <div className={styles.post}>
           <div className={styles.postHeader}>

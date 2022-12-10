@@ -78,83 +78,11 @@
   border-radius: 10px 0 0 10px;
   background-color: #e4e6eb;
 }
-/* .marketplaceContanier{
-  height: 40px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap:15px;
-  margin-bottom: 17px;
-}
-.marketplaceTitle{
-  font-style: normal;
-  font-weight:500; 
-  font-size: large;
-  padding-bottom:5px ;
-}
-.marketplaceIcon >img{
-  width: 28px;
-}
-
-.memoriesContanier{
-  height: 40px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap:15px;
-  margin-bottom: 17px;
-}
-.memoriesTitle{
-  font-style: normal;
-  font-weight:500; 
-  font-size: large;
-  padding-bottom:5px ;
-}
-.memoriesIcon >img{
-  width: 28px;
-}
-
-.savedContanier{
-  height: 40px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap:15px;
-  margin-bottom: 17px;
-}
-.savedTitle{
-  font-style: normal;
-  font-weight:500; 
-  font-size: large;
-  padding-bottom:5px ;
-}
-.savedIcon >img{
-  width: 28px;
-}
-
-.pagesContanier{
-  height: 40px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap:15px;
-  margin-bottom: 17px;
-}
-.pagesTitle{
-  font-style: normal;
-  font-weight:500; 
-  font-size: large;
-  padding-bottom:5px ;
-}
-.pagesIcon >img{
-  width: 28px;
-}
-*/
 .seeAllContanier {
   height: 40px;
   display: flex;
   flex-direction: row;
-  align-items: center
+  align-items: center;
   padding-left: 6px; 
   gap:6px;
   margin-bottom: 17px;
