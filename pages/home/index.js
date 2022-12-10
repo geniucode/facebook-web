@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../atoms/user";
+import { FacebookPost } from "../../components/facebookPost/index";
+
 import { Auth } from "../../components/auth";
 import searchIcon from "./images/search-icon.png";
 import styles from "../../styles/homePageMenu.module.css";
@@ -12,7 +14,6 @@ const Home = () => {
   useEffect(()=>{
     setHomeIcon(true)
   },[])
-
   return (
     <Auth>
       Hey {user.email}
@@ -24,6 +25,7 @@ const Home = () => {
           <div className={styles.searchTitle}>Go to search page</div>
         </div>
       </Link>
+        <FacebookPost/> 
     </Auth>
   );
 };
