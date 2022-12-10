@@ -32,5 +32,8 @@
     "recoil": "^0.7.6",
     "snackbar": "^1.1.0",
     "styled-components": "^5.3.6"
+  },
+  "devDependencies": {
+    "babel-plugin-inline-react-svg": "^2.0.1"
   }
 }

@@ -8,6 +8,10 @@ import styles from "../../styles/homePageMenu.module.css";
 
 const Home = () => {
   const user = useRecoilValue(userState);
+  const [homeIcon,setHomeIcon]=useRecoilState(homeIconState)
+  useEffect(()=>{
+    setHomeIcon(true)
+  },[])
 
   return (
     <Auth>
