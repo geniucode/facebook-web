@@ -1,9 +1,10 @@
-import { useRecoilValue ,useRecoilState} from "recoil";
-import { homeIconState } from "../../atoms/home-icon";
+import Link from "next/link";
+import Image from "next/image";
+import { useRecoilValue } from "recoil";
 import { userState } from "../../atoms/user";
 import { Auth } from "../../components/auth";
-import { HomePageMneu } from "../../components/homePageMenu";
-import { useEffect, useState } from "react";
+import searchIcon from "./images/search-icon.png";
+import styles from "../../styles/homePageMenu.module.css";
 
 const Home = () => {
   const user = useRecoilValue(userState);
@@ -12,7 +13,19 @@ const Home = () => {
     setHomeIcon(true)
   },[])
 
-  return <Auth> </Auth>;
+  return (
+    <Auth>
+      Hey {user.email}
+      <Link href="/search">
+        <div className={styles.searchContanier}>
+          <div className={styles.searchIcon}>
+            <Image src={searchIcon} />
+          </div>
+          <div className={styles.searchTitle}>Go to search page</div>
+        </div>
+      </Link>
+    </Auth>
+  );
 };
 
 export default Home;

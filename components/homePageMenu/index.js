@@ -3,12 +3,14 @@ import Link from "next/link";
 import HomeIcon from "./images/home-icon.svg";
 import userIcon from "./images/user-icon.png";
 import seeAllIcon from "./images/see-all-icon.png";
+import searchIcon from "./images/search-icon.png";
 import { useHomePageMenu } from "./useHomePageMenu";
 import seeAllGroupsIcon from "./images/see-all-groups-icon.png";
 import styles from "../../styles/homePageMenu.module.css";
 
 const HomePageMneu = () => {
   const { user,items,homeIcon, onClickHomeIcon,onClickNotHomeIcon} = useHomePageMenu();
+
 
   return (
     <>
@@ -45,9 +47,8 @@ const HomePageMneu = () => {
           <div className={styles.seeAllIcon}>
             <Image src={seeAllIcon} />
           </div>
-          <div className={styles.seeAllTitle}>See all</div>
-        </div></Link>
-       
+        </Link>
+
         {/* horizontal line */}
         <div className={styles.horizontalLine}>
           <hr />

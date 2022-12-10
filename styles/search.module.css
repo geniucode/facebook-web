@@ -1,15 +1,18 @@
 .search {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 10px 20% 0% 20%;
+  margin-top: 10px;
   gap: 15px;
+}
+
+.searchHeader {
+  display: flex;
+  gap: 10px;
+  margin-left: 10px;
 }
 
 .searchBar {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 10px;
 }
 
@@ -20,13 +23,10 @@
   background-color: #e9ebee;
 }
 
-.searchBar > input[type="submit"] {
-  background-color: #e9ebee;
-  border-radius: 25px;
-  height: 40px;
-  width: 100px;
-  padding: 5px;
+.searchBar > button {
   cursor: pointer;
+  border: none;
+  top: 19px;
 }
 
 .searchBar > input[type="text"] {
@@ -46,11 +46,10 @@
   flex-wrap: wrap;
   margin-left: 15px;
   gap: 5px;
-  box-shadow: 0 2px 4px rgb(0 0 0 / 50%), 0 8px 16px rgb(0 0 0 / 10%);
 }
 
 .userWidget {
-  border: 1px solid black;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 50%), 0 8px 16px rgb(0 0 0 / 10%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -94,21 +93,27 @@
   border: none;
   text-align: center;
 }
+.addFriend:hover {
+  background-color: rgba(231, 243, 255, 0.5);
+}
 
-.addFriend:hover,
 .removeSuggestion:hover {
-  margin-top: 0px;
-  -moz-box-shadow: 0px 0px 4px 1px grey;
-  -webkit-box-shadow: 0px 0px 4px 1px grey;
-  box-shadow: 0px 0px 4px 1px grey;
-  border: none;
+  background-color: rgba(228, 230, 235, 0.5);
 }
 
 .addFriend {
-  background-color: #e7f3ff;
+  /* background-color: #e7f3ff; */
+  background-color: rgba(231, 243, 255, 1);
   color: #1877f2;
 }
 
 .removeSuggestion {
-  background-color: #e4e6eb;
+  /* background-color: #e4e6eb; */
+  background-color: rgba(228, 230, 235, 1);
+  font-weight: bolder;
+}
+
+.bodyContainer {
+  display: flex;
+  gap: 60px;
 }
