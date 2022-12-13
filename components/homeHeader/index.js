@@ -1,9 +1,52 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRecoilState } from "recoil";
+import { searchUsersState } from "../../atoms/users";
+import { searchErrorState } from "../../atoms/error";
+import { useState } from "react";
+import { getAxios } from "../../service/axios";
 import styles from "../../styles/homeHeader.module.css";
 import pfp from "./images/pfp.jpg";
 
-const HomeHeader = () => {
+const HomeHeader = ({}) => {
+  const [users, setUsers] = useRecoilState(searchUsersState);
+  const [error, setError] = useRecoilState(searchErrorState);
+  const [name, setName] = useState("");
+  // const [error, setError] = useState("");
+  // const [users, setUsers] = useState([]);
+
+  const onChangeSetName = (e) => {
+    console.log(name);
+    setName(e.target.value);
+  };
+
+  const onClickSearch = async () => {
+    if (name.length > 0) {
+      const response = await getAxios("user/search", {
+        name,
+      });
+      if (response?.errors) {
+        setError("Please enter a valid name");
+        console.log(error);
+        return error;
+      }
+      if (!response?.success) {
+        console.log(response);
+        setError("No users found");
+        console.log(error);
+        setUsers([]);
+      }
+      if (response?.success) {
+        setUsers(response.usersFound);
+        setError("");
+        console.log(response);
+        return { users };
+      }
+    } else {
+      setError("Please enter a value to search for");
+    }
+  };
+
   return (
     <div className={styles.headerContainer}>
       <div className={styles.headerContent}>
@@ -22,13 +65,18 @@ const HomeHeader = () => {
         </Link>
         <div className={styles.inputContainer}>
           <div className={styles.searchIcon}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <svg
+              onClick={onClickSearch}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
               <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z" />
             </svg>
           </div>
           <input
             className={styles.searchInput}
             placeholder="Search Facebook"
+            onChange={onChangeSetName}
           ></input>
         </div>
         <div className={styles.haederIconsContainer}>
