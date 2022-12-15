@@ -84,6 +84,7 @@ const HomePageMneu = () => {
             </div>
           </div>
         </Link>
+        <Link href="/uploadImage">Go to upload image</Link>
       </div>
     </>
   );
