@@ -30,6 +30,7 @@
     "react-facebook-emoji": "^1.0.12",
     "react-router-dom": "^6.4.3",
     "recoil": "^0.7.6",
+    "restful-react": "^15.9.4",
     "snackbar": "^1.1.0",
     "styled-components": "^5.3.6"
   },
