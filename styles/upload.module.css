@@ -1,0 +1,10 @@
+.bodyContainer {
+  display: flex;
+}
+
+.uploadForm {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  gap: 10px;
+}

@@ -1,41 +1,20 @@
 import Head from "next/head";
-import { useState } from "react";
-import { ref, uploadBytes } from "firebase/storage";
-import { storage } from "../../service/firebase";
-import { v4 } from "uuid";
-import { HomePageMneu } from "../../components/homePageMenu";
+import { useUploadImage } from "./useUploadImage";
 import { Auth } from "../../components/auth";
-// import styles from "../../styles/upload.module.css";
+import { HomePageMneu } from "../../components/homePageMenu";
+import styles from "../../styles/upload.module.css";
 
 const UploadImage = () => {
-  const [imageUpload, setImageUpload] = useState(null);
-  //I will add a hook with the functions and states and returns later on
-  //I will add the styles in a seperate page later on
-
-  const onClickUploadImage = () => {
-    if (imageUpload == null) return;
-    const imageRef = ref(storage, `images/${v4()}`);
-    uploadBytes(imageRef, imageUpload).then(() => {
-      setImageUpload(null);
-      console.log(imageRef.fullPath);
-    });
-  };
+  const { onClickUploadImage, setImageUpload } = useUploadImage();
 
   return (
     <Auth>
       <Head>
         <title>Upload Image</title>
       </Head>
-      <div style={{ display: "flex" }}>
+      <div className={styles.bodyContainer}>
         <HomePageMneu />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            marginTop: "15px",
-            gap: "10px",
-          }}
-        >
+        <div className={styles.uploadForm}>
           <input
             type="file"
             onChange={(e) => {
