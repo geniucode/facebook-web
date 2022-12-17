@@ -22,7 +22,6 @@ const Signup = () => {
     country,
     setCountry,
     onClickBtn,
-    onClcikGoToSignIn,
   } = useSignup();
   return (
     <>

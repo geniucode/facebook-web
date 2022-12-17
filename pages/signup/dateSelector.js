@@ -32,10 +32,11 @@ const DateSelector = (props) => {
     let [year, month, day] = props.birthDay.value.split("-");
     if (isNaN(event.target.value)) {
       month = monthOptions.indexOf(event.target.value) + 1;
-      month = month > 10 ? `${month}` : `0${month}`;
+      console.log(monthOptions.indexOf(event.target.value) + 1);
+      month = month > 9 ? `${month}` : `0${month}`;
     } else if (event.target.value <= 31) {
       day = event.target.value;
-      day = day > 10 ? `${day}` : `0${day}`;
+      day = day > 9 ? `${day}` : `0${day}`;
     } else {
       year = event.target.value;
     }
