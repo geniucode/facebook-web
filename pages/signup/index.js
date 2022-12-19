@@ -129,7 +129,7 @@ const Signup = () => {
             >
               <div className={styles.countrySection}>
                 <div className={styles.sectionTitle}>Country</div>
-                <CountrySelector setCountry={setCountry} />
+                <CountrySelector country={country} setCountry={setCountry} />
               </div>
             </div>
             <p>
