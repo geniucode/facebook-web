@@ -9,12 +9,10 @@ import { useHome } from "./useHome.js";
 
 const Home = () => {
 
-  const { user, homeIcon, setHomeIcon,getAxiosGetAllBooks} = useHome();
+  const {  setHomeIcon,getAxiosGetAllBooks} = useHome();
   useEffect(() => {
    setHomeIcon(true);
-   getAxiosGetAllBooks();
-    
-    
+   getAxiosGetAllBooks(); 
   }, []);
   return (
     <Auth>
