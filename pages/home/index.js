@@ -1,11 +1,7 @@
 import { useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { userState } from "../../atoms/user";
 import { FacebookPost } from "../../components/facebookPost/index";
 import { FacebookReactPost } from "../../components/facebookReactPost/index.js";
-
 import { Auth } from "../../components/auth";
-import { homeIconState } from "../../atoms/home-icon";
 import HomeHeader from "../../components/homeHeader";
 import { HomePageMneu } from "../../components/homePageMenu";
 import { useHome } from "./useHome.js";
