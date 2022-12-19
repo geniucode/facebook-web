@@ -8,10 +8,10 @@ import { Auth } from "../../components/auth";
 import { homeIconState } from "../../atoms/home-icon";
 import HomeHeader from "../../components/homeHeader";
 import { HomePageMneu } from "../../components/homePageMenu";
+import { useHome } from "./useHome.js";
 
 const Home = () => {
-  const user = useRecoilValue(userState);
-  const [homeIcon, setHomeIcon] = useRecoilState(homeIconState);
+  const { user, homeIcon, setHomeIcon } = useHome();
   useEffect(() => {
     setHomeIcon(true);
   }, []);
