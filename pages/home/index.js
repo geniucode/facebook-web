@@ -6,10 +6,15 @@ import HomeHeader from "../../components/homeHeader";
 import { HomePageMneu } from "../../components/homePageMenu";
 import { useHome } from "./useHome.js";
 
+
 const Home = () => {
-  const { user, homeIcon, setHomeIcon } = useHome();
+
+  const { user, homeIcon, setHomeIcon,getAxiosGetAllBooks} = useHome();
   useEffect(() => {
-    setHomeIcon(true);
+   setHomeIcon(true);
+   getAxiosGetAllBooks();
+    
+    
   }, []);
   return (
     <Auth>
@@ -18,7 +23,7 @@ const Home = () => {
         style={{
           display: "flex",
         }}
-      >
+      > 
         <HomePageMneu />
         <div
           style={{
