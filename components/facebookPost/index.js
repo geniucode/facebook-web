@@ -6,9 +6,12 @@ import ReactsPopup from "./ReactsPopup";
 import profilePicture from "../facebookPost/images/tempImages/profilePic.png";
 import postPicture from "../facebookPost/images/tempImages/pollfishPeople.png";
 import { useState } from "react";
+import { postsState } from "../../atoms/posts";
+import { useRecoilState } from "recoil";
 
 const FacebookPost = () => {
   const [visible, setVisible] = useState(false);
+  const [posts, setPosts] = useRecoilState(postsState);
 
   return (
     <div className={styles.postsBlock}>

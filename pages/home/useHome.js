@@ -9,13 +9,13 @@ const useHome=()=>{
     const [homeIcon, setHomeIcon] = useRecoilState(homeIconState);
     const [posts, setPosts] = useRecoilState(postsState);
     const getAxiosGetAllBooks=async()=>{
-        const response =await getAxios("facebook-post/get-all-posts", {});
-        setPosts(response.posts)
-        console.log(response)
-       }
+      const response =await getAxios("facebook-post/get-all-posts", {});
+      console.log(response.posts)
+      setPosts(response.posts)
+     }
     return{
         setHomeIcon,
-        getAxiosGetAllBooks
+       getAxiosGetAllBooks
     };
 
 }
