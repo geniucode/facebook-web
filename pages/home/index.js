@@ -4,18 +4,19 @@ import { FacebookReactPost } from "../../components/facebookReactPost/index.js";
 import { Auth } from "../../components/auth";
 import HomeHeader from "../../components/homeHeader";
 import { HomePageMneu } from "../../components/homePageMenu";
-import {  useHome } from "./useHome.js";
+import { useHome } from "./useHome.js";
 import { postsInformationState } from "../../atoms/postsInformation.js";
 import { useRecoilState } from "recoil";
 
 const Home = () => {
-  const {  setHomeIcon,getAxiosGetAllPosts} = useHome();
-  const [postsInformation,setPostsInformation]=useRecoilState(postsInformationState)
+  const { setHomeIcon, getAxiosGetAllPosts } = useHome();
+  const [postsInformation, setPostsInformation] = useRecoilState(
+    postsInformationState
+  );
   useEffect(() => {
-    getAxiosGetAllPosts(),
-   setHomeIcon(true);
+    getAxiosGetAllPosts(), setHomeIcon(true);
   }, []);
-  console.log(postsInformation)
+  console.log(postsInformation);
   return (
     <Auth>
       <HomeHeader />
@@ -23,7 +24,7 @@ const Home = () => {
         style={{
           display: "flex",
         }}
-      > 
+      >
         <HomePageMneu />
         <div
           style={{
@@ -37,7 +38,7 @@ const Home = () => {
           <div
             style={{
               width: "80%",
-              marginBottom: 50,
+              marginBottom: 10,
             }}
           >
             <FacebookReactPost />

@@ -3,53 +3,67 @@ import moment from "moment";
 const timeByMoment = (createdAt) => {
   let now = moment();
   let momentCreatedAt = moment(createdAt);
+  let dayCreatedAt = moment(createdAt).format("D");
+  let monthCreatedAt = moment(createdAt).format("MMM");
+  let yearCreatedAt = moment(createdAt).format("YYYY");
   let diff = now.diff(momentCreatedAt);
   let diffDuration = moment.duration(diff);
-
-  let yearsDiff = diffDuration.years()+" y";
+  console.log(momentCreatedAt);
+  let yearsDiff = diffDuration.years() + " y";
   let monthDiff = diffDuration.months() + " m";
+
   let weekDiff = diffDuration.weeks() + " w";
   let dayDiff = diffDuration.days() + " d";
-  let hoursDiff = diffDuration.hours() + " hrs";
-  let minDiff = diffDuration.minutes() + " s";
-//   if(5<yearsDiff.split('')[0])
-//   console.log({"yearsDiff":yearsDiff.split('')[0]})
-  
+  let hoursDiff = diffDuration.hours() + " h";
+  let minDiff = diffDuration.minutes() + " m";
+  let secDiff = diffDuration.seconds() + " s";
 
-  if (yearsDiff.split('')[0] > 0) {
-     return yearsDiff;
-    console.log(" is years" );
-  } else if (yearsDiff.split('')[0] <= 0 && monthDiff.split('')[0] > 0) {
-     return monthDiff;
-    console.log(" is month "  );
-  } else if (yearsDiff.split('')[0] <= 0 && monthDiff.split('')[0] <= 0 && weekDiff.split('')[0] > 0) {
-    return weekDiff;
-    console.log(" is week" );
-  } else if (yearsDiff.split('')[0] <= 0 && monthDiff.split('')[0] <= 0 && weekDiff.split('')[0] <= 0 && dayDiff.split('')[0] > 0) {
-    return dayDiff;
-    console.log(" is day");
+  if (yearsDiff.split("")[0] > 0) {
+    return `${dayCreatedAt} ${monthCreatedAt} ${yearCreatedAt}`;
+  } else if (yearsDiff.split("")[0] <= 0 && monthDiff.split("")[0] > 0) {
+    return `${dayCreatedAt} ${monthCreatedAt}`;
   } else if (
-    yearsDiff.split('')[0] <= 0 &&
-    monthDiff.split('')[0] <= 0 &&
-    weekDiff.split('')[0] <= 0 &&
-    dayDiff.split('')[0] <= 0 &&
-    hoursDiff.split('')[0] > 0
+    yearsDiff.split("")[0] <= 0 &&
+    monthDiff.split("")[0] <= 0 &&
+    weekDiff.split("")[0] > 0
+  ) {
+    return weekDiff;
+  } else if (
+    yearsDiff.split("")[0] <= 0 &&
+    monthDiff.split("")[0] <= 0 &&
+    weekDiff.split("")[0] <= 0 &&
+    dayDiff.split("")[0] > 0
+  ) {
+    return dayDiff;
+  } else if (
+    yearsDiff.split("")[0] <= 0 &&
+    monthDiff.split("")[0] <= 0 &&
+    weekDiff.split("")[0] <= 0 &&
+    dayDiff.split("")[0] <= 0 &&
+    hoursDiff.split("")[0] > 0
   ) {
     return hoursDiff;
-    console.log(" is hours" );
   } else if (
-    yearsDiff.split('')[0] <= 0 &&
-    monthDiff.split('')[0] <= 0 &&
-    weekDiff.split('')[0] <= 0 &&
-    dayDiff.split('')[0] <= 0 &&
-    hoursDiff.split('')[0] <= 0 &&
-    minDiff.split('')[0] > 0
+    yearsDiff.split("")[0] <= 0 &&
+    monthDiff.split("")[0] <= 0 &&
+    weekDiff.split("")[0] <= 0 &&
+    dayDiff.split("")[0] <= 0 &&
+    hoursDiff.split("")[0] <= 0 &&
+    minDiff.split("")[0] > 0
   ) {
     return minDiff;
-    console.log(" is years"  );
+  } else if (
+    yearsDiff.split("")[0] <= 0 &&
+    monthDiff.split("")[0] <= 0 &&
+    weekDiff.split("")[0] <= 0 &&
+    dayDiff.split("")[0] <= 0 &&
+    hoursDiff.split("")[0] <= 0 &&
+    minDiff.split("")[0] <= 0 &&
+    secDiff.split("")[0] > 0
+  ) {
+    return "Just now";
   } else {
-    return 1000;
-    console.log(" is" );
+    return "error";
   }
 };
 export { timeByMoment };
