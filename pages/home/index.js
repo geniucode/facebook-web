@@ -1,18 +1,18 @@
 import { useEffect } from "react";
-import { FacebookPost } from "../../components/facebookPost/index";
+import { FacebookPost } from "../../components/facebookPost/index.js";
 import { FacebookReactPost } from "../../components/facebookReactPost/index.js";
 import { Auth } from "../../components/auth";
 import HomeHeader from "../../components/homeHeader";
 import { HomePageMneu } from "../../components/homePageMenu";
-import { useHome } from "./useHome.js";
+import {  useHome } from "./useHome.js";
 
 const Home = () => {
-
-  const {  setHomeIcon,getAxiosGetAllBooks} = useHome();
+  const {  setHomeIcon,getAxiosGetAllPosts, postsInformation} = useHome();
   useEffect(() => {
+    getAxiosGetAllPosts(),
    setHomeIcon(true);
-   getAxiosGetAllBooks(); 
   }, []);
+  console.log(postsInformation);
   return (
     <Auth>
       <HomeHeader />
