@@ -6,21 +6,32 @@ import ReactsPopup from "./ReactsPopup";
 import profilePicture from "../facebookPost/images/tempImages/profilePic.png";
 import postPicture from "../facebookPost/images/tempImages/pollfishPeople.png";
 import { useState } from "react";
-import {  postsInformation} from "../../pages/home/useHome.js";
+import { postsInformationState } from "../../atoms/postsInformation";
+import { useRecoilState } from "recoil";
+import Moment from 'react-moment';
 
 const FacebookPost = () => {
 
 
   const [visible, setVisible] = useState(false);
+  //const [postsCreationTime,setPostsCreationTime] = useState([]);
+  const [postsInformation,setPostsInformation]=useRecoilState(postsInformationState)
   // let currentTimestamp = Date.now()
   //  console.log(currentTimestamp); // get current timestamp
   //  let date = new Intl.DateTimeFormat('en-US',
   //   { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' })
   //   .format(currentTimestamp)
   //   console.log(date);
+  let nd=new Date()
+  console.log(nd);
+  // console.log("ali");
     ///////
-    
+    // let postsCreationTime=postsInformation.map((item)=>{ return item[2].postTime})
+    //console.log(postsCreationTime);
+    // const dateToFormat = postsCreationTime[2];
+    // <Moment>{dateToFormat}</Moment>
     //console.log(postsCreationTime[0][0].postTime);
+    // console.log(dateToFormat)
     // let dbdate = new Intl.DateTimeFormat('en-US',
     // { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' })
     // .format(postsCreationTime[0][0].postTime)
@@ -41,7 +52,8 @@ const FacebookPost = () => {
                  <div className={styles.updatedP}></div>
                </div>
                <div className={styles.postProfilePrivacyDate}>
-               {`${item[2].postTime} . ` }<Public color="#828387" />
+               {/* {`${item[2].postTime} . ` }<Public color="#828387" /> */}
+               <Moment>{item[2].postTime}</Moment>
                {/* {`${currentTimestamp}` }<Public color="#828387" /> */}
                </div>
              </div>
@@ -97,6 +109,8 @@ const FacebookPost = () => {
      </div>
    </div>
    )})}
+
+      
    </>
   );
 };

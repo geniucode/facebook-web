@@ -5,14 +5,17 @@ import { Auth } from "../../components/auth";
 import HomeHeader from "../../components/homeHeader";
 import { HomePageMneu } from "../../components/homePageMenu";
 import {  useHome } from "./useHome.js";
+import { postsInformationState } from "../../atoms/postsInformation.js";
+import { useRecoilState } from "recoil";
 
 const Home = () => {
-  const {  setHomeIcon,getAxiosGetAllPosts, postsInformation} = useHome();
+  const {  setHomeIcon,getAxiosGetAllPosts} = useHome();
+  const [postsInformation,setPostsInformation]=useRecoilState(postsInformationState)
   useEffect(() => {
     getAxiosGetAllPosts(),
    setHomeIcon(true);
   }, []);
-  console.log(postsInformation);
+  
   return (
     <Auth>
       <HomeHeader />

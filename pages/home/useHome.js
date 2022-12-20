@@ -1,5 +1,6 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import { homeIconState } from "../../atoms/home-icon";
+import { postsInformationState } from "../../atoms/postsInformation";
 import { userState } from "../../atoms/user";
 import { getAxios } from "../../service/axios";
 let postsInformation=[];
@@ -7,12 +8,14 @@ let postsInformation=[];
 const useHome=()=>{
     const user = useRecoilValue(userState);
     const [homeIcon, setHomeIcon] = useRecoilState(homeIconState);
+    const [postsInformation,setPostsInformation]=useRecoilState(postsInformationState)
     
     const getAxiosGetAllPosts=async()=>{
       const response =await getAxios("facebook-post/get-all-posts", {});
       //console.log(response.posts)
-       postsInformation=await response.posts.map((item)=>{ return [{userName:item.user.name},{postBody:item.postBody},
+       const postsInformationFromDB=await response.posts.map((item)=>{ return [{userName:item.user.name},{postBody:item.postBody},
             {postTime:item.createdAt}]})
+            setPostsInformation(postsInformationFromDB)
        // postsCreationTime=response.posts.map((item)=>{ return[{postTime:item.createdAt}]})
       //console.log(postsInformation)
       //console.log(postsInformation[0][2].postTime)
@@ -23,4 +26,4 @@ const useHome=()=>{
     };
 
 }
-export {useHome,postsInformation}
+export {useHome}
