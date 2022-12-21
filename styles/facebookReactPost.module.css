@@ -30,6 +30,24 @@
   padding: 10px;
 }
 
+.postButton > button {
+  height: 35px;
+  width: 60px;
+  border-radius: 5px;
+  background-color: #1877f2;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bolder;
+  margin-left: 15px;
+  margin-top: 7px;
+}
+
+.postButton > button:hover {
+  cursor: pointer;
+}
+
 .post {
   display: flex;
   align-items: center;
@@ -46,6 +64,30 @@
   border-top: medium solid #f2f3f5;
   padding-left: 20px;
   width: 100%;
+}
+
+.liveVideo > button {
+  background-image: url(../components/facebookReactPost/images/button-icons.png);
+  background-position: 0 -42px;
+  background-size: 30%;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.photoVideo > button {
+  background-image: url(../components/facebookReactPost/images/button-icons.png);
+  background-position: 0 -420px;
+  background-size: 30%;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.feelingActivity > button {
+  background-image: url(../components/facebookReactPost/images/button-icons.png);
+  background-position: 0 -281px;
+  background-size: 30%;
+  background-repeat: no-repeat;
+  display: inline-block;
 }
 
 .reactButtons > div > button {
@@ -68,7 +110,7 @@
 }
 
 .reactButtons > div > button > span {
-  margin-left: 10px;
+  margin-left: 30px;
 }
 
 .reactButtons > div > button:hover {

@@ -84,7 +84,7 @@ const useLogin = () => {
   };
 
   const onClickGoToForgetPassword = () => {
-    router.push("/forgetpassword");
+    router.push("/forgetPassword");
   };
 
   return {
