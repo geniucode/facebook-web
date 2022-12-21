@@ -60,6 +60,12 @@ const HomePageMneu = () => {
             <div className={styles.seeAllIcon}>
               <Image src={seeAllIcon} />
             </div>
+            <div
+              className={styles.seeAllTitle}
+           
+            >
+              See all 
+            </div>
           </div>
         </Link>
         {/* horizontal line */}
