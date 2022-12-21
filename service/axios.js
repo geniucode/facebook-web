@@ -10,7 +10,7 @@ const postAxios = async (url, data) => {
     const response = await axios.post(`http://127.0.0.1:3001/${url}`, data, {
       headers,
     });
-    return response.data;
+    return response?.data;
   } catch (error) {
     return error.response?.data;
   }
@@ -25,7 +25,7 @@ const postWithImageAxios = async (url, data) => {
     const response = await axios.post(`http://127.0.0.1:3001/${url}`, data, {
       headers,
     });
-    return response.data;
+    return response?.data;
   } catch (error) {
     return error.response?.data;
   }
@@ -44,9 +44,9 @@ const getAxios = async (url, data) => {
       },
       { headers }
     );
-    return response.data;
+    return response?.data;
   } catch (error) {
-    return error.response.data;
+    return error.response?.data;
   }
 };
 

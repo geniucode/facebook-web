@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { getAxios } from "../../src/service/axios";
+import { getAxios } from "../../service/axios";
 
 const useSearch = () => {
   const [name, setname] = useState("");
   const [error, setError] = useState("");
   const [users, setUsers] = useState([]);
   const onChangeSearchValue = async (e) => {
+    console.log(e.target.value);
     setname(e.target.value);
     setError("");
     setUsers([]);
@@ -17,7 +18,7 @@ const useSearch = () => {
         name,
       });
       if (response?.errors) {
-        setError("Please enter a valid email address");
+        setError("Please enter a valid name");
         return;
       }
       if (!response?.success) {

@@ -110,7 +110,7 @@ const Login = () => {
               Log In
             </button>
             <hr className={styles.line} />
-            {error && <div className={styles.errorMessage}>{error}</div>}
+            <div className={styles.errorMessage}>{error && error}</div>
             <div className={styles.signUp}>
               {/* <div onClick={onClcikGoToSignUp}>Create new account</div> */}
               <div>
