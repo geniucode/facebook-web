@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { postAxios } from "../../service/axios";
 
 const useSignup = () => {
   const router = useRouter();
@@ -79,39 +80,39 @@ const useSignup = () => {
     }
   };
   const onClickBtn = async () => {
-    try {
-      await axios.post("http://localhost:3001/user/signup", {
-        name: `${firstName.value} ${lastName.value}`,
-        email: email.value,
-        gender: gender.value,
-        password: password.value,
-        birthDay: birthDay.value,
-        country: country.value,
-      });
-    } catch (error) {
-      const errors = error.response?.data?.errors?.map((error) => error.param);
-      if (errors) {
-        console.log(errors);
-        if (errors.includes("name")) {
-          setFirstName({ value: "", accepted: false });
-          setLastName({ value: "", accepted: false });
-        }
-        if (errors.includes("email")) {
-          setEmail({ value: "", accepted: false });
-        }
-        if (errors.includes("password")) {
-          setPassword({ value: "", accepted: false });
-        }
-        if (errors.includes("birthDay")) {
-          setBirthDay({ value: "", accepted: false });
-        }
-        if (errors.includes("gender")) {
-          setGender({ value: "", accepted: false });
-        }
-        if (errors.includes("country")) {
-          setCountry({ value: "", accepted: false });
-        }
+    const response = await postAxios("user/signup", {
+      name: `${firstName.value} ${lastName.value}`,
+      email: email.value,
+      gender: gender.value,
+      password: password.value,
+      birthDay: birthDay.value,
+      country: country.value,
+    });
+
+    const errors = response.errors?.map((error) => error.param);
+    if (errors) {
+      console.log(errors);
+      if (errors.includes("name")) {
+        setFirstName({ value: "", accepted: false });
+        setLastName({ value: "", accepted: false });
       }
+      if (errors.includes("email")) {
+        setEmail({ value: "", accepted: false });
+      }
+      if (errors.includes("password")) {
+        setPassword({ value: "", accepted: false });
+      }
+      if (errors.includes("birthDay")) {
+        setBirthDay({ value: "", accepted: false });
+      }
+      if (errors.includes("gender")) {
+        setGender({ value: "", accepted: false });
+      }
+      if (errors.includes("country")) {
+        setCountry({ value: "", accepted: false });
+      }
+    } else {
+      router.push("/login");
     }
   };
 
@@ -124,10 +125,6 @@ const useSignup = () => {
     gender,
     country,
   ]);
-
-  const onClcikGoToSignIn = () => {
-    router.push("/login");
-  };
 
   return {
     firstName,
@@ -145,7 +142,6 @@ const useSignup = () => {
     country,
     setCountry,
     onClickBtn,
-    onClcikGoToSignIn,
   };
 };
 
