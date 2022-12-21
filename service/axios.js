@@ -34,14 +34,11 @@ const getAxios = async (url, data) => {
   const token = localStorage.getItem("token");
   const headers = {
     "Content-Type": "application/json",
-    Authorization: "Bereare " + token,
+    authorization: "Bereare " + token,
   };
   try {
     const response = await axios.get(
       `http://127.0.0.1:3001/${url}`,
-      {
-        params: data,
-      },
       { headers }
     );
     return response.data;
