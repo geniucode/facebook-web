@@ -61,8 +61,7 @@
   justify-content: space-between;
   position: relative;
 }
-
-.inputContainer > .inputContainer{
+.inputContainer > .inputContainer {
   width: 48.5%;
 }
 .inputContainer::after {
@@ -84,19 +83,17 @@
   right: 9px;
   display: inline-block;
 }
-
-.errorShown input[type="text"],
-
-.errorShown input[type="email"],
-.errorShown input[type="password"],
+.errorShown > input[type="text"],
+.errorShown > input[type="email"],
+.errorShown > input[type="password"] {
+  border-color: red !important;
+}
 .errorShown .dateSelector,
 .errorShown .genderSelector,
 .errorShown .countrySelector {
-  border-color: red !important;
+  border-color: red;
 }
-
 .formDetails input[type="text"],
-
 .formDetails input[type="email"],
 .formDetails input[type="password"] {
   width: 93.5%;
@@ -168,6 +165,73 @@
   height: 34px;
   padding-left: 2%;
   line-height: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.dateSelector:hover,
+.genderSelector:hover,
+.countrySelector:hover {
+  cursor: pointer;
+}
+.countrySearchBox {
+  width: 95.5% !important;
+  padding: 0 2%;
+  background-color: white;
+  border: 1px solid #ccd0d5;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  translate: 0 5px;
+}
+.searchIcon{
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  fill: #6b6b6b;
+}
+.countrySearchBox input {
+  margin: 5px 0 !important;
+  padding-left: 30px !important;
+  width: 89% !important;
+  height: 12px !important;
+}
+.countrySearchBox > ul {
+  overflow-y: auto;
+  max-height: 120px;
+  padding: 0;
+  margin: 0 0 5px;
+}
+.dateSelector::-webkit-scrollbar,
+.countrySearchBox > ul::-webkit-scrollbar {
+  width: 7px;
+}
+.dateSelector::-webkit-scrollbar-track,
+.countrySearchBox > ul::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 25px;
+}
+.dateSelector::-webkit-scrollbar-thumb,
+.countrySearchBox > ul::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 25px;
+}
+.countrySearchBox > ul > li {
+  width: 96%;
+  height: 25px;
+  padding-left: 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  font-size: 15px;
+}
+.countrySearchBox > ul > li:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
 }
 .dateSelector,
 .countrySelector {
@@ -253,6 +317,15 @@
     width: 350px;
     margin-left: 0;
   }
+  .countrySearchBox input {
+    width: 86.7% !important;
+  }
+  .countrySearchBox > ul {
+    max-height: 140px;
+  }
+  .countrySearchBox > ul > li {
+    width: 95%;
+  }
 }
 @media screen and (max-width: 400px) {
   .logoContainer {
@@ -261,6 +334,9 @@
   .formContainer {
     width: 320px;
     margin-left: 0;
+  }
+  .countrySearchBox input {
+    width: 86% !important;
   }
 }
 @media screen and (max-width: 350px) {
@@ -278,5 +354,11 @@
   .formHeading2 {
     font-size: 13px;
     line-height: 18px;
+  }
+  .countrySearchBox input {
+    width: 83.5% !important;
+  }
+  .countrySearchBox > ul > li {
+    width: 94%;
   }
 }

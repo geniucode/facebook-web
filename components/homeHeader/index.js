@@ -1,9 +1,52 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRecoilState } from "recoil";
+import { searchUsersState } from "../../atoms/users";
+import { searchErrorState } from "../../atoms/error";
+import { useState } from "react";
+import { getAxios } from "../../service/axios";
 import styles from "../../styles/homeHeader.module.css";
 import pfp from "./images/pfp.jpg";
 
-const HomeHeader = () => {
+const HomeHeader = ({}) => {
+  const [users, setUsers] = useRecoilState(searchUsersState);
+  const [error, setError] = useRecoilState(searchErrorState);
+  const [name, setName] = useState("");
+  // const [error, setError] = useState("");
+  // const [users, setUsers] = useState([]);
+
+  const onChangeSetName = (e) => {
+    console.log(name);
+    setName(e.target.value);
+  };
+
+  const onClickSearch = async () => {
+    if (name.length > 0) {
+      const response = await getAxios("user/search", {
+        name,
+      });
+      if (response?.errors) {
+        setError("Please enter a valid name");
+        console.log(error);
+        return error;
+      }
+      if (!response?.success) {
+        console.log(response);
+        setError("No users found");
+        console.log(error);
+        setUsers([]);
+      }
+      if (response?.success) {
+        setUsers(response.usersFound);
+        setError("");
+        console.log(response);
+        return { users };
+      }
+    } else {
+      setError("Please enter a value to search for");
+    }
+  };
+
   return (
     <div className={styles.headerContainer}>
       <div className={styles.headerContent}>
@@ -22,36 +65,33 @@ const HomeHeader = () => {
         </Link>
         <div className={styles.inputContainer}>
           <div className={styles.searchIcon}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <svg
+              onClick={onClickSearch}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
               <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z" />
             </svg>
           </div>
           <input
             className={styles.searchInput}
             placeholder="Search Facebook"
+            onChange={onChangeSetName}
           ></input>
         </div>
         <div className={styles.haederIconsContainer}>
           <div className={styles.haederIcon}>
-            <svg
-              viewBox="0 0 28 28"
-              height="20"
-              width="20"
-            >
+            <svg viewBox="0 0 28 28" height="20" width="20">
               <path d="M14 2.042c6.76 0 12 4.952 12 11.64S20.76 25.322 14 25.322a13.091 13.091 0 0 1-3.474-.461.956 .956 0 0 0-.641.047L7.5 25.959a.961.961 0 0 1-1.348-.849l-.065-2.134a.957.957 0 0 0-.322-.684A11.389 11.389 0 0 1 2 13.682C2 6.994 7.24 2.042 14 2.042ZM6.794 17.086a.57.57 0 0 0 .827.758l3.786-2.874a.722.722 0 0 1 .868 0l2.8 2.1a1.8 1.8 0 0 0 2.6-.481l3.525-5.592a.57.57 0 0 0-.827-.758l-3.786 2.874a.722.722 0 0 1-.868 0l-2.8-2.1a1.8 1.8 0 0 0-2.6.481Z"></path>
             </svg>
           </div>
           <div className={styles.haederIcon} notificationcount={`+9`}>
-            <svg
-              viewBox="0 0 28 28"
-              height="20"
-              width="20"
-            >
+            <svg viewBox="0 0 28 28" height="20" width="20">
               <path d="M7.847 23.488C9.207 23.488 11.443 23.363 14.467 22.806 13.944 24.228 12.581 25.247 10.98 25.247 9.649 25.247 8.483 24.542 7.825 23.488L7.847 23.488ZM24.923 15.73C25.17 17.002 24.278 18.127 22.27 19.076 21.17 19.595 18.724 20.583 14.684 21.369 11.568 21.974 9.285 22.113 7.848 22.113 7.421 22.113 7.068 22.101 6.79 22.085 4.574 21.958 3.324 21.248 3.077 19.976 2.702 18.049 3.295 17.305 4.278 16.073L4.537 15.748C5.2 14.907 5.459 14.081 5.035 11.902 4.086 7.022 6.284 3.687 11.064 2.753 15.846 1.83 19.134 4.096 20.083 8.977 20.506 11.156 21.056 11.824 21.986 12.355L21.986 12.356 22.348 12.561C23.72 13.335 24.548 13.802 24.923 15.73Z"></path>
             </svg>
           </div>
           <div className={`${styles.haederIcon} ${styles.headerProfilePic}`}>
-            <Image src={pfp} alt="pfp"/>
+            <Image src={pfp} alt="pfp" />
             <div className={styles.chevronDown}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -59,9 +99,7 @@ const HomeHeader = () => {
                 height="298"
                 viewBox="0 0 512 298.04"
               >
-                <path
-                  d="M12.08 70.78c-16.17-16.24-16.09-42.54.15-58.7 16.25-16.17 42.54-16.09 58.71.15L256 197.76 441.06 12.23c16.17-16.24 42.46-16.32 58.71-.15 16.24 16.16 16.32 42.46.15 58.7L285.27 285.96c-16.24 16.17-42.54 16.09-58.7-.15L12.08 70.78z"
-                />
+                <path d="M12.08 70.78c-16.17-16.24-16.09-42.54.15-58.7 16.25-16.17 42.54-16.09 58.71.15L256 197.76 441.06 12.23c16.17-16.24 42.46-16.32 58.71-.15 16.24 16.16 16.32 42.46.15 58.7L285.27 285.96c-16.24 16.17-42.54 16.09-58.7-.15L12.08 70.78z" />
               </svg>
             </div>
           </div>

@@ -60,9 +60,14 @@ const HomePageMneu = () => {
             <div className={styles.seeAllIcon}>
               <Image src={seeAllIcon} />
             </div>
+            <div
+              className={styles.seeAllTitle}
+           
+            >
+              See all 
+            </div>
           </div>
         </Link>
-
         {/* horizontal line */}
         <div className={styles.horizontalLine}>
           <hr />
@@ -82,6 +87,14 @@ const HomePageMneu = () => {
             >
               See all groups
             </div>
+          </div>
+        </Link>
+        <Link href="/search">
+          <div className={styles.searchContanier} onClick={onClickNotHomeIcon}>
+            <div className={styles.searchIcon}>
+              <Image src={searchIcon} />
+            </div>
+            <div className={styles.searchTitle}>Go to search page</div>
           </div>
         </Link>
       </div>

@@ -1,20 +1,22 @@
 import { useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { userState } from "../../atoms/user";
-import { FacebookPost } from "../../components/facebookPost/index";
+import { FacebookPost } from "../../components/facebookPost/index.js";
 import { FacebookReactPost } from "../../components/facebookReactPost/index.js";
-
 import { Auth } from "../../components/auth";
-import { homeIconState } from "../../atoms/home-icon";
 import HomeHeader from "../../components/homeHeader";
 import { HomePageMneu } from "../../components/homePageMenu";
+import { useHome } from "./useHome.js";
+import { postsInformationState } from "../../atoms/postsInformation.js";
+import { useRecoilState } from "recoil";
 
 const Home = () => {
-  const user = useRecoilValue(userState);
-  const [homeIcon, setHomeIcon] = useRecoilState(homeIconState);
+  const { setHomeIcon, getAxiosGetAllPosts } = useHome();
+  const [postsInformation, setPostsInformation] = useRecoilState(
+    postsInformationState
+  );
   useEffect(() => {
-    setHomeIcon(true);
+    getAxiosGetAllPosts(), setHomeIcon(true);
   }, []);
+  console.log(postsInformation);
   return (
     <Auth>
       <HomeHeader />
@@ -36,7 +38,7 @@ const Home = () => {
           <div
             style={{
               width: "80%",
-              marginBottom: 50,
+              marginBottom: 10,
             }}
           >
             <FacebookReactPost />

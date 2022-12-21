@@ -47,7 +47,7 @@
   flex-direction: column;
   background-color: white;
   border-radius: 10px;
-  height: 315px;
+  /* height: 315px; */
   width: 396px;
   gap: 10px;
 }
@@ -106,7 +106,8 @@
 }
 
 .loginBox > button.loginBtn {
-  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
   border-radius: 5px;
   background-color: #1877f2;
   outline: none;
@@ -122,6 +123,9 @@
 }
 
 .errorMessage {
+  max-height: 10px;
+  min-height: 10px;
+  height: 10px;
   color: red;
   font-weight: light;
   text-align: center;
