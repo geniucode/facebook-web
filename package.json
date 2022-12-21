@@ -20,6 +20,7 @@
     "emoji-picker-react": "^4.4.5",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3",
+    "firebase": "^9.15.0",
     "i18n-iso-countries": "^7.5.0",
     "material": "^0.4.3",
     "navigate": "^0.3.6",

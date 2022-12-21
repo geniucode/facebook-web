@@ -1,18 +1,15 @@
-.postsBlock{
+.postsBlock {
   width: 100%;
-  background-color:rgb(240,242,245);
-  padding-top:7.5px;
-  padding-bottom:15px;
-
-
+  background-color: rgb(240, 242, 245);
+  padding-top: 7.5px;
+  padding-bottom: 15px;
 }
 .posts {
   width: 80%;
   background-color: white;
-  margin:auto;
-height: auto;
-border-radius: 10px;
-
+  margin: auto;
+  height: auto;
+  border-radius: 10px;
 }
 .post {
   position: relative;
@@ -22,9 +19,8 @@ border-radius: 10px;
   user-select: none;
   color: var(--color-primary);
   margin-bottom: 10px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 100%;
-  
 }
 .postHeader {
   display: flex;
@@ -134,11 +130,9 @@ border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 0 8px 5px 8px;
-  border-top: 1px solid rgb(206,208,212);
+  border-top: 1px solid rgb(206, 208, 212);
   margin: 0 10px;
   padding: 5px 0;
-
-  
 }
 .post_action {
   position: relative;
@@ -152,8 +146,8 @@ border-radius: 10px;
 }
 
 .post_action:hover {
-  background-color:  rgb(206,208,212);
-  margin: 0 10px;;
+  background-color: rgb(206, 208, 212);
+  margin: 0 10px;
   border-radius: 10px;
   box-shadow: 1px 1px 1px var(--shadow-1);
 }
@@ -168,7 +162,7 @@ border-radius: 10px;
   align-items: center;
   position: absolute;
   top: -3.2rem;
-  background:rgb(251, 251, 251);
+  background: rgb(251, 251, 251);
   padding: 5px 15px;
   border-radius: 50px;
   gap: 8px;
@@ -191,7 +185,6 @@ border-radius: 10px;
   height: 42px;
   object-fit: cover;
 }
-
 
 .like_icon {
   background-image: url("../components/facebookPost/postIcons/postIcons.png");
