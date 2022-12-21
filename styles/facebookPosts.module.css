@@ -3,6 +3,7 @@
   background-color:rgb(240,242,245);
   padding-top:7.5px;
   padding-bottom:15px;
+  
 
 
 }
@@ -10,8 +11,11 @@
   width: 80%;
   background-color: white;
   margin:auto;
+  margin-top: 10;
+  margin-bottom: 10;
 height: auto;
 border-radius: 10px;
+
 
 }
 .post {
@@ -21,7 +25,7 @@ border-radius: 10px;
   box-shadow: 0 1px 2px var(--shadow-1);
   user-select: none;
   color: var(--color-primary);
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   background-color: #FFFFFF;
   width: 100%;
   
