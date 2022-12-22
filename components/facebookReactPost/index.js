@@ -5,7 +5,7 @@ import { usePost } from "./usePost.js";
 import { FbSnackBar } from "../snackBar";
 
 const FacebookReactPost = () => {
-  const { onChangePost, onClickAddPost, snackMsg, setSnackMsg } = usePost();
+  const { onChangePost, onClickAddPost, snackMsg, setSnackMsg,handleUploadFile } = usePost();
   return (
     <>
       <div className={styles.fbPost}>
@@ -33,6 +33,7 @@ const FacebookReactPost = () => {
           <div className={styles.photoVideo}>
             <button>
               <span>Photo/video</span>
+              <input type="file" onChange={handleUploadFile}/>
             </button>
           </div>
           <div className={styles.feelingActivity}>

@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const postAxios = async (url, data) => {
-  const token = localStorage.getItem("token");
+const 
+postAxios = async (url, data) => {
+    const token = localStorage.getItem("token");
   const headers = {
     "Content-Type": "application/json",
     Authorization: "Bereare " + token,
@@ -18,6 +19,7 @@ const postAxios = async (url, data) => {
 const postWithImageAxios = async (url, data) => {
   const token = localStorage.getItem("token");
   const headers = {
+
     "Content-Type": "multipart/form-data; boundary=something",
     Authorization: "Bereare " + token,
   };

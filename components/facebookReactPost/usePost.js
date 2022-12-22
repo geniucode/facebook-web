@@ -1,10 +1,34 @@
 import { useState } from "react";
-import { postAxios } from "../../service/axios";
+import { useRecoilState } from "recoil";
+import { urlImageState } from "../../atoms/urlImage";
+import { postAxios, postWithImageAxios } from "../../service/axios";
 
 const usePost = () => {
   const [snackMsg, setSnackMsg] = useState(null);
   const [postBody, setPostBody] = useState("");
   const [postImg, setPostImg] = useState("");
+  const [file, setFile] = useState("");
+
+  const [url,setUrl]=useRecoilState(urlImageState)
+
+
+  
+  const handleUploadFile=(event)=>{
+    setFile(event.target.files[0]);
+  }
+ 
+const onSelectImg=async()=>{
+ 
+    const response= await postWithImageAxios("upload",{
+      file:file
+    })
+    setUrl(response.url)
+    console.log(url)
+  
+}
+if(file){
+  onSelectImg()
+}
 
   const onChangePost = (event) => {
     setPostBody(event.target.value);
@@ -14,7 +38,7 @@ const usePost = () => {
     try {
       let res = await postAxios("facebook-post/add-post", {
         postBody: postBody,
-        postImg: postImg,
+        postImg: url,
       });
 
       if (res) {
@@ -36,10 +60,12 @@ const usePost = () => {
     setSnackMsg(msg);
   };
   return {
+    
     onChangePost,
     onClickAddPost,
     snackMsg,
     setSnackMsg,
+    handleUploadFile
   };
 };
 
