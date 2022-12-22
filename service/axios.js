@@ -37,10 +37,9 @@ const getAxios = async (url, data) => {
     authorization: "Bereare " + token,
   };
   try {
-    const response = await axios.get(
-      `http://127.0.0.1:3001/${url}`,
-      { headers }
-    );
+    const response = await axios.get(`http://127.0.0.1:3001/${url}`, {
+      headers,
+    });
     return response?.data;
   } catch (error) {
     return error.response?.data;
