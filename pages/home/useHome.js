@@ -12,7 +12,7 @@ const useHome = () => {
   );
   const getAxiosGetAllPosts = async () => {
     const response = await getAxios("facebook-post/get-all-posts", {});
-    const postsInformationFromDbBeforeReverse = await response.posts.map(
+    const postsInformationFromDb= await response.posts.map(
       (item) => {
         return [
           { userName: item.user.name },
@@ -21,9 +21,8 @@ const useHome = () => {
         ];
       }
     );
-    const postsInformationFromDB =
-      postsInformationFromDbBeforeReverse.reverse();
-    setPostsInformation(postsInformationFromDB);
+    
+    setPostsInformation(postsInformationFromDb);
   };
   return {
     setHomeIcon,
