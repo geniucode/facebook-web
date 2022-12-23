@@ -31,9 +31,9 @@ const FacebookReactPost = () => {
             </button>
           </div>
           <div className={styles.photoVideo}>
-            <button>
-              <span>Photo/video</span>
-              <input type="file" onChange={handleUploadFile}/>
+            <button className={styles.kk}>
+              <span >Photo/video</span>
+              <input className={styles.PhotoInput} type="file" onChange={handleUploadFile} />
             </button>
           </div>
           <div className={styles.feelingActivity}>

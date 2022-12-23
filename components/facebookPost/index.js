@@ -8,14 +8,22 @@ import postPicture from "../facebookPost/images/tempImages/pollfishPeople.png";
 import { useState } from "react";
 import { postsInformationState } from "../../atoms/postsInformation";
 import { useRecoilState } from "recoil";
+import { urlImageState } from "../../atoms/urlImage";
+
 
 const FacebookPost = () => {
   const [visible, setVisible] = useState(false);
   const [postsInformation,setPostsInformation]=useRecoilState(postsInformationState)
+  const [url,setUrl]=useRecoilState(urlImageState)
+
+  const myLoader = ({ src, width, quality }) => {
+    return `https://storage.googleapis.com/${src}?w=${0}&q=${ 100}`
+  }
+ 
 
   return (
    <>
-   {postsInformation.map((item)=>{return(
+   {postsInformation?.map((item)=>{return(
      <div className={styles.postsBlock}>
      <div className={styles.posts}>
        <div className={styles.post}>
@@ -39,9 +47,18 @@ const FacebookPost = () => {
          <div className={styles.postText}>
          {`${item[1].postBody}`}
          </div>
-         <div className={styles.postImage}>
-           <Image src={postPicture} alt="profilePic" />
-         </div>
+       
+         {item[3].src !="" && //if src not empty return image
+         <div  className={styles.postImage}>
+          
+           <Image className={styles.img} loader={myLoader} src={item[3].src} width={0} height={0}/>
+           
+
+           </div> }
+
+
+         
+         
          <div className={styles.post_infos}>
            <div className={styles.reacts_count}>
              <div className={styles.reacts_count_imgs}></div>

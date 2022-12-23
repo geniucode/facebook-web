@@ -11,24 +11,15 @@ const usePost = () => {
 
   const [url,setUrl]=useRecoilState(urlImageState)
 
+  
+
 
   
   const handleUploadFile=(event)=>{
     setFile(event.target.files[0]);
   }
  
-const onSelectImg=async()=>{
- 
-    const response= await postWithImageAxios("upload",{
-      file:file
-    })
-    setUrl(response.url)
-    console.log(url)
-  
-}
-if(file){
-  onSelectImg()
-}
+
 
   const onChangePost = (event) => {
     setPostBody(event.target.value);
@@ -36,10 +27,20 @@ if(file){
   const onClickAddPost = async () => {
     let msg = null;
     try {
+      let src=""
+      if(file){
+        const response= await postWithImageAxios("upload",{
+          file:file
+        })
+        setUrl(response.url)
+        let srcURL=url.split('/')
+        src="mern-facebook-bucket"+"/"+srcURL.at(-1)
+      }
       let res = await postAxios("facebook-post/add-post", {
         postBody: postBody,
-        postImg: url,
+        postImg: src,
       });
+      console.log("src:",src)
 
       if (res) {
         msg = "Post Added Successfully";
