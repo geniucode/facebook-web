@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import styles from "../../styles/facebookReactPost.module.css";
 import Image from "next/image";
 import profilePic from "./images/profilePic.jpg";
@@ -5,7 +6,15 @@ import { usePost } from "./usePost.js";
 import { FbSnackBar } from "../snackBar";
 
 const FacebookReactPost = () => {
-  const { onChangePost, onClickAddPost, snackMsg, setSnackMsg } = usePost();
+  const {
+    onChangePost,
+    onClickAddPost,
+    snackMsg,
+    setSnackMsg,
+    postBody,
+    onChangeHandleFile,
+  } = usePost();
+  const uploadRef = useRef();
   return (
     <>
       <div className={styles.fbPost}>
@@ -15,6 +24,7 @@ const FacebookReactPost = () => {
           </div>
           <div className={styles.postField}>
             <input
+              value={postBody}
               type="text"
               onChange={onChangePost}
               placeholder="What's on your mind?"
@@ -31,8 +41,14 @@ const FacebookReactPost = () => {
             </button>
           </div>
           <div className={styles.photoVideo}>
-            <button>
+            <button onClick={() => uploadRef.current.click()}>
               <span>Photo/video</span>
+              <input
+                ref={uploadRef}
+                type="file"
+                hidden
+                onChange={onChangeHandleFile}
+              />
             </button>
           </div>
           <div className={styles.feelingActivity}>

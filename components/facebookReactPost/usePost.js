@@ -1,20 +1,32 @@
-import { useState } from "react";
-import { postAxios } from "../../service/axios";
+import { useState, useEffect } from "react";
+import { postAxios, postWithImageAxios } from "../../service/axios";
 
 const usePost = () => {
   const [snackMsg, setSnackMsg] = useState(null);
   const [postBody, setPostBody] = useState("");
   const [postImg, setPostImg] = useState("");
+  const [file, setFile] = useState(null);
+
+  useEffect(() => {
+    console.log(file && `${file.name} - ${file.type}`);
+  }, [file]);
 
   const onChangePost = (event) => {
     setPostBody(event.target.value);
   };
   const onClickAddPost = async () => {
-    let msg = null;
     try {
+      let imgUrl = "";
+      if (file) {
+        let uploadRes = await postWithImageAxios("upload", { file });
+        imgUrl = uploadRes?.url ?? "";
+      }
+
+      let msg = null;
+
       let res = await postAxios("facebook-post/add-post", {
-        postBody: postBody,
-        postImg: postImg,
+        postBody,
+        postImg: imgUrl,
       });
 
       if (res) {
@@ -26,20 +38,29 @@ const usePost = () => {
         msg = `${errors}`;
         console.log(errors);
         if (errors.includes("postBody")) {
-          setPostBody({ value: "", accepted: false });
+          setPostBody("");
         }
         if (errors.includes("postImg")) {
-          setPostImg({ value: "", accepted: false });
+          setPostImg("");
         }
       }
+      setSnackMsg(msg);
     }
-    setSnackMsg(msg);
   };
+
+  const onChangeHandleFile = (event) => {
+    if (event.target.files) {
+      setFile(event.target.files[0]);
+    }
+  };
+
   return {
     onChangePost,
     onClickAddPost,
     snackMsg,
     setSnackMsg,
+    postBody,
+    onChangeHandleFile,
   };
 };
 
