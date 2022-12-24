@@ -18,6 +18,7 @@ const useHome = () => {
           { userName: item.user.name },
           { postBody: item.postBody },
           { timeByMoment: timeByMoment(item.createdAt) },
+          { src: item.postImg },
         ];
       }
     );

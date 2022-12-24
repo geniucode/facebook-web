@@ -15,8 +15,8 @@ const Home = () => {
   );
   useEffect(() => {
     getAxiosGetAllPosts(), setHomeIcon(true);
-  }, []);
-  console.log(postsInformation);
+  }, [postsInformation]);
+
   return (
     <Auth>
       <HomeHeader />

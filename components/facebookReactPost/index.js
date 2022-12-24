@@ -1,11 +1,22 @@
-import styles from "../../styles/facebookReactPost.module.css";
+import { useRef } from "react";
 import Image from "next/image";
-import profilePic from "./images/profilePic.jpg";
 import { usePost } from "./usePost.js";
+import profilePic from "./images/profilePic.jpg";
 import { FbSnackBar } from "../snackBar";
+import styles from "../../styles/facebookReactPost.module.css";
 
 const FacebookReactPost = () => {
-  const { onChangePost, onClickAddPost, snackMsg, setSnackMsg } = usePost();
+  const {
+    selectedfile,
+    onChangePost,
+    onInputFile,
+    onClickAddPost,
+    snackMsg,
+    setSnackMsg,
+  } = usePost();
+
+  const uploadImageRef = useRef();
+
   return (
     <>
       <div className={styles.fbPost}>
@@ -31,8 +42,18 @@ const FacebookReactPost = () => {
             </button>
           </div>
           <div className={styles.photoVideo}>
-            <button>
+            <button
+              onClick={() => {
+                uploadImageRef.current.click();
+              }}
+            >
               <span>Photo/video</span>
+              <input
+                type="file"
+                hidden
+                ref={uploadImageRef}
+                onInput={onInputFile}
+              />
             </button>
           </div>
           <div className={styles.feelingActivity}>
