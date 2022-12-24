@@ -4,7 +4,7 @@ import Public from "../facebookPost/svg/public.js";
 import Dots from "../facebookPost/svg/Dots.js";
 import ReactsPopup from "./ReactsPopup";
 import profilePicture from "../facebookPost/images/tempImages/profilePic.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { postsInformationState } from "../../atoms/postsInformation";
 import { useRecoilState } from "recoil";
 
@@ -48,9 +48,10 @@ const FacebookPost = () => {
                     {console.log("src is: ", src)}
                     {
                       <Image
-                        className={styles.postImageImg}
-                        src={`https://storage.googleapis.com/${src}?w=${100}%S&q=${0}`}
-                        fill
+                        className={styles.image}
+                        src={`https://storage.googleapis.com/${src}`}
+                        width={100}
+                        height={100}
                         alt="profilePic"
                       />
                     }
