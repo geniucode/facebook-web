@@ -17,6 +17,9 @@ const FacebookPost = () => {
   return (
     <>
       {postsInformation?.map((item) => {
+        const url = item[3].src;
+        let srcURL = url.split("/");
+        const src = "mern-facebook-bucket" + "/" + srcURL.at(-1);
         return (
           <div className={styles.postsBlock}>
             <div className={styles.posts}>
@@ -42,15 +45,17 @@ const FacebookPost = () => {
                 <div className={styles.postText}>{`${item[1].postBody}`}</div>
                 {item[3].src != "" && (
                   <div className={styles.postImage}>
-                    {console.log(split["/"].item[3].src.at(-1))}
-                    <Image
-                      src={`https://storage.googleapis.com/mern-facebook-bucket/imagekit.PNG`}
-                      width="2000"
-                      height="2000"
-                      responsive
-                      contain
-                      alt="profilePic"
-                    />
+                    {console.log("src is: ", src)}
+                    {
+                      <Image
+                        src={`https://storage.googleapis.com/${src}`}
+                        width="2000"
+                        height="2000"
+                        responsive
+                        contain
+                        alt="profilePic"
+                      />
+                    }
                   </div>
                 )}
                 <div className={styles.post_infos}>
