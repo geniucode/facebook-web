@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { postAxios } from "../../service/axios";
+import { useEffect, useState } from "react";
+import { postWithImageAxios, postAxios } from "../../service/axios";
 
 const usePost = () => {
   const [snackMsg, setSnackMsg] = useState(null);
@@ -8,11 +8,14 @@ const usePost = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [isFileSelected, setisFileSelected] = useState(false);
 
+  useEffect(() => {
+    console.log("file is changing: ", selectedFile);
+  }, [selectedFile]);
+
   const onInputFile = async (e) => {
     console.log(e.target.files[0]);
     setSelectedFile(e.target.files[0]);
     setisFileSelected(true);
-    console.log(selectedFile);
   };
 
   const onChangePost = (event) => {
@@ -28,19 +31,21 @@ const usePost = () => {
           file: selectedFile,
         });
         console.log(response);
-        // setUrl(response.url);
-        console.log("file is: ", file);
         setSelectedFile();
         setisFileSelected(false);
-      }
+        let res = await postAxios("facebook-post/add-post", {
+          postBody: postBody,
+          postImg: response.url,
+        });
+      } else {
+        let res = await postAxios("facebook-post/add-post", {
+          postBody: postBody,
+          postImg: "",
+        });
 
-      let res = await postAxios("facebook-post/add-post", {
-        postBody: postBody,
-        postImg: postImg,
-      });
-
-      if (res) {
-        msg = "Post Added Successfully";
+        if (res) {
+          msg = "Post Added Successfully";
+        }
       }
     } catch (error) {
       const errors = error.response?.data?.errors?.map((error) => error.param);
