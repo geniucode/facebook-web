@@ -5,11 +5,11 @@ const usePost = () => {
   const [snackMsg, setSnackMsg] = useState(null);
   const [postBody, setPostBody] = useState("");
   const [postImg, setPostImg] = useState("");
-  const [file, setFile] = useState();
+  const [file, setFile] = useState([]);
   const [isFileSelected, setisFileSelected] = useState(false);
 
   const onChangeInputFile = async (e) => {
-    setFile(e.target.files[0]);
+    setFile([e.target.files[0]]);
     setisFileSelected(true);
   };
 
@@ -19,7 +19,14 @@ const usePost = () => {
   const onClickAddPost = async () => {
     let msg = null;
     try {
+      // let srcURL = url.split("/");
+      // src = "mern-facebook-bucket" + "/" + srcURL.at(-1);
       if (isFileSelected) {
+        const response = await postWithImageAxios("upload", {
+          file: file,
+        });
+        console.log(response);
+        // setUrl(response.url);
         console.log("file is: ", file);
         setFile();
         setisFileSelected(false);
