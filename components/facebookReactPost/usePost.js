@@ -13,7 +13,6 @@ const usePost = () => {
   }, [selectedFile]);
 
   const onInputFile = async (e) => {
-    console.log(e.target.files[0]);
     setSelectedFile(e.target.files[0]);
     setisFileSelected(true);
   };
