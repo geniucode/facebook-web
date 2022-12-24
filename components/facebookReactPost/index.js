@@ -7,13 +7,14 @@ import styles from "../../styles/facebookReactPost.module.css";
 
 const FacebookReactPost = () => {
   const {
-    file,
+    selectedfile,
     onChangePost,
-    onChangeInputFile,
+    onInputFile,
     onClickAddPost,
     snackMsg,
     setSnackMsg,
   } = usePost();
+
   const uploadImageRef = useRef();
 
   return (
@@ -41,20 +42,22 @@ const FacebookReactPost = () => {
             </button>
           </div>
           <div className={styles.photoVideo}>
-            <button>
-              <span onClick={() => uploadImageRef.current.click()}>
-                Photo/video
-              </span>
+            <button
+              onClick={() => {
+                uploadImageRef.current.click();
+              }}
+            >
+              <span>Photo/video</span>
               <input
                 type="file"
-                ref={uploadImageRef}
                 hidden
-                onChange={onChangeInputFile}
+                ref={uploadImageRef}
+                onInput={onInputFile}
               />
             </button>
           </div>
           <div className={styles.feelingActivity}>
-            <button onClick={() => console.log(file)}>
+            <button>
               <span>Feeling/activity</span>
             </button>
           </div>

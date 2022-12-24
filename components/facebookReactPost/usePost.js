@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { postAxios } from "../../service/axios";
 
 const usePost = () => {
   const [snackMsg, setSnackMsg] = useState(null);
   const [postBody, setPostBody] = useState("");
   const [postImg, setPostImg] = useState("");
-  const [file, setFile] = useState([]);
+  const [selectedFile, setSelectedFile] = useState();
   const [isFileSelected, setisFileSelected] = useState(false);
 
-  const onChangeInputFile = async (e) => {
-    setFile([e.target.files[0]]);
+  const onInputFile = async (e) => {
+    console.log(e.target.files[0]);
+    setSelectedFile(e.target.files[0]);
     setisFileSelected(true);
+    console.log(selectedFile);
   };
 
   const onChangePost = (event) => {
@@ -23,12 +25,12 @@ const usePost = () => {
       // src = "mern-facebook-bucket" + "/" + srcURL.at(-1);
       if (isFileSelected) {
         const response = await postWithImageAxios("upload", {
-          file: file,
+          file: selectedFile,
         });
         console.log(response);
         // setUrl(response.url);
         console.log("file is: ", file);
-        setFile();
+        setSelectedFile();
         setisFileSelected(false);
       }
 
@@ -56,10 +58,10 @@ const usePost = () => {
     setSnackMsg(msg);
   };
   return {
-    file,
+    selectedFile,
     onChangePost,
     onClickAddPost,
-    onChangeInputFile,
+    onInputFile,
     snackMsg,
     setSnackMsg,
   };
