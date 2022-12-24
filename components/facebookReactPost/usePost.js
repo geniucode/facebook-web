@@ -5,7 +5,12 @@ const usePost = () => {
   const [snackMsg, setSnackMsg] = useState(null);
   const [postBody, setPostBody] = useState("");
   const [postImg, setPostImg] = useState("");
+  const [file, setFile] = useState();
 
+  const onChangeInputFile = (e) => {
+    setFile(e.target.files[0]);
+    console.log(file);
+  };
   const onChangePost = (event) => {
     setPostBody(event.target.value);
   };
@@ -36,8 +41,10 @@ const usePost = () => {
     setSnackMsg(msg);
   };
   return {
+    file,
     onChangePost,
     onClickAddPost,
+    onChangeInputFile,
     snackMsg,
     setSnackMsg,
   };
