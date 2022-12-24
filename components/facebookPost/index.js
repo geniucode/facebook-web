@@ -48,11 +48,9 @@ const FacebookPost = () => {
                     {console.log("src is: ", src)}
                     {
                       <Image
-                        src={`https://storage.googleapis.com/${src}`}
-                        width="2000"
-                        height="2000"
-                        responsive
-                        contain
+                        className={styles.postImageImg}
+                        src={`https://storage.googleapis.com/${src}?w=${100}%S&q=${0}`}
+                        fill
                         alt="profilePic"
                       />
                     }
