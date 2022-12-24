@@ -45,7 +45,6 @@ const FacebookPost = () => {
                 <div className={styles.postText}>{`${item[1].postBody}`}</div>
                 {item[3].src != "" && (
                   <div className={styles.postImage}>
-                    {console.log("src is: ", src)}
                     {
                       <Image
                         className={styles.image}
