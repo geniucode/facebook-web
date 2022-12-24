@@ -4,7 +4,6 @@ import Public from "../facebookPost/svg/public.js";
 import Dots from "../facebookPost/svg/Dots.js";
 import ReactsPopup from "./ReactsPopup";
 import profilePicture from "../facebookPost/images/tempImages/profilePic.png";
-import postPicture from "../facebookPost/images/tempImages/pollfishPeople.png";
 import { useState } from "react";
 import { postsInformationState } from "../../atoms/postsInformation";
 import { useRecoilState } from "recoil";
@@ -17,7 +16,7 @@ const FacebookPost = () => {
 
   return (
     <>
-      {postsInformation.map((item) => {
+      {postsInformation?.map((item) => {
         return (
           <div className={styles.postsBlock}>
             <div className={styles.posts}>
@@ -41,9 +40,11 @@ const FacebookPost = () => {
                   </div>
                 </div>
                 <div className={styles.postText}>{`${item[1].postBody}`}</div>
-                <div className={styles.postImage}>
-                  <Image src={postPicture} alt="profilePic" />
-                </div>
+                {item[3].src != "" && (
+                  <div className={styles.postImage}>
+                    <Image width="10" height="10" alt="profilePic" />
+                  </div>
+                )}
                 <div className={styles.post_infos}>
                   <div className={styles.reacts_count}>
                     <div className={styles.reacts_count_imgs}></div>

@@ -17,7 +17,6 @@ const Home = () => {
     getAxiosGetAllPosts(), setHomeIcon(true);
   }, []);
 
-  console.log(postsInformation);
   return (
     <Auth>
       <HomeHeader />
