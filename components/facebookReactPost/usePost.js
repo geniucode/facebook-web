@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { postAxios } from "../../service/axios";
 
 const usePost = () => {
@@ -6,17 +6,25 @@ const usePost = () => {
   const [postBody, setPostBody] = useState("");
   const [postImg, setPostImg] = useState("");
   const [file, setFile] = useState();
+  const [isFileSelected, setisFileSelected] = useState(false);
 
-  const onChangeInputFile = (e) => {
+  const onChangeInputFile = async (e) => {
     setFile(e.target.files[0]);
-    console.log(file);
+    setisFileSelected(true);
   };
+
   const onChangePost = (event) => {
     setPostBody(event.target.value);
   };
   const onClickAddPost = async () => {
     let msg = null;
     try {
+      if (isFileSelected) {
+        console.log("file is: ", file);
+        setFile();
+        setisFileSelected(false);
+      }
+
       let res = await postAxios("facebook-post/add-post", {
         postBody: postBody,
         postImg: postImg,

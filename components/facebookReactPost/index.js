@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import { usePost } from "./usePost.js";
 import profilePic from "./images/profilePic.jpg";
@@ -54,7 +54,7 @@ const FacebookReactPost = () => {
             </button>
           </div>
           <div className={styles.feelingActivity}>
-            <button>
+            <button onClick={() => console.log(file)}>
               <span>Feeling/activity</span>
             </button>
           </div>
