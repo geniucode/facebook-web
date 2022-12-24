@@ -42,7 +42,15 @@ const FacebookPost = () => {
                 <div className={styles.postText}>{`${item[1].postBody}`}</div>
                 {item[3].src != "" && (
                   <div className={styles.postImage}>
-                    <Image width="10" height="10" alt="profilePic" />
+                    {console.log(split["/"].item[3].src.at(-1))}
+                    <Image
+                      src={`https://storage.googleapis.com/mern-facebook-bucket/imagekit.PNG`}
+                      width="2000"
+                      height="2000"
+                      responsive
+                      contain
+                      alt="profilePic"
+                    />
                   </div>
                 )}
                 <div className={styles.post_infos}>
