@@ -7,16 +7,22 @@ import { HomePageMneu } from "../../components/homePageMenu";
 import { useHome } from "./useHome.js";
 import { postsInformationState } from "../../atoms/postsInformation.js";
 import { useRecoilState } from "recoil";
+import { postButtonState, urlImageState } from "../../atoms/urlImage.js";
 
 const Home = () => {
   const { setHomeIcon, getAxiosGetAllPosts } = useHome();
   const [postsInformation, setPostsInformation] = useRecoilState(
     postsInformationState
   );
+  const [button,setButton]=useRecoilState(postButtonState)
+  useEffect(() => {
+    getAxiosGetAllPosts();
+    console.log(postsInformation)
+  },[button]);
   useEffect(() => {
     getAxiosGetAllPosts(), setHomeIcon(true);
-  }, []);
-  console.log(postsInformation);
+    console.log(postsInformation)
+  },[]);
   return (
     <Auth>
       <HomeHeader />

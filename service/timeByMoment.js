@@ -8,7 +8,6 @@ const timeByMoment = (createdAt) => {
   let yearCreatedAt = moment(createdAt).format("YYYY");
   let diff = now.diff(momentCreatedAt);
   let diffDuration = moment.duration(diff);
-  console.log(momentCreatedAt);
   let yearsDiff = diffDuration.years() + " y";
   let monthDiff = diffDuration.months() + " m";
 
@@ -63,7 +62,7 @@ const timeByMoment = (createdAt) => {
   ) {
     return "Just now";
   } else {
-    return "error";
+    return "Just now";
   }
 };
 export { timeByMoment };

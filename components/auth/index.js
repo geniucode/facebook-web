@@ -14,7 +14,7 @@ const Auth = ({ children }) => {
         jwtToken: localStorage.getItem("token"),
       });
 
-      if (response.success) {
+      if (response?.success) {
         setUser(response.user);
         setIsLoading(true);
       } else {
