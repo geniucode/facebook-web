@@ -48,7 +48,7 @@ const FacebookPost = () => {
          {`${item[1].postBody}`}
          </div>
        
-         {item[3].src !="" && //if src not empty return image
+         {item[3]?.src !="" && //if src not empty return image
          <div  className={styles.postImage}>
           
            <Image className={styles.img} loader={myLoader} src={item[3].src} width={0} height={0}/>
