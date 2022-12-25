@@ -17,7 +17,7 @@ const FacebookPost = () => {
   const [url,setUrl]=useRecoilState(urlImageState)
 
   const myLoader = ({ src, width, quality }) => {
-    return `https://storage.googleapis.com/${src}?w=${0}&q=${ 100}`
+    return `https://${src}?w=${0}&q=${ 100}`
   }
  
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { urlImageState } from "../../atoms/urlImage";
 import { postAxios, postWithImageAxios } from "../../service/axios";
@@ -8,7 +8,7 @@ const usePost = () => {
   const [postBody, setPostBody] = useState("");
   const [postImg, setPostImg] = useState("");
   const [file, setFile] = useState("");
-
+  const uploadRef=useRef();
   const [url,setUrl]=useRecoilState(urlImageState)
 
   
@@ -17,6 +17,7 @@ const usePost = () => {
   
   const handleUploadFile=(event)=>{
     setFile(event.target.files[0]);
+    console.log("file",file)
   }
  
 
@@ -34,8 +35,11 @@ const usePost = () => {
         })
         setUrl(response.url)
         let srcURL=url.split('/')
-        src="mern-facebook-bucket"+"/"+srcURL.at(-1)
+        console.log("srcURL:",srcURL)
+        src=srcURL.at(-3)+"/"+srcURL.at(-2)+"/"+srcURL.at(-1)
+        
       }
+     
       let res = await postAxios("facebook-post/add-post", {
         postBody: postBody,
         postImg: src,
@@ -66,7 +70,8 @@ const usePost = () => {
     onClickAddPost,
     snackMsg,
     setSnackMsg,
-    handleUploadFile
+    handleUploadFile,
+    uploadRef
   };
 };
 
