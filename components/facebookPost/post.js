@@ -9,16 +9,16 @@ import { useState } from "react";
 import { postsInformationState } from "../../atoms/postsInformation";
 import { useRecoilState } from "recoil";
 
-const FacebookPostComp = ({ item }) => {
+const FacebookPostComp = ({ postData }) => {
   const [visible, setVisible] = useState(false);
 
 //   const myLoader = ({ src, width, quality }) => {
 //     return `${src}?w=${0}&q=${100}`;
 //   };
-const username = item[0];
-const postBody= item[1];
-const creadtedAt= item[2];
-const postImg = item[3];
+const username = postData[0];
+const postBody= postData[1];
+const creadtedAt= postData[2];
+const postImg = postData[3];
 const whitespace = " ";
 
 

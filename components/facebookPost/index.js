@@ -10,7 +10,7 @@ const FacebookPost = () => {
    <>
    {postsInformation?.map((item)=>{
     return(
-     <FacebookPostComp item={item}/>
+     <FacebookPostComp postData={item}/>
    )})}
    </>
   );
