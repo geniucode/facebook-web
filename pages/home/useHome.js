@@ -16,12 +16,12 @@ const useHome = () => {
   const getAxiosGetAllPosts = async () => {
     const response = await getAxios("facebook-post/get-all-posts", {});
     const postsInformationFromDb= await response?.posts.map(
-      (item) => {
+      (post) => {
         return [
-          item.user.name,
-          item.postBody,
-          timeByMoment(item.createdAt),
-           item.postImg
+          post.user.name,
+          post.postBody,
+          timeByMoment(post.createdAt),
+           post.postImg
         ];
       }
     );
