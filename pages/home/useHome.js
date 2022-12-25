@@ -12,19 +12,20 @@ const useHome = () => {
   const [postsInformation, setPostsInformation] = useRecoilState(
     postsInformationState
   );
+   
   const getAxiosGetAllPosts = async () => {
     const response = await getAxios("facebook-post/get-all-posts", {});
-    const postsInformationFromDb= await response.posts.map(
+    const postsInformationFromDb= await response?.posts.map(
       (item) => {
         return [
-          { userName: item.user.name },
-          { postBody: item.postBody },
-          { timeByMoment: timeByMoment(item.createdAt) },
-          {src:item.postImg}
+          item.user.name,
+          item.postBody,
+          timeByMoment(item.createdAt),
+           item.postImg
         ];
       }
     );
-    console.log(postsInformationFromDb)
+    
     
     setPostsInformation(postsInformationFromDb);
   };

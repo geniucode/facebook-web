@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export const urlImageState = atom({
-  key: "urlImageState",
-  default: "",
+export const postButtonState = atom({
+  key: "postButtonState",
+  default: false,
 });

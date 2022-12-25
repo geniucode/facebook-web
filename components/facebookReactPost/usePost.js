@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import { urlImageState } from "../../atoms/urlImage";
+import { postButtonState, urlImageState } from "../../atoms/urlImage";
 import { postAxios, postWithImageAxios } from "../../service/axios";
 
 const usePost = () => {
@@ -9,46 +9,47 @@ const usePost = () => {
   const [postImg, setPostImg] = useState("");
   const [file, setFile] = useState("");
   const uploadRef=useRef();
-  const [url,setUrl]=useRecoilState(urlImageState)
-
-  
+  const[url,setUrl]=useState("")
+  const [button,setButton]=useRecoilState(postButtonState)
+  const [postField,setPostField]=useState("")
 
 
   
   const handleUploadFile=(event)=>{
     setFile(event.target.files[0]);
-    console.log("file",file)
+    console.log("file",event.target.files[0])
   }
  
 
 
   const onChangePost = (event) => {
-    setPostBody(event.target.value);
+    const value = event.target.value
+    setPostBody(value);
+    setPostField(event.target.value);
   };
+
   const onClickAddPost = async () => {
     let msg = null;
+    
     try {
-      let src=""
+      let url =""
       if(file){
         const response= await postWithImageAxios("upload",{
           file:file
         })
-        setUrl(response.url)
-        let srcURL=url.split('/')
-        console.log("srcURL:",srcURL)
-        src=srcURL.at(-3)+"/"+srcURL.at(-2)+"/"+srcURL.at(-1)
-        
+        url=response.url
       }
-     
       let res = await postAxios("facebook-post/add-post", {
         postBody: postBody,
-        postImg: src,
+        postImg: url,
       });
-      console.log("src:",src)
+      console.log("url:",url)
 
       if (res) {
         msg = "Post Added Successfully";
       }
+      setButton(true)
+      setPostField("")
     } catch (error) {
       const errors = error.response?.data?.errors?.map((error) => error.param);
       if (errors) {
@@ -71,7 +72,8 @@ const usePost = () => {
     snackMsg,
     setSnackMsg,
     handleUploadFile,
-    uploadRef
+    uploadRef,
+    postField,
   };
 };
 

@@ -3,11 +3,13 @@ import Image from "next/image";
 import profilePic from "./images/profilePic.jpg";
 import { usePost } from "./usePost.js";
 import { FbSnackBar } from "../snackBar";
+import { style } from "@mui/system";
 
 const FacebookReactPost = () => {
-  const { onChangePost, onClickAddPost, snackMsg, setSnackMsg,handleUploadFile,uploadRef } = usePost();
+  const { onChangePost, onClickAddPost, snackMsg, setSnackMsg,handleUploadFile,uploadRef,postField } = usePost();
   return (
     <>
+    <div className={styles.fbContainer}>
       <div className={styles.fbPost}>
         <div className={styles.post}>
           <div className={styles.profilePic}>
@@ -18,6 +20,8 @@ const FacebookReactPost = () => {
               type="text"
               onChange={onChangePost}
               placeholder="What's on your mind?"
+              value={postField}
+             
             />
           </div>
           <div className={styles.postButton}>
@@ -50,6 +54,7 @@ const FacebookReactPost = () => {
           setOpen={() => setSnackMsg(null)}
         />
       )}
+      </div>
     </>
   );
 };

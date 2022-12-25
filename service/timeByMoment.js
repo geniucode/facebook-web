@@ -62,7 +62,7 @@ const timeByMoment = (createdAt) => {
   ) {
     return "Just now";
   } else {
-    return "error";
+    return "Just now";
   }
 };
 export { timeByMoment };
