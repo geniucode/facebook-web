@@ -15,7 +15,7 @@ const useHome = () => {
    
   const getAxiosGetAllPosts = async () => {
     const response = await getAxios("facebook-post/get-all-posts", {});
-    const postsInformationFromDb= await response?.posts.map(
+    const postsInformationFromDb= await response?.posts?.map(
       (item) => {
         return [
           item.user.name,
