@@ -1,0 +1,68 @@
+.ProfileTopBody{
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.coverPhotoContainer{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 60%;
+    height: 350px;
+}
+.coverPhoto{
+    background-color:#f0f2f5 ;
+    width: 100%;
+    border-radius: 0 0 15px 15px ;
+    background: -webkit-linear-gradient(bottom,#959698 ,#f0f2f5 20% );
+}
+.AddCoverPhotoWithCameraContainer{
+    display:flex;
+    position: absolute;
+    right: 3%;
+    bottom: 5%;
+    width: 170px;
+    height: 35px;
+    background-color:#ffffff ;
+    align-items: center;
+    justify-content: center;
+   
+     border-radius: 5px; 
+     font-size: 500;
+     font-weight: 500;
+     padding: 0px;
+}
+.smallCamera{
+    width: 20px;
+    height: 17px;
+    margin-right: 2px;
+    padding-bottom: .5px;
+}
+.profilePhotoContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+    width: 56%;
+    position: relative;
+    height: 250px;
+}
+.profilePhoto{
+    width:180px ;
+    height: 180px;
+    position: absolute;
+    top: -10%;
+    border-radius: 50%;
+}
+.userName{
+    padding-left: 200px;
+    padding-top: 25px;
+}
+.buttons{
+    display: flex;
+    position: absolute;
+    right: 3%;
+    bottom: 5%;
+
+}
