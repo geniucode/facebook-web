@@ -13,6 +13,11 @@ const useSearch = () => {
       receiverID: receiverId,
     });
     console.log("response", response);
+    if (response.success) {
+      alert(response.message);
+    } else {
+      alert(response.message);
+    }
   };
 
   return {
