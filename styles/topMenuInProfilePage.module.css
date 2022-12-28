@@ -1,0 +1,21 @@
+.menuItems{
+  padding: 17px; 
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border-radius: 5px;
+}
+.menuItems:hover,.moreContainer:hover,.menuItemsNewStyle:hover{ 
+   background-color: #e4e6eb;     
+}
+.menuItemsNewStyle{
+  padding: 17px; 
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border-radius: 5px;
+  color: #1b74e4;
+
+}
+.line{
+  border-top: 4px solid #1b74e4; 
+  margin-top: 10px;  
+}
