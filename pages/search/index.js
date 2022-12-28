@@ -30,7 +30,7 @@ const Search = () => {
           <HomePageMneu />
           <div className={styles.searchResult}>
             {error && <p className={styles.errorMsg}>{error}</p>}
-            {users.length > 0 &&
+            {users?.length > 0 &&
               users.map((user) => {
                 return (
                   <div className={styles.userWidget}>

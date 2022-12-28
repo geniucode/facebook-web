@@ -18,6 +18,8 @@ const HomeHeader = ({}) => {
   const onChangeSetName = (e) => {
     console.log(name);
     setName(e.target.value);
+    setError();
+    setUsers();
   };
 
   const onClickSearch = async () => {
