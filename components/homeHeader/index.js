@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRecoilState } from "recoil";
+import { userState } from "../../atoms/user";
 import { searchUsersState } from "../../atoms/users";
 import { searchErrorState } from "../../atoms/error";
 import { useEffect, useState } from "react";
@@ -13,6 +14,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
 
 const HomeHeader = ({}) => {
+  const [user, setUser] = useRecoilState(userState);
+  const [notifications, setNotifications] = useState();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -22,8 +25,9 @@ const HomeHeader = ({}) => {
     setAnchorEl(null);
   };
   useEffect(() => {
-    console.log(anchorEl);
-  }, [anchorEl]);
+    console.log("hello");
+    getNotifications();
+  }, []);
   const [users, setUsers] = useRecoilState(searchUsersState);
   const [error, setError] = useRecoilState(searchErrorState);
   const [name, setName] = useState("");
@@ -53,6 +57,18 @@ const HomeHeader = ({}) => {
     } else {
       setError("Please enter a value to search for");
       setUsers([]);
+    }
+  };
+  const getNotifications = async () => {
+    console.log("hellossssssss");
+    const response = await getAxios(`user/notifications?user=${user._id}`, {
+      // user: user._id,
+    });
+    if (response?.success) {
+      setNotifications(response.notifications);
+      console.log(response);
+    } else {
+      console.log(response);
     }
   };
 
@@ -102,6 +118,7 @@ const HomeHeader = ({}) => {
                   open={open}
                   onClose={handleClose}
                   onClick={handleClose}
+                  // onClickSetNotificationsTrue
                   PaperProps={{
                     elevation: 0,
                     sx: {
@@ -131,14 +148,37 @@ const HomeHeader = ({}) => {
                   transformOrigin={{ horizontal: "right", vertical: "top" }}
                   anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                 >
-                  <MenuItem>
-                    <Avatar /> Notification 1 test
-                  </MenuItem>
-                  <Divider />
-                  <MenuItem>
-                    <Avatar />
-                    Notification 2 test
-                  </MenuItem>
+                  {
+                    (notifications && console.log(notifications),
+                    notifications?.map((notification) => {
+                      // notification.notification = "true";
+                      //eslint rules
+                      return (
+                        <>
+                          <MenuItem>
+                            <Avatar />
+                            {notification.requester} Has sent you a friend
+                            request
+                          </MenuItem>
+                          <Divider />
+                        </>
+                      );
+                    }))
+                  }
+                  {/* {notifications ? (
+                    notifications.map((notification) => {
+                      <>
+                        <MenuItem>
+                          <Avatar />
+                          {notification.requester.name} Has sent you a friend
+                          request
+                        </MenuItem>
+                        <Divider />
+                      </>;
+                    })
+                  ) : (
+                    <MenuItem>You have no notifications</MenuItem>
+                  )} */}
                 </Menu>
               </path>
             </svg>
