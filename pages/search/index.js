@@ -19,6 +19,8 @@ const Search = () => {
     setUsers({});
     setError("");
   }, []);
+  const { onClickAddFriend } = useSearch();
+
   return (
     <>
       <Auth>
@@ -47,7 +49,7 @@ const Search = () => {
                     <div className={styles.userButtons}>
                       <input
                         type="button"
-                        // onClick={onClickAddFriend}
+                        onClick={() => onClickAddFriend(user._id)}
                         className={styles.addFriend}
                         value="Add Friend"
                       ></input>

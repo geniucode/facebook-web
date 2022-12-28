@@ -15,7 +15,10 @@ const HomeHeader = ({}) => {
 
   const onClickSearch = async () => {
     if (name.length > 0) {
-      const response = await getAxios(`user/search?name=${name}`, {});
+      console.log("the name is:", name);
+      const response = await getAxios(`user/search?name=${name}`, {
+        // name: name,
+      });
       if (response?.errors) {
         setError("Please enter a valid name");
         console.log(error);
@@ -68,8 +71,12 @@ const HomeHeader = ({}) => {
           <input
             className={styles.searchInput}
             placeholder="Search Facebook"
-            onChange={onChangeSetName}
-          ></input>
+            onChange={(e) => {
+              setName(e.target.value);
+              setError();
+              setUsers();
+            }}
+          />
         </div>
         <div className={styles.haederIconsContainer}>
           <div className={styles.haederIcon}>
