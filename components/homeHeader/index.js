@@ -12,15 +12,6 @@ const HomeHeader = ({}) => {
   const [users, setUsers] = useRecoilState(searchUsersState);
   const [error, setError] = useRecoilState(searchErrorState);
   const [name, setName] = useState("");
-  // const [error, setError] = useState("");
-  // const [users, setUsers] = useState([]);
-
-  const onChangeSetName = (e) => {
-    console.log(name);
-    setName(e.target.value);
-    setError();
-    setUsers();
-  };
 
   const onClickSearch = async () => {
     if (name.length > 0) {
