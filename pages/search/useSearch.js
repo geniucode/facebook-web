@@ -11,7 +11,10 @@ const useSearch = () => {
     setError("");
     setUsers([]);
   };
-
+  const onClickAddFriend = async () => {
+    console.log("test");
+    
+  }
   const onClickSearch = async () => {
     if (name) {
       const response = await getAxios("user/search", {
@@ -40,6 +43,7 @@ const useSearch = () => {
     users,
     onChangeSearchValue,
     onClickSearch,
+    onClickAddFriend,
   };
 };
 export { useSearch };

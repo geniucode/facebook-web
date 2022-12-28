@@ -22,9 +22,7 @@ const HomeHeader = ({}) => {
 
   const onClickSearch = async () => {
     if (name.length > 0) {
-      const response = await getAxios("user/search", {
-        name,
-      });
+      const response = await getAxios(`user/search?name=${name}`, {});
       if (response?.errors) {
         setError("Please enter a valid name");
         console.log(error);
@@ -44,6 +42,7 @@ const HomeHeader = ({}) => {
       }
     } else {
       setError("Please enter a value to search for");
+      setUsers([]);
     }
   };
 

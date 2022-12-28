@@ -9,6 +9,7 @@ import { HomePageMneu } from "../../components/homePageMenu";
 import HomeHeader from "../../components/homeHeader";
 import profilePicture from "./images/profile-picture.jpeg";
 import styles from "../../styles/search.module.css";
+import { useSearch } from "./useSearch";
 
 const Search = () => {
   const [users, setUsers] = useRecoilState(searchUsersState);
@@ -46,6 +47,7 @@ const Search = () => {
                     <div className={styles.userButtons}>
                       <input
                         type="button"
+                        // onClick={onClickAddFriend}
                         className={styles.addFriend}
                         value="Add Friend"
                       ></input>
