@@ -1,10 +1,10 @@
 import styles from "../../styles/topMenuInProfilePage.module.css";
 import { useTopMenuInProfilePage } from "./useTopMenuInProfilePage";
-const TopMenuInProfilePage = ({item, currentTab}) => {
+const TopMenuInProfilePage = ({item}) => {
   const{  menuItemState,setmenuItemState}=useTopMenuInProfilePage();
   // type={showHidePasswordBtn ? "text" : "password"}
   // style={color="red"}
-  console.log(currentTab)
+  // console.log(currentTab)
 
   return (
    <>

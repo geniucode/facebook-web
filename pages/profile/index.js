@@ -71,9 +71,8 @@ const Profile=()=>{
            
             <div className={styles.menu}>
                 {menuItems.map((item)=>{
-                    const indexOfTab = menuItems.indexOf(item)
                     return(<>
-                        <TopMenuInProfilePage item={item} currentTab={indexOfTab}/>
+                        <TopMenuInProfilePage item={item}/>
                     </>)
                 })}
                  <div className={styles.moreContainer}>
