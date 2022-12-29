@@ -11,16 +11,14 @@ import moreImg from './images/moreImg.png'
 import { userState } from "../../atoms/user";
 import { useRecoilState } from "recoil";
 import { TopMenuInProfilePage } from "../../components/topMenuInProfilePage";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 const Profile=()=>{
-
-    const searchParams = useSearchParams();
     const menuItems=["Post","About","Friends","Photos","Videos","Check-ins"]
-    const [user,setUser]=useRecoilState(userState);
+    const [user]=useRecoilState(userState);
     const router = useRouter();
+    const[ menuItemState,setmenuItemState]=useState("Post");
     
    useEffect(()=>{
     router.push({
@@ -28,7 +26,7 @@ const Profile=()=>{
       query: { id: user._id }
     }, 
     )
-   },[router])
+   },[])
 
     return(
         <>
@@ -72,7 +70,8 @@ const Profile=()=>{
             <div className={styles.menu}>
                 {menuItems.map((item)=>{
                     return(<>
-                        <TopMenuInProfilePage item={item}/>
+                        <TopMenuInProfilePage item={item}menuItemState={menuItemState} 
+                        setmenuItemState={setmenuItemState}/>
                     </>)
                 })}
                  <div className={styles.moreContainer}>

@@ -1,18 +1,8 @@
 import styles from "../../styles/topMenuInProfilePage.module.css";
-import { useTopMenuInProfilePage } from "./useTopMenuInProfilePage";
-const TopMenuInProfilePage = ({item}) => {
-  const{  menuItemState,setmenuItemState}=useTopMenuInProfilePage();
-  // type={showHidePasswordBtn ? "text" : "password"}
-  // style={color="red"}
-  // console.log(currentTab)
-
-  return (
+const TopMenuInProfilePage = ({item,menuItemState,setmenuItemState}) => {
+    return (
    <>
-
-   {!menuItemState &&( <div  className={styles.menuItems} onClick={()=>{setmenuItemState(true)}} >{item}</div>)}
-   {menuItemState&&( <div  className={styles.menuItemsNewStyle} onClick={()=>{setmenuItemState(false)}} >{item}
-   <div className={styles.line}></div></div> )}
-   
+   <div  className={menuItemState==item?styles.menuItemsNewStyle:styles.menuItems} onClick={()=>{setmenuItemState(item)}} >{item}</div>
    </>
   );
 };
