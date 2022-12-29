@@ -196,3 +196,6 @@
 .threePoints>div{
     margin-bottom: 10px;
 }
+.addEditProfileContainer:hover{
+    background-color: #dadadd;
+}

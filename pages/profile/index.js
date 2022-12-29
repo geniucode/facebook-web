@@ -14,7 +14,9 @@ import { TopMenuInProfilePage } from "../../components/topMenuInProfilePage";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+
 const Profile=()=>{
+
     const searchParams = useSearchParams();
     const menuItems=["Post","About","Friends","Photos","Videos","Check-ins"]
     const [user,setUser]=useRecoilState(userState);
@@ -25,9 +27,9 @@ const Profile=()=>{
       pathname: '/profile',
       query: { id: user._id }
     }, 
-    undefined, { shallow: true }
     )
-   },[])
+   },[router])
+
     return(
         <>
         <Auth>
@@ -69,8 +71,9 @@ const Profile=()=>{
            
             <div className={styles.menu}>
                 {menuItems.map((item)=>{
+                    const indexOfTab = menuItems.indexOf(item)
                     return(<>
-                        <TopMenuInProfilePage item={item}/>
+                        <TopMenuInProfilePage item={item} currentTab={indexOfTab}/>
                     </>)
                 })}
                  <div className={styles.moreContainer}>
