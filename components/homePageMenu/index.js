@@ -9,7 +9,7 @@ import seeAllGroupsIcon from "./images/see-all-groups-icon.png";
 import styles from "../../styles/homePageMenu.module.css";
 
 const HomePageMneu = () => {
-  const { user, items, homeIcon, onClickHomeIcon, onClickNotHomeIcon } =
+  const { user, items, homeIcon, onClickHomeIcon, onClickNotHomeIcon,onClickUserName } =
     useHomePageMenu();
 
   return (
@@ -26,7 +26,7 @@ const HomePageMneu = () => {
           </div>
         </Link>
         {/* userContainer */}
-        <div className={styles.userContanier} onClick={onClickNotHomeIcon}>
+        <div className={styles.userContanier} onClick={onClickNotHomeIcon &&onClickUserName}>
           <div className={styles.userIcon}>
             <Image src={userIcon} />
           </div>

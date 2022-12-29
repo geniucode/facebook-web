@@ -8,15 +8,21 @@ import friendsIcon from "./images/friends-icon.png";
 import memoriesIcon from "./images/memories-icon.png";
 import marketplaceIcon from "./images/marketplace-icon.png";
 import { userState } from "../../atoms/user.js";
+import { useRouter } from "next/router";
 
 const useHomePageMenu=()=>{
     const [user,setUser]=useRecoilState(userState);
     const [homeIcon,setHomeIcon]=useRecoilState(homeIconState)
+    const router = useRouter();
+    
     const onClickHomeIcon=()=>{
         setHomeIcon(true);
     }
     const onClickNotHomeIcon=()=>{
         setHomeIcon(false);
+    }
+    const onClickUserName=()=>{
+        router.push("/profile");
     }
     const items =[
         {
@@ -56,7 +62,8 @@ const useHomePageMenu=()=>{
         homeIcon,
         setUser,
         onClickHomeIcon,
-        onClickNotHomeIcon
+        onClickNotHomeIcon,
+        onClickUserName
     };
 
 };
