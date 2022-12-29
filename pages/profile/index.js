@@ -83,11 +83,7 @@ const Profile=()=>{
                 
             </div>
             <div className={styles.threePoints}><div>...</div></div>
-            </div>
-            
-           
-           
-               
+            </div>   
          </div>
          
          </div>
