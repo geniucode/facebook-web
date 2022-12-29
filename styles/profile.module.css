@@ -199,3 +199,46 @@
 .addEditProfileContainer:hover{
     background-color: #dadadd;
 }
+@media screen and (max-width: 1278px) {
+    .profilePhotoContainer{
+        display: flex;
+        flex-direction: row;
+        
+    }
+    .userNameAndButtonsContainer{
+       
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .buttons{flex-direction: column;}
+    .threePoints{
+        display: none;
+    }
+    .cycle{
+        display:none ;
+    }
+    .profilePhoto{
+        top: -220%;
+    }
+    .menu{
+        display: none;
+    }
+    .ProfileTopBody{
+        height: 510px;
+    }
+    .line{
+        display: none;
+    }
+}
+@media screen and (max-width: 340px) {
+    .profilePhoto{
+        display: none;
+    }
+}
+@media screen and (max-width: 305px) {
+    .AddCoverPhotoWithCameraContainer{
+        display: none;
+    }
+}
+
