@@ -27,13 +27,6 @@ const Profile = () => {
     getUserByUrlID,
   } = useProfile();
 
-  //    useEffect(()=>{
-  //     router.push({
-  //       pathname: '/profile',
-  //       query: { id: user._id }
-  //     },
-  //     )
-  //    },[])
   useEffect(() => {
     const id = router.query["id"];
     if (id) getUserByUrlID(id);
