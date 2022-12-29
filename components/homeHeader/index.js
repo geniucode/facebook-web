@@ -157,6 +157,7 @@ const HomeHeader = ({}) => {
                         <>
                           <MenuItem>
                             <Avatar />
+                            {/* add requester name */}
                             {notification.requester} Has sent you a friend
                             request
                           </MenuItem>
