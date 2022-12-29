@@ -15,27 +15,17 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getAxios } from "../../service/axios";
 import ContentNotAvailable from "../../components/contentNotAvailable";
+import { useProfile } from "./useProfile";
 
 const Profile = () => {
-  const menuItems = [
-    "Post",
-    "About",
-    "Friends",
-    "Photos",
-    "Videos",
-    "Check-ins",
-  ];
-  const [user] = useRecoilState(userState);
-  const [userFromUrl, setUserFromUrl] = useState();
-  const router = useRouter();
-  const [menuItemState, setmenuItemState] = useState("Post");
-  const getUserByUrlID = async (id) => {
-    const response = await getAxios(`user/by-id?id=${id}`);
-    if (response?.success) {
-      console.log(response.userFound.name);
-      setUserFromUrl(response.userFound.name);
-    }
-  };
+  const {
+    menuItems,
+    userFromUrl,
+    router,
+    menuItemState,
+    setmenuItemState,
+    getUserByUrlID,
+  } = useProfile();
 
   //    useEffect(()=>{
   //     router.push({
