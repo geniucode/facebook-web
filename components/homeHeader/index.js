@@ -1,39 +1,29 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRecoilState } from "recoil";
 import { userState } from "../../atoms/user";
 import { searchUsersState } from "../../atoms/users";
 import { searchErrorState } from "../../atoms/error";
-import { useEffect, useState } from "react";
 import { getAxios } from "../../service/axios";
 import styles from "../../styles/homeHeader.module.css";
 import pfp from "./images/pfp.jpg";
-import Avatar from "@mui/material/Avatar";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Divider from "@mui/material/Divider";
 
 const HomeHeader = ({}) => {
   const [user, setUser] = useRecoilState(userState);
   const [notifications, setNotifications] = useState();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+
   useEffect(() => {
-    console.log("hello");
     getNotifications();
   }, []);
+
   const [users, setUsers] = useRecoilState(searchUsersState);
   const [error, setError] = useRecoilState(searchErrorState);
   const [name, setName] = useState("");
   const onClickSearch = async () => {
     if (name.length > 0) {
-      console.log("the name is:", name);
       const response = await getAxios(`user/search?name=${name}`, {
         // name: name,
       });
@@ -60,7 +50,6 @@ const HomeHeader = ({}) => {
     }
   };
   const getNotifications = async () => {
-    console.log("hellossssssss");
     const response = await getAxios(`user/notifications?user=${user._id}`, {
       // user: user._id,
     });
@@ -114,75 +103,29 @@ const HomeHeader = ({}) => {
               <path d="M14 2.042c6.76 0 12 4.952 12 11.64S20.76 25.322 14 25.322a13.091 13.091 0 0 1-3.474-.461.956 .956 0 0 0-.641.047L7.5 25.959a.961.961 0 0 1-1.348-.849l-.065-2.134a.957.957 0 0 0-.322-.684A11.389 11.389 0 0 1 2 13.682C2 6.994 7.24 2.042 14 2.042ZM6.794 17.086a.57.57 0 0 0 .827.758l3.786-2.874a.722.722 0 0 1 .868 0l2.8 2.1a1.8 1.8 0 0 0 2.6-.481l3.525-5.592a.57.57 0 0 0-.827-.758l-3.786 2.874a.722.722 0 0 1-.868 0l-2.8-2.1a1.8 1.8 0 0 0-2.6.481Z"></path>
             </svg>
           </div>
-          <div className={styles.haederIcon} notificationcount={`+9`}>
+          <div
+            className={styles.haederIcon}
+            notificationcount={notifications?.length}
+          >
             {/* above I will put the notification count */}
-            <svg
-              onClick={handleClick}
-              size="small"
-              sx={{ ml: 2 }}
-              aria-controls={open ? "account-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-              viewBox="0 0 28 28"
-              height="20"
-              width="20"
-            >
+            <svg viewBox="0 0 28 28" height="20" width="20">
               <path d="M7.847 23.488C9.207 23.488 11.443 23.363 14.467 22.806 13.944 24.228 12.581 25.247 10.98 25.247 9.649 25.247 8.483 24.542 7.825 23.488L7.847 23.488ZM24.923 15.73C25.17 17.002 24.278 18.127 22.27 19.076 21.17 19.595 18.724 20.583 14.684 21.369 11.568 21.974 9.285 22.113 7.848 22.113 7.421 22.113 7.068 22.101 6.79 22.085 4.574 21.958 3.324 21.248 3.077 19.976 2.702 18.049 3.295 17.305 4.278 16.073L4.537 15.748C5.2 14.907 5.459 14.081 5.035 11.902 4.086 7.022 6.284 3.687 11.064 2.753 15.846 1.83 19.134 4.096 20.083 8.977 20.506 11.156 21.056 11.824 21.986 12.355L21.986 12.356 22.348 12.561C23.72 13.335 24.548 13.802 24.923 15.73Z">
-                <Menu
-                  anchorEl={anchorEl}
-                  id="account-menu"
-                  open={open}
-                  onClose={handleClose}
-                  onClick={handleClose}
-                  // onClickSetNotificationsTrue
-                  PaperProps={{
-                    elevation: 0,
-                    sx: {
-                      overflow: "visible",
-                      filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                      mt: 1.5,
-                      "& .MuiAvatar-root": {
-                        width: 32,
-                        height: 32,
-                        ml: -0.5,
-                        mr: 1,
-                      },
-                      "&:before": {
-                        content: '""',
-                        display: "block",
-                        position: "absolute",
-                        top: 0,
-                        right: 14,
-                        width: 10,
-                        height: 10,
-                        bgcolor: "background.paper",
-                        transform: "translateY(-50%) rotate(45deg)",
-                        zIndex: 0,
-                      },
-                    },
-                  }}
-                  transformOrigin={{ horizontal: "right", vertical: "top" }}
-                  anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-                >
-                  {
-                    (notifications && console.log(notifications),
-                    notifications?.map((notification) => {
-                      // notification.notification = "true";
-                      //eslint rules
-                      return (
-                        <>
-                          <MenuItem>
+                {notifications &&
+                  notifications?.map((notification) => {
+                    // notification.notification = "true";
+                    //eslint rules
+                    return (
+                      <>
+                        {/* <MenuItem>
                             <Avatar />
-                            {/* add requester name */}
-                            {notification.requester} Has sent you a friend
-                            request
+                            {notification.requester.name} has sent you a friend
+                            request!
                           </MenuItem>
-                          <Divider />
-                        </>
-                      );
-                    }))
-                  }
-                  {/* {notifications ? (
+                          <Divider /> */}
+                      </>
+                    );
+                  })}
+                {/* {notifications ? (
                     notifications.map((notification) => {
                       <>
                         <MenuItem>
@@ -196,7 +139,6 @@ const HomeHeader = ({}) => {
                   ) : (
                     <MenuItem>You have no notifications</MenuItem>
                   )} */}
-                </Menu>
               </path>
             </svg>
           </div>
