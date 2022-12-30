@@ -8,12 +8,21 @@ import { searchErrorState } from "../../atoms/error";
 import { getAxios } from "../../service/axios";
 import styles from "../../styles/homeHeader.module.css";
 import pfp from "./images/pfp.jpg";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 const HomeHeader = ({}) => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const [user, setUser] = useRecoilState(userState);
   const [notifications, setNotifications] = useState();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
 
   useEffect(() => {
     getNotifications();
