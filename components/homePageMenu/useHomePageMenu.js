@@ -1,13 +1,13 @@
-import { useRecoilValue, useRecoilState } from "recoil";
-import { homeIconState } from "../../atoms/home-icon";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
 import savedIcon from "./images/saved-icon.png";
 import pagesIcon from "./images/pages-icon.png";
+import { userState } from "../../atoms/user.js";
 import friendsIcon from "./images/friends-icon.png";
 import memoriesIcon from "./images/memories-icon.png";
+import { homeIconState } from "../../atoms/home-icon";
 import marketplaceIcon from "./images/marketplace-icon.png";
-import { userState } from "../../atoms/user.js";
-import { useRouter } from "next/router";
 
 const useHomePageMenu = () => {
   const [user, setUser] = useRecoilState(userState);
