@@ -14,6 +14,9 @@ import Divider from "@mui/material/Divider";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
+//create hook in general hooks folder -> notification
+//create homeheader hook
+
 const HomeHeader = ({}) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -42,9 +45,7 @@ const HomeHeader = ({}) => {
   const [name, setName] = useState("");
   const onClickSearch = async () => {
     if (name.length > 0) {
-      const response = await getAxios(`user/search?name=${name}`, {
-        // name: name,
-      });
+      const response = await getAxios(`user/search?name=${name}`, {});
       if (response?.errors) {
         setError("Please enter a valid name");
         console.log(error);
@@ -68,7 +69,7 @@ const HomeHeader = ({}) => {
     }
   };
   const getNotifications = async () => {
-    const response = await getAxios(`user/notifications?user=${user._id}`, {});
+    const response = await getAxios(`user/friend-notifications`);
     if (response?.success) {
       setNotifications(response.notifications);
       console.log(response);
@@ -121,7 +122,9 @@ const HomeHeader = ({}) => {
           </div>
           <div
             className={styles.haederIcon}
-            notificationcount={notifications?.length}
+            notificationcount={
+              notifications?.filter((item) => !item.notification)?.length
+            }
           >
             <Button
               id="basic-button"
