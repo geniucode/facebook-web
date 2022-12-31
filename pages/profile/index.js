@@ -8,12 +8,8 @@ import cameraForProfilePhoto from "./images/camera-for-profile-photo.png";
 import pin from "./images/pin.png";
 import plus from "./images/plus.png";
 import moreImg from "./images/moreImg.png";
-import { userState } from "../../atoms/user";
-import { useRecoilState } from "recoil";
 import { TopMenuInProfilePage } from "../../components/topMenuInProfilePage";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { getAxios } from "../../service/axios";
 import ContentNotAvailable from "../../components/contentNotAvailable";
 import { useProfile } from "./useProfile";
 
