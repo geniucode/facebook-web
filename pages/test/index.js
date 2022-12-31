@@ -1,20 +1,22 @@
+import { Auth } from "../../components/auth";
 import HomeHeader from "../../components/homeHeader";
-import CustomizedMenus from "../../components/coverPhotoButton/index.js";
+import CoverPhotoButton from "../../components/coverPhotoButton/index.js";
 
 const Test = () => {
  
   return (
-    <>
+    <Auth>
       <HomeHeader />
       <div
         style={{
           display: "flex",
+          justifyContent: "flex-end",
           padding: "20px",
         }}
       >
-        <CustomizedMenus/>
+        <CoverPhotoButton/>
       </div>
-    </>
+    </Auth>
   );
 };
 
