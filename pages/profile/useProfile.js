@@ -1,12 +1,9 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { homeIconState } from "../../atoms/home-icon";
-import { postsInformationState } from "../../atoms/postsInformation";
-import { urlImageState } from "../../atoms/urlImage";
+import { useRouter } from "next/router";
 import { userState } from "../../atoms/user";
 import { getAxios } from "../../service/axios";
-import { timeByMoment } from "../../service/timeByMoment";
+import { useRecoilState } from "recoil";
+
 const useProfile = () => {
   const menuItems = [
     "Post",
