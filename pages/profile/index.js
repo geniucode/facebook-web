@@ -1,17 +1,17 @@
 import Image from "next/image";
+import { useEffect } from "react";
+import pin from "./images/pin.png";
+import plus from "./images/plus.png";
+import { useProfile } from "./useProfile";
+import moreImg from "./images/moreImg.png";
+import profilePhoto from "./images/pfp.jpg";
 import { Auth } from "../../components/auth";
 import HomeHeader from "../../components/homeHeader";
 import styles from "../../styles/profile.module.css";
 import smallCamera1 from "./images/small-camera1.png";
-import profilePhoto from "./images/pfp.jpg";
-import cameraForProfilePhoto from "./images/camera-for-profile-photo.png";
-import pin from "./images/pin.png";
-import plus from "./images/plus.png";
-import moreImg from "./images/moreImg.png";
-import { TopMenuInProfilePage } from "../../components/topMenuInProfilePage";
-import { useEffect, useState } from "react";
 import ContentNotAvailable from "../../components/contentNotAvailable";
-import { useProfile } from "./useProfile";
+import cameraForProfilePhoto from "./images/camera-for-profile-photo.png";
+import { TopMenuInProfilePage } from "../../components/topMenuInProfilePage";
 
 const Profile = () => {
   const {
