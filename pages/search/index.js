@@ -10,6 +10,7 @@ import HomeHeader from "../../components/homeHeader";
 import profilePicture from "./images/profile-picture.jpeg";
 import styles from "../../styles/search.module.css";
 import { useSearch } from "./useSearch";
+import { FbSnackBar } from "../../components/snackBar";
 
 const Search = () => {
   const [users, setUsers] = useRecoilState(searchUsersState);
@@ -19,7 +20,7 @@ const Search = () => {
     setUsers({});
     setError("");
   }, []);
-  const { onClickAddFriend } = useSearch();
+  const { onClickAddFriend,setSnackMsg,snackMsg } = useSearch();
 
   return (
     <>
@@ -63,7 +64,15 @@ const Search = () => {
                 );
               })}
           </div>
+          {snackMsg && (
+        <FbSnackBar
+          message={snackMsg}
+          open={snackMsg && true}
+          setOpen={() => setSnackMsg(null)}
+        />
+      )}
         </div>
+  
       </Auth>
     </>
   );

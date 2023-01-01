@@ -13,6 +13,7 @@ import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Stack from "@mui/material/Stack";
 
 //create hook in general hooks folder -> notification
 //create homeheader hook
@@ -76,6 +77,20 @@ const HomeHeader = ({}) => {
     } else {
       console.log(response);
     }
+  };
+
+  const confirmRequestHandle = (userID) => {
+    console.log(userID);
+    const confirmRequest = postAxios("accept-friend-request", {
+      userID,
+    });
+  };
+
+  const deleteRequestHandle = (userID) => {
+    console.log(userID);
+    const deleteRequest = postAxios("cancel-friend-request", {
+      userID,
+    });
   };
 
   return (
@@ -160,6 +175,24 @@ const HomeHeader = ({}) => {
                         <div style={{ marginLeft: "5px" }}>
                           {notification.requester.name} has sent you a friend
                           request!
+                          <Stack spacing={2} direction="row">
+                            <Button
+                              onClick={() =>
+                                confirmRequestHandle(notification.requester._id)
+                              }
+                              variant="contained"
+                            >
+                              Confirm
+                            </Button>
+                            <Button
+                              onClick={() =>
+                                deleteRequestHandle(notification.requester._id)
+                              }
+                              variant="outlined"
+                            >
+                              Delete
+                            </Button>
+                          </Stack>
                         </div>
                       </MenuItem>
                       <Divider />
