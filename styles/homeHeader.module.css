@@ -72,7 +72,7 @@
     top: -5px;
     right: -10px;
     font-size: 13px;
-    border-radius: 1000px;
+    border-radius: 1000%;
     color: white;
     background-color: red;
 }
@@ -106,3 +106,5 @@
 .chevronDown > svg{
     width: 9px;
 }
+
+
