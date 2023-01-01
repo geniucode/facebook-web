@@ -9,30 +9,34 @@ import { Auth } from "../../components/auth";
 import HomeHeader from "../../components/homeHeader";
 import styles from "../../styles/profile.module.css";
 import smallCamera1 from "./images/small-camera1.png";
-import ContentNotAvailable from "../../components/contentNotAvailable";
 import cameraForProfilePhoto from "./images/camera-for-profile-photo.png";
 import { TopMenuInProfilePage } from "../../components/topMenuInProfilePage";
+import ProfileAsOtherSeen from "../../components/profileAsOtherSeen";
 
 const Profile = () => {
   const {
+    user,
     menuItems,
     userFromUrl,
+    userIdFromUrl,
     router,
     menuItemState,
     setmenuItemState,
     getUserByUrlID,
   } = useProfile();
-
+  let id;
   useEffect(() => {
-    const id = router.query["id"];
+    id = router.query["id"];
     if (id) getUserByUrlID(id);
+    console.log("idfromurl", userIdFromUrl);
+    console.log("user._id ", user._id);
   }, [router]);
 
   return (
     <>
       <Auth>
         <HomeHeader />
-        {userFromUrl != null ? (
+        {userIdFromUrl === user._id ? (
           <div className={styles.ProfileTopBody}>
             <div className={styles.coverPhotoContainer}>
               <div className={styles.coverPhoto} alt="Add Cover photo" />
@@ -94,7 +98,7 @@ const Profile = () => {
             </div>
           </div>
         ) : (
-          <ContentNotAvailable />
+          <ProfileAsOtherSeen />
         )}
       </Auth>
     </>

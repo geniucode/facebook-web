@@ -4,7 +4,7 @@ import { userState } from "../../atoms/user";
 import { getAxios } from "../../service/axios";
 import { useRecoilState } from "recoil";
 
-const useProfile = () => {
+const useProfileAsOtherSeen = () => {
   const menuItems = [
     "Post",
     "About",
@@ -40,4 +40,4 @@ const useProfile = () => {
   };
 };
 
-export { useProfile };
+export { useProfileAsOtherSeen };
