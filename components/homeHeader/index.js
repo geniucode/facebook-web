@@ -6,6 +6,7 @@ import { userState } from "../../atoms/user";
 import { searchUsersState } from "../../atoms/users";
 import { searchErrorState } from "../../atoms/error";
 import { getAxios, postAxios } from "../../service/axios";
+import { Search } from "../../components/search";
 import styles from "../../styles/homeHeader.module.css";
 import pfp from "./images/pfp.jpg";
 import Button from "@mui/material/Button";
@@ -42,32 +43,7 @@ const HomeHeader = ({}) => {
 
   const [users, setUsers] = useRecoilState(searchUsersState);
   const [error, setError] = useRecoilState(searchErrorState);
-  const [name, setName] = useState("");
-  const onClickSearch = async () => {
-    if (name.length > 0) {
-      const response = await getAxios(`user/search?name=${name}`, {});
-      if (response?.errors) {
-        setError("Please enter a valid name");
-        console.log(error);
-        return error;
-      }
-      if (!response?.success) {
-        console.log(response);
-        setError("No users found");
-        console.log(error);
-        setUsers([]);
-      }
-      if (response?.success) {
-        setUsers(response.usersFound);
-        setError("");
-        console.log(response);
-        return { users };
-      }
-    } else {
-      setError("Please enter a value to search for");
-      setUsers([]);
-    }
-  };
+  //
   const getNotifications = async () => {
     const response = await getAxios(`user/friend-notifications`);
     if (response?.success) {
@@ -94,32 +70,15 @@ const HomeHeader = ({}) => {
             <path d="M857.39,204.74l30.45-48.68h32.81l-31.95,50.4,33.24,51.68H889.13l-31.74-50v50H826.5V104.8L857.39,102Z"></path>
           </svg>
         </Link>
-        <div className={styles.inputContainer}>
-          <div className={styles.searchIcon}>
-            <svg
-              onClick={onClickSearch}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-            >
-              <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z" />
-            </svg>
-          </div>
-          <input
-            className={styles.searchInput}
-            placeholder="Search Facebook"
-            onChange={(e) => {
-              setName(e.target.value);
-              setError();
-              setUsers();
-            }}
-          />
-        </div>
+        <Search />
+
         <div className={styles.haederIconsContainer}>
           <div className={styles.haederIcon}>
             <svg viewBox="0 0 28 28" height="20" width="20">
               <path d="M14 2.042c6.76 0 12 4.952 12 11.64S20.76 25.322 14 25.322a13.091 13.091 0 0 1-3.474-.461.956 .956 0 0 0-.641.047L7.5 25.959a.961.961 0 0 1-1.348-.849l-.065-2.134a.957.957 0 0 0-.322-.684A11.389 11.389 0 0 1 2 13.682C2 6.994 7.24 2.042 14 2.042ZM6.794 17.086a.57.57 0 0 0 .827.758l3.786-2.874a.722.722 0 0 1 .868 0l2.8 2.1a1.8 1.8 0 0 0 2.6-.481l3.525-5.592a.57.57 0 0 0-.827-.758l-3.786 2.874a.722.722 0 0 1-.868 0l-2.8-2.1a1.8 1.8 0 0 0-2.6.481Z"></path>
             </svg>
           </div>
+
           <div
             className={styles.haederIcon}
             notificationcount={
