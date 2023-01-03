@@ -146,7 +146,7 @@
 .menu{
     display: flex;
     color:#8f9092;
-    width: 71%;
+    width: 75%;
     font-weight: bolder;
     justify-content: space-around;
 }

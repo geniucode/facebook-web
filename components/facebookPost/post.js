@@ -1,19 +1,19 @@
 import Image from "next/image";
 import styles from "../../styles/facebookPosts.module.css";
 import Public from "../facebookPost/svg/public.js";
-import Dots from "../facebookPost/svg/Dots.js";
 import ReactsPopup from "./ReactsPopup";
 import profilePicture from "../facebookPost/images/tempImages/profilePic.png";
-import postPicture from "../facebookPost/images/tempImages/pollfishPeople.png";
 import { useState } from "react";
-import { postsInformationState } from "../../atoms/postsInformation";
 import { useRecoilState } from "recoil";
 import { useGoToProfilePage } from "../../generalHooks/goToProfilePage";
 import { useRouter } from "next/router";
+import SaveEditDeleteMenu from "../saveEditDeleteMenu/index.tsx";
+import { userState } from "../../atoms/user";
 
 const FacebookPostComp = ({ postData }) => {
   const [visible, setVisible] = useState(false);
   const router = useRouter();
+  const [user, setUser] = useRecoilState(userState);
   //   const myLoader = ({ src, width, quality }) => {
   //     return `${src}?w=${0}&q=${100}`;
   //   };
@@ -24,7 +24,6 @@ const FacebookPostComp = ({ postData }) => {
   const userId = postData[4];
 
   const url = postImg;
-  console.log(url);
   let srcURL = url.split("/");
   const src = "images-from-nodejs-server" + "/" + srcURL.at(-1);
   const onClickToGoToProfilePage = useGoToProfilePage(userId);
@@ -44,7 +43,7 @@ const FacebookPostComp = ({ postData }) => {
                       query: { id: userId },
                     });
                   }
-                  //onClickToGoToProfilePage
+                  // onClickToGoToProfilePage(userId)
                 }
               >
                 <Image src={profilePicture} alt="profilePic" />
@@ -61,7 +60,7 @@ const FacebookPostComp = ({ postData }) => {
                 </div>
               </div>
               <div className={styles.dotHover}>
-                <Dots color="#828387" />
+                <SaveEditDeleteMenu userId={userId} postUserId={user._id} />
               </div>
             </div>
             <div className={styles.postText}>{postBody}</div>

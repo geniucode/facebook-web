@@ -17,11 +17,9 @@ const Home = () => {
   const [button, setButton] = useRecoilState(postButtonState);
   useEffect(() => {
     getAxiosGetAllPosts();
-    console.log(postsInformation);
   }, [button]);
   useEffect(() => {
     getAxiosGetAllPosts(), setHomeIcon(true);
-    console.log(postsInformation);
   }, []);
   return (
     <Auth>
