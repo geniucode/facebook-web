@@ -30,7 +30,7 @@ const ProfileAsOtherSeen = () => {
   }, [router]);
   useEffect(() => {
     if (userIdFromUrl) getAxiosAllUserPostsByHisId(userIdFromUrl);
-  });
+  }, [router]);
 
   return (
     <>
