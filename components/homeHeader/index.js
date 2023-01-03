@@ -10,7 +10,6 @@ import { Search } from "../../components/search";
 import styles from "../../styles/homeHeader.module.css";
 import pfp from "./images/pfp.jpg";
 import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -41,9 +40,6 @@ const HomeHeader = ({}) => {
     getNotifications();
   }, []);
 
-  const [users, setUsers] = useRecoilState(searchUsersState);
-  const [error, setError] = useRecoilState(searchErrorState);
-  //
   const getNotifications = async () => {
     const response = await getAxios(`user/friend-notifications`);
     if (response?.success) {
@@ -92,7 +88,6 @@ const HomeHeader = ({}) => {
               aria-expanded={open ? "true" : undefined}
               onClick={(event) => {
                 handleClick(event);
-                // onClickSetNotificationsTrue();
               }}
             >
               <svg viewBox="0 0 28 28" height="20" width="20">
