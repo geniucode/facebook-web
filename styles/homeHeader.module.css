@@ -138,3 +138,51 @@
 .chevronDown > svg {
   width: 9px;
 }
+
+.notificationHeader {
+  display: flex;
+  gap: 5px;
+}
+
+.profiePictureImg {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid grey;
+}
+
+.notificationButtons {
+  display: flex;
+  gap: 10px;
+  margin-left: 22%;
+}
+
+.acceptButton,
+.deleteButton {
+  display: flex;
+  height: 38px;
+  width: 12vh;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pending {
+  background-color: rgba(24, 119, 242, 0.2);
+}
+
+.seen {
+  background-color: unset !important;
+}
+
+.acceptButton {
+  background-color: #1877f2;
+  color: White;
+  font-weight: bold;
+}
+
+.deleteButton {
+  background-color: #ebedef;
+  color: black;
+  font-weight: 500;
+}

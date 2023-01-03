@@ -25,9 +25,9 @@ const HomeHeader = ({}) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const onClickSetNotificationsTrue = () => {
-    const setNotificationsTrue = postAxios("updateNotifications", {
-      notifications,
+  const onMouseEnterupdateNotification = (id) => {
+    const setNotificationsTrue = postAxios("update-notification", {
+      id,
     });
   };
 
@@ -92,7 +92,7 @@ const HomeHeader = ({}) => {
               aria-expanded={open ? "true" : undefined}
               onClick={(event) => {
                 handleClick(event);
-                onClickSetNotificationsTrue();
+                // onClickSetNotificationsTrue();
               }}
             >
               <svg viewBox="0 0 28 28" height="20" width="20">
@@ -112,14 +112,57 @@ const HomeHeader = ({}) => {
                 notifications?.map((notification) => {
                   return (
                     <>
-                      <MenuItem>
-                        <Avatar />
-                        <div style={{ marginLeft: "5px" }}>
-                          {notification.requester.name} has sent you a friend
-                          request!
+                      <div
+                        onMouseEnter={() => {
+                          onMouseEnterupdateNotification(notification._id);
+                        }}
+                        className={styles.notificationsContainer}
+                      >
+                        <div
+                          className={`${
+                            notification.notification
+                              ? styles.seen
+                              : styles.pending
+                          }`}
+                        >
+                          <MenuItem>
+                            <div>
+                              <div className={styles.notificationHeader}>
+                                <div className={styles.profiePictureImg}></div>
+                                <span>
+                                  <span>{notification.requester.name}</span>
+                                  &nbsp;sent you a friend
+                                  <br />
+                                  request.
+                                </span>
+                              </div>
+                              <div className={styles.notificationButtons}>
+                                <div
+                                  className={styles.acceptButton}
+                                  onClick={() =>
+                                    confirmRequestHandle(
+                                      notification.requester._id
+                                    )
+                                  }
+                                >
+                                  Confirm
+                                </div>
+                                <div
+                                  className={styles.deleteButton}
+                                  onClick={() =>
+                                    deleteRequestHandle(
+                                      notification.requester._id
+                                    )
+                                  }
+                                >
+                                  Delete
+                                </div>
+                              </div>
+                            </div>
+                          </MenuItem>
                         </div>
-                      </MenuItem>
-                      <Divider />
+                        <Divider />
+                      </div>
                     </>
                   );
                 })}

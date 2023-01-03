@@ -1,0 +1,237 @@
+.homePageMenuContanier {
+  background-color: #f0f1f5;
+  width: 30%;
+  padding-top: 25px; 
+  padding-left: 7px; 
+  
+}
+.homeContanier {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-left: 10px; 
+  gap:10px;
+}
+.homeTitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: large;
+  padding-bottom: 5px;
+}
+.homeIcon{
+  width: 24px;
+  height: 24px;
+}
+
+.userContanier {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10px; 
+  gap:10px;
+  margin-bottom: 12px;
+}
+.userEmail {
+  font-style: normal;
+  font-weight: 500;
+  font-size: large;
+  padding-bottom: 5px;
+}
+.userIcon > img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-top: 3px;
+}
+
+.horizontalLine >hr{
+  border: 0.5px solid #d7d9dd;
+  margin-right: 25%;
+  margin-bottom: 17px;
+}
+
+.findFriendsToSeeAllContanier {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10px; 
+  gap:7px;
+  margin-bottom: 17px;
+}
+.findFriendsToSeeAllTitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: large;
+  padding-bottom: 5px;
+}
+.findFriendsToSeeAllIcon>img{
+  width: 24px;
+  height: 24px;
+  margin-top: 3px;
+}
+
+.homeContanier:hover, .userContanier:hover, .findFriendsToSeeAllContanier:hover ,.seeAllContanier:hover,.seeAllGroupsContanier:hover {
+  border-radius: 10px 0 0 10px;
+  background-color: #e4e6eb;
+}
+.seeAllContanier {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 6px; 
+  gap:6px;
+  margin-bottom: 17px;
+}
+.seeAllTitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: large;
+  padding-bottom:5px ;
+}
+.seeAllIcon >img{
+  width: 30px;
+  height: 30px;
+  margin-top: 3px;
+} 
+
+
+.seeAllGroupsContanier{
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 6px; 
+  gap:6px;
+  margin-bottom: 17px;
+}
+.seeAllGroupsTitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: large;
+  padding-bottom:5px ;
+}
+.seeAllGroupsIcon >img{
+  width: 30px;
+  height: 30px;
+  margin-top: 3px;
+}
+
+.searchContanier {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 17px;
+}
+.searchTitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: large;
+  padding-bottom: 5px;
+}
+.searchIcon > img {
+  width: 24px;
+}
+
+
+
+@media screen and (max-width: 1160px) {
+  .homePageMenuContanier {
+    width: 55px ;
+  }
+  .homeContanier{
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .userContanier{
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .homeTitle{
+    display: none;
+  }
+  .userEmail{
+    display: none;
+  }
+  .horizontalLine >hr{
+    border: unset;
+  }
+   .findFriendsToSeeAllContanier{
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .findFriendsToSeeAllTitle{
+    display: none;
+  }
+  
+  /* .findFriendsContanier{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .findFriendsTitle{
+    display: none;
+  }
+  .marketplaceContanier{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .marketplaceTitle{
+    display: none;
+  }
+  .memoriesContanier{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .memoriesTitle{
+    display: none;
+  }
+  .savedContanier{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .savedTitle{
+    display: none;
+  }
+  .pagesContanier{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pagesTitle{
+    display: none;
+  } */
+  .seeAllContanier{
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .seeAllTitle{
+    display: none;
+  }
+  .seeAllGroupsContanier{
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .seeAllGroupsTitle{
+    display: none;
+  }
+  .homeContanier:hover, .userContanier:hover, .findFriendsToSeeAllContanier:hover ,.seeAllContanier:hover,.seeAllGroupsContanier:hover {
+    border-radius: 10px ;
+  }
+ 
+}
+/* @media screen and (max-width: 450px){
+  @media screen and (max-width: 450px){
+  .homePageMenuContanier {
+    display: none;
+  }
+} */
