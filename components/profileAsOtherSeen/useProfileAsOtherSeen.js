@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { userState } from "../../atoms/user";
 import { getAxios } from "../../service/axios";
 import { useRecoilState } from "recoil";
+import { timeByMoment } from "../../service/timeByMoment";
 
 const useProfileAsOtherSeen = () => {
   const menuItems = [
@@ -14,7 +15,7 @@ const useProfileAsOtherSeen = () => {
     "Check-ins",
   ];
   const [user] = useRecoilState(userState);
-
+  const [userpostsFromDb, setUserpostsFromDb] = useState([]);
   const [userFromUrl, setUserFromUrl] = useState();
   const [userIdFromUrl, setIdUserFromUrl] = useState();
   const router = useRouter();
@@ -27,16 +28,35 @@ const useProfileAsOtherSeen = () => {
       setIdUserFromUrl(response.userFound._id);
     }
   };
+  const getAxiosAllUserPostsByHisId = async (id) => {
+    const responsea = await getAxios(`user/posts/by-id?id=${id}`);
+    if (responsea?.success) {
+      const userpostsInformationFromDb = await responsea?.userPosts?.map(
+        (item) => {
+          return [
+            userFromUrl,
+            item.postBody,
+            timeByMoment(item.createdAt),
+            item.postImg,
+            userIdFromUrl,
+          ];
+        }
+      );
+      setUserpostsFromDb(userpostsInformationFromDb);
+    }
+  };
   return {
     menuItems,
     user,
     userFromUrl,
     userIdFromUrl,
-    setUserFromUrl,
     router,
     menuItemState,
+    userpostsFromDb,
+    setUserFromUrl,
     setmenuItemState,
     getUserByUrlID,
+    getAxiosAllUserPostsByHisId,
   };
 };
 

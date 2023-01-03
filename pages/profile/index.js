@@ -12,6 +12,8 @@ import smallCamera1 from "./images/small-camera1.png";
 import cameraForProfilePhoto from "./images/camera-for-profile-photo.png";
 import { TopMenuInProfilePage } from "../../components/topMenuInProfilePage";
 import ProfileAsOtherSeen from "../../components/profileAsOtherSeen";
+import { FacebookPost } from "../../components/facebookPost";
+import { display } from "@mui/system";
 
 const Profile = () => {
   const {
@@ -21,16 +23,19 @@ const Profile = () => {
     userIdFromUrl,
     router,
     menuItemState,
+    userpostsFromDb,
     setmenuItemState,
     getUserByUrlID,
+    getAxiosAllUserPostsByHisId,
   } = useProfile();
   let id;
   useEffect(() => {
     id = router.query["id"];
     if (id) getUserByUrlID(id);
-    console.log("idfromurl", userIdFromUrl);
-    console.log("user._id ", user._id);
   }, [router]);
+  useEffect(() => {
+    if (userIdFromUrl) getAxiosAllUserPostsByHisId(userIdFromUrl);
+  });
 
   return (
     <>
@@ -100,6 +105,21 @@ const Profile = () => {
         ) : (
           <ProfileAsOtherSeen />
         )}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              width: "60%",
+            }}
+          >
+            <FacebookPost postsInformation={userpostsFromDb} />
+          </div>
+        </div>
       </Auth>
     </>
   );

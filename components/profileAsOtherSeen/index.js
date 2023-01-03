@@ -6,6 +6,7 @@ import { TopMenuInProfilePage } from "../topMenuInProfilePage";
 import { useProfileAsOtherSeen } from "./useProfileAsOtherSeen";
 import styles from "../../styles/profileAsOtherSeen.module.css";
 import ContentNotAvailable from "../../components/contentNotAvailable";
+import { FacebookPost } from "../facebookPost";
 
 const ProfileAsOtherSeen = () => {
   const {
@@ -15,8 +16,10 @@ const ProfileAsOtherSeen = () => {
     userIdFromUrl,
     router,
     menuItemState,
+    userpostsFromDb,
     setmenuItemState,
     getUserByUrlID,
+    getAxiosAllUserPostsByHisId,
   } = useProfileAsOtherSeen();
   let id;
   useEffect(() => {
@@ -25,6 +28,9 @@ const ProfileAsOtherSeen = () => {
     console.log("idfromurl", userIdFromUrl);
     console.log("user._id ", user._id);
   }, [router]);
+  useEffect(() => {
+    if (userIdFromUrl) getAxiosAllUserPostsByHisId(userIdFromUrl);
+  });
 
   return (
     <>
@@ -68,6 +74,21 @@ const ProfileAsOtherSeen = () => {
       ) : (
         <ContentNotAvailable />
       )}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            width: "60%",
+          }}
+        >
+          <FacebookPost postsInformation={userpostsFromDb} />
+        </div>
+      </div>
     </>
   );
 };
