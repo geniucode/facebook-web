@@ -110,8 +110,6 @@ const HomeHeader = ({}) => {
             >
               {notifications &&
                 notifications?.map((notification) => {
-                  // notification.notification = "true";
-                  //eslint rules
                   return (
                     <>
                       <MenuItem>
@@ -126,21 +124,6 @@ const HomeHeader = ({}) => {
                   );
                 })}
             </Menu>
-
-            {/* {notifications ? (
-                    notifications.map((notification) => {
-                      <>
-                        <MenuItem>
-                          <Avatar />
-                          {notification.requester.name} Has sent you a friend
-                          request
-                        </MenuItem>
-                        <Divider />
-                      </>;
-                    })
-                  ) : (
-                    <MenuItem>You have no notifications</MenuItem>
-                  )} */}
           </div>
           <div className={`${styles.haederIcon} ${styles.headerProfilePic}`}>
             <Image src={pfp} alt="pfp" />
