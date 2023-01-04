@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-const useGoToProfilePage = (userId) => {
+const useGoToProfilePage = () => {
   const router = useRouter();
-  const onClickToGoToProfilePage = () => {
+  const onClickToGoToProfilePage = (userId) => {
     router.push({
       pathname: "/profile",
       query: { id: userId },

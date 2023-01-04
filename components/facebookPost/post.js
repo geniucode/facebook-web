@@ -1,16 +1,17 @@
 import Image from "next/image";
-import styles from "../../styles/facebookPosts.module.css";
-import Public from "../facebookPost/svg/public.js";
-import ReactsPopup from "./ReactsPopup";
-import profilePicture from "../facebookPost/images/tempImages/profilePic.png";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { useGoToProfilePage } from "../../generalHooks/goToProfilePage";
+import ReactsPopup from "./ReactsPopup";
 import { useRouter } from "next/router";
-import SaveEditDeleteMenu from "../saveEditDeleteMenu/index.tsx";
 import { userState } from "../../atoms/user";
+import Public from "../facebookPost/svg/public.js";
+import styles from "../../styles/facebookPosts.module.css";
+import SaveEditDeleteMenu from "../saveEditDeleteMenu/index.tsx";
+import { useGoToProfilePage } from "../../generalHooks/goToProfilePage";
+import profilePicture from "../facebookPost/images/tempImages/profilePic.png";
 
 const FacebookPostComp = ({ postData }) => {
+  const { onClickToGoToProfilePage } = useGoToProfilePage();
   const [visible, setVisible] = useState(false);
   const router = useRouter();
   const [user, setUser] = useRecoilState(userState);
@@ -26,7 +27,6 @@ const FacebookPostComp = ({ postData }) => {
   const url = postImg;
   let srcURL = url.split("/");
   const src = "images-from-nodejs-server" + "/" + srcURL.at(-1);
-  const onClickToGoToProfilePage = useGoToProfilePage(userId);
 
   return (
     <>
@@ -36,15 +36,7 @@ const FacebookPostComp = ({ postData }) => {
             <div className={styles.postHeader}>
               <div
                 className={styles.postHeaderLeft}
-                onClick={
-                  () => {
-                    router.push({
-                      pathname: "/profile",
-                      query: { id: userId },
-                    });
-                  }
-                  // onClickToGoToProfilePage(userId)
-                }
+                onClick={() => onClickToGoToProfilePage(userId)}
               >
                 <Image src={profilePicture} alt="profilePic" />
                 <div className={styles.header_col}>
