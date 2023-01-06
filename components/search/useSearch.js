@@ -1,12 +1,51 @@
 import { useRecoilState } from "recoil";
 import { useState } from "react";
-import { getAxios } from "../../service/axios";
+import { getAxios, postAxios } from "../../service/axios";
 import { searchUsersState } from "../../atoms/users";
+import { userState } from "../../atoms/user";
+import { friendRequestState } from "../../atoms/friendRequest";
 
 const useSearch = () => {
   const [error, setError] = useState();
   const [users, setUsers] = useRecoilState(searchUsersState);
+  const [isFriendRequested, setIsFriendRequested] =
+    useRecoilState(friendRequestState);
+  const [user, setUser] = useRecoilState(userState);
 
+  const checkRequest = async (recipient) => {
+    // probably should be in global hooks
+    try {
+      const response = await getAxios(
+        `check-request?recipient=${recipient}`,
+        {}
+      );
+      console.log("response.succes is", response?.success);
+      if (response?.success) {
+        setIsFriendRequested("true");
+      } else {
+        setIsFriendRequested("false");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onClickAddFriend = async (id) => {
+    const receiverId = id;
+    const senderId = user._id;
+    const response = await postAxios("friend-request", {
+      recipient: receiverId,
+    });
+    if (response.success) {
+      console.log(response.success);
+      // add snackbar
+      // setError(response.message);
+    } else {
+      // add snackbar
+      // setError(response.message);
+      console.log(response.message);
+    }
+  };
   const showSearchResults = () => {
     if (users?.length > 0) {
       console.log("dsalkhdlksahdlksa");
@@ -27,21 +66,14 @@ const useSearch = () => {
     const notFound = ["notFound"];
     if (searchValue.length > 0) {
       const response = await getAxios(`user/search?name=${searchValue}`, {});
-      if (response?.errors) {
-        setError("Please enter a valid name");
-        console.log(error);
-        return error;
-      }
+
       if (!response?.success) {
-        console.log("response is", response);
         setError("No users found");
-        console.log(error);
         setUsers(notFound);
       }
       if (response?.success) {
         setUsers(response.usersFound);
         setError("");
-        console.log(response);
       }
     } else {
       setError("Please enter a value to search for");
@@ -50,6 +82,8 @@ const useSearch = () => {
   };
   return {
     users,
+    checkRequest,
+    onClickAddFriend,
     onClickSearch,
     showSearchResults,
   };

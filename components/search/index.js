@@ -1,10 +1,15 @@
 import { DebounceInput } from "react-debounce-input";
+import { useRecoilState } from "recoil";
+import { userState } from "../../atoms/user";
+import { friendRequestState } from "../../atoms/friendRequest";
 import { useSearch } from "./useSearch";
-
 import styles from "../../styles/homeHeader.module.css";
 
 const Search = (props) => {
-  const { users, onClickSearch, showSearchResults } = useSearch();
+  const [user, setUser] = useRecoilState(userState);
+  const [isFriendRequested, setIsFriendRequested] =
+    useRecoilState(friendRequestState);
+  const { users, checkRequest, onClickSearch, onClickAddFriend } = useSearch();
   return (
     <div className={styles.inputContainer}>
       <div className={styles.searchIcon}>
@@ -16,7 +21,7 @@ const Search = (props) => {
         className={styles.searchInput}
         minLength={1}
         placeholder="Search Facebook"
-        debounceTimeout={1000}
+        debounceTimeout={2000}
         onChange={(e) => {
           const searchValue = e.target.value;
           onClickSearch(searchValue);
@@ -24,13 +29,45 @@ const Search = (props) => {
       />
       <div className={styles.searchResults}>
         {users?.length > 0 &&
-          users?.map((user) => {
+          users?.map((searchedUser) => {
+            const ifFriends = user.friends.includes(searchedUser._id);
+            console.log(
+              "Ask Faraj Why is this printing 4 times and infinite loop is happening if we enable line 37"
+            );
+            //   checkRequest(searchedUser._id);
             return (
               <div className={styles.userSearchedFor}>
-                {user !== "notFound" ? (
+                {searchedUser !== "notFound" ? (
                   <>
                     <span className={styles.usersImage}></span>
-                    <span>{user.name}</span>
+                    <span>{searchedUser.name}</span>
+                    {ifFriends ? (
+                      <sup style={{ fontSize: "10px", fontWeight: "bolder" }}>
+                        Friends
+                      </sup>
+                    ) : (
+                      <div>
+                        {/* {console.log(
+                            "is friends requested?: ",
+                            isFriendRequested
+                          )} */}
+                        {isFriendRequested === false && (
+                          <input
+                            type="button"
+                            onClick={() => onClickAddFriend(searchedUser._id)}
+                            className={styles.addFriend}
+                            value="Add Friend"
+                          ></input>
+                        )}
+                        {isFriendRequested === true && (
+                          <sup
+                            style={{ fontSize: "10px", fontWeight: "bolder" }}
+                          >
+                            Request Pending
+                          </sup>
+                        )}
+                      </div>
+                    )}
                   </>
                 ) : (
                   <>

@@ -9,6 +9,7 @@ import { getAxios, postAxios } from "../../service/axios";
 import { Search } from "../../components/search";
 import styles from "../../styles/homeHeader.module.css";
 import pfp from "./images/pfp.jpg";
+import usrImg from "./images/user.png";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Menu from "@mui/material/Menu";
@@ -16,7 +17,6 @@ import MenuItem from "@mui/material/MenuItem";
 
 //create hook in general hooks folder -> notification
 //create homeheader hook
-
 const HomeHeader = ({}) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -30,15 +30,23 @@ const HomeHeader = ({}) => {
     });
   };
 
+  const onClickConfirmRequestHandle = (id) => {
+    const acceptFriendRequest = postAxios("accept-friend-request", {
+      id,
+    });
+  };
+
+  const onClickRejectRequestHandle = (id) => {
+    const rejectFriendRequest = postAxios("reject-friend-request", {
+      id,
+    });
+  };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
   const [user, setUser] = useRecoilState(userState);
   const [notifications, setNotifications] = useState();
-
-  useEffect(() => {
-    getNotifications();
-  }, []);
 
   const getNotifications = async () => {
     const response = await getAxios(`user/friend-notifications`);
@@ -49,7 +57,9 @@ const HomeHeader = ({}) => {
       console.log(response);
     }
   };
-
+  useEffect(() => {
+    getNotifications();
+  }, []);
   return (
     <div className={styles.headerContainer}>
       <div className={styles.headerContent}>
@@ -106,59 +116,57 @@ const HomeHeader = ({}) => {
               {notifications &&
                 notifications?.map((notification) => {
                   return (
-                    <>
+                    <div
+                      onMouseEnter={() => {
+                        onMouseEnterupdateNotification(notification._id);
+                      }}
+                      className={styles.notificationsContainer}
+                    >
                       <div
-                        onMouseEnter={() => {
-                          onMouseEnterupdateNotification(notification._id);
-                        }}
-                        className={styles.notificationsContainer}
+                        className={`${
+                          notification.notification
+                            ? styles.seen
+                            : styles.pending
+                        }`}
                       >
-                        <div
-                          className={`${
-                            notification.notification
-                              ? styles.seen
-                              : styles.pending
-                          }`}
-                        >
-                          <MenuItem>
-                            <div>
-                              <div className={styles.notificationHeader}>
-                                <div className={styles.profiePictureImg}></div>
-                                <span>
-                                  <span>{notification.requester.name}</span>
-                                  &nbsp;sent you a friend
-                                  <br />
-                                  request.
-                                </span>
+                        <MenuItem>
+                          <div>
+                            <div className={styles.notificationHeader}>
+                              <Image
+                                className={styles.profiePictureImg}
+                                src={usrImg}
+                                alt="profilePic"
+                              />
+                              <span>
+                                <span>{notification.requester.name}</span>
+                                &nbsp;sent you a friend
+                                <br />
+                                request.
+                              </span>
+                            </div>
+                            <div className={styles.notificationButtons}>
+                              <div
+                                className={styles.acceptButton}
+                                onClick={() =>
+                                  onClickConfirmRequestHandle(notification._id)
+                                }
+                              >
+                                Confirm
                               </div>
-                              <div className={styles.notificationButtons}>
-                                <div
-                                  className={styles.acceptButton}
-                                  onClick={() =>
-                                    confirmRequestHandle(
-                                      notification.requester._id
-                                    )
-                                  }
-                                >
-                                  Confirm
-                                </div>
-                                <div
-                                  className={styles.deleteButton}
-                                  onClick={() =>
-                                    deleteRequestHandle(
-                                      notification.requester._id
-                                    )
-                                  }
-                                >
-                                  Delete
-                                </div>
+                              <div
+                                className={styles.deleteButton}
+                                onClick={() =>
+                                  onClickRejectRequestHandle(notification._id)
+                                }
+                              >
+                                Delete
                               </div>
                             </div>
-                          </MenuItem>
-                        </div>
-                        <Divider />
+                          </div>
+                        </MenuItem>
                       </div>
-                    </>
+                      <Divider />
+                    </div>
                   );
                 })}
             </Menu>
