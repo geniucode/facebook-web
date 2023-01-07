@@ -5,6 +5,13 @@ import { friendRequestState } from "../../atoms/friendRequest";
 import { useSearch } from "./useSearch";
 import styles from "../../styles/homeHeader.module.css";
 
+function handleChange() { 
+    
+  console.log("Working") 
+  
+} 
+
+
 const Search = (props) => {
   const [user, setUser] = useRecoilState(userState);
   const [isFriendRequested, setIsFriendRequested] =
