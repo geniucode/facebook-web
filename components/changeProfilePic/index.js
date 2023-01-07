@@ -6,7 +6,7 @@ import { FbSnackBar } from "../snackBar";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import styles from "../../styles/changeProfilePic.module.css";
-import { postAxios, postWithImageAxios } from "../../service/axios";
+import { postAxios, postWithImageAxios, putAxios } from "../../service/axios";
 
 const style = {
   position: "absolute",
@@ -43,7 +43,8 @@ const ChangeProfilePic = () => {
         });
         url = response.url;
       }
-      let res = await postAxios("change-profile-pic", {
+      console.log(url);
+      let res = await putAxios("change-profile-pic", {
         profilePic: url,
       });
       console.log("url:", url);

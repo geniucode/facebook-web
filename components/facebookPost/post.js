@@ -3,50 +3,51 @@ import styles from "../../styles/facebookPosts.module.css";
 import Public from "../facebookPost/svg/public.js";
 import Dots from "../facebookPost/svg/Dots.js";
 import ReactsPopup from "./ReactsPopup";
-import profilePicture from "../facebookPost/images/tempImages/profilePic.png";
+import defaultProfilePic from "./../facebookReactPost/images/profilePic.jpg";
 import postPicture from "../facebookPost/images/tempImages/pollfishPeople.png";
 import { useState } from "react";
 import { postsInformationState } from "../../atoms/postsInformation";
 import { useRecoilState } from "recoil";
+import { CommentBar } from "./../commentBar/index.js";
 
 const FacebookPostComp = ({ postData }) => {
   const [visible, setVisible] = useState(false);
 
-//   const myLoader = ({ src, width, quality }) => {
-//     return `${src}?w=${0}&q=${100}`;
-//   };
-const username = postData[0];
-const postBody= postData[1];
-const creadtedAt= postData[2];
-const postImg = postData[3];
-const whitespace = " ";
+  //   const myLoader = ({ src, width, quality }) => {
+  //     return `${src}?w=${0}&q=${100}`;
+  //   };
+  const username = postData[0];
+  const postBody = postData[1];
+  const creadtedAt = postData[2];
+  const postImg = postData[3];
+  const profilePic = postData[4] ?? defaultProfilePic;
+  const whitespace = " ";
 
-
-const url = postImg;
-console.log(url)
-let srcURL = url.split("/");
-        const src =
-          "images-from-nodejs-server" +
-          "/" +
-          srcURL.at(-1);
+  const url = postImg;
+  console.log(url);
+  let srcURL = url.split("/");
+  const src = "images-from-nodejs-server" + "/" + srcURL.at(-1);
 
   return (
     <>
-     <div className={styles.postsBlock}>
+      <div className={styles.postsBlock}>
         <div className={styles.posts}>
           <div className={styles.post}>
             <div className={styles.postHeader}>
               <div className={styles.postHeaderLeft}>
-                <Image src={profilePicture} alt="profilePic" />
+                <div className={styles.profilePic}>
+                  <Image src={profilePic} alt="profilePic" />
+                </div>
+
                 <div className={styles.header_col}>
                   <div className={styles.postProfileName}>
                     {`${username}`}
                     <div className={styles.updatedP}></div>
                   </div>
                   <div className={styles.postProfilePrivacyDate}>
-                  {`${creadtedAt}`}
-                 <span style={{marginLeft: "5px"}} ></span>
-                     <Public color="#828387" />
+                    {`${creadtedAt}`}
+                    <span style={{ marginLeft: "5px" }}></span>
+                    <Public color="#828387" />
                   </div>
                 </div>
               </div>
@@ -59,10 +60,9 @@ let srcURL = url.split("/");
             {src != "" && ( //if src not empty return image
               <div className={styles.postImage}>
                 <Image
-                //   loader={myLoader}
+                  //   loader={myLoader}
                   src={`https://storage.googleapis.com/${src}`}
                   fill
-                  
                 />
               </div>
             )}
@@ -104,6 +104,7 @@ let srcURL = url.split("/");
                 <span>Share</span>
               </div>
             </div>
+            <CommentBar />
           </div>
         </div>
       </div>
