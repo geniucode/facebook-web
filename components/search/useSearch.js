@@ -22,9 +22,9 @@ const useSearch = () => {
       );
       console.log("response.succes is", response?.success);
       if (response?.success) {
-        setIsFriendRequested("true");
+        setIsFriendRequested(true);
       } else {
-        setIsFriendRequested("false");
+        setIsFriendRequested(false);
       }
     } catch (error) {
       console.log(error);

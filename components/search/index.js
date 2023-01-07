@@ -27,9 +27,9 @@ const Search = () => {
       </div>
       <DebounceInput
         className={styles.searchInput}
-        minLength={1}
+        minLength={2}
         placeholder="Search Facebook"
-        debounceTimeout={2000}
+        debounceTimeout={3000}
         onChange={(e) => {
           const searchValue = e.target.value;
           onClickSearch(searchValue);
@@ -42,7 +42,7 @@ const Search = () => {
             console.log(
               "Ask Faraj Why is this printing 4 times and infinite loop is happening if we enable line 37"
             );
-            //   checkRequest(searchedUser._id);
+            checkRequest(searchedUser._id);
             return (
               <div className={styles.userSearchedFor}>
                 {searchedUser !== "notFound" ? (
