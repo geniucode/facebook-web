@@ -33,6 +33,10 @@
   height: 10px !important;
   background-color: blueviolet;
 }
+.postHeaderLeft img:hover {
+  cursor: pointer
+}
+
 .postHeaderLeft {
   display: flex;
   align-items: center;
@@ -56,6 +60,9 @@
   font-weight: 600;
   line-height: 19px;
   color: black;
+}
+.postProfileName:hover {
+  cursor: pointer
 }
 .updatedP {
   color: var(--color-secondary);
@@ -81,6 +88,7 @@
 .dotHover:hover {
   background-color: #f0f2f5;
   border-radius: 50%;
+  cursor: pointer;
   
 }
 
