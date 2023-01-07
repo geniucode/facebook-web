@@ -7,11 +7,12 @@ import { friendRequestState } from "../../atoms/friendRequest";
 
 const useSearch = () => {
   const [error, setError] = useState();
+  const [snackMsg, setSnackMsg] = useState(null);
   const [users, setUsers] = useRecoilState(searchUsersState);
   const [isFriendRequested, setIsFriendRequested] =
     useRecoilState(friendRequestState);
   const [user, setUser] = useRecoilState(userState);
-
+  let msg = "";
   const checkRequest = async (recipient) => {
     // probably should be in global hooks
     try {
@@ -38,13 +39,12 @@ const useSearch = () => {
     });
     if (response.success) {
       console.log(response.success);
-      // add snackbar
-      // setError(response.message);
+      msg = response.message;
     } else {
-      // add snackbar
-      // setError(response.message);
+      msg = response.message;
       console.log(response.message);
     }
+    setSnackMsg(msg);
   };
   const showSearchResults = () => {
     if (users?.length > 0) {
@@ -82,6 +82,8 @@ const useSearch = () => {
   };
   return {
     users,
+    snackMsg,
+    setSnackMsg,
     checkRequest,
     onClickAddFriend,
     onClickSearch,

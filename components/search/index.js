@@ -1,15 +1,23 @@
-import { DebounceInput } from "react-debounce-input";
 import { useRecoilState } from "recoil";
+import { DebounceInput } from "react-debounce-input";
+import { useSearch } from "./useSearch";
+import { FbSnackBar } from "../snackBar";
 import { userState } from "../../atoms/user";
 import { friendRequestState } from "../../atoms/friendRequest";
-import { useSearch } from "./useSearch";
 import styles from "../../styles/homeHeader.module.css";
 
-const Search = (props) => {
+const Search = () => {
   const [user, setUser] = useRecoilState(userState);
   const [isFriendRequested, setIsFriendRequested] =
     useRecoilState(friendRequestState);
-  const { users, checkRequest, onClickSearch, onClickAddFriend } = useSearch();
+  const {
+    users,
+    snackMsg,
+    setSnackMsg,
+    checkRequest,
+    onClickSearch,
+    onClickAddFriend,
+  } = useSearch();
   return (
     <div className={styles.inputContainer}>
       <div className={styles.searchIcon}>
@@ -55,7 +63,7 @@ const Search = (props) => {
                           <input
                             type="button"
                             onClick={() => onClickAddFriend(searchedUser._id)}
-                            className={styles.addFriend}
+                            className={styles.acceptButton}
                             value="Add Friend"
                           ></input>
                         )}
@@ -78,6 +86,13 @@ const Search = (props) => {
             );
           })}
       </div>
+      {snackMsg && (
+        <FbSnackBar
+          message={snackMsg}
+          open={snackMsg && true}
+          setOpen={() => setSnackMsg(null)}
+        />
+      )}
     </div>
   );
 };

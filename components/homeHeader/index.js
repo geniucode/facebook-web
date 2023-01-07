@@ -14,11 +14,14 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { FbSnackBar } from "../snackBar";
 
 //create hook in general hooks folder -> notification
 //create homeheader hook
 const HomeHeader = ({}) => {
+  let msg = "";
   const [anchorEl, setAnchorEl] = useState(null);
+  const [snackMsg, setSnackMsg] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -30,16 +33,28 @@ const HomeHeader = ({}) => {
     });
   };
 
-  const onClickConfirmRequestHandle = (id) => {
-    const acceptFriendRequest = postAxios("accept-friend-request", {
+  const onClickConfirmRequestHandle = async (id) => {
+    const response = await postAxios("accept-friend-request", {
       id,
     });
+    console.log("accept friend request: ", response);
+    if (response?.success) {
+      msg = response.message;
+    } else {
+      msg = response.message;
+    }
+    setSnackMsg(msg);
   };
-
-  const onClickRejectRequestHandle = (id) => {
-    const rejectFriendRequest = postAxios("reject-friend-request", {
+  const onClickRejectRequestHandle = async (id) => {
+    const response = await postAxios("reject-friend-request", {
       id,
     });
+    if (response?.success) {
+      msg = response.message;
+    } else {
+      msg = response.message;
+    }
+    setSnackMsg(msg);
   };
 
   const handleClose = () => {
@@ -159,7 +174,7 @@ const HomeHeader = ({}) => {
                                   onClickRejectRequestHandle(notification._id)
                                 }
                               >
-                                Delete
+                                Remove
                               </div>
                             </div>
                           </div>
@@ -186,6 +201,13 @@ const HomeHeader = ({}) => {
           </div>
         </div>
       </div>
+      {snackMsg && (
+        <FbSnackBar
+          message={snackMsg}
+          open={snackMsg && true}
+          setOpen={() => setSnackMsg(null)}
+        />
+      )}
     </div>
   );
 };
