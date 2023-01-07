@@ -15,6 +15,18 @@ module.exports = {
     "no-console": "on",
 
     indent: ["error", 2], //this only allow up to 2 spaces
-    "no-var": ["error", 2], //this doesn't allow using Var only Let or constant are allowed 
+    "no-var": ["error", 2], //this doesn't allow using Var only Let or constant are allowed
   },
+
+  "max-len": [  //line maximum lenght ruels 
+    "error",
+    {
+      code: 60,
+      tabWidth: 2,
+      ignoreComments: true, //"comments": 80
+      ignoreUrls: true,
+      ignoreStrings: true,
+      ignoreTemplateLiterals: true,
+    },
+  ],
 };
