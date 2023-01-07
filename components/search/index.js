@@ -30,7 +30,7 @@ const Search = (props) => {
       <div className={styles.searchResults}>
         {users?.length > 0 &&
           users?.map((searchedUser) => {
-            const ifFriends = user.friends.includes(searchedUser._id);
+            const ifFriends = user.friends?.includes(searchedUser._id);
             console.log(
               "Ask Faraj Why is this printing 4 times and infinite loop is happening if we enable line 37"
             );
