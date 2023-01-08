@@ -29,7 +29,7 @@ const Search = () => {
         className={styles.searchInput}
         minLength={2}
         placeholder="Search Facebook"
-        debounceTimeout={3000}
+        debounceTimeout={500}
         onChange={(e) => {
           const searchValue = e.target.value;
           onClickSearch(searchValue);
@@ -38,50 +38,14 @@ const Search = () => {
       <div className={styles.searchResults}>
         {users?.length > 0 &&
           users?.map((searchedUser) => {
-            const ifFriends = user.friends?.includes(searchedUser._id);
-            console.log(
-              "Ask Faraj Why is this printing 4 times and infinite loop is happening if we enable line 37"
-            );
-            checkRequest(searchedUser._id);
+            //const isFriendrequested = await checkRequest(searchedUser._id);
+            console.log("isFriendrequested", searchedUser.friendStatus);
             return (
               <div className={styles.userSearchedFor}>
-                {searchedUser !== "notFound" ? (
-                  <>
-                    <span className={styles.usersImage}></span>
-                    <span>{searchedUser.name}</span>
-                    {ifFriends ? (
-                      <sup style={{ fontSize: "10px", fontWeight: "bolder" }}>
-                        Friends
-                      </sup>
-                    ) : (
-                      <div>
-                        {/* {console.log(
-                            "is friends requested?: ",
-                            isFriendRequested
-                          )} */}
-                        {isFriendRequested === false && (
-                          <input
-                            type="button"
-                            onClick={() => onClickAddFriend(searchedUser._id)}
-                            className={styles.acceptButton}
-                            value="Add Friend"
-                          ></input>
-                        )}
-                        {isFriendRequested === true && (
-                          <sup
-                            style={{ fontSize: "10px", fontWeight: "bolder" }}
-                          >
-                            Request Pending
-                          </sup>
-                        )}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <span>No Users Found</span>
-                  </>
-                )}
+                <div>{searchedUser.name}</div>
+                {console.log("test")}
+                <div>friend ?{searchedUser.friendStatus ? "Yes" : "No"}</div>
+                {console.log("test2")}
               </div>
             );
           })}

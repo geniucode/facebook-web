@@ -20,11 +20,11 @@ const useSearch = () => {
         `check-request?recipient=${recipient}`,
         {}
       );
-      console.log("response.succes is", response?.success);
+      console.log("response is", response);
       if (response?.success) {
-        setIsFriendRequested(true);
+        return true;
       } else {
-        setIsFriendRequested(false);
+        return false;
       }
     } catch (error) {
       console.log(error);
@@ -46,21 +46,6 @@ const useSearch = () => {
     }
     setSnackMsg(msg);
   };
-  const showSearchResults = () => {
-    if (users?.length > 0) {
-      console.log("dsalkhdlksahdlksa");
-      users?.map((user) => {
-        return `
-          <div className={styles.userSearchedFor}>
-            <span className={styles.usersImage}></span>
-            <span>{user.name}</span>
-          </div> `;
-      });
-    }
-    if (users[0]?.value === "notFound") {
-      return "<div>No users Found</div>";
-    }
-  };
 
   const onClickSearch = async (searchValue) => {
     const notFound = ["notFound"];
@@ -69,10 +54,16 @@ const useSearch = () => {
 
       if (!response?.success) {
         setError("No users found");
-        setUsers(notFound);
+        setUsers([]);
       }
       if (response?.success) {
-        setUsers(response.usersFound);
+        const mappedUser = await Promise.all(
+          response.usersFound.map(async (data) => {
+            data.friendStatus = await checkRequest(data._id);
+            return data;
+          })
+        );
+        setUsers(mappedUser);
         setError("");
       }
     } else {
@@ -87,7 +78,6 @@ const useSearch = () => {
     checkRequest,
     onClickAddFriend,
     onClickSearch,
-    showSearchResults,
   };
 };
 
