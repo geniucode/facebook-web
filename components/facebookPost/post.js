@@ -15,9 +15,9 @@ const FacebookPostComp = ({ postData }) => {
   const [visible, setVisible] = useState(false);
   const router = useRouter();
   const [user, setUser] = useRecoilState(userState);
-  //   const myLoader = ({ src, width, quality }) => {
-  //     return `${src}?w=${0}&q=${100}`;
-  // //   };
+  const myLoader = ({ src, width, quality }) => {
+    return `${src}?w=${0}&q=${100}`;
+  };
   // const username = postData[0];
   // const postBody = postData[1];
   // const creadtedAt = postData[2];
@@ -60,11 +60,11 @@ const FacebookPostComp = ({ postData }) => {
             </div>
             <div className={styles.postText}>{postData.postBody}</div>
 
-            {src != "" && ( //if src not empty return image
+            {url != "" && ( //if src not empty return image
               <div className={styles.postImage}>
                 <Image
                   //   loader={myLoader}
-                  src={`https://storage.googleapis.com/${src}`}
+                  src={`${url}`}
                   fill
                 />
               </div>
