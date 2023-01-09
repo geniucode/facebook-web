@@ -35,7 +35,7 @@ const Profile = () => {
   }, [router]);
   useEffect(() => {
     if (userIdFromUrl) getAxiosAllUserPostsByHisId(userIdFromUrl);
-  });
+  }, [userIdFromUrl]);
 
   return (
     <>
@@ -103,7 +103,7 @@ const Profile = () => {
             </div>
           </div>
         ) : (
-          <ProfileAsOtherSeen />
+          <ProfileAsOtherSeen userIdFromUrl={userIdFromUrl} />
         )}
         <div
           style={{

@@ -19,7 +19,7 @@ const useProfile = () => {
   const [userFromUrl, setUserFromUrl] = useState();
   const [userIdFromUrl, setIdUserFromUrl] = useState();
   const router = useRouter();
-  const [userpostsFromDb, setUserpostsFromDb] = useState([]);
+  const [userpostsFromDb, setUserpostsFromDb] = useState();
   const [menuItemState, setmenuItemState] = useState("Post");
   const getUserByUrlID = async (id) => {
     const response = await getAxios(`user/by-id?id=${id}`);
@@ -29,17 +29,17 @@ const useProfile = () => {
     }
   };
   const getAxiosAllUserPostsByHisId = async (id) => {
-    const responsea = await getAxios(`user/posts/by-id?id=${id}`);
-    if (responsea?.success) {
-      const userpostsInformationFromDb = await responsea?.userPosts?.map(
+    const response = await getAxios(`user/posts/by-id?id=${id}`);
+    if (response?.success) {
+      const userpostsInformationFromDb = await response?.userPosts?.map(
         (item) => {
-          return [
-            userFromUrl,
-            item.postBody,
-            timeByMoment(item.createdAt),
-            item.postImg,
-            userIdFromUrl,
-          ];
+          return {
+            username: userFromUrl,
+            postBody: item.postBody,
+            createdAt: timeByMoment(item.createdAt),
+            postImg: item.postImg,
+            userId: item.user._id,
+          };
         }
       );
       setUserpostsFromDb(userpostsInformationFromDb);

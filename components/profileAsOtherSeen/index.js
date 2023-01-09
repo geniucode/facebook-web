@@ -8,12 +8,12 @@ import styles from "../../styles/profileAsOtherSeen.module.css";
 import ContentNotAvailable from "../../components/contentNotAvailable";
 import { FacebookPost } from "../facebookPost";
 
-const ProfileAsOtherSeen = () => {
+const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
   const {
     user,
     menuItems,
     userFromUrl,
-    userIdFromUrl,
+    // userIdFromUrl,
     router,
     menuItemState,
     userpostsFromDb,
