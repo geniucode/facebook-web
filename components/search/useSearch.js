@@ -9,8 +9,8 @@ const useSearch = () => {
   const [error, setError] = useState();
   const [snackMsg, setSnackMsg] = useState(null);
   const [users, setUsers] = useRecoilState(searchUsersState);
-  const [isFriendRequested, setIsFriendRequested] =
-    useRecoilState(friendRequestState);
+  // const [isFriendRequested, setIsFriendRequested] =
+  //   useRecoilState(friendRequestState);
   const [user, setUser] = useRecoilState(userState);
   let msg = "";
   const checkRequest = async (recipient) => {
@@ -22,7 +22,7 @@ const useSearch = () => {
       );
       console.log("response is", response);
       if (response?.success) {
-        return true;
+        return response.message;
       } else {
         return false;
       }
@@ -41,8 +41,8 @@ const useSearch = () => {
       console.log(response.success);
       msg = response.message;
     } else {
-      msg = response.message;
       console.log(response.message);
+      msg = response.message;
     }
     setSnackMsg(msg);
   };

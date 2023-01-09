@@ -38,14 +38,28 @@ const Search = () => {
       <div className={styles.searchResults}>
         {users?.length > 0 &&
           users?.map((searchedUser) => {
-            //const isFriendrequested = await checkRequest(searchedUser._id);
-            console.log("isFriendrequested", searchedUser.friendStatus);
+            {
+              console.log(searchedUser.friendStatus);
+            }
             return (
               <div className={styles.userSearchedFor}>
                 <div>{searchedUser.name}</div>
-                {console.log("test")}
-                <div>friend ?{searchedUser.friendStatus ? "Yes" : "No"}</div>
-                {console.log("test2")}
+                <div>
+                  {searchedUser.friendStatus ? (
+                    <sup>{searchedUser.friendStatus}</sup>
+                  ) : (
+                    <div>
+                      <button
+                        className={styles.acceptButton}
+                        onClick={() => {
+                          onClickAddFriend(searchedUser._id);
+                        }}
+                      >
+                        Add Friend
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             );
           })}
