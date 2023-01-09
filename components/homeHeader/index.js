@@ -3,8 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRecoilState } from "recoil";
 import { userState } from "../../atoms/user";
-import { searchUsersState } from "../../atoms/users";
-import { searchErrorState } from "../../atoms/error";
 import { getAxios, postAxios } from "../../service/axios";
 import { Search } from "../../components/search";
 import styles from "../../styles/homeHeader.module.css";
@@ -16,8 +14,6 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { FbSnackBar } from "../snackBar";
 
-//create hook in general hooks folder -> notification
-//create homeheader hook
 const HomeHeader = ({}) => {
   let msg = "";
   const [anchorEl, setAnchorEl] = useState(null);
