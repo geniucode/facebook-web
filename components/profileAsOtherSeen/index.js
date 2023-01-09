@@ -34,7 +34,7 @@ const ProfileAsOtherSeen = () => {
 
   return (
     <>
-      {userFromUrl != null ? (
+      {userFromUrl != null && (
         <div className={styles.ProfileTopBody}>
           <div className={styles.coverPhotoContainer}>
             <div className={styles.coverPhoto} alt="Add Cover photo" />
@@ -71,8 +71,6 @@ const ProfileAsOtherSeen = () => {
             </div>
           </div>
         </div>
-      ) : (
-        <ContentNotAvailable />
       )}
       <div
         style={{
