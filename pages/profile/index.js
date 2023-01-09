@@ -13,7 +13,7 @@ import cameraForProfilePhoto from "./images/camera-for-profile-photo.png";
 import { TopMenuInProfilePage } from "../../components/topMenuInProfilePage";
 import ProfileAsOtherSeen from "../../components/profileAsOtherSeen";
 import { FacebookPost } from "../../components/facebookPost";
-import { display } from "@mui/system";
+import { FacebookReactPost } from "../../components/facebookReactPost";
 
 const Profile = () => {
   const {
@@ -35,12 +35,13 @@ const Profile = () => {
   }, [router]);
   useEffect(() => {
     if (userIdFromUrl) getAxiosAllUserPostsByHisId(userIdFromUrl);
-  }, [userIdFromUrl]);
+  });
 
   return (
     <>
       <Auth>
         <HomeHeader />
+
         {userIdFromUrl === user._id ? (
           <div className={styles.ProfileTopBody}>
             <div className={styles.coverPhotoContainer}>
@@ -103,18 +104,33 @@ const Profile = () => {
             </div>
           </div>
         ) : (
-          <ProfileAsOtherSeen userIdFromUrl={userIdFromUrl} />
+          <ProfileAsOtherSeen />
         )}
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            flexDirection: "column",
           }}
         >
           <div
             style={{
-              width: "60%",
+              width: "100%",
+              marginLeft: "57%",
+              marginTop: "17px",
+              marginBottom: "10px",
+            }}
+          >
+            {userIdFromUrl === user._id ? (
+              <FacebookReactPost userId={id} />
+            ) : (
+              <FacebookReactPost />
+            )}
+          </div>
+          <div
+            style={{
+              width: "50%",
             }}
           >
             <FacebookPost postsInformation={userpostsFromDb} />

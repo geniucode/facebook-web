@@ -36,12 +36,12 @@ const FacebookPostComp = ({ postData }) => {
             <div className={styles.postHeader}>
               <div
                 className={styles.postHeaderLeft}
-                onClick={() => onClickToGoToProfilePage(postData.userId)}
+                onClick={() => onClickToGoToProfilePage(postData.createdBy)}
               >
                 <Image src={profilePicture} alt="profilePic" />
                 <div className={styles.header_col}>
                   <div className={styles.postProfileName}>
-                    {`${postData.username}`}
+                    {`${postData.createdByName}`}
                     <div className={styles.updatedP}></div>
                   </div>
                   <div className={styles.postProfilePrivacyDate}>

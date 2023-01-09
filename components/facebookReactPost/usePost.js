@@ -1,17 +1,34 @@
+import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { postButtonState, urlImageState } from "../../atoms/urlImage";
+import { userState } from "../../atoms/user";
 import { postAxios, postWithImageAxios } from "../../service/axios";
 
 const usePost = () => {
   const [snackMsg, setSnackMsg] = useState(null);
   const [postBody, setPostBody] = useState("");
   const [postImg, setPostImg] = useState("");
+
   const [file, setFile] = useState("");
   const uploadRef = useRef();
-  const [url, setUrl] = useState("");
   const [button, setButton] = useRecoilState(postButtonState);
   const [postField, setPostField] = useState("");
+  const user = useRecoilValue(userState);
+  const [Im, setIm] = useState(user._id);
+
+  const router = useRouter();
+  useEffect(() => {
+    let id = router.query["id"];
+    if (id) {
+      console.log("FacebookReactPost", id);
+      setIm(id);
+      // } else {
+      //   id = user._id;
+      //   console.log("FacebookReactPost", id);
+      //   setIm(id);
+    }
+  }, [router]);
 
   const handleUploadFile = (event) => {
     setFile(event.target.files[0]);
@@ -35,6 +52,7 @@ const usePost = () => {
         url = response.url;
       }
       let res = await postAxios("facebook-post/add-post", {
+        user: Im,
         postBody: postBody,
         postImg: url,
       });

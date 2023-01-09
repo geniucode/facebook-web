@@ -7,7 +7,7 @@ import { timeByMoment } from "../../service/timeByMoment";
 
 const useProfile = () => {
   const menuItems = [
-    "Post",
+    "Posts",
     "About",
     "Friends",
     "Photos",
@@ -34,11 +34,12 @@ const useProfile = () => {
       const userpostsInformationFromDb = await response?.userPosts?.map(
         (item) => {
           return {
-            username: userFromUrl,
+            createdByName: item.createdBy.name,
             postBody: item.postBody,
             createdAt: timeByMoment(item.createdAt),
             postImg: item.postImg,
-            userId: item.user._id,
+            createdBy: item.createdBy._id,
+            userName: userIdFromUrl,
           };
         }
       );
