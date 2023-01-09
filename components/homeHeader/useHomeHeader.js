@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { userState } from "../../atoms/user";
 import { getAxios, postAxios } from "../../service/axios";
@@ -43,9 +43,6 @@ const useHomeHeader = (props) => {
       console.log(response);
     }
   };
-  //   useEffect(() => {
-  //     getNotifications();
-  //   }, []);
 
   return {
     open,

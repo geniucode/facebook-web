@@ -14,7 +14,6 @@ const useSearch = () => {
   const [user, setUser] = useRecoilState(userState);
   let msg = "";
   const checkRequest = async (recipient) => {
-    // probably should be in global hooks
     try {
       const response = await getAxios(
         `check-request?recipient=${recipient}`,
