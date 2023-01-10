@@ -42,7 +42,7 @@ const useSearch = () => {
     }
     setSnackMsg(msg);
     setTimeout(function () {
-      window.location.reload();
+      //render document only here if possible
     }, 3000);
   };
 

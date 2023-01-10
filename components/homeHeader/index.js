@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import Image from "next/image";
 import Link from "next/link";
-import { useRecoilState } from "recoil";
-import { userState } from "../../atoms/user";
-import { getAxios, postAxios } from "../../service/axios";
+import { useHomeHeader } from "./useHomeHeader";
+import { FbSnackBar } from "../snackBar";
 import { Search } from "../../components/search";
 import styles from "../../styles/homeHeader.module.css";
 import pfp from "./images/pfp.jpg";
@@ -12,65 +12,27 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { FbSnackBar } from "../snackBar";
 
 const HomeHeader = ({}) => {
+  const {
+    notifications,
+    snackMsg,
+    setSnackMsg,
+    onMouseEnterupdateNotification,
+    onClickConfirmRequestHandle,
+    onClickRejectRequestHandle,
+  } = useHomeHeader();
   let msg = "";
   const [anchorEl, setAnchorEl] = useState(null);
-  const [snackMsg, setSnackMsg] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const onMouseEnterupdateNotification = (id) => {
-    const setNotificationsTrue = postAxios("update-notification", {
-      id,
-    });
-  };
-
-  const onClickConfirmRequestHandle = async (id) => {
-    const response = await postAxios("accept-friend-request", {
-      id,
-    });
-    console.log("accept friend request: ", response);
-    if (response?.success) {
-      msg = response.message;
-    } else {
-      msg = response.message;
-    }
-    setSnackMsg(msg);
-  };
-  const onClickRejectRequestHandle = async (id) => {
-    const response = await postAxios("reject-friend-request", {
-      id,
-    });
-    if (response?.success) {
-      msg = response.message;
-    } else {
-      msg = response.message;
-    }
-    setSnackMsg(msg);
-  };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const [user, setUser] = useRecoilState(userState);
-  const [notifications, setNotifications] = useState();
 
-  const getNotifications = async () => {
-    const response = await getAxios(`user/friend-notifications`);
-    if (response?.success) {
-      setNotifications(response.notifications);
-      console.log(response);
-    } else {
-      console.log(response);
-    }
-  };
-  useEffect(() => {
-    getNotifications();
-  }, []);
   return (
     <div className={styles.headerContainer}>
       <div className={styles.headerContent}>
@@ -170,7 +132,7 @@ const HomeHeader = ({}) => {
                                   onClickRejectRequestHandle(notification._id)
                                 }
                               >
-                                Remove
+                                Decline
                               </div>
                             </div>
                           </div>

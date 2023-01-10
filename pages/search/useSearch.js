@@ -2,8 +2,6 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../atoms/user";
 import { postAxios } from "../../service/axios";
 
-//remove it to  add friend hook
-
 const useSearch = () => {
   const [user, setUser] = useRecoilState(userState);
 
