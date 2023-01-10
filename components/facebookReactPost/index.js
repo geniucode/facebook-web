@@ -3,8 +3,6 @@ import Image from "next/image";
 import profilePic from "./images/profilePic.jpg";
 import { usePost } from "./usePost.js";
 import { FbSnackBar } from "../snackBar";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 
 const FacebookReactPost = () => {
   const {

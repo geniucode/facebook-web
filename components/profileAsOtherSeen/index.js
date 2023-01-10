@@ -1,19 +1,18 @@
-import Image from "next/image";
 import { useEffect } from "react";
-import moreImg from "./images/moreImg.png";
-import profilePhoto from "./images/pfp.jpg";
+import Image from "next/image";
+
 import { TopMenuInProfilePage } from "../topMenuInProfilePage";
 import { useProfileAsOtherSeen } from "./useProfileAsOtherSeen";
 import styles from "../../styles/profileAsOtherSeen.module.css";
-import ContentNotAvailable from "../../components/contentNotAvailable";
 import { FacebookPost } from "../facebookPost";
+import moreImg from "./images/moreImg.png";
+import profilePhoto from "./images/pfp.jpg";
 
 const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
   const {
     user,
     menuItems,
     userFromUrl,
-    // userIdFromUrl,
     router,
     menuItemState,
     userpostsFromDb,

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useRecoilState } from "recoil";
 import { useRouter } from "next/router";
+import { useState } from "react";
+
+import { timeByMoment } from "../../service/timeByMoment";
 import { userState } from "../../atoms/user";
 import { getAxios } from "../../service/axios";
-import { useRecoilState } from "recoil";
-import { timeByMoment } from "../../service/timeByMoment";
 
 const useProfile = () => {
   const menuItems = [

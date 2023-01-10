@@ -1,14 +1,16 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import ReactsPopup from "./ReactsPopup";
 import { useRouter } from "next/router";
-import { userState } from "../../atoms/user";
-import Public from "../facebookPost/svg/public.js";
-import styles from "../../styles/facebookPosts.module.css";
-import SaveEditDeleteMenu from "../saveEditDeleteMenu/index.tsx";
-import { useGoToProfilePage } from "../../generalHooks/goToProfilePage";
+
+import ReactsPopup from "./ReactsPopup";
+
 import profilePicture from "../facebookPost/images/tempImages/profilePic.png";
+import { useGoToProfilePage } from "../../generalHooks/goToProfilePage";
+import SaveEditDeleteMenu from "../saveEditDeleteMenu/index.tsx";
+import styles from "../../styles/facebookPosts.module.css";
+import Public from "../facebookPost/svg/public.js";
+import { userState } from "../../atoms/user";
 
 const FacebookPostComp = ({ postData }) => {
   const { onClickToGoToProfilePage } = useGoToProfilePage();
@@ -18,11 +20,6 @@ const FacebookPostComp = ({ postData }) => {
   const myLoader = ({ src, width, quality }) => {
     return `${src}?w=${0}&q=${100}`;
   };
-  // const username = postData[0];
-  // const postBody = postData[1];
-  // const creadtedAt = postData[2];
-  // const postImg = postData[3];
-  // const userId = postData[4];
 
   const url = postData.postImg;
   let srcURL = url?.split("/");

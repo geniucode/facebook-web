@@ -23,10 +23,6 @@ const usePost = () => {
     if (id) {
       console.log("FacebookReactPost", id);
       setIm(id);
-      // } else {
-      //   id = user._id;
-      //   console.log("FacebookReactPost", id);
-      //   setIm(id);
     }
   }, [router]);
 
