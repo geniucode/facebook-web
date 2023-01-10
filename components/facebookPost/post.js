@@ -53,7 +53,7 @@ const FacebookPostComp = ({ postData }) => {
               </div>
               <div className={styles.dotHover}>
                 <SaveEditDeleteMenu
-                  userId={postData.userId}
+                  userId={postData.createdBy}
                   postUserId={user._id}
                 />
               </div>
