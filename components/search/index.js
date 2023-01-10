@@ -60,7 +60,6 @@ const Search = () => {
             }
           })}
         {console.log(users)}
-        {/* {users === "User not found" && <div>No users found</div>} */}
         {users.length === 0 && <div>No users found</div>}
       </div>
       {snackMsg && (
