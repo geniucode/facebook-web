@@ -1,16 +1,13 @@
-import { useRecoilState } from "recoil";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
 import { getAxios, postAxios } from "../../service/axios";
 import { searchUsersState } from "../../atoms/users";
 import { userState } from "../../atoms/user";
-import { friendRequestState } from "../../atoms/friendRequest";
 
 const useSearch = () => {
   const [error, setError] = useState();
   const [snackMsg, setSnackMsg] = useState(null);
   const [users, setUsers] = useRecoilState(searchUsersState);
-  // const [isFriendRequested, setIsFriendRequested] =
-  //   useRecoilState(friendRequestState);
   const [user, setUser] = useRecoilState(userState);
   let msg = "";
   const checkRequest = async (recipient) => {
@@ -44,6 +41,9 @@ const useSearch = () => {
       msg = response.message;
     }
     setSnackMsg(msg);
+    setTimeout(function () {
+      window.location.reload();
+    }, 3000);
   };
 
   const onClickSearch = async (searchValue) => {

@@ -3,13 +3,10 @@ import { DebounceInput } from "react-debounce-input";
 import { useSearch } from "./useSearch";
 import { FbSnackBar } from "../snackBar";
 import { userState } from "../../atoms/user";
-import { friendRequestState } from "../../atoms/friendRequest";
 import styles from "../../styles/homeHeader.module.css";
 
 const Search = () => {
   const [user, setUser] = useRecoilState(userState);
-  const [isFriendRequested, setIsFriendRequested] =
-    useRecoilState(friendRequestState);
   const {
     users,
     snackMsg,
@@ -38,9 +35,6 @@ const Search = () => {
       <div className={styles.searchResults}>
         {users?.length > 0 &&
           users?.map((searchedUser) => {
-            {
-              console.log(searchedUser.friendStatus);
-            }
             return (
               <div className={styles.userSearchedFor}>
                 <div>{searchedUser.name}</div>
@@ -62,7 +56,12 @@ const Search = () => {
                 </div>
               </div>
             );
+            {
+            }
           })}
+        {console.log(users)}
+        {/* {users === "User not found" && <div>No users found</div>} */}
+        {users.length === 0 && <div>No users found</div>}
       </div>
       {snackMsg && (
         <FbSnackBar
