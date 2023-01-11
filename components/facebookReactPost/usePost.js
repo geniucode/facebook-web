@@ -63,6 +63,7 @@ const usePost = () => {
       let res = await postAxios("facebook-post/add-post", {
         postBody: postBody,
         postImg: url,
+        feeling,
       });
       console.log("url:", url);
 
