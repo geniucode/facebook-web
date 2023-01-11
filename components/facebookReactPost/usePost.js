@@ -22,11 +22,11 @@ const usePost = () => {
 
   const onClickChangeFeeling = (event) => {
     if (event.target.childNodes?.length === 2) {
-      setFeeling(event.target.childNodes[1]);
+      setFeeling(event.target.childNodes[1].data);
     } else if (event.target.childNodes?.length === 1) {
-      setFeeling(event.target.nextSibling);
+      setFeeling(event.target.nextSibling.data);
     } else {
-      setFeeling(event.target.parentElement?.nextSibling);
+      setFeeling(event.target.parentElement?.nextSibling.data);
     }
   };
 
@@ -60,13 +60,14 @@ const usePost = () => {
         });
         url = response.url;
       }
+      console.log("inside post ", feeling);
       let res = await postAxios("facebook-post/add-post", {
         postBody: postBody,
         postImg: url,
         feeling,
       });
       console.log("url:", url);
-
+      setFeeling("");
       if (res) {
         msg = "Post Added Successfully";
       }

@@ -8,31 +8,31 @@ import postPicture from "../facebookPost/images/tempImages/pollfishPeople.png";
 import { useState } from "react";
 import { postsInformationState } from "../../atoms/postsInformation";
 import { useRecoilState } from "recoil";
+import { feelings } from "../facebookReactPost/feelings.js";
 
 const FacebookPostComp = ({ postData }) => {
   const [visible, setVisible] = useState(false);
 
-//   const myLoader = ({ src, width, quality }) => {
-//     return `${src}?w=${0}&q=${100}`;
-//   };
-const username = postData[0];
-const postBody= postData[1];
-const creadtedAt= postData[2];
-const postImg = postData[3];
-const whitespace = " ";
+  //   const myLoader = ({ src, width, quality }) => {
+  //     return `${src}?w=${0}&q=${100}`;
+  //   };
+  const username = postData[0];
+  const postBody = postData[1];
+  const creadtedAt = postData[2];
+  const postImg = postData[3];
+  const feeling = postData[4];
+  const feelingImage =
+    feeling.length > 0 &&
+    feelings.find((elem) => elem.feeling === feeling)?.image;
 
-
-const url = postImg;
-console.log(url)
-let srcURL = url.split("/");
-        const src =
-          "images-from-nodejs-server" +
-          "/" +
-          srcURL.at(-1);
+  const url = postImg;
+  console.log(url);
+  let srcURL = url.split("/");
+  const src = "images-from-nodejs-server" + "/" + srcURL.at(-1);
 
   return (
     <>
-     <div className={styles.postsBlock}>
+      <div className={styles.postsBlock}>
         <div className={styles.posts}>
           <div className={styles.post}>
             <div className={styles.postHeader}>
@@ -41,12 +41,22 @@ let srcURL = url.split("/");
                 <div className={styles.header_col}>
                   <div className={styles.postProfileName}>
                     {`${username}`}
+                    {feeling.length === 0 || (<div className={styles.postFeeling} sx={{hidden : feeling.length === 0}}>
+                      {"is "}
+                      <Image
+                        src={require(`../facebookReactPost/images/${feelingImage}`)}
+                        alt=""
+                        width={16}
+                        height={16}
+                      />
+                      {` feeling ${feeling}.`}
+                    </div>)}
                     <div className={styles.updatedP}></div>
                   </div>
                   <div className={styles.postProfilePrivacyDate}>
-                  {`${creadtedAt}`}
-                 <span style={{marginLeft: "5px"}} ></span>
-                     <Public color="#828387" />
+                    {`${creadtedAt}`}
+                    <span style={{ marginLeft: "5px" }}></span>
+                    <Public color="#828387" />
                   </div>
                 </div>
               </div>
@@ -59,10 +69,9 @@ let srcURL = url.split("/");
             {src != "" && ( //if src not empty return image
               <div className={styles.postImage}>
                 <Image
-                //   loader={myLoader}
+                  //   loader={myLoader}
                   src={`https://storage.googleapis.com/${src}`}
                   fill
-                  
                 />
               </div>
             )}
