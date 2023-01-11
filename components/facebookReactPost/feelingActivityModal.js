@@ -18,7 +18,6 @@ const style = {
     "rgba(0, 0, 0, 0.2) 0 12px 28px 0, rgba(0, 0, 0, 0.1) 0 2px 4px 0 , rgba(255, 255, 255, 0.5) 0 0 0 1px inset",
 };
 
-
 export default function FeelingActivityModal(props) {
   return (
     <div>
@@ -58,24 +57,53 @@ export default function FeelingActivityModal(props) {
                 </g>
               </g>
             </svg>
-            <input placeholder="Search" />
+            <input placeholder="Search" onChange={props.onChangeSearchValue} />
           </div>
           <ul className={styles.feelingList}>
-            {feelings.map((item) => {
-              return (
-                <li className={styles.feeling}>
-                  <div className={styles.icon}>
-                    <Image
-                      src={require(`./images/${item.image}`)}
-                      alt=""
-                      width={20}
-                      height={20}
-                    />
-                  </div>
-                  {`${item.feeling}`}
-                </li>
-              );
-            })}
+            {props.search.length === 0 ? (
+              feelings.map((item) => {
+                return (
+                  <li
+                    className={styles.feeling}
+                    onClick={props.onClickChangeFeeling}
+                  >
+                    <div className={styles.icon}>
+                      <Image
+                        src={require(`./images/${item.image}`)}
+                        alt=""
+                        width={20}
+                        height={20}
+                      />
+                    </div>
+                    {`${item.feeling}`}
+                  </li>
+                );
+              })
+            ) : feelings.filter((elem) => elem.feeling.includes(props.search))
+                .length > 0 ? (
+              feelings.map((item) => {
+                return (
+                  item.feeling.includes(props.search) && (
+                    <li
+                      className={styles.feeling}
+                      onClick={props.onClickChangeFeeling}
+                    >
+                      <div className={styles.icon}>
+                        <Image
+                          src={require(`./images/${item.image}`)}
+                          alt=""
+                          width={20}
+                          height={20}
+                        />
+                      </div>
+                      {`${item.feeling}`}
+                    </li>
+                  )
+                );
+              })
+            ) : (
+              <div>Result not found</div>
+            )}
           </ul>
         </Box>
       </Modal>

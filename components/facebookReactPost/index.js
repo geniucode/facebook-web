@@ -17,6 +17,9 @@ const FacebookReactPost = () => {
     open,
     handleOpen,
     handleClose,
+    onClickChangeFeeling,
+    search,
+    onChangeSearchValue,
   } = usePost();
   return (
     <>
@@ -64,7 +67,13 @@ const FacebookReactPost = () => {
             </div>
           </div>
         </div>
-        <FeelingActivityModal open={open} handleClose={handleClose} />
+        <FeelingActivityModal
+          open={open}
+          handleClose={handleClose}
+          onClickChangeFeeling={onClickChangeFeeling}
+          search={search}
+          onChangeSearchValue={onChangeSearchValue}
+        />
         {snackMsg && (
           <FbSnackBar
             message={snackMsg}

@@ -12,13 +12,34 @@ const usePost = () => {
   const [url, setUrl] = useState("");
   const [button, setButton] = useRecoilState(postButtonState);
   const [postField, setPostField] = useState("");
-
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const [search, setSearch] = useState("");
+  const [feeling, setFeeling] = useState("");
+
+  const onChangeSearchValue = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const onClickChangeFeeling = (event) => {
+    if (event.target.childNodes?.length === 2) {
+      setFeeling(event.target.childNodes[1]);
+    } else if (event.target.childNodes?.length === 1) {
+      setFeeling(event.target.nextSibling);
+    } else {
+      setFeeling(event.target.parentElement?.nextSibling);
+    }
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+    setSearch("");
+  };
+
   const handleClose = () => setOpen(false);
 
   const handleUploadFile = (event) => {
     setFile(event.target.files[0]);
+    handleClose();
     console.log("file", event.target.files[0]);
   };
 
@@ -65,7 +86,14 @@ const usePost = () => {
     }
     setSnackMsg(msg);
   };
-  useEffect(() => {}, [open]);
+
+  useEffect(() => {}, [open, search]);
+
+  useEffect(() => {
+    handleClose();
+    console.log(feeling);
+  }, [feeling]);
+
   return {
     onChangePost,
     onClickAddPost,
@@ -77,6 +105,9 @@ const usePost = () => {
     open,
     handleOpen,
     handleClose,
+    onClickChangeFeeling,
+    search,
+    onChangeSearchValue,
   };
 };
 
