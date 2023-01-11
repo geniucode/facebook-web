@@ -60,13 +60,11 @@ const usePost = () => {
         });
         url = response.url;
       }
-      console.log("inside post ", feeling);
       let res = await postAxios("facebook-post/add-post", {
         postBody: postBody,
         postImg: url,
         feeling,
       });
-      console.log("url:", url);
       setFeeling("");
       if (res) {
         msg = "Post Added Successfully";
@@ -93,7 +91,6 @@ const usePost = () => {
 
   useEffect(() => {
     handleClose();
-    console.log(feeling);
   }, [feeling]);
 
   return {
