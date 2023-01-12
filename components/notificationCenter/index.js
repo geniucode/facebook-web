@@ -127,6 +127,11 @@ const NotificationCenter = () => {
               </div>
             );
           })}
+        {!notifications && (
+          <MenuItem>
+            <div>No New Notifications</div>
+          </MenuItem>
+        )}
       </Menu>
       {snackMsg && (
         <FbSnackBar
