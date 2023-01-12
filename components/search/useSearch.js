@@ -12,6 +12,11 @@ const useSearch = () => {
   let msg = "";
   const checkRequest = async (recipient) => {
     try {
+      console.log("user id is: ", user._id);
+      console.log("recipient is: ", recipient);
+      if (user._id === recipient) {
+        return " ";
+      }
       const response = await getAxios(
         `check-request?recipient=${recipient}`,
         {}
