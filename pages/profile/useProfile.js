@@ -35,11 +35,11 @@ const useProfile = () => {
       const userpostsInformationFromDb = await response?.userPosts?.map(
         (item) => {
           return {
-            createdByName: item.createdBy.name,
-            postBody: item.postBody,
+            createdByName: item?.createdBy?.name,
+            postBody: item?.postBody,
             createdAt: timeByMoment(item.createdAt),
-            postImg: item.postImg,
-            createdBy: item.createdBy._id,
+            postImg: item?.postImg,
+            createdBy: item?.createdBy?._id,
             userName: userIdFromUrl,
           };
         }
