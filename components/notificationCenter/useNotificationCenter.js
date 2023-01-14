@@ -1,26 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { userState } from "../../atoms/user";
-import { getAxios, postAxios } from "../../service/axios";
+import { postAxios } from "../../service/axios";
 
 const useNotificationCenter = () => {
   let msg = "";
   const [user, setUser] = useRecoilState(userState);
-  // const [notifications, setNotifications] = useState();
   const [snackMsg, setSnackMsg] = useState(null);
 
-  // const getNotifications = async () => {
-  //   const response = await getAxios(`user/friend-notifications`);
-  //   if (response?.success) {
-  //     setNotifications(response.notifications);
-  //     console.log(response);
-  //   } else {
-  //     console.log(response);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getNotifications();
-  // }, []);
   const onMouseEnterupdateNotification = (id) => {
     const setNotificationsTrue = postAxios("update-notification", {
       id,
