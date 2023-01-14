@@ -15,7 +15,9 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  border: "2px solid #ffffff",
+  borderRadius: `10px`,
+  textAlign: `center`,
   boxShadow: 24,
   p: 4,
 };
@@ -63,20 +65,39 @@ const ChangeProfilePic = () => {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Change Profile Picture</Button>
+      <Button onClick={handleOpen}>Update Profile Picture</Button>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box className={styles.box} sx={style}>
+        <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Update profile picture
           </Typography>
+          <div className={styles.line}></div>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <input type="file" onChange={handleUploadFile} />
-            <button onClick={onClickChangeProfilePic}>Save</button>
+            <div className={styles.inputFile}>
+              <label className={styles.upload} for="image_uploads">
+                + Upload photo
+              </label>
+              <input
+                type="file"
+                id="image_uploads"
+                onChange={handleUploadFile}
+              />
+              <div className={styles.avatar}>
+                <button>Create an Avatar Profile Picture</button>
+              </div>
+              <div className={styles.frame}>
+                <button>Add Frame</button>
+              </div>
+              <div className={styles.thumbnail}>
+                <button>Edit Thumbnail</button>
+              </div>
+            </div>
+            <Button onClick={onClickChangeProfilePic}>Save</Button>
           </Typography>
           {snackMsg && (
             <FbSnackBar
