@@ -12,8 +12,6 @@ const useSearch = () => {
   let msg = "";
   const checkRequest = async (recipient) => {
     try {
-      console.log("user id is: ", user._id);
-      console.log("recipient is: ", recipient);
       if (user._id === recipient) {
         return " ";
       }
@@ -21,7 +19,6 @@ const useSearch = () => {
         `check-request?recipient=${recipient}`,
         {}
       );
-      console.log("response is", response);
       if (response?.success) {
         return response.message;
       } else {
