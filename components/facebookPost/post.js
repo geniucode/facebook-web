@@ -13,15 +13,16 @@ import { feelings } from "../facebookReactPost/feelings.js";
 import { CommentBar } from "./../commentBar/index.js";
 
 const FacebookPostComp = ({ postData }) => {
+  console.log("postData", postData);
   const { onClickToGoToProfilePage } = useGoToProfilePage();
   const [visible, setVisible] = useState(false);
   const [user] = useRecoilState(userState);
   const url = postData.postImg;
   const feeling = postData.feeling;
   const feelingImage =
-    feeling.length > 0 &&
+    feeling?.length > 0 &&
     feelings.find((elem) => elem.feeling === feeling)?.image;
-  const profilePic = user.profilePic ?? defaultProfilePic;
+  const profilePic = postData?.user?.profilePic ?? defaultProfilePic;
   return (
     <>
       <div className={styles.postsBlock}>
@@ -32,14 +33,19 @@ const FacebookPostComp = ({ postData }) => {
                 className={styles.postHeaderLeft}
                 onClick={() => onClickToGoToProfilePage(postData.createdBy)}
               >
-                <Image src={profilePic} alt="profilePic" />
+                <Image
+                  src={profilePic}
+                  alt="profilePic"
+                  width={200}
+                  height={200}
+                />
                 <div className={styles.header_col}>
                   <div className={styles.postProfileName}>
                     {`${postData.createdByName}`}
-                    {feeling.length === 0 || (
+                    {feeling?.length > 0 && (
                       <div
                         className={styles.postFeeling}
-                        sx={{ hidden: feeling.length === 0 }}
+                        sx={{ hidden: feeling?.length === 0 }}
                       >
                         {"is "}
                         <Image

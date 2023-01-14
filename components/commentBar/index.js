@@ -10,7 +10,12 @@ const CommentBar = () => {
   return (
     <div className={styles.post}>
       <div className={styles.profilePic}>
-        <Image src={user.profilePic ?? profilePic} alt="Profile picture" />
+        <Image
+          src={user.profilePic ?? profilePic}
+          alt="Profile picture"
+          width={200}
+          height={200}
+        />
       </div>
       <div className={styles.postField}>
         <input

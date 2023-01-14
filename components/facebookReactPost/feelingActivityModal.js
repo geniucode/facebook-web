@@ -79,11 +79,11 @@ export default function FeelingActivityModal(props) {
                   </li>
                 );
               })
-            ) : feelings.filter((elem) => elem.feeling.includes(props.search))
+            ) : feelings.filter((elem) => elem.feeling?.includes(props.search))
                 .length > 0 ? (
               feelings.map((item) => {
                 return (
-                  item.feeling.includes(props.search) && (
+                  item.feeling?.includes(props.search) && (
                     <li
                       className={styles.feeling}
                       onClick={props.onClickChangeFeeling}
