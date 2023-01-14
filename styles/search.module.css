@@ -1,231 +1,237 @@
-.search {
+.homePageMenuContanier {
+  background-color: #f0f1f5;
+  width: 30%;
+  padding-top: 25px; 
+  padding-left: 7px; 
+  
+}
+.homeContanier {
+  height: 40px;
   display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-  gap: 15px;
-}
-
-.searchHeader {
-  display: flex;
-  gap: 10px;
-  margin-left: 10px;
-}
-
-.searchBar {
-  display: flex;
-  gap: 10px;
-}
-
-.searchBar > input[type="text"] {
-  border-radius: 25px;
-  height: 35px;
-  width: 250px;
-  background-color: #e9ebee;
-}
-
-.searchBar > button {
-  cursor: pointer;
-  border: none;
-  top: 19px;
-}
-
-.searchBar > input[type="text"] {
-  padding-left: 15px;
-  font-weight: light;
-  outline: none;
-  border: none;
-  font-size: 15px;
-}
-
-.errorMsg {
-  color: red;
-}
-
-.searchResult {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
-  margin-left: 15px;
-  gap: 5px;
+  margin-bottom: 10px;
+  padding-left: 10px; 
+  gap:10px;
+}
+.homeTitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: large;
+  padding-bottom: 5px;
+}
+.homeIcon{
+  width: 24px;
+  height: 24px;
 }
 
-.userWidget {
-  box-shadow: 0 2px 4px rgb(0 0 0 / 50%), 0 8px 16px rgb(0 0 0 / 10%);
+.userContanier {
+  height: 40px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 10px;
-  height: 300px;
-  background-color: white;
-  width: 180px;
-  margin-top: 5px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10px; 
+  gap:10px;
+  margin-bottom: 12px;
+}
+.userEmail {
+  font-style: normal;
+  font-weight: 500;
+  font-size: large;
+  padding-bottom: 5px;
+}
+.userIcon > img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-top: 3px;
 }
 
-.userDetails {
+.horizontalLine >hr{
+  border: 0.5px solid #d7d9dd;
+  margin-right: 25%;
+  margin-bottom: 17px;
+}
+
+.findFriendsToSeeAllContanier {
+  height: 40px;
   display: flex;
-  flex-direction: column;
-  height: 200px;
-  font-weight: bold;
-  font-size: 12px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10px; 
+  gap:7px;
+  margin-bottom: 17px;
+}
+.findFriendsToSeeAllTitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: large;
+  padding-bottom: 5px;
+}
+.findFriendsToSeeAllIcon>img{
+  width: 24px;
+  height: 24px;
+  margin-top: 3px;
 }
 
-.profilePicture {
-  height: 180px;
-  width: 100%;
-  border-radius: 5%;
+.homeContanier:hover, .userContanier:hover, .findFriendsToSeeAllContanier:hover ,.seeAllContanier:hover,.seeAllGroupsContanier:hover {
+  border-radius: 10px 0 0 10px;
+  background-color: #e4e6eb;
 }
-
-.userFullName {
-  margin: 5px 0px 0px 10px;
-}
-
-.userButtons {
+.seeAllContanier {
+  height: 40px;
   display: flex;
-  flex-direction: column;
-  margin: 0px 10px 10px 10px;
-  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 6px; 
+  gap:6px;
+  margin-bottom: 17px;
 }
-
-.addFriend,
-.removeSuggestion {
-  cursor: pointer;
+.seeAllTitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: large;
+  padding-bottom:5px ;
+}
+.seeAllIcon >img{
+  width: 30px;
   height: 30px;
-  border-radius: 5px;
-  border: none;
-  text-align: center;
-}
-.addFriend:hover {
-  background-color: rgba(231, 243, 255, 0.5);
-}
+  margin-top: 3px;
+} 
 
-.removeSuggestion:hover {
-  background-color: rgba(228, 230, 235, 0.5);
-}
 
-.addFriend {
-  /* background-color: #e7f3ff; */
-  background-color: rgba(231, 243, 255, 1);
-  color: #1877f2;
-}
-
-.removeSuggestion {
-  /* background-color: #e4e6eb; */
-  background-color: rgba(228, 230, 235, 1);
-  font-weight: bolder;
-}
-
-.bodyContainer {
-  display: flex;
-}
-
-.headerContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.headerContainer > .headerContent {
-  width: 100%;
-  height: 56px;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  background-color: white;
-  box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.4);
-}
-.headerContent > a > svg {
-  fill: #1877f2;
-}
-.headerContent > .inputContainer {
-  width: 600px;
+.seeAllGroupsContanier{
   height: 40px;
-  margin: 0 auto;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  background: #ebedf0;
-  border-radius: 9999px;
+  padding-left: 6px; 
+  gap:6px;
+  margin-bottom: 17px;
 }
-.inputContainer > .searchIcon {
-  height: 16px;
-  width: 16px;
-  margin-left: 12px;
+.seeAllGroupsTitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: large;
+  padding-bottom:5px ;
 }
-.inputContainer > .searchIcon > svg {
-  fill: #606770;
-  cursor: pointer;
+.seeAllGroupsIcon >img{
+  width: 30px;
+  height: 30px;
+  margin-top: 3px;
 }
-.inputContainer > .searchInput {
-  padding: 8px;
-  margin: 0;
+
+.searchContanier {
   height: 40px;
-  width: 572px;
-  outline: none;
-  border: none;
-  background: transparent;
-  font-size: 15px;
-  font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial,
-    sans-serif sans-serif;
-  color: #050505;
-}
-.headerContent > .haederIconsContainer {
-  width: 136px;
-  height: 40px;
-  gap: 8px;
   display: flex;
-}
-.haederIconsContainer > .haederIcon {
-  width: 40px;
-  height: 100%;
-  display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  border-radius: 100%;
-  background: #ebedf0;
+  gap: 13px;
+  margin-bottom: 17px;
 }
-.haederIcon[notificationcount]::after {
-  content: attr(notificationcount);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 18px;
-  width: 25px;
-  position: absolute;
-  top: -5px;
-  right: -10px;
-  font-size: 13px;
-  border-radius: 1000px;
-  color: white;
-  background-color: red;
+.searchTitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: large;
+  padding-bottom: 5px;
 }
-.haederIconsContainer > .haederIcon:hover {
-  cursor: pointer;
-  background: #e4e6eb;
+.searchIcon > img {
+  width: 24px;
 }
-.headerProfilePic > img {
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
+
+
+
+@media screen and (max-width: 1160px) {
+  .homePageMenuContanier {
+    width: 55px ;
+  }
+  .homeContanier{
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .userContanier{
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .homeTitle{
+    display: none;
+  }
+  .userEmail{
+    display: none;
+  }
+  .horizontalLine >hr{
+    border: unset;
+  }
+   .findFriendsToSeeAllContanier{
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .findFriendsToSeeAllTitle{
+    display: none;
+  }
+  
+  /* .findFriendsContanier{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .findFriendsTitle{
+    display: none;
+  }
+  .marketplaceContanier{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .marketplaceTitle{
+    display: none;
+  }
+  .memoriesContanier{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .memoriesTitle{
+    display: none;
+  }
+  .savedContanier{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .savedTitle{
+    display: none;
+  }
+  .pagesContanier{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pagesTitle{
+    display: none;
+  } */
+  .seeAllContanier{
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .seeAllTitle{
+    display: none;
+  }
+  .seeAllGroupsContanier{
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .seeAllGroupsTitle{
+    display: none;
+  }
+  .homeContanier:hover, .userContanier:hover, .findFriendsToSeeAllContanier:hover ,.seeAllContanier:hover,.seeAllGroupsContanier:hover {
+    border-radius: 10px ;
+  }
+ 
 }
-.headerProfilePic {
-  position: relative;
-}
-.chevronDown {
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  bottom: -2px;
-  right: -2px;
-  color: #050505;
-  background: #ebedf0;
-  border-radius: 100%;
-  border: solid 2px white;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.chevronDown > svg {
-  width: 9px;
-}
+/* @media screen and (max-width: 450px){
+  @media screen and (max-width: 450px){
+  .homePageMenuContanier {
+    display: none;
+  }
+} */

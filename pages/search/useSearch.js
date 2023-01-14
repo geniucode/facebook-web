@@ -1,45 +1,30 @@
-import { useState } from "react";
-import { getAxios } from "../../service/axios";
+import { useRecoilState } from "recoil";
+import { userState } from "../../atoms/user";
+import { postAxios } from "../../service/axios";
 
 const useSearch = () => {
-  const [name, setname] = useState("");
-  const [error, setError] = useState("");
-  const [users, setUsers] = useState([]);
-  const onChangeSearchValue = async (e) => {
-    console.log(e.target.value);
-    setname(e.target.value);
-    setError("");
-    setUsers([]);
-  };
+  const [user, setUser] = useRecoilState(userState);
 
-  const onClickSearch = async () => {
-    if (name) {
-      const response = await getAxios("user/search", {
-        name,
-      });
-      if (response?.errors) {
-        setError("Please enter a valid name");
-        return;
-      }
-      if (!response?.success) {
-        console.log(response);
-        setError("No users found");
-        setUsers([]);
-      }
-      if (response?.success) {
-        setUsers(response.usersFound);
-        console.log(response.usersFound);
-        setError("");
-      }
+  const onClickAddFriend = async (id) => {
+    const receiverId = id;
+    const senderId = user._id;
+    const response = await postAxios("friend-request", {
+      recipient: receiverId,
+    });
+    console.log("response", response);
+    if (response.success) {
+      console.log(response.success);
+      // add snackbar
+      // setError(response.message);
     } else {
-      setError("Please enter a value to search for");
+      // add snackbar
+      // setError(response.message);
+      console.log(response.message);
     }
   };
+
   return {
-    error,
-    users,
-    onChangeSearchValue,
-    onClickSearch,
+    onClickAddFriend,
   };
 };
 export { useSearch };

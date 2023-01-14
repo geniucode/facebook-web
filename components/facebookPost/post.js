@@ -27,6 +27,7 @@ const FacebookPostComp = ({ postData }) => {
 
   const url = postImg;
   console.log(url);
+
   let srcURL = url.split("/");
   const src = "images-from-nodejs-server" + "/" + srcURL.at(-1);
 
