@@ -1,0 +1,121 @@
+.boxHeading {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 20px;
+  font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+}
+.icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e4e6eb;
+  border-radius: 50%;
+}
+.boxHeading > .icon:hover {
+  background-image: linear-gradient(to right, #e4e6eb, #e4e6eb),
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.01),
+      rgba(0, 0, 0, 0.01)
+    );
+  background-blend-mode: multiply;
+}
+.boxHeading > .icon > div {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/HVTk1VMGyal.png);
+  background-position: -146px -59px;
+  background-position-x: -146px;
+  background-position-y: -59px;
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+.boxHeading > .icon {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  cursor: pointer;
+}
+.searchBar {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+.searchBar > svg {
+  background: #f0f2f5;
+  height: 36px;
+  width: 26px;
+  padding-left: 10px;
+  border-top-left-radius: 9999px;
+  border-bottom-left-radius: 9999px;
+}
+.searchBar > input {
+  background: #f0f2f5;
+  height: 36px;
+  width: 442px;
+  padding: 7px 6px 9px;
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+  border: unset;
+  font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  color: #050505;
+}
+.feelingList {
+  list-style-type: none;
+  margin: 0;
+  padding: 8px;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  height: 484px;
+  overflow: overlay;
+  mask-image: linear-gradient(to top, transparent, black),
+    linear-gradient(to left, transparent 17px, black 17px);
+  mask-size: 100% 20000px;
+  mask-position: left bottom;
+  transition: mask-position 0.3s;
+}
+.feelingList:hover {
+  mask-position: left top;
+}
+.feelingList::-webkit-scrollbar {
+  display: block;
+  width: 16px;
+  background: #f2f3f5;
+}
+.feelingList::-webkit-scrollbar-thumb {
+  box-sizing: border-box;
+  background: #bcc0c4;
+  border: 4px solid #f2f3f5;
+  background-blend-mode: multiply;
+  width: 8px;
+  border-radius: 16px;
+}
+.feeling {
+  width: 242px;
+  height: 52px;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.feeling > .icon {
+  margin-right: 12px;
+}
+.feeling:hover {
+  background-color: rgba(68, 73, 80, 0.15);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
+}

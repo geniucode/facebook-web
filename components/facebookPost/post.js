@@ -8,6 +8,7 @@ import postPicture from "../facebookPost/images/tempImages/pollfishPeople.png";
 import { useState } from "react";
 import { postsInformationState } from "../../atoms/postsInformation";
 import { useRecoilState } from "recoil";
+import { feelings } from "../facebookReactPost/feelings.js";
 
 const FacebookPostComp = ({ postData }) => {
   const [visible, setVisible] = useState(false);
@@ -19,9 +20,14 @@ const FacebookPostComp = ({ postData }) => {
   const postBody = postData[1];
   const creadtedAt = postData[2];
   const postImg = postData[3];
-  const whitespace = " ";
+  const feeling = postData[4];
+  const feelingImage =
+    feeling.length > 0 &&
+    feelings.find((elem) => elem.feeling === feeling)?.image;
 
   const url = postImg;
+  console.log(url);
+
   let srcURL = url.split("/");
   const src = "images-from-nodejs-server" + "/" + srcURL.at(-1);
 
@@ -36,6 +42,16 @@ const FacebookPostComp = ({ postData }) => {
                 <div className={styles.header_col}>
                   <div className={styles.postProfileName}>
                     {`${username}`}
+                    {feeling.length === 0 || (<div className={styles.postFeeling} sx={{hidden : feeling.length === 0}}>
+                      {"is "}
+                      <Image
+                        src={require(`../facebookReactPost/images/${feelingImage}`)}
+                        alt=""
+                        width={16}
+                        height={16}
+                      />
+                      {` feeling ${feeling}.`}
+                    </div>)}
                     <div className={styles.updatedP}></div>
                   </div>
                   <div className={styles.postProfilePrivacyDate}>

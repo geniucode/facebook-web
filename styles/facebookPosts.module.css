@@ -57,6 +57,19 @@
   line-height: 19px;
   color: black;
 }
+.postFeeling{
+  display: flex;
+  align-items: center;
+  color: #65676b;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
+}
+.postFeeling > img{
+  width: 16px;
+  height: 16px;
+  margin: 0 4px;
+}
 .updatedP {
   color: var(--color-secondary);
   font-weight: normal;

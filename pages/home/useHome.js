@@ -21,7 +21,8 @@ const useHome = () => {
           item.user.name,
           item.postBody,
           timeByMoment(item.createdAt),
-           item.postImg
+          item.postImg,
+          item.feeling,
         ];
       }
     );

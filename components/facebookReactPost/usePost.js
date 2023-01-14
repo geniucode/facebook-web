@@ -12,9 +12,34 @@ const usePost = () => {
   const [url, setUrl] = useState("");
   const [button, setButton] = useRecoilState(postButtonState);
   const [postField, setPostField] = useState("");
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [feeling, setFeeling] = useState("");
+
+  const onChangeSearchValue = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const onClickChangeFeeling = (event) => {
+    if (event.target.childNodes?.length === 2) {
+      setFeeling(event.target.childNodes[1].data);
+    } else if (event.target.childNodes?.length === 1) {
+      setFeeling(event.target.nextSibling.data);
+    } else {
+      setFeeling(event.target.parentElement?.nextSibling.data);
+    }
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+    setSearch("");
+  };
+
+  const handleClose = () => setOpen(false);
 
   const handleUploadFile = (event) => {
     setFile(event.target.files[0]);
+    handleClose();
     console.log("file", event.target.files[0]);
   };
 
@@ -38,8 +63,9 @@ const usePost = () => {
       let res = await postAxios("facebook-post/add-post", {
         postBody: postBody,
         postImg: url,
+        feeling,
       });
-
+      setFeeling("");
       if (res) {
         msg = "Post Added Successfully";
       }
@@ -60,6 +86,13 @@ const usePost = () => {
     }
     setSnackMsg(msg);
   };
+
+  useEffect(() => {}, [open, search]);
+
+  useEffect(() => {
+    handleClose();
+  }, [feeling]);
+
   return {
     onChangePost,
     onClickAddPost,
@@ -68,6 +101,12 @@ const usePost = () => {
     handleUploadFile,
     uploadRef,
     postField,
+    open,
+    handleOpen,
+    handleClose,
+    onClickChangeFeeling,
+    search,
+    onChangeSearchValue,
   };
 };
 
