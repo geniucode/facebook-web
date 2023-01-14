@@ -120,7 +120,7 @@ const Login = () => {
           </div>
           <div className={styles.pageCreate}>
             {/* <a href="/">Create a Page </a>for a celebrity, brand or business. */}
-            <Link href="/forgetPassword">Forgot Your Password?</Link>
+            <Link href="/forgetpassword">Forgot Your Password?</Link>
           </div>
         </div>
       </div>

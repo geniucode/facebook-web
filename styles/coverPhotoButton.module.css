@@ -1,0 +1,42 @@
+.cameraIcon {
+    background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yB/r/0vR9H8iux5G.png');
+    background-position: 0 -458px;
+    background-size: auto;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.menuRow{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 20px;
+    font-size: 14px;
+    line-height: 1.3333;
+    font-weight: 600;
+    font-family: 'Segoe UI Historic', 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+.uploadPhotoIcon,
+.selectPhotoIcon {
+    background-size: auto;
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.selectPhotoIcon {
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/WJoRVK_GSIw.png");
+    background-position: 0px -340px;
+}
+.uploadPhotoIcon {
+    background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/SyKgNW4aY0X.png");
+    background-position: 0px -21px;
+}
+
+@media screen and (max-width: 900px) {
+    .buttonSpan {
+        display: none;
+    }
+}
