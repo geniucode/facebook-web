@@ -2,15 +2,12 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { useRouter } from "next/router";
-
 import ReactsPopup from "./ReactsPopup";
-
 import { useGoToProfilePage } from "../../generalHooks/goToProfilePage";
 import SaveEditDeleteMenu from "../saveEditDeleteMenu/index.tsx";
 import styles from "../../styles/facebookPosts.module.css";
 import Public from "../facebookPost/svg/public.js";
 import { userState } from "../../atoms/user";
-import ReactsPopup from "./ReactsPopup";
 import defaultProfilePic from "./../facebookReactPost/images/profilePic.jpg";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
