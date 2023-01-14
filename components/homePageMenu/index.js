@@ -95,14 +95,6 @@ const HomePageMneu = () => {
             </div>
           </div>
         </Link>
-        <Link href="/search">
-          <div className={styles.searchContanier} onClick={onClickNotHomeIcon}>
-            <div className={styles.searchIcon}>
-              <Image src={searchIcon} />
-            </div>
-            <div className={styles.searchTitle}>Go to search page</div>
-          </div>
-        </Link>
       </div>
     </>
   );

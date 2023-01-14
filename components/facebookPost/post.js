@@ -11,6 +11,14 @@ import SaveEditDeleteMenu from "../saveEditDeleteMenu/index.tsx";
 import styles from "../../styles/facebookPosts.module.css";
 import Public from "../facebookPost/svg/public.js";
 import { userState } from "../../atoms/user";
+import Dots from "../facebookPost/svg/Dots.js";
+import ReactsPopup from "./ReactsPopup";
+import profilePicture from "../facebookPost/images/tempImages/profilePic.png";
+import postPicture from "../facebookPost/images/tempImages/pollfishPeople.png";
+import { useState } from "react";
+import { postsInformationState } from "../../atoms/postsInformation";
+import { useRecoilState } from "recoil";
+import { feelings } from "../facebookReactPost/feelings.js";
 
 const FacebookPostComp = ({ postData }) => {
   const { onClickToGoToProfilePage } = useGoToProfilePage();
@@ -24,6 +32,10 @@ const FacebookPostComp = ({ postData }) => {
   const url = postData.postImg;
   let srcURL = url?.split("/");
   const src = "images-from-nodejs-server" + "/" + srcURL?.at(-1);
+  const feeling = postData.feeling;
+  const feelingImage =
+    feeling.length > 0 &&
+    feelings.find((elem) => elem.feeling === feeling)?.image;
 
   return (
     <>
@@ -39,6 +51,21 @@ const FacebookPostComp = ({ postData }) => {
                 <div className={styles.header_col}>
                   <div className={styles.postProfileName}>
                     {`${postData.createdByName}`}
+                    {feeling.length === 0 || (
+                      <div
+                        className={styles.postFeeling}
+                        sx={{ hidden: feeling.length === 0 }}
+                      >
+                        {"is "}
+                        <Image
+                          src={require(`../facebookReactPost/images/${feelingImage}`)}
+                          alt=""
+                          width={16}
+                          height={16}
+                        />
+                        {` feeling ${feeling}.`}
+                      </div>
+                    )}
                     <div className={styles.updatedP}></div>
                   </div>
                   <div className={styles.postProfilePrivacyDate}>

@@ -1,8 +1,7 @@
 .fbContainer {
-  display:flex;
+  display: flex;
   width: 800px;
   flex-direction: column;
-
 }
 
 .fbPost {
@@ -17,27 +16,34 @@
   background-color: white;
 }
 
+.profilePic {
+  display: flex;
+  align-items: center;
+}
+
 .profilePic > img {
   width: 35px;
   height: 35px;
-  margin-top: 10px;
 }
-.PhotoInput{
+.PhotoInput {
   position: absolute;
- 
 }
-.KK{
+.KK {
   position: relative;
 }
 
 .postField {
-  margin-top: 7px;
-  margin-left: 10px;
+  width: 480px;
+  display: flex;
+  align-items: center;
 }
 
 .postField > input {
-  width: 400px;
+  width: 100%;
   height: 40px;
+  font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  color: #65676b;
   background-color: #f2f3f5;
   border-radius: 30px;
   border-style: none;
@@ -55,8 +61,6 @@
   color: white;
   font-size: 16px;
   font-weight: bolder;
-  margin-left: 15px;
-  margin-top: 7px;
 }
 
 .postButton > button:hover {
@@ -65,55 +69,51 @@
 
 .post {
   display: flex;
-  /* align-items: center; */
-  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  padding-left: 20px;
+  padding: 0 20px;
+  margin-top: 10px;
 }
 
 .reactButtons {
   display: flex;
+  justify-content: space-around;
+  gap: 40px;
   margin-top: 10px;
-  margin-bottom: 10px;
-  padding-top: 10px;
+  padding: 10px 20px;
   border-top: medium solid #f2f3f5;
-  padding-left: 20px;
   width: 100%;
 }
 
-.liveVideo > button {
-  background-image: url(../components/facebookReactPost/images/button-icons.png);
-  background-position: 0 -42px;
-  background-size: 30%;
+.photoVideoIcon,
+.feelingActivityIcon {
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/56825_TDFXM.png);
+  background-size: auto;
+  width: 24px;
+  height: 24px;
   background-repeat: no-repeat;
   display: inline-block;
 }
-
-.photoVideo > button {
-  background-image: url(../components/facebookReactPost/images/button-icons.png);
-  background-position: 0 -420px;
-  background-size: 30%;
-  background-repeat: no-repeat;
-  display: inline-block;
+.photoVideoIcon {
+  background-position: 0 -175px;
+}
+.feelingActivityIcon{
+  background-position: 0 -125px;
 }
 
+
+.photoVideo > button,
 .feelingActivity > button {
-  background-image: url(../components/facebookReactPost/images/button-icons.png);
-  background-position: 0 -281px;
-  background-size: 30%;
-  background-repeat: no-repeat;
-  display: inline-block;
-}
-
-.reactButtons > div > button {
   display: flex;
   align-items: center;
+  justify-content: center;
   font-family: inherit;
   font-size: 0.9375rem;
   line-height: 1.6;
   font-weight: 600;
-  padding: 0 10px 0 11px;
-  width: 150px;
+  padding: 0 10px;
+  width: 270px;
   height: 40px;
   background-color: #fff;
   border: none;
@@ -124,15 +124,14 @@
   color: #65676b;
 }
 
-.reactButtons > div > button > span {
-  margin-left: 30px;
+.photoVideo > button > span,
+.feelingActivity > button > span {
+  margin-left: 10px;
+  font-size: 14px;
 }
 
-.reactButtons > div > button:hover {
+.photoVideo > button:hover,
+.feelingActivity > button:hover {
   background-color: #f2f3f5;
 }
 
-.reactButtons > div > button > img {
-  width: 25px;
-  height: 25px;
-}

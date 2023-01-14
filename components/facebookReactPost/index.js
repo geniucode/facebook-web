@@ -3,6 +3,7 @@ import Image from "next/image";
 import profilePic from "./images/profilePic.jpg";
 import { usePost } from "./usePost.js";
 import { FbSnackBar } from "../snackBar";
+import FeelingActivityModal from "./feelingActivityModal.js";
 
 const FacebookReactPost = () => {
   const {
@@ -13,6 +14,12 @@ const FacebookReactPost = () => {
     handleUploadFile,
     uploadRef,
     postField,
+    open,
+    handleOpen,
+    handleClose,
+    onClickChangeFeeling,
+    search,
+    onChangeSearchValue,
   } = usePost();
   return (
     <>
@@ -35,18 +42,13 @@ const FacebookReactPost = () => {
             </div>
           </div>
           <div className={styles.reactButtons}>
-            <div className={styles.liveVideo}>
-              <button>
-                <span>Live Video</span>
-              </button>
-            </div>
             <div className={styles.photoVideo}>
               <button
-                className={styles.kk}
                 onClick={() => {
                   uploadRef.current.click();
                 }}
               >
+                <div className={styles.photoVideoIcon}></div>
                 <span>Photo/video</span>
                 <input
                   className={styles.PhotoInput}
@@ -58,12 +60,20 @@ const FacebookReactPost = () => {
               </button>
             </div>
             <div className={styles.feelingActivity}>
-              <button>
+              <button onClick={handleOpen}>
+                <div className={styles.feelingActivityIcon}></div>
                 <span>Feeling/activity</span>
               </button>
             </div>
           </div>
         </div>
+        <FeelingActivityModal
+          open={open}
+          handleClose={handleClose}
+          onClickChangeFeeling={onClickChangeFeeling}
+          search={search}
+          onChangeSearchValue={onChangeSearchValue}
+        />
         {snackMsg && (
           <FbSnackBar
             message={snackMsg}
