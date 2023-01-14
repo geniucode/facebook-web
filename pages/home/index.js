@@ -8,6 +8,7 @@ import { useHome } from "./useHome.js";
 import { postsInformationState } from "../../atoms/postsInformation.js";
 import { useRecoilState } from "recoil";
 import { postButtonState, urlImageState } from "../../atoms/urlImage.js";
+import { ChangeProfilePic } from "../../components/changeProfilePic/index.js";
 
 const Home = () => {
   const { setHomeIcon, getAxiosGetAllPosts } = useHome();
@@ -46,6 +47,7 @@ const Home = () => {
             }}
           >
             <FacebookReactPost />
+            <ChangeProfilePic />
           </div>
           <FacebookPost postsInformation={postsInformation} />
         </div>

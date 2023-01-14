@@ -1,0 +1,61 @@
+.inputFile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputFile > label {
+  border: 1px solid #ecf3ff;
+  background-color: #ecf3ff;
+  border-radius: 5px;
+  color: #1877f2;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.inputFile > div {
+  border: 1px solid #ecf3ff;
+  background-color: #ecf3ff;
+  border-radius: 5px;
+  color: #1877f2;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.inputFile > div:hover {
+  background-color: #e4f0f6;
+}
+.line {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.inputFile > input[type="file"] {
+  display: none;
+}
+
+.avatar > button {
+  border: 1px solid #ecf3ff;
+  background-color: #ecf3ff;
+  border-radius: 5px;
+  color: #1877f2;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.frame > button {
+  border: 1px solid #ecf3ff;
+  background-color: #ecf3ff;
+  border-radius: 5px;
+  color: #1877f2;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.thumbnail > button {
+  border: 1px solid #ecf3ff;
+  background-color: #ecf3ff;
+  border-radius: 5px;
+  color: #1877f2;
+  font-size: 16px;
+  cursor: pointer;
+}

@@ -5,38 +5,28 @@ import { useRouter } from "next/router";
 
 import ReactsPopup from "./ReactsPopup";
 
-import profilePicture from "../facebookPost/images/tempImages/profilePic.png";
 import { useGoToProfilePage } from "../../generalHooks/goToProfilePage";
 import SaveEditDeleteMenu from "../saveEditDeleteMenu/index.tsx";
 import styles from "../../styles/facebookPosts.module.css";
 import Public from "../facebookPost/svg/public.js";
 import { userState } from "../../atoms/user";
-import Dots from "../facebookPost/svg/Dots.js";
 import ReactsPopup from "./ReactsPopup";
-import profilePicture from "../facebookPost/images/tempImages/profilePic.png";
-import postPicture from "../facebookPost/images/tempImages/pollfishPeople.png";
+import defaultProfilePic from "./../facebookReactPost/images/profilePic.jpg";
 import { useState } from "react";
-import { postsInformationState } from "../../atoms/postsInformation";
 import { useRecoilState } from "recoil";
 import { feelings } from "../facebookReactPost/feelings.js";
+import { CommentBar } from "./../commentBar/index.js";
 
 const FacebookPostComp = ({ postData }) => {
   const { onClickToGoToProfilePage } = useGoToProfilePage();
   const [visible, setVisible] = useState(false);
-  const router = useRouter();
-  const [user, setUser] = useRecoilState(userState);
-  const myLoader = ({ src, width, quality }) => {
-    return `${src}?w=${0}&q=${100}`;
-  };
-
+  const [user] = useRecoilState(userState);
   const url = postData.postImg;
-  let srcURL = url?.split("/");
-  const src = "images-from-nodejs-server" + "/" + srcURL?.at(-1);
   const feeling = postData.feeling;
   const feelingImage =
     feeling.length > 0 &&
     feelings.find((elem) => elem.feeling === feeling)?.image;
-
+  const profilePic = user.profilePic ?? defaultProfilePic;
   return (
     <>
       <div className={styles.postsBlock}>
@@ -47,7 +37,7 @@ const FacebookPostComp = ({ postData }) => {
                 className={styles.postHeaderLeft}
                 onClick={() => onClickToGoToProfilePage(postData.createdBy)}
               >
-                <Image src={profilePicture} alt="profilePic" />
+                <Image src={profilePic} alt="profilePic" />
                 <div className={styles.header_col}>
                   <div className={styles.postProfileName}>
                     {`${postData.createdByName}`}
@@ -131,6 +121,7 @@ const FacebookPostComp = ({ postData }) => {
                 <span>Share</span>
               </div>
             </div>
+            <CommentBar />
           </div>
         </div>
       </div>
