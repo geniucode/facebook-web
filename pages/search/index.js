@@ -9,6 +9,7 @@ import { HomePageMneu } from "../../components/homePageMenu";
 import HomeHeader from "../../components/homeHeader";
 import profilePicture from "./images/profile-picture.jpeg";
 import styles from "../../styles/search.module.css";
+import { useSearch } from "./useSearch";
 
 const Search = () => {
   const [users, setUsers] = useRecoilState(searchUsersState);
@@ -18,6 +19,8 @@ const Search = () => {
     setUsers({});
     setError("");
   }, []);
+  const { onClickAddFriend } = useSearch();
+
   return (
     <>
       <Auth>
@@ -29,7 +32,7 @@ const Search = () => {
           <HomePageMneu />
           <div className={styles.searchResult}>
             {error && <p className={styles.errorMsg}>{error}</p>}
-            {users.length > 0 &&
+            {users?.length > 0 &&
               users.map((user) => {
                 return (
                   <div className={styles.userWidget}>
@@ -46,6 +49,7 @@ const Search = () => {
                     <div className={styles.userButtons}>
                       <input
                         type="button"
+                        onClick={() => onClickAddFriend(user._id)}
                         className={styles.addFriend}
                         value="Add Friend"
                       ></input>

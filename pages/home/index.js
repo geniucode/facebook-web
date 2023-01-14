@@ -14,15 +14,15 @@ const Home = () => {
   const [postsInformation, setPostsInformation] = useRecoilState(
     postsInformationState
   );
-  const [button,setButton]=useRecoilState(postButtonState)
+  const [button, setButton] = useRecoilState(postButtonState);
   useEffect(() => {
     getAxiosGetAllPosts();
-    console.log(postsInformation)
-  },[button]);
+    console.log(postsInformation);
+  }, [button]);
   useEffect(() => {
     getAxiosGetAllPosts(), setHomeIcon(true);
-    console.log(postsInformation)
-  },[]);
+    console.log(postsInformation);
+  }, []);
   return (
     <Auth>
       <HomeHeader />
