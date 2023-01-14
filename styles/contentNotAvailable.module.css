@@ -1,0 +1,15 @@
+.allPage{
+    width: 100%;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentNotAvai{
+    color: #656775;
+    font-weight: bolder;
+    font-size: larger;
+    margin-top: 16px;
+}

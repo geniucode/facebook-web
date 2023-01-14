@@ -1,16 +1,19 @@
-import { useRecoilValue, useRecoilState } from "recoil";
-import { homeIconState } from "../../atoms/home-icon";
 import Image from "next/image";
+import { useRecoilState } from "recoil";
 import savedIcon from "./images/saved-icon.png";
 import pagesIcon from "./images/pages-icon.png";
+import { userState } from "../../atoms/user.js";
 import friendsIcon from "./images/friends-icon.png";
 import memoriesIcon from "./images/memories-icon.png";
+import { homeIconState } from "../../atoms/home-icon";
 import marketplaceIcon from "./images/marketplace-icon.png";
-import { userState } from "../../atoms/user.js";
+import { useGoToProfilePage } from "../../generalHooks/goToProfilePage";
 
 const useHomePageMenu = () => {
+  const { onClickToGoToProfilePage } = useGoToProfilePage();
   const [user, setUser] = useRecoilState(userState);
   const [homeIcon, setHomeIcon] = useRecoilState(homeIconState);
+
   const onClickHomeIcon = () => {
     setHomeIcon(true);
   };
@@ -43,10 +46,6 @@ const useHomePageMenu = () => {
       title: "Pages",
       href: "",
     },
-    // {
-    //     icon:  <Image src={seeAllIcon} />,
-    //     title:"See all"
-    // },
   ];
 
   return {
@@ -56,6 +55,7 @@ const useHomePageMenu = () => {
     setUser,
     onClickHomeIcon,
     onClickNotHomeIcon,
+    onClickToGoToProfilePage,
   };
 };
 export { useHomePageMenu };

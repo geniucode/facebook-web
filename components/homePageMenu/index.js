@@ -5,12 +5,18 @@ import userIcon from "./images/user-icon.png";
 import seeAllIcon from "./images/see-all-icon.png";
 import searchIcon from "./images/search-icon.png";
 import { useHomePageMenu } from "./useHomePageMenu";
-import seeAllGroupsIcon from "./images/see-all-groups-icon.png";
 import styles from "../../styles/homePageMenu.module.css";
+import seeAllGroupsIcon from "./images/see-all-groups-icon.png";
 
 const HomePageMneu = () => {
-  const { user, items, homeIcon, onClickHomeIcon, onClickNotHomeIcon } =
-    useHomePageMenu();
+  const {
+    user,
+    items,
+    homeIcon,
+    onClickHomeIcon,
+    onClickNotHomeIcon,
+    onClickToGoToProfilePage,
+  } = useHomePageMenu();
 
   return (
     <>
@@ -26,7 +32,12 @@ const HomePageMneu = () => {
           </div>
         </Link>
         {/* userContainer */}
-        <div className={styles.userContanier} onClick={onClickNotHomeIcon}>
+        <div
+          className={styles.userContanier}
+          onClick={
+            onClickNotHomeIcon && (() => onClickToGoToProfilePage(user._id))
+          }
+        >
           <div className={styles.userIcon}>
             <Image src={userIcon} />
           </div>

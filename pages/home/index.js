@@ -17,11 +17,9 @@ const Home = () => {
   const [button, setButton] = useRecoilState(postButtonState);
   useEffect(() => {
     getAxiosGetAllPosts();
-    console.log(postsInformation);
   }, [button]);
   useEffect(() => {
     getAxiosGetAllPosts(), setHomeIcon(true);
-    console.log(postsInformation);
   }, []);
   return (
     <Auth>
@@ -49,7 +47,7 @@ const Home = () => {
           >
             <FacebookReactPost />
           </div>
-          <FacebookPost />
+          <FacebookPost postsInformation={postsInformation} />
         </div>
       </div>
     </Auth>

@@ -34,6 +34,10 @@
   gap:10px;
   margin-bottom: 12px;
 }
+
+.userContanier:hover{
+  cursor: pointer
+}
 .userEmail {
   font-style: normal;
   font-weight: 500;

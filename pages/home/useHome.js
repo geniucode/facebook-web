@@ -1,7 +1,6 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import { homeIconState } from "../../atoms/home-icon";
 import { postsInformationState } from "../../atoms/postsInformation";
-import { urlImageState } from "../../atoms/urlImage";
 import { userState } from "../../atoms/user";
 import { getAxios } from "../../service/axios";
 import { timeByMoment } from "../../service/timeByMoment";
@@ -14,20 +13,17 @@ const useHome = () => {
 
   const getAxiosGetAllPosts = async () => {
     const response = await getAxios("facebook-post/get-all-posts", {});
-
-    const postsInformationFromDb= await response?.posts?.map(
-      (item) => {
-        return [
-          item.user.name,
-          item.postBody,
-          timeByMoment(item.createdAt),
-          item.postImg,
-          item.feeling,
-        ];
-      }
-    );
-    
-    
+    const postsInformationFromDb = await response?.posts?.map((item) => {
+      return {
+        createdByName: item?.createdBy?.name,
+        postBody: item?.postBody,
+        createdAt: timeByMoment(item.createdAt),
+        postImg: item?.postImg,
+        createdBy: item?.createdBy?._id,
+        userName: item?.createdBy?.name,
+        feeling: item.feeling,
+      };
+    });
 
     setPostsInformation(postsInformationFromDb);
   };

@@ -1,6 +1,16 @@
 import Image from "next/image";
+import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { useRouter } from "next/router";
+
+import ReactsPopup from "./ReactsPopup";
+
+import profilePicture from "../facebookPost/images/tempImages/profilePic.png";
+import { useGoToProfilePage } from "../../generalHooks/goToProfilePage";
+import SaveEditDeleteMenu from "../saveEditDeleteMenu/index.tsx";
 import styles from "../../styles/facebookPosts.module.css";
 import Public from "../facebookPost/svg/public.js";
+import { userState } from "../../atoms/user";
 import Dots from "../facebookPost/svg/Dots.js";
 import ReactsPopup from "./ReactsPopup";
 import profilePicture from "../facebookPost/images/tempImages/profilePic.png";
@@ -11,25 +21,21 @@ import { useRecoilState } from "recoil";
 import { feelings } from "../facebookReactPost/feelings.js";
 
 const FacebookPostComp = ({ postData }) => {
+  const { onClickToGoToProfilePage } = useGoToProfilePage();
   const [visible, setVisible] = useState(false);
+  const router = useRouter();
+  const [user, setUser] = useRecoilState(userState);
+  const myLoader = ({ src, width, quality }) => {
+    return `${src}?w=${0}&q=${100}`;
+  };
 
-  //   const myLoader = ({ src, width, quality }) => {
-  //     return `${src}?w=${0}&q=${100}`;
-  //   };
-  const username = postData[0];
-  const postBody = postData[1];
-  const creadtedAt = postData[2];
-  const postImg = postData[3];
-  const feeling = postData[4];
+  const url = postData.postImg;
+  let srcURL = url?.split("/");
+  const src = "images-from-nodejs-server" + "/" + srcURL?.at(-1);
+  const feeling = postData.feeling;
   const feelingImage =
     feeling.length > 0 &&
     feelings.find((elem) => elem.feeling === feeling)?.image;
-
-  const url = postImg;
-  console.log(url);
-
-  let srcURL = url.split("/");
-  const src = "images-from-nodejs-server" + "/" + srcURL.at(-1);
 
   return (
     <>
@@ -37,41 +43,52 @@ const FacebookPostComp = ({ postData }) => {
         <div className={styles.posts}>
           <div className={styles.post}>
             <div className={styles.postHeader}>
-              <div className={styles.postHeaderLeft}>
+              <div
+                className={styles.postHeaderLeft}
+                onClick={() => onClickToGoToProfilePage(postData.createdBy)}
+              >
                 <Image src={profilePicture} alt="profilePic" />
                 <div className={styles.header_col}>
                   <div className={styles.postProfileName}>
-                    {`${username}`}
-                    {feeling.length === 0 || (<div className={styles.postFeeling} sx={{hidden : feeling.length === 0}}>
-                      {"is "}
-                      <Image
-                        src={require(`../facebookReactPost/images/${feelingImage}`)}
-                        alt=""
-                        width={16}
-                        height={16}
-                      />
-                      {` feeling ${feeling}.`}
-                    </div>)}
+                    {`${postData.createdByName}`}
+                    {feeling.length === 0 || (
+                      <div
+                        className={styles.postFeeling}
+                        sx={{ hidden: feeling.length === 0 }}
+                      >
+                        {"is "}
+                        <Image
+                          src={require(`../facebookReactPost/images/${feelingImage}`)}
+                          alt=""
+                          width={16}
+                          height={16}
+                        />
+                        {` feeling ${feeling}.`}
+                      </div>
+                    )}
                     <div className={styles.updatedP}></div>
                   </div>
                   <div className={styles.postProfilePrivacyDate}>
-                    {`${creadtedAt}`}
+                    {`${postData.createdAt}`}
                     <span style={{ marginLeft: "5px" }}></span>
                     <Public color="#828387" />
                   </div>
                 </div>
               </div>
               <div className={styles.dotHover}>
-                <Dots color="#828387" />
+                <SaveEditDeleteMenu
+                  userId={postData.createdBy}
+                  postUserId={user._id}
+                />
               </div>
             </div>
-            <div className={styles.postText}>{postBody}</div>
+            <div className={styles.postText}>{postData.postBody}</div>
 
-            {src != "" && ( //if src not empty return image
+            {url != "" && ( //if src not empty return image
               <div className={styles.postImage}>
                 <Image
                   //   loader={myLoader}
-                  src={`https://storage.googleapis.com/${src}`}
+                  src={`${url}`}
                   fill
                 />
               </div>
