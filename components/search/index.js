@@ -3,7 +3,9 @@ import { DebounceInput } from "react-debounce-input";
 import { useSearch } from "./useSearch";
 import { FbSnackBar } from "../snackBar";
 import { userState } from "../../atoms/user";
+import Link from "next/link";
 import styles from "../../styles/homeHeader.module.css";
+import { searchUsersState } from "../../atoms/users";
 
 const Search = () => {
   const [user, setUser] = useRecoilState(userState);
@@ -37,7 +39,7 @@ const Search = () => {
           users?.map((searchedUser) => {
             return (
               <div className={styles.userSearchedFor}>
-                <div>{searchedUser.name}</div>
+                <div><Link href={`profile?id=${searchedUser._id}`}>{searchedUser.name}</Link></div>
                 <div>
                   {searchedUser.friendStatus ? (
                     <sup>{searchedUser.friendStatus}</sup>

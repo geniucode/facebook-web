@@ -54,13 +54,12 @@
   flex-direction: column;
   gap: 10px;
   border-radius: 10px;
-  padding: 10px 0px 10px 10px;
+  padding: 0px 0px 5px 10px;
   top: 40px;
   width: 100%;
   height: auto;
   background-color: #ffffff !important;
   font-size: 20px;
-  z-index: 999;
 }
 
 .usersImage {
@@ -75,7 +74,9 @@
   flex-direction: row;
   gap: 10px;
   align-items: center;
-}
+  margin-top:3px;
+  cursor:pointer;
+z-index:999;}
 
 .headerContent > .haederIconsContainer {
   width: 136px;
