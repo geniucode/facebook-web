@@ -24,6 +24,7 @@ const useProfileAsOtherSeen = () => {
     const response = await getAxios(`user/by-id?id=${id}`);
     if (response?.success) {
       console.log(response.userFound.name);
+      console.log(response.userFound._id);
       setUserFromUrl(response.userFound.name);
       setIdUserFromUrl(response.userFound._id);
     }
