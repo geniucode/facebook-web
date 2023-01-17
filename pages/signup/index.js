@@ -22,6 +22,7 @@ const Signup = () => {
     country,
     setCountry,
     onClickBtn,
+    isLoading,
   } = useSignup();
   return (
     <>
@@ -153,7 +154,13 @@ const Signup = () => {
               . You may receive SMS Notifications from us and can opt out any
               time.
             </p>
-            <button onClick={onClickBtn}>Sign Up</button>
+            <button onClick={onClickBtn} disabled={isLoading}>
+              {isLoading ? (
+                <div className={styles.loadingSpinner}></div>
+              ) : (
+                "Sign Up"
+              )}
+            </button>
             <Link href="/login">Already have an account?</Link>
           </div>
         </div>

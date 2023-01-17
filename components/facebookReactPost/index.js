@@ -3,6 +3,7 @@ import Image from "next/image";
 import profilePic from "./images/profilePic.jpg";
 import { usePost } from "./usePost.js";
 import { FbSnackBar } from "../snackBar";
+import { feelings } from "./feelings.js";
 import FeelingActivityModal from "./feelingActivityModal.js";
 
 const FacebookReactPost = () => {
@@ -17,9 +18,12 @@ const FacebookReactPost = () => {
     open,
     handleOpen,
     handleClose,
+    feeling,
     onClickChangeFeeling,
+    onClickRemoveFeeling,
     search,
     onChangeSearchValue,
+    isLoading,
   } = usePost();
   return (
     <>
@@ -35,10 +39,34 @@ const FacebookReactPost = () => {
                 onChange={onChangePost}
                 placeholder="What's on your mind?"
                 value={postField}
+                style={{ paddingRight: feeling?.length > 0 ? feeling.length * 8 + 47 : 16}}
               />
+              {feeling?.length > 0 && (
+                <div
+                  className={styles.postFeeling}
+                  onClick={onClickRemoveFeeling}
+                  sx={{ hidden: feeling?.length === 0 }}
+                >
+                  {`${feeling}`}
+                  <Image
+                    src={require(`./images/${
+                      feelings.find((elem) => elem.feeling === feeling)?.image
+                    }`)}
+                    alt=""
+                    width={16}
+                    height={16}
+                  />
+                </div>
+              )}
             </div>
             <div className={styles.postButton}>
-              <button onClick={onClickAddPost}>Post</button>
+              <button onClick={onClickAddPost} disabled={isLoading}>
+                {isLoading ? (
+                  <div className={styles.loadingSpinner}></div>
+                ) : (
+                  "Post"
+                )}
+              </button>
             </div>
           </div>
           <div className={styles.reactButtons}>

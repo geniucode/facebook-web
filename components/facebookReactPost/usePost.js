@@ -9,7 +9,6 @@ const usePost = () => {
   const [snackMsg, setSnackMsg] = useState(null);
   const [postBody, setPostBody] = useState("");
   const [postImg, setPostImg] = useState("");
-
   const [file, setFile] = useState("");
   const uploadRef = useRef();
   const [button, setButton] = useRecoilState(postButtonState);
@@ -20,6 +19,7 @@ const usePost = () => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [feeling, setFeeling] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
   useEffect(() => {
@@ -42,6 +42,10 @@ const usePost = () => {
     } else {
       setFeeling(event.target.parentElement?.nextSibling.data);
     }
+  };
+
+  const onClickRemoveFeeling = (event) => {
+    setFeeling("");
   };
 
   const handleOpen = () => {
@@ -67,6 +71,7 @@ const usePost = () => {
     let msg = null;
 
     try {
+      setIsLoading(true);
       let url = "";
       if (file) {
         const response = await postWithImageAxios("upload", {
@@ -74,17 +79,22 @@ const usePost = () => {
         });
         url = response.url;
       }
-      let res = await postAxios("facebook-post/add-post", {
-        user: Im,
-        postBody: postBody,
-        postImg: url,
-        feeling,
-      });
-
-      setFeeling("");
-      if (res) {
-        msg = "Post Added Successfully";
+      if(postBody || url){
+        const res = await postAxios("facebook-post/add-post", {
+          user: Im,
+          postBody: postBody,
+          postImg: url,
+          feeling,
+        });
+        if (res) {
+          msg = "Post Added Successfully";
+        }
+      } else{
+        msg = "Post cannot be empty!";
       }
+      setIsLoading(false);
+      setFeeling("");
+      setPostBody("");
       setButton(true);
       setPostField("");
     } catch (error) {
@@ -120,9 +130,12 @@ const usePost = () => {
     open,
     handleOpen,
     handleClose,
+    feeling,
     onClickChangeFeeling,
+    onClickRemoveFeeling,
     search,
     onChangeSearchValue,
+    isLoading,
   };
 };
 

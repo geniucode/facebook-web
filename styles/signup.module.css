@@ -280,6 +280,9 @@
 .formDetails > button {
   width: 194px;
   height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 10px 0;
   font-size: 18px;
   font-weight: 600;
@@ -308,7 +311,22 @@
   width: 21px;
   transform: scale(0.76);
 }
-
+.loadingSpinner{
+  width: 20px;
+  height: 20px;
+  border: 3px solid white; 
+  border-top: 3px solid transparent; 
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+}
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @media screen and (max-width: 500px) {
   .logoContainer {
     height: 90px;
