@@ -7,6 +7,8 @@ import styles from "../../styles/profileAsOtherSeen.module.css";
 import { FacebookPost } from "../facebookPost";
 import moreImg from "./images/moreImg.png";
 import profilePhoto from "./images/pfp.jpg";
+import addfriend from "./images/addfriendpng.png";
+import message from "./images/message.png";
 
 const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
   const {
@@ -44,6 +46,16 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
             </div>
             <div className={styles.userNameAndButtonsContainer}>
               <div className={styles.userName}>{userFromUrl}</div>
+              <div className={styles.buttons}>
+                  <div className={styles.addToStoryContainer}>
+                    <Image src={addfriend} className={styles.plusImg} />
+                    <div className={styles.addToStory}>Add Friend</div>
+                  </div>
+                  <div className={styles.addEditProfileContainer}>
+                    <Image src={message} className={styles.pinImg} />
+                    <div className={styles.editProfile}>Message</div>
+                  </div>
+                </div>
             </div>
           </div>
 
