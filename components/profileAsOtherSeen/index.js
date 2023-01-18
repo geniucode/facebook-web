@@ -9,6 +9,7 @@ import moreImg from "./images/moreImg.png";
 import profilePhoto from "./images/pfp.jpg";
 import addfriend from "./images/addfriendpng.png";
 import message from "./images/message.png";
+import { useSearch } from "../search/useSearch";
 
 const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
   const {
@@ -26,7 +27,8 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
   useEffect(() => {
     id = router.query["id"];
     if (id) getUserByUrlID(id);
-    console.log("idfromurl", userIdFromUrl);
+    console.log("idfromurl", getUserByUrlID(id));
+    console.log("friend User ID",id);
     console.log("user._id ", user._id);
   }, [router]);
   useEffect(() => {
@@ -51,6 +53,27 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
                     <Image src={addfriend} className={styles.plusImg} />
                     <div className={styles.addToStory}>Add Friend</div>
                   </div>
+{/* {
+
+                  <div>
+                  {searchedUser.friendStatus ? (
+                    <sup>{searchedUser.friendStatus}</sup>
+                  ) : (
+                    <div>
+                      <div
+                        className={styles.acceptButton}
+                        onClick={() => {
+                          onClickAddFriend(searchedUser._id);
+                        }}
+                      >
+                        Add Friend
+                        </div>
+                    </div>
+                  )}
+                </div> } */}
+
+
+
                   <div className={styles.addEditProfileContainer}>
                     <Image src={message} className={styles.pinImg} />
                     <div className={styles.editProfile}>Message</div>
