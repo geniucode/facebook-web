@@ -42,7 +42,12 @@ const Search = () => {
             return (
               <div className={styles.userSearchedFor}>
                 <div>
-                  <Link href={`profile?id=${searchedUser._id}`}>
+                  <Link
+                    onClick={() => {
+                      users = [];
+                    }}
+                    href={`profile?id=${searchedUser._id}`}
+                  >
                     {searchedUser.name}
                   </Link>
                 </div>
