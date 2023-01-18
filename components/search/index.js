@@ -2,13 +2,15 @@ import { useRecoilState } from "recoil";
 import { DebounceInput } from "react-debounce-input";
 import { useSearch } from "./useSearch";
 import { FbSnackBar } from "../snackBar";
+import { useNotificationCenter } from "../notificationCenter/useNotificationCenter";
 import { userState } from "../../atoms/user";
 import Link from "next/link";
 import styles from "../../styles/homeHeader.module.css";
-import { searchUsersState } from "../../atoms/users";
 
 const Search = () => {
   const [user, setUser] = useRecoilState(userState);
+  const { onClickConfirmRequestHandle, onClickRejectRequestHandle } =
+    useNotificationCenter();
   const {
     users,
     snackMsg,
@@ -39,10 +41,39 @@ const Search = () => {
           users?.map((searchedUser) => {
             return (
               <div className={styles.userSearchedFor}>
-                <div><Link href={`profile?id=${searchedUser._id}`}>{searchedUser.name}</Link></div>
+                <div>
+                  <Link href={`profile?id=${searchedUser._id}`}>
+                    {searchedUser.name}
+                  </Link>
+                </div>
                 <div>
                   {searchedUser.friendStatus ? (
-                    <sup>{searchedUser.friendStatus}</sup>
+                    searchedUser.friendStatus[0] === "Received request" ? (
+                      <div className={styles.notificationButtons}>
+                        <div
+                          className={styles.acceptButton}
+                          onClick={() =>
+                            onClickConfirmRequestHandle(
+                              searchedUser.friendStatus[1]
+                            )
+                          }
+                        >
+                          Confirm
+                        </div>
+                        <div
+                          className={styles.deleteButton}
+                          onClick={() =>
+                            onClickRejectRequestHandle(
+                              searchedUser.friendStatus[1]
+                            )
+                          }
+                        >
+                          Decline
+                        </div>
+                      </div>
+                    ) : (
+                      <sup>{searchedUser.friendStatus[0]}</sup>
+                    )
                   ) : (
                     <div>
                       <button
@@ -61,7 +92,6 @@ const Search = () => {
             {
             }
           })}
-        {console.log(users)}
         {users?.length === 0 && <div>No users found</div>}
       </div>
       {snackMsg && (

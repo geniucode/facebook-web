@@ -30,7 +30,6 @@ const useHomeHeader = (props) => {
     const response = await postAxios("accept-friend-request", {
       id,
     });
-    console.log("accept friend request: ", response);
     if (response?.success) {
       msg = response.message;
     } else {

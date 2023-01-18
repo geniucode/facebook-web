@@ -35,9 +35,6 @@ const NotificationCenter = () => {
     const response = await getAxios(`user/friend-notifications`);
     if (response?.success) {
       setNotifications(response.notifications);
-      console.log(response);
-    } else {
-      console.log(response);
     }
   };
   useEffect(() => {

@@ -28,7 +28,7 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
     id = router.query["id"];
     if (id) getUserByUrlID(id);
     console.log("idfromurl", getUserByUrlID(id));
-    console.log("friend User ID",id);
+    console.log("friend User ID", id);
     console.log("user._id ", user._id);
   }, [router]);
   useEffect(() => {
@@ -49,36 +49,15 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
             <div className={styles.userNameAndButtonsContainer}>
               <div className={styles.userName}>{userFromUrl}</div>
               <div className={styles.buttons}>
-                  <div className={styles.addToStoryContainer}>
-                    <Image src={addfriend} className={styles.plusImg} />
-                    <div className={styles.addToStory}>Add Friend</div>
-                  </div>
-{/* {
-
-                  <div>
-                  {searchedUser.friendStatus ? (
-                    <sup>{searchedUser.friendStatus}</sup>
-                  ) : (
-                    <div>
-                      <div
-                        className={styles.acceptButton}
-                        onClick={() => {
-                          onClickAddFriend(searchedUser._id);
-                        }}
-                      >
-                        Add Friend
-                        </div>
-                    </div>
-                  )}
-                </div> } */}
-
-
-
-                  <div className={styles.addEditProfileContainer}>
-                    <Image src={message} className={styles.pinImg} />
-                    <div className={styles.editProfile}>Message</div>
-                  </div>
+                <div className={styles.addToStoryContainer}>
+                  <Image src={addfriend} className={styles.plusImg} />
+                  <div className={styles.addToStory}>Add Friend</div>
                 </div>
+                <div className={styles.addEditProfileContainer}>
+                  <Image src={message} className={styles.pinImg} />
+                  <div className={styles.editProfile}>Message</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -126,4 +105,4 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
 };
 export default ProfileAsOtherSeen;
 
-//test 
+//test
