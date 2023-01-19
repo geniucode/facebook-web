@@ -29,6 +29,7 @@ const useProfileAsOtherSeen = () => {
       setIdUserFromUrl(response.userFound._id);
     }
   };
+
   const getAxiosAllUserPostsByHisId = async (id) => {
     const responsea = await getAxios(`user/posts/by-id?id=${id}`);
     if (responsea?.success) {

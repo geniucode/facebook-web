@@ -77,7 +77,13 @@ const Search = () => {
                         </div>
                       </div>
                     ) : (
-                      <sup>{searchedUser.friendStatus[0]}</sup>
+                      <div>
+                        {searchedUser.friendStatus === "Friends" ? (
+                          <sup>{searchedUser.friendStatus}</sup>
+                        ) : (
+                          <sup>{searchedUser.friendStatus[0]}</sup>
+                        )}
+                      </div>
                     )
                   ) : (
                     <div>

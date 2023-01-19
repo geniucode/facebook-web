@@ -6,6 +6,7 @@ import { userState } from "../../atoms/user";
 
 const useSearch = () => {
   const [error, setError] = useState();
+  const [friendsStatus, setFriendsStatus] = useState();
   const [snackMsg, setSnackMsg] = useState(null);
   const [users, setUsers] = useRecoilState(searchUsersState);
   const [user, setUser] = useRecoilState(userState);
@@ -20,8 +21,10 @@ const useSearch = () => {
         {}
       );
       if (response?.success) {
+        setFriendsStatus(response.message);
         return response.message;
       } else {
+        setFriendsStatus(false);
         return false;
       }
     } catch (error) {
@@ -75,6 +78,7 @@ const useSearch = () => {
   return {
     users,
     snackMsg,
+    friendsStatus,
     setSnackMsg,
     checkRequest,
     onClickAddFriend,
