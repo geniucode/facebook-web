@@ -13,7 +13,6 @@ import { feelings } from "../facebookReactPost/feelings.js";
 import { CommentBar } from "./../commentBar/index.js";
 
 const FacebookPostComp = ({ postData }) => {
-  console.log("postData", postData);
   const { onClickToGoToProfilePage } = useGoToProfilePage();
   const [visible, setVisible] = useState(false);
   const [user] = useRecoilState(userState);

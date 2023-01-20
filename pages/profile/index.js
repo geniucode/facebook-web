@@ -41,7 +41,9 @@ const Profile = () => {
     }
   }, [router]);
   useEffect(() => {
-    if (userIdFromUrl) getAxiosAllUserPostsByHisId(userIdFromUrl);
+    id = router.query["id"];
+    if (id) getAxiosAllUserPostsByHisId(id);
+    console.log("idfrombutton", id);
   }, [button]);
 
   return (
@@ -111,7 +113,7 @@ const Profile = () => {
             </div>
           </div>
         ) : (
-          <ProfileAsOtherSeen userIdFromUrl={userIdFromUrl} />
+          <ProfileAsOtherSeen />
         )}
         <div
           style={{

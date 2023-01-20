@@ -8,19 +8,25 @@ import { FacebookPost } from "../facebookPost";
 import moreImg from "./images/moreImg.png";
 import profilePhoto from "./images/pfp.jpg";
 
-const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
+const ProfileAsOtherSeen = () => {
   const {
-    user,
     menuItems,
     userFromUrl,
     router,
+    userIdFromUrl,
     menuItemState,
     userpostsFromDb,
     setmenuItemState,
+    getUserByUrlID,
     getAxiosAllUserPostsByHisId,
   } = useProfileAsOtherSeen();
+  let id;
   useEffect(() => {
-    if (userIdFromUrl) getAxiosAllUserPostsByHisId(userIdFromUrl);
+    id = router.query["id"];
+    if (id) getUserByUrlID(id);
+  }, [router]);
+  useEffect(() => {
+    if (userIdFromUrl) getAxiosAllUserPostsByHisId(id);
   }, [router]);
 
   return (
