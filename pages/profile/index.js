@@ -111,7 +111,7 @@ const Profile = () => {
             </div>
           </div>
         ) : (
-          <ProfileAsOtherSeen />
+          <ProfileAsOtherSeen userIdFromUrl={userIdFromUrl} />
         )}
         <div
           style={{

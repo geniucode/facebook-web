@@ -17,16 +17,8 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
     menuItemState,
     userpostsFromDb,
     setmenuItemState,
-    getUserByUrlID,
     getAxiosAllUserPostsByHisId,
   } = useProfileAsOtherSeen();
-  let id;
-  useEffect(() => {
-    id = router.query["id"];
-    if (id) getUserByUrlID(id);
-    console.log("idfromurl", userIdFromUrl);
-    console.log("user._id ", user._id);
-  }, [router]);
   useEffect(() => {
     if (userIdFromUrl) getAxiosAllUserPostsByHisId(userIdFromUrl);
   }, [router]);
