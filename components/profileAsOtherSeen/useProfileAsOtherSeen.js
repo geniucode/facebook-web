@@ -33,13 +33,16 @@ const useProfileAsOtherSeen = () => {
     if (responsea?.success) {
       const userpostsInformationFromDb = await responsea?.userPosts?.map(
         (item) => {
-          return [
-            userFromUrl,
-            item.postBody,
-            timeByMoment(item.createdAt),
-            item.postImg,
-            userIdFromUrl,
-          ];
+          return {
+            createdByName: item?.createdBy?.name,
+            createdBy: item?.createdBy?._id,
+            postBody: item?.postBody,
+            postImg: item?.postImg,
+            createdAt: timeByMoment(item.createdAt),
+            postId: item?._id,
+
+            // userName: item?.createdBy?.name,
+          };
         }
       );
       setUserpostsFromDb(userpostsInformationFromDb);

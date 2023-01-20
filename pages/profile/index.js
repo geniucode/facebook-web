@@ -15,6 +15,8 @@ import { useProfile } from "./useProfile";
 import moreImg from "./images/moreImg.png";
 import plus from "./images/plus.png";
 import pin from "./images/pin.png";
+import { useRecoilState } from "recoil";
+import { postButtonState } from "../../atoms/urlImage";
 
 const Profile = () => {
   const {
@@ -29,14 +31,18 @@ const Profile = () => {
     getUserByUrlID,
     getAxiosAllUserPostsByHisId,
   } = useProfile();
+  const [button, setButton] = useRecoilState(postButtonState);
   let id;
   useEffect(() => {
     id = router.query["id"];
-    if (id) getUserByUrlID(id);
+    if (id) {
+      getUserByUrlID(id);
+      getAxiosAllUserPostsByHisId(id);
+    }
   }, [router]);
   useEffect(() => {
     if (userIdFromUrl) getAxiosAllUserPostsByHisId(userIdFromUrl);
-  });
+  }, [button]);
 
   return (
     <>

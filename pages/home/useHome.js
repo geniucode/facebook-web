@@ -13,7 +13,18 @@ const useHome = () => {
 
   const getAxiosGetAllPosts = async () => {
     const response = await getAxios("facebook-post/get-all-posts", {});
-    const postsInformationFromDb = await response?.posts;
+    const postsInformationFromDb = await response?.posts?.map((item) => {
+      return {
+        createdByName: item?.createdBy?.name,
+        createdBy: item?.createdBy?._id,
+        postBody: item?.postBody,
+        postImg: item?.postImg,
+        createdAt: timeByMoment(item.createdAt),
+        postId: item?._id,
+
+        // userName: item?.createdBy?.name,
+      };
+    });
 
     setPostsInformation(postsInformationFromDb);
   };
