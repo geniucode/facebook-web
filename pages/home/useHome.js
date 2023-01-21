@@ -1,11 +1,9 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import { homeIconState } from "../../atoms/home-icon";
 import { postsInformationState } from "../../atoms/postsInformation";
-import { userState } from "../../atoms/user";
 import { getAxios } from "../../service/axios";
 import { timeByMoment } from "../../service/timeByMoment";
 const useHome = () => {
-  const user = useRecoilValue(userState);
   const [homeIcon, setHomeIcon] = useRecoilState(homeIconState);
   const [postsInformation, setPostsInformation] = useRecoilState(
     postsInformationState
@@ -27,8 +25,6 @@ const useHome = () => {
         postId: item?._id,
         shareNumber: item?.shareNumber,
         isCopy: item?.isCopy,
-
-        // userName: item?.createdBy?.name,
       };
     });
 

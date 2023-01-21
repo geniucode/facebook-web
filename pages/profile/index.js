@@ -17,6 +17,7 @@ import plus from "./images/plus.png";
 import pin from "./images/pin.png";
 import { useRecoilState } from "recoil";
 import { postButtonState } from "../../atoms/urlImage";
+import { ShareButtonState } from "../../atoms/shareButton";
 
 const Profile = () => {
   const {
@@ -32,6 +33,7 @@ const Profile = () => {
     getAxiosAllUserPostsByHisId,
   } = useProfile();
   const [button, setButton] = useRecoilState(postButtonState);
+  const [shareButton, setShareButton] = useRecoilState(ShareButtonState);
   let id;
   useEffect(() => {
     id = router.query["id"];
@@ -39,12 +41,7 @@ const Profile = () => {
       getUserByUrlID(id);
       getAxiosAllUserPostsByHisId(id);
     }
-  }, [router]);
-  useEffect(() => {
-    id = router.query["id"];
-    if (id) getAxiosAllUserPostsByHisId(id);
-    console.log("idfrombutton", id);
-  }, [button]);
+  }, [router, button, shareButton]);
 
   return (
     <>

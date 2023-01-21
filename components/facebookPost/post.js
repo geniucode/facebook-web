@@ -13,9 +13,10 @@ import { feelings } from "../facebookReactPost/feelings.js";
 import { CommentBar } from "./../commentBar/index.js";
 import { usePost } from "./usePost";
 import { SharedPostComp } from "./sharedPost";
+import { FbSnackBar } from "../snackBar";
 
 const FacebookPostComp = ({ postData }) => {
-  const { onClickShare } = usePost(postData);
+  const { snackMsg, setSnackMsg, onClickShare } = usePost(postData);
   const { onClickToGoToProfilePage } = useGoToProfilePage();
   const [visible, setVisible] = useState(false);
   const [user] = useRecoilState(userState);
@@ -125,14 +126,21 @@ const FacebookPostComp = ({ postData }) => {
                   <i className={styles.comment_icon}></i>
                   <span>Comment</span>
                 </div>
-                <div className={styles.post_action}>
+                <div onClick={onClickShare} className={styles.post_action}>
                   <i className={styles.share_icon}></i>
-                  <span onClick={onClickShare}>Share </span>
+                  <span>Share </span>
                 </div>
               </div>
               <CommentBar />
             </div>
           </div>
+          {snackMsg && (
+            <FbSnackBar
+              message={snackMsg}
+              open={snackMsg && true}
+              setOpen={() => setSnackMsg(null)}
+            />
+          )}
         </div>
       ) : (
         <SharedPostComp postData={postData} />

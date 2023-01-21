@@ -166,9 +166,9 @@ const SharedPostComp = ({ postData }) => {
                 <i className={styles.comment_icon}></i>
                 <span>Comment</span>
               </div>
-              <div className={styles.post_action}>
+              <div onClick={onClickShare} className={styles.post_action}>
                 <i className={styles.share_icon}></i>
-                <span onClick={onClickShare}>Share </span>
+                <span>Share </span>
               </div>
             </div>
             <CommentBar />

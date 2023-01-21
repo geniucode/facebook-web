@@ -2,15 +2,17 @@ import { useRecoilState } from "recoil";
 import { postAxios } from "../../service/axios";
 import { userState } from "../../atoms/user";
 import { useState } from "react";
+import { ShareButtonState } from "../../atoms/shareButton";
 
 const usePost = (postData) => {
   const [user, setUser] = useRecoilState(userState);
+  const [shareButton, setShareButton] = useRecoilState(ShareButtonState);
   const [snackMsg, setSnackMsg] = useState(null);
   const onClickShare = async () => {
     let postImg = "";
     postData?.url != null ? (postImg = postData?.url) : (postImg = "");
+    setShareButton(false);
     await postAxios("facebook-post/add-post", {
-      //   createdBy: postData?.createdBy,
       createdBy: postData.createdById,
       sharedBy: user._id,
       user: user._id,
@@ -23,6 +25,7 @@ const usePost = (postData) => {
       shareNumber: postData.shareNumber + 1,
     });
     setSnackMsg("Shared successfully");
+    setShareButton(true);
   };
 
   return {
