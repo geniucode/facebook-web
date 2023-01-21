@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { userState } from "../../atoms/user";
 import { getAxios } from "../../service/axios";
-import { useRecoilState } from "recoil";
 import { timeByMoment } from "../../service/timeByMoment";
 
 const useProfileAsOtherSeen = () => {

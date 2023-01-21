@@ -1,23 +1,24 @@
 import Image from "next/image";
 import { useEffect } from "react";
+import { useRecoilState } from "recoil";
 
-import cameraForProfilePhoto from "./images/camera-for-profile-photo.png";
-import { TopMenuInProfilePage } from "../../components/topMenuInProfilePage";
-import { FacebookReactPost } from "../../components/facebookReactPost";
-import ProfileAsOtherSeen from "../../components/profileAsOtherSeen";
-import { FacebookPost } from "../../components/facebookPost";
+import plus from "./images/plus.png";
+import pin from "./images/pin.png";
+import { useProfile } from "./useProfile";
+import moreImg from "./images/moreImg.png";
+import profilePhoto from "./images/pfp.jpg";
+import { Auth } from "../../components/auth";
+
 import HomeHeader from "../../components/homeHeader";
 import styles from "../../styles/profile.module.css";
 import smallCamera1 from "./images/small-camera1.png";
-import profilePhoto from "./images/pfp.jpg";
-import { Auth } from "../../components/auth";
-import { useProfile } from "./useProfile";
-import moreImg from "./images/moreImg.png";
-import plus from "./images/plus.png";
-import pin from "./images/pin.png";
-import { useRecoilState } from "recoil";
 import { postButtonState } from "../../atoms/urlImage";
 import { ShareButtonState } from "../../atoms/shareButton";
+import { FacebookPost } from "../../components/facebookPost";
+import ProfileAsOtherSeen from "../../components/profileAsOtherSeen";
+import { FacebookReactPost } from "../../components/facebookReactPost";
+import cameraForProfilePhoto from "./images/camera-for-profile-photo.png";
+import { TopMenuInProfilePage } from "../../components/topMenuInProfilePage";
 
 const Profile = () => {
   const {

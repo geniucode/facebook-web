@@ -2,9 +2,9 @@ import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { postsInformationState } from "../../atoms/postsInformation";
-import { postButtonState, urlImageState } from "../../atoms/urlImage";
+import { postButtonState } from "../../atoms/urlImage";
 import { userState } from "../../atoms/user";
-import { getAxios, postAxios, postWithImageAxios } from "../../service/axios";
+import { postAxios, postWithImageAxios } from "../../service/axios";
 
 const usePost = () => {
   const [snackMsg, setSnackMsg] = useState(null);

@@ -9,7 +9,6 @@ const usePost = (postData) => {
   const [shareButton, setShareButton] = useRecoilState(ShareButtonState);
   const [snackMsg, setSnackMsg] = useState(null);
   const onClickShare = async () => {
-    let postImg = "";
     postData?.url != null ? (postImg = postData?.url) : (postImg = "");
     setShareButton(false);
     await postAxios("facebook-post/add-post", {

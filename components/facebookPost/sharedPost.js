@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useState } from "react";
-import { useRouter } from "next/router";
 import ReactsPopup from "./ReactsPopup";
 import { useGoToProfilePage } from "../../generalHooks/goToProfilePage";
 import SaveEditDeleteMenu from "../saveEditDeleteMenu/index.tsx";
