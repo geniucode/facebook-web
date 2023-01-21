@@ -10,9 +10,11 @@ import profilePhoto from "./images/pfp.jpg";
 import addfriend from "./images/addfriendpng.png";
 import message from "./images/message.png";
 import { useSearch } from "../search/useSearch";
+import { useHomeHeader } from "../homeHeader/useHomeHeader";
 
 const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
-  const { friendsStatus, checkRequest } = useSearch();
+  const { onClickRemoveRequestHandle } = useHomeHeader();
+  const { friendsStatus, checkRequest, onClickAddFriend } = useSearch();
   const {
     user,
     menuItems,
@@ -55,13 +57,44 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
                 <div className={styles.addToStoryContainer}>
                   <Image src={addfriend} className={styles.plusImg} />
                   {!friendsStatus && (
-                    <div className={styles.addToStory}>Add Friend</div>
+                    <div
+                      onClick={() => onClickAddFriend(router.query["id"])}
+                      className={styles.addToStory}
+                    >
+                      Add Friend
+                    </div>
                   )}
                   {friendsStatus === "Friends" && (
-                    <div className={styles.addToStory}>We are friends</div>
+                    <div
+                      onClick={() =>
+                        onClickRemoveRequestHandle(router.query["id"])
+                      }
+                      className={styles.addToStory}
+                    >
+                      Remove Friend
+                    </div>
                   )}
                   {friendsStatus && friendsStatus !== "Friends" && (
-                    <div className={styles.addToStory}>{friendsStatus[0]}</div>
+                    <div className={styles.addToStory}>
+                      {friendsStatus[0] === "pending" && (
+                        <span
+                          onClick={() =>
+                            onClickRemoveRequestHandle(router.query["id"])
+                          }
+                        >
+                          Cancel Request
+                        </span>
+                      )}
+                      {friendsStatus[0] === "Received request" && (
+                        <span
+                          onClick={() =>
+                            onClickRemoveRequestHandle(router.query["id"])
+                          }
+                        >
+                          Decline Request
+                        </span>
+                      )}
+                    </div>
                   )}
                 </div>
                 {/* {

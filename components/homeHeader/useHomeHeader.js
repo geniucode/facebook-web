@@ -49,6 +49,19 @@ const useHomeHeader = (props) => {
     setSnackMsg(msg);
   };
 
+  const onClickRemoveRequestHandle = async (id) => {
+    const response = await postAxios("remove-friend-request", {
+      id,
+    });
+    if (response?.success) {
+      msg = response.message;
+    } else {
+      msg = response.message;
+    }
+    console.log(msg);
+    setSnackMsg(msg);
+  };
+
   return {
     notifications,
     snackMsg,
@@ -56,6 +69,7 @@ const useHomeHeader = (props) => {
     onMouseEnterupdateNotification,
     onClickConfirmRequestHandle,
     onClickRejectRequestHandle,
+    onClickRemoveRequestHandle,
   };
 };
 
