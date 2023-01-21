@@ -122,7 +122,7 @@ const FacebookPostComp = ({ postData }) => {
                 <span>Share</span>
               </div>
             </div>
-            <CommentBar />
+            <CommentBar postId={postData._id} />
           </div>
         </div>
       </div>

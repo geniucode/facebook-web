@@ -1,9 +1,13 @@
 .post {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   padding-left: 20px;
   padding-bottom: 10px;
+}
+
+.commentPost {
+  display: flex;
 }
 
 .profilePic > img {
@@ -46,4 +50,20 @@
 
 .postButton > button:hover {
   cursor: pointer;
+}
+
+.usersComments {
+  display: flex;
+}
+
+.commentText {
+  width: 490px;
+  height: 40px;
+  margin-top: 7px;
+  margin-left: 10px;
+  background-color: #f2f3f5;
+  border-radius: 30px;
+  border-style: none;
+  text-align: match-parent;
+  padding: 10px;
 }

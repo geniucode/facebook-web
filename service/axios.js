@@ -1,6 +1,8 @@
 import axios from "axios";
 
 const postAxios = async (url, data) => {
+  console.log("post");
+
   const token = localStorage.getItem("token");
   const headers = {
     "Content-Type": "application/json",
