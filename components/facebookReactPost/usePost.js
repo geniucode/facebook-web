@@ -79,6 +79,8 @@ const usePost = () => {
       }
       if (url != "" || postBody != "") {
         let res = await postAxios("facebook-post/add-post", {
+          createdBy: user._id,
+          sharedBy: user._id,
           user: userIdFromurl,
           postBody: postBody,
           postImg: url,

@@ -16,11 +16,17 @@ const useHome = () => {
     const postsInformationFromDb = await response?.posts?.map((item) => {
       return {
         createdByName: item?.createdBy?.name,
-        createdBy: item?.createdBy?._id,
+        createdById: item?.createdBy?._id,
+        postUserName: item?.user?.name,
+        postUserId: item?.user?._id,
+        sharedByName: item?.sharedBy?.name,
+        sharedById: item.sharedBy?._id,
         postBody: item?.postBody,
         postImg: item?.postImg,
         createdAt: timeByMoment(item.createdAt),
         postId: item?._id,
+        shareNumber: item?.shareNumber,
+        isCopy: item?.isCopy,
 
         // userName: item?.createdBy?.name,
       };

@@ -19,6 +19,7 @@ const useProfileAsOtherSeen = () => {
   const [userIdFromUrl, setIdUserFromUrl] = useState();
   const router = useRouter();
   const [menuItemState, setmenuItemState] = useState("Post");
+  const [snackMsg, setSnackMsg] = useState(null);
   const getUserByUrlID = async (id) => {
     const response = await getAxios(`user/by-id?id=${id}`);
     if (response?.success) {
@@ -34,11 +35,17 @@ const useProfileAsOtherSeen = () => {
         (item) => {
           return {
             createdByName: item?.createdBy?.name,
-            createdBy: item?.createdBy?._id,
+            createdById: item?.createdBy?._id,
+            postUserName: item?.user?.name,
+            postUserId: item?.user?._id,
+            sharedByName: item?.sharedBy?.name,
+            sharedById: item.sharedBy?._id,
             postBody: item?.postBody,
             postImg: item?.postImg,
             createdAt: timeByMoment(item.createdAt),
             postId: item?._id,
+            shareNumber: item?.shareNumber,
+            isCopy: item?.isCopy,
 
             // userName: item?.createdBy?.name,
           };
@@ -54,6 +61,8 @@ const useProfileAsOtherSeen = () => {
     router,
     menuItemState,
     userpostsFromDb,
+    snackMsg,
+    setSnackMsg,
     setUserFromUrl,
     setmenuItemState,
     getUserByUrlID,
