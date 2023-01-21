@@ -13,7 +13,6 @@ const usePost = () => {
   const [postsInformation, setPostsInformation] = useRecoilState(
     postsInformationState
   );
-
   const [file, setFile] = useState("");
   const uploadRef = useRef();
   const [button, setButton] = useRecoilState(postButtonState);
@@ -24,6 +23,7 @@ const usePost = () => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [feeling, setFeeling] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
   useEffect(() => {
@@ -45,6 +45,10 @@ const usePost = () => {
     } else {
       setFeeling(event.target.parentElement?.nextSibling.data);
     }
+  };
+
+  const onClickRemoveFeeling = (event) => {
+    setFeeling("");
   };
 
   const handleOpen = () => {
@@ -70,6 +74,7 @@ const usePost = () => {
     let msg = null;
     setButton(false);
     try {
+      setIsLoading(true);
       let url = "";
       if (file) {
         const response = await postWithImageAxios("upload", {
@@ -77,6 +82,7 @@ const usePost = () => {
         });
         url = response.url;
       }
+
       if (url != "" || postBody != "") {
         let res = await postAxios("facebook-post/add-post", {
           createdBy: user._id,
@@ -86,11 +92,11 @@ const usePost = () => {
           postImg: url,
           feeling,
         });
-
         setFeeling("");
         if (res) {
           msg = "Post Added Successfully";
         }
+        setIsLoading(false);
         setButton(true);
         setPostField("");
         setPostBody("");
@@ -129,9 +135,12 @@ const usePost = () => {
     open,
     handleOpen,
     handleClose,
+    feeling,
     onClickChangeFeeling,
+    onClickRemoveFeeling,
     search,
     onChangeSearchValue,
+    isLoading,
   };
 };
 
