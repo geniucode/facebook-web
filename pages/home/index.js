@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useInsertionEffect } from "react";
 import { FacebookPost } from "../../components/facebookPost/index.js";
 import { FacebookReactPost } from "../../components/facebookReactPost/index.js";
 import { Auth } from "../../components/auth";

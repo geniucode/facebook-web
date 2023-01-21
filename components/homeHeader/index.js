@@ -1,22 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import Image from "next/image";
 import Link from "next/link";
 import { useHomeHeader } from "./useHomeHeader";
-import { FbSnackBar } from "../snackBar";
 import { Search } from "../../components/search";
 import styles from "../../styles/homeHeader.module.css";
 import pfp from "./images/pfp.jpg";
-import usrImg from "./images/user.png";
-import Button from "@mui/material/Button";
-import Divider from "@mui/material/Divider";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+
 import { NotificationCenter } from "../notificationCenter";
 import { searchUsersState } from "../../atoms/users";
+import { CircularProgress } from "@mui/material";
 
 const HomeHeader = ({}) => {
   const [users, setUsers] = useRecoilState(searchUsersState);
+  const [loader, setLoader] = useState(false);
+  const [aa, setAa] = useState(0);
   const {
     notifications,
     snackMsg,
@@ -35,6 +33,7 @@ const HomeHeader = ({}) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  let a = 0;
 
   return (
     <div className={styles.headerContainer}>
@@ -58,7 +57,21 @@ const HomeHeader = ({}) => {
           </svg>
         </Link>
         <Search />
+        {!loader && (
+          <>
+            <CircularProgress
+              onClick={() => {
+                setLoader(true);
 
+                setTimeout(() => {
+                  setLoader(false);
+                  setAa(aa + 1);
+                }, [500]);
+              }}
+            />
+            {aa}
+          </>
+        )}
         <div className={styles.haederIconsContainer}>
           <div className={styles.haederIcon}>
             <svg viewBox="0 0 28 28" height="20" width="20">
