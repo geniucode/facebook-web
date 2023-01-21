@@ -133,16 +133,6 @@ const useSignup = () => {
     }
   };
 
-  useEffect(() => {}, [
-    firstName,
-    lastName,
-    email,
-    password,
-    birthDay,
-    gender,
-    country,
-  ]);
-
   return {
     firstName,
     onChangeFirstName,
