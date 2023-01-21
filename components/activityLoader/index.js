@@ -1,16 +1,12 @@
+import { useRecoilState } from "recoil";
 import { CircularProgress } from "@mui/material";
-import { useState } from "react";
+import { loadingState } from "../../atoms/loading";
 import styles from "../../styles/activityLoader.module.css";
-
-const ActivityLoader = ({ loading }) => {
+const ActivityLoader = ({}) => {
+  const [loading, setLoading] = useRecoilState(loadingState);
   {
   }
 
-  // {
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 3000);
-  // }
   return (
     <div className={styles.footerLeftCorner}>
       {loading && <CircularProgress color="success" />}

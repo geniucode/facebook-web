@@ -1,14 +1,25 @@
-import { useRecoilState } from "recoil";
+import { useEffect } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { DebounceInput } from "react-debounce-input";
+import Link from "next/link";
 import { useSearch } from "./useSearch";
 import { FbSnackBar } from "../snackBar";
+import { ActivityLoader } from "../activityLoader";
 import { useNotificationCenter } from "../notificationCenter/useNotificationCenter";
 import { userState } from "../../atoms/user";
-import Link from "next/link";
+import { loadingState } from "../../atoms/loading";
 import styles from "../../styles/homeHeader.module.css";
+import { searchUsersState } from "../../atoms/users";
 
 const Search = () => {
   const [user, setUser] = useRecoilState(userState);
+  const [loading, setLoading] = useRecoilState(loadingState);
+  const setUsers = useSetRecoilState(searchUsersState);
+
+  useEffect(() => {
+    setUsers(searchUsersState);
+  }, [loading]);
+
   const { onClickConfirmRequestHandle, onClickRejectRequestHandle } =
     useNotificationCenter();
   const {
@@ -19,6 +30,7 @@ const Search = () => {
     onClickSearch,
     onClickAddFriend,
   } = useSearch();
+
   return (
     <div className={styles.inputContainer}>
       <div className={styles.searchIcon}>
@@ -36,75 +48,78 @@ const Search = () => {
           onClickSearch(searchValue);
         }}
       />
-      <div className={styles.searchResults}>
-        {users?.length > 0 &&
-          users?.map((searchedUser) => {
-            return (
-              <div className={styles.userSearchedFor}>
-                <div>
-                  <Link
-                    onClick={() => {
-                      users = [];
-                    }}
-                    href={`profile?id=${searchedUser._id}`}
-                  >
-                    {searchedUser.name}
-                  </Link>
-                </div>
-                <div>
-                  {searchedUser.friendStatus ? (
-                    searchedUser.friendStatus[0] === "Received request" ? (
-                      <div className={styles.notificationButtons}>
-                        <div
-                          className={styles.acceptButton}
-                          onClick={() =>
-                            onClickConfirmRequestHandle(
-                              searchedUser.friendStatus[1]
-                            )
-                          }
-                        >
-                          Confirm
+      {!loading && (
+        <div className={styles.searchResults}>
+          {users?.length > 0 &&
+            users?.map((searchedUser) => {
+              return (
+                <div className={styles.userSearchedFor}>
+                  <div>
+                    <Link
+                      onClick={() => {
+                        users = [];
+                      }}
+                      href={`profile?id=${searchedUser._id}`}
+                    >
+                      {searchedUser.name}
+                    </Link>
+                  </div>
+                  <div>
+                    {searchedUser.friendStatus ? (
+                      searchedUser.friendStatus[0] === "Received request" ? (
+                        <div className={styles.notificationButtons}>
+                          <div
+                            className={styles.acceptButton}
+                            onClick={() =>
+                              onClickConfirmRequestHandle(
+                                searchedUser.friendStatus[1]
+                              )
+                            }
+                          >
+                            Confirm
+                          </div>
+                          <div
+                            className={styles.deleteButton}
+                            onClick={() => {
+                              onClickRejectRequestHandle(
+                                searchedUser.friendStatus[1]
+                              );
+                              setLoading(true);
+                            }}
+                          >
+                            Decline
+                          </div>
                         </div>
-                        <div
-                          className={styles.deleteButton}
-                          onClick={() =>
-                            onClickRejectRequestHandle(
-                              searchedUser.friendStatus[1]
-                            )
-                          }
-                        >
-                          Decline
+                      ) : (
+                        <div>
+                          {searchedUser.friendStatus === "Friends" ? (
+                            <sup>{searchedUser.friendStatus}</sup>
+                          ) : (
+                            <sup>{searchedUser.friendStatus[0]}</sup>
+                          )}
                         </div>
-                      </div>
+                      )
                     ) : (
                       <div>
-                        {searchedUser.friendStatus === "Friends" ? (
-                          <sup>{searchedUser.friendStatus}</sup>
-                        ) : (
-                          <sup>{searchedUser.friendStatus[0]}</sup>
-                        )}
+                        <button
+                          className={styles.acceptButton}
+                          onClick={() => {
+                            onClickAddFriend(searchedUser._id);
+                          }}
+                        >
+                          Add Friend
+                        </button>
                       </div>
-                    )
-                  ) : (
-                    <div>
-                      <button
-                        className={styles.acceptButton}
-                        onClick={() => {
-                          onClickAddFriend(searchedUser._id);
-                        }}
-                      >
-                        Add Friend
-                      </button>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
-            );
-            {
-            }
-          })}
-        {users?.length === 0 && <div>No users found</div>}
-      </div>
+              );
+              {
+              }
+            })}
+          {users?.length === 0 && <div>No users found</div>}
+        </div>
+      )}
       {snackMsg && (
         <FbSnackBar
           message={snackMsg}
@@ -112,6 +127,7 @@ const Search = () => {
           setOpen={() => setSnackMsg(null)}
         />
       )}
+      <ActivityLoader loading={loading} />
     </div>
   );
 };

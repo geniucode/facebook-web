@@ -5,14 +5,13 @@ import Image from "next/image";
 import { useHomeHeader } from "./useHomeHeader";
 import { NotificationCenter } from "../notificationCenter";
 import { searchUsersState } from "../../atoms/users";
-import { ActivityLoader } from "../activityLoader";
+
 import { Search } from "../../components/search";
 import pfp from "./images/pfp.jpg";
 import styles from "../../styles/homeHeader.module.css";
 
 const HomeHeader = ({}) => {
   const [users, setUsers] = useRecoilState(searchUsersState);
-  const [loader, setLoader] = useState(true);
 
   const {
     notifications,
@@ -59,7 +58,6 @@ const HomeHeader = ({}) => {
           </Link>
           <>
             <Search />
-            <ActivityLoader loading={loading} />
           </>
           <div className={styles.haederIconsContainer}>
             <div className={styles.haederIcon}>

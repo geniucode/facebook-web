@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { getAxios, postAxios } from "../../service/axios";
 import { searchUsersState } from "../../atoms/users";
 import { userState } from "../../atoms/user";
+import { loadingState } from "../../atoms/loading";
 
 const useSearch = () => {
   const [error, setError] = useState();
@@ -11,6 +12,7 @@ const useSearch = () => {
   const [users, setUsers] = useRecoilState(searchUsersState);
   const [user, setUser] = useRecoilState(userState);
   let msg = "";
+  const setLoading = useSetRecoilState(loadingState);
   const checkRequest = async (recipient) => {
     try {
       if (user._id === recipient) {
@@ -45,10 +47,8 @@ const useSearch = () => {
       console.log(response.message);
       msg = response.message;
     }
+    setLoading(false);
     setSnackMsg(msg);
-    setTimeout(function () {
-      //render document only here if possible
-    }, 3000);
   };
 
   const onClickSearch = async (searchValue) => {
