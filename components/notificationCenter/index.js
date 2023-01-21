@@ -26,7 +26,6 @@ const NotificationCenter = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -130,6 +129,7 @@ const NotificationCenter = () => {
           </MenuItem>
         )}
       </Menu>
+
       {snackMsg && (
         <FbSnackBar
           message={snackMsg}
