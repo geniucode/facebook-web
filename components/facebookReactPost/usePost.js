@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { postButtonState, urlImageState } from "../../atoms/urlImage";
+import { postsInformationState } from "../../atoms/postsInformation";
+import { postButtonState } from "../../atoms/urlImage";
 import { userState } from "../../atoms/user";
 import { postAxios, postWithImageAxios } from "../../service/axios";
 
@@ -9,12 +10,15 @@ const usePost = () => {
   const [snackMsg, setSnackMsg] = useState(null);
   const [postBody, setPostBody] = useState("");
   const [postImg, setPostImg] = useState("");
+  const [postsInformation, setPostsInformation] = useRecoilState(
+    postsInformationState
+  );
   const [file, setFile] = useState("");
   const uploadRef = useRef();
   const [button, setButton] = useRecoilState(postButtonState);
   const [postField, setPostField] = useState("");
   const user = useRecoilValue(userState);
-  const [Im, setIm] = useState(user._id);
+  const [userIdFromurl, setUserIdFromurl] = useState(user._id);
   const [url, setUrl] = useState("");
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -25,8 +29,7 @@ const usePost = () => {
   useEffect(() => {
     let id = router.query["id"];
     if (id) {
-      console.log("FacebookReactPost", id);
-      setIm(id);
+      setUserIdFromurl(id);
     }
   }, [router]);
 
@@ -69,7 +72,7 @@ const usePost = () => {
 
   const onClickAddPost = async () => {
     let msg = null;
-
+    setButton(false);
     try {
       setIsLoading(true);
       let url = "";
@@ -79,24 +82,26 @@ const usePost = () => {
         });
         url = response.url;
       }
-      if(postBody || url){
-        const res = await postAxios("facebook-post/add-post", {
-          user: Im,
+
+      if (url != "" || postBody != "") {
+        let res = await postAxios("facebook-post/add-post", {
+          createdBy: user._id,
+          sharedBy: user._id,
+          user: userIdFromurl,
           postBody: postBody,
           postImg: url,
           feeling,
         });
+        setFeeling("");
         if (res) {
           msg = "Post Added Successfully";
         }
-      } else{
-        msg = "Post cannot be empty!";
+        setIsLoading(false);
+        setButton(true);
+        setPostField("");
+        setPostBody("");
+        setFile("");
       }
-      setIsLoading(false);
-      setFeeling("");
-      setPostBody("");
-      setButton(true);
-      setPostField("");
     } catch (error) {
       const errors = error.response?.data?.errors?.map((error) => error.param);
       if (errors) {
