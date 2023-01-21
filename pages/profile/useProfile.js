@@ -21,6 +21,7 @@ const useProfile = () => {
   const [userIdFromUrl, setIdUserFromUrl] = useState();
   const router = useRouter();
   const [userpostsFromDb, setUserpostsFromDb] = useState();
+  const [snackMsg, setSnackMsg] = useState(null);
   const [menuItemState, setmenuItemState] = useState("Post");
   const getUserByUrlID = async (id) => {
     const response = await getAxios(`user/by-id?id=${id}`);
@@ -36,11 +37,17 @@ const useProfile = () => {
         (item) => {
           return {
             createdByName: item?.createdBy?.name,
+            createdById: item?.createdBy?._id,
+            postUserName: item?.user?.name,
+            postUserId: item?.user?._id,
+            sharedByName: item?.sharedBy?.name,
+            sharedById: item.sharedBy?._id,
             postBody: item?.postBody,
-            createdAt: timeByMoment(item.createdAt),
             postImg: item?.postImg,
-            createdBy: item?.createdBy?._id,
-            userName: userIdFromUrl,
+            createdAt: timeByMoment(item.createdAt),
+            postId: item?._id,
+            shareNumber: item?.shareNumber,
+            isCopy: item?.isCopy,
           };
         }
       );
@@ -56,6 +63,8 @@ const useProfile = () => {
     router,
     menuItemState,
     userpostsFromDb,
+    snackMsg,
+    setSnackMsg,
     setUserFromUrl,
     setmenuItemState,
     getUserByUrlID,
