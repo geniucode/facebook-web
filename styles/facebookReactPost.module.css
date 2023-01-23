@@ -158,10 +158,9 @@
 .photoVideoIcon {
   background-position: 0 -175px;
 }
-.feelingActivityIcon{
+.feelingActivityIcon {
   background-position: 0 -125px;
 }
-
 
 .photoVideo > button,
 .feelingActivity > button {
@@ -194,4 +193,3 @@
 .feelingActivity > button:hover {
   background-color: #f2f3f5;
 }
-

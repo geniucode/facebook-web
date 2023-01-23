@@ -133,6 +133,9 @@ const FacebookPostComp = ({ postData }) => {
               </div>
               <CommentBar />
             </div>
+
+            <CommentBar postId={postData._id} />
+
           </div>
           {snackMsg && (
             <FbSnackBar
