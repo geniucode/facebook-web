@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { getAxios, postAxios } from "../../service/axios";
 import { searchUsersState } from "../../atoms/users";
 import { userState } from "../../atoms/user";
@@ -9,8 +9,8 @@ const useSearch = () => {
   const [error, setError] = useState();
   const [friendsStatus, setFriendsStatus] = useState();
   const [snackMsg, setSnackMsg] = useState(null);
+  const user = useRecoilValue(userState);
   const [users, setUsers] = useRecoilState(searchUsersState);
-  const [user, setUser] = useRecoilState(userState);
   let msg = "";
   const setLoading = useSetRecoilState(loadingState);
   const checkRequest = async (recipient) => {
@@ -79,6 +79,7 @@ const useSearch = () => {
     users,
     snackMsg,
     friendsStatus,
+    setUsers,
     setSnackMsg,
     checkRequest,
     onClickAddFriend,

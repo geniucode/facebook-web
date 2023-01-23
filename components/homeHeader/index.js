@@ -7,7 +7,7 @@ import { NotificationCenter } from "../notificationCenter";
 import { searchUsersState } from "../../atoms/users";
 
 import { Search } from "../../components/search";
-import pfp from "./images/pfp.jpg";
+import pfp from "../../generalImages/pfp.jpg";
 import styles from "../../styles/homeHeader.module.css";
 
 const HomeHeader = ({}) => {

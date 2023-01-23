@@ -7,29 +7,29 @@ import { FbSnackBar } from "../snackBar";
 import { ActivityLoader } from "../activityLoader";
 import { useNotificationCenter } from "../notificationCenter/useNotificationCenter";
 import { userState } from "../../atoms/user";
+import { searchUsersState } from "../../atoms/users";
 import { loadingState } from "../../atoms/loading";
 import styles from "../../styles/homeHeader.module.css";
-import { searchUsersState } from "../../atoms/users";
 
 const Search = () => {
-  const [user, setUser] = useRecoilState(userState);
-  const [loading, setLoading] = useRecoilState(loadingState);
-  const setUsers = useSetRecoilState(searchUsersState);
-
-  useEffect(() => {
-    setUsers(searchUsersState);
-  }, [loading]);
-
-  const { onClickConfirmRequestHandle, onClickRejectRequestHandle } =
-    useNotificationCenter();
   const {
     users,
     snackMsg,
+    setUsers,
     setSnackMsg,
     checkRequest,
     onClickSearch,
     onClickAddFriend,
   } = useSearch();
+
+  const { onClickConfirmRequestHandle, onClickRejectRequestHandle } =
+    useNotificationCenter();
+
+  const [loading, setLoading] = useRecoilState(loadingState);
+
+  useEffect(() => {
+    setUsers(searchUsersState);
+  }, [loading]);
 
   return (
     <div className={styles.inputContainer}>
@@ -57,7 +57,7 @@ const Search = () => {
                   <div>
                     <Link
                       onClick={() => {
-                        users = [];
+                        setUsers();
                       }}
                       href={`profile?id=${searchedUser._id}`}
                     >

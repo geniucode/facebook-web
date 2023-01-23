@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import usrImg from "./images/user.png";
+import pfp from "../../generalImages/pfp.jpg";
 
 const NotificationCenter = () => {
   const {
@@ -88,7 +88,7 @@ const NotificationCenter = () => {
                       <div className={styles.notificationHeader}>
                         <Image
                           className={styles.profiePictureImg}
-                          src={usrImg}
+                          src={pfp}
                           alt="profilePic"
                         />
                         <span>
