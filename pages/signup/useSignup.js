@@ -24,6 +24,7 @@ const useSignup = () => {
   });
   const [gender, setGender] = useState({ value: "", accepted: true });
   const [country, setCountry] = useState({ value: "", accepted: true });
+  const [isLoading, setIsLoading] = useState(false);
 
   const onChangeFirstName = (event) => {
     setFirstName({
@@ -80,6 +81,7 @@ const useSignup = () => {
     }
   };
   const onClickBtn = async () => {
+    setIsLoading(true);
     const response = await postAxios("user/signup", {
       name: `${firstName.value} ${lastName.value}`,
       email: email.value,
@@ -93,38 +95,43 @@ const useSignup = () => {
     if (errors) {
       console.log(errors);
       if (errors.includes("name")) {
-        setFirstName({ value: "", accepted: false });
-        setLastName({ value: "", accepted: false });
+        setFirstName({ value: firstName.value, accepted: false });
+        setLastName({ value: lastName.value, accepted: false });
       }
       if (errors.includes("email")) {
-        setEmail({ value: "", accepted: false });
+        setEmail({ value: email.value, accepted: false });
       }
       if (errors.includes("password")) {
-        setPassword({ value: "", accepted: false });
+        setPassword({ value: password.value, accepted: false });
       }
       if (errors.includes("birthDay")) {
-        setBirthDay({ value: "", accepted: false });
+        setBirthDay({
+          value: birthDay.value,
+          accepted: false,
+        });
       }
       if (errors.includes("gender")) {
-        setGender({ value: "", accepted: false });
+        setGender({ value: gender.value, accepted: false });
       }
       if (errors.includes("country")) {
-        setCountry({ value: "", accepted: false });
+        setCountry({ value: country.value, accepted: false });
       }
+      setIsLoading(false);
     } else {
-      router.push("/login");
+      const response = await postAxios("user/login", {
+        email: email.value,
+        password: password.value,
+      });
+      setIsLoading(false);
+      if (!response.success) {
+        router.push("/login");
+      } else {
+        const jwtToken = response.jwtToken;
+        localStorage.setItem("token", jwtToken);
+        router.push("/home");
+      }
     }
   };
-
-  useEffect(() => {}, [
-    firstName,
-    lastName,
-    email,
-    password,
-    birthDay,
-    gender,
-    country,
-  ]);
 
   return {
     firstName,
@@ -142,6 +149,7 @@ const useSignup = () => {
     country,
     setCountry,
     onClickBtn,
+    isLoading,
   };
 };
 

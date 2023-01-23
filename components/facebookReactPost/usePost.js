@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { postButtonState, urlImageState } from "../../atoms/urlImage";
+import { postsInformationState } from "../../atoms/postsInformation";
+import { postButtonState } from "../../atoms/urlImage";
 import { userState } from "../../atoms/user";
 import { postAxios, postWithImageAxios } from "../../service/axios";
 
@@ -9,24 +10,26 @@ const usePost = () => {
   const [snackMsg, setSnackMsg] = useState(null);
   const [postBody, setPostBody] = useState("");
   const [postImg, setPostImg] = useState("");
-
+  const [postsInformation, setPostsInformation] = useRecoilState(
+    postsInformationState
+  );
   const [file, setFile] = useState("");
   const uploadRef = useRef();
   const [button, setButton] = useRecoilState(postButtonState);
   const [postField, setPostField] = useState("");
   const user = useRecoilValue(userState);
-  const [Im, setIm] = useState(user._id);
+  const [userIdFromurl, setUserIdFromurl] = useState(user._id);
   const [url, setUrl] = useState("");
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [feeling, setFeeling] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
   useEffect(() => {
     let id = router.query["id"];
     if (id) {
-      console.log("FacebookReactPost", id);
-      setIm(id);
+      setUserIdFromurl(id);
     }
   }, [router]);
 
@@ -42,6 +45,10 @@ const usePost = () => {
     } else {
       setFeeling(event.target.parentElement?.nextSibling.data);
     }
+  };
+
+  const onClickRemoveFeeling = (event) => {
+    setFeeling("");
   };
 
   const handleOpen = () => {
@@ -65,8 +72,9 @@ const usePost = () => {
 
   const onClickAddPost = async () => {
     let msg = null;
-
+    setButton(false);
     try {
+      setIsLoading(true);
       let url = "";
       if (file) {
         const response = await postWithImageAxios("upload", {
@@ -74,19 +82,26 @@ const usePost = () => {
         });
         url = response.url;
       }
-      let res = await postAxios("facebook-post/add-post", {
-        user: Im,
-        postBody: postBody,
-        postImg: url,
-        feeling,
-      });
 
-      setFeeling("");
-      if (res) {
-        msg = "Post Added Successfully";
+      if (url != "" || postBody != "") {
+        let res = await postAxios("facebook-post/add-post", {
+          createdBy: user._id,
+          sharedBy: user._id,
+          user: userIdFromurl,
+          postBody: postBody,
+          postImg: url,
+          feeling,
+        });
+        setFeeling("");
+        if (res) {
+          msg = "Post Added Successfully";
+        }
+        setIsLoading(false);
+        setButton(true);
+        setPostField("");
+        setPostBody("");
+        setFile("");
       }
-      setButton(true);
-      setPostField("");
     } catch (error) {
       const errors = error.response?.data?.errors?.map((error) => error.param);
       if (errors) {
@@ -120,9 +135,12 @@ const usePost = () => {
     open,
     handleOpen,
     handleClose,
+    feeling,
     onClickChangeFeeling,
+    onClickRemoveFeeling,
     search,
     onChangeSearchValue,
+    isLoading,
   };
 };
 
