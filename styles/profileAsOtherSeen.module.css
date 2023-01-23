@@ -92,20 +92,22 @@
 }
 .addToStoryContainer {
   display: flex;
+  padding: 15px;
   align-items: center;
   justify-content: center;
-  width: 130px;
   height: 35px;
   background-color: #1b74e4;
   gap: 3px;
   border-radius: 6px;
+  width: fit-content;
+
   cursor: pointer !important;
 }
 .addToStory {
   color: #ffffff;
   font-weight: 500;
-  padding-bottom: 3px;
   cursor: pointer !important;
+  width: fit-content;
 }
 .plusImg {
   width: 18px;
