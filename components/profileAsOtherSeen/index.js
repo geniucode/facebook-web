@@ -7,7 +7,7 @@ import styles from "../../styles/profileAsOtherSeen.module.css";
 import { FacebookPost } from "../facebookPost";
 import moreImg from "./images/moreImg.png";
 import profilePhoto from "./images/pfp.jpg";
-import addfriend from "./images/addfriendpng.png";
+import addfriendWhite from "./images/addfriendwhite.png";
 import message from "./images/message.png";
 import { useSearch } from "../search/useSearch";
 import { useHomeHeader } from "../homeHeader/useHomeHeader";
@@ -55,7 +55,8 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
               <div className={styles.userName}>{userFromUrl}</div>
               <div className={styles.buttons}>
                 <div className={styles.addToStoryContainer}>
-                  <Image src={addfriend} className={styles.plusImg} />
+                  {/* <Image src={addfriend} className={styles.plusImg} /> */}
+                  <Image src={addfriendWhite} className={styles.plusImg} />
                   {!friendsStatus && (
                     <div
                       onClick={() => onClickAddFriend(router.query["id"])}
