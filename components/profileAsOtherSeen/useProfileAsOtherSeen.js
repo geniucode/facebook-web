@@ -5,6 +5,7 @@ import { getAxios } from "../../service/axios";
 import { useRecoilState } from "recoil";
 import { timeByMoment } from "../../service/timeByMoment";
 
+
 const useProfileAsOtherSeen = () => {
   const menuItems = [
     "Post",
@@ -20,6 +21,7 @@ const useProfileAsOtherSeen = () => {
   const [userIdFromUrl, setIdUserFromUrl] = useState();
   const router = useRouter();
   const [menuItemState, setmenuItemState] = useState("Post");
+
   const getUserByUrlID = async (id) => {
     const response = await getAxios(`user/by-id?id=${id}`);
     if (response?.success) {

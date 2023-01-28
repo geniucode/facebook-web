@@ -49,7 +49,7 @@ const Search = () => {
           onClickSearch(searchValue);
         }}
       />
-      { (
+      {
         <div className={styles.searchResults}>
           {users?.length > 0 &&
             users?.map((searchedUser) => {
@@ -125,7 +125,7 @@ const Search = () => {
             })}
           {users?.length === 0 && <div>No users found</div>}
         </div>
-      )}
+      }
       {snackMsg && (
         <FbSnackBar
           message={snackMsg}

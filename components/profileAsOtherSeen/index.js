@@ -14,7 +14,8 @@ import { useHomeHeader } from "../homeHeader/useHomeHeader";
 
 const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
   const { onClickRemoveRequestHandle } = useHomeHeader();
-  const { friendsStatus, checkRequest, onClickAddFriend } = useSearch();
+  const { friendsStatus, checkRequest, onClickAddFriend, loading, isLoading } =
+    useSearch();
   const {
     user,
     menuItems,
@@ -60,9 +61,14 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
                   {!friendsStatus && (
                     <div
                       onClick={() => onClickAddFriend(router.query["id"])}
+                      enabled={isLoading}
                       className={styles.addToStory}
                     >
-                      Add Friend
+                      {loading ? (
+                        <div className={styles.loadingSpinner}></div>
+                      ) : (
+                        "add friend"
+                      )}{" "}
                     </div>
                   )}
                   {friendsStatus === "Friends" && (
