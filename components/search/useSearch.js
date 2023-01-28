@@ -4,6 +4,7 @@ import { getAxios, postAxios } from "../../service/axios";
 import { searchUsersState } from "../../atoms/users";
 import { userState } from "../../atoms/user";
 import { loadingState } from "../../atoms/loading";
+import {loadRefreshContent} from "../../service/refresh"
 
 const useSearch = () => {
   const [error, setError] = useState();
@@ -38,6 +39,7 @@ const useSearch = () => {
 
   const onClickAddFriend = async (id) => {
     setLoading(true);
+    loadRefreshContent;
     const receiverId = id;
     const senderId = user._id;
     const response = await postAxios("friend-request", {

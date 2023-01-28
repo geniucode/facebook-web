@@ -12,7 +12,6 @@ import message from "./images/message.png";
 import { useSearch } from "../search/useSearch";
 import { useHomeHeader } from "../homeHeader/useHomeHeader";
 import { loadingState } from "../../atoms/loading";
-
 const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
   const { onClickRemoveRequestHandle } = useHomeHeader();
   const { friendsStatus, checkRequest, onClickAddFriend, isLoading } =
@@ -64,7 +63,7 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
                   <Image src={addfriendWhite} className={styles.plusImg} />
                   {!friendsStatus && (
                     <div
-                      onClick={() => onClickAddFriend(router.query["id"])}
+                      onClick={() => onClickAddFriend(router.query["id"])} 
                       disabled={isLoading}
                       className={styles.addToStory}
                     >
