@@ -158,13 +158,13 @@
 .notificationButtons {
   display: flex;
   gap: 10px;
-  margin-left: 22%;
+  margin-left: 5%;
 }
 
 .acceptButton,
 .deleteButton {
   display: flex;
-  height: 38px;
+  height: 35px;
   width: 12vh;
   border: none;
   border-radius: 5px;
@@ -185,12 +185,14 @@
   background-color: #1877f2;
   color: White;
   font-weight: bold;
+  font-size: small;
 }
 
 .deleteButton {
   background-color: #ebedef;
   color: black;
-  font-weight: 500;
+  font-weight: bold;
+  font-size: small;
 }
 .loadingSpinner {
   width: 20px;

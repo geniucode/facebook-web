@@ -81,8 +81,13 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
                         onClickRemoveRequestHandle(router.query["id"])
                       }
                       className={styles.addToStory}
+                      disabled={isLoading}
                     >
-                      Remove Friend
+                      {loading ? (
+                        <div className={styles.loadingSpinner}></div>
+                      ) : (
+                        "Remove Friend"
+                      )}
                     </div>
                   )}
                   {friendsStatus && friendsStatus !== "Friends" && (

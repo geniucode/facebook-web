@@ -103,6 +103,7 @@ const NotificationCenter = () => {
                           request.
                         </span>
                       </div>
+                      <br></br>
                       <div className={styles.notificationButtons}>
                         <div
                           className={styles.acceptButton}

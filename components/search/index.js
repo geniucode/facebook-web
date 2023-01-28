@@ -65,7 +65,7 @@ const Search = () => {
                       {searchedUser.name}
                     </Link>
                   </div>
-                  <div> 
+                  <div>
                     {searchedUser.friendStatus ? (
                       searchedUser.friendStatus[0] === "Received request" ? (
                         <div className={styles.notificationButtons}>
@@ -76,8 +76,13 @@ const Search = () => {
                                 searchedUser.friendStatus[1]
                               )
                             }
+                            disabled={isLoading}
                           >
-                            Confirm
+                            {loading ? (
+                              <div className={styles.loadingSpinner}></div>
+                            ) : (
+                              "Confirm"
+                            )}
                           </div>
                           <div
                             className={styles.deleteButton}
@@ -85,10 +90,14 @@ const Search = () => {
                               onClickRejectRequestHandle(
                                 searchedUser.friendStatus[1]
                               );
-                              setLoading(true);
                             }}
+                            disabled={isLoading}
                           >
-                            Decline
+                            {loading ? (
+                              <div className={styles.loadingSpinner}></div>
+                            ) : (
+                              "Decline"
+                            )}
                           </div>
                         </div>
                       ) : (
@@ -96,12 +105,14 @@ const Search = () => {
                           {searchedUser.friendStatus === "Friends" ? (
                             <sup>{searchedUser.friendStatus}</sup>
                           ) : (
-                            <sup>{searchedUser.friendStatus[0]}</sup>
+                            <sup>{searchedUser.friendStatus[0]}
+                             </sup>
                           )}
+                         
                         </div>
                       )
                     ) : (
-                      <div >
+                      <div>
                         <button
                           className={styles.acceptButton}
                           onClick={() => {
