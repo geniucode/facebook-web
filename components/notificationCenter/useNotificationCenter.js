@@ -4,7 +4,6 @@ import { userState } from "../../atoms/user";
 import { loadingState } from "../../atoms/loading";
 import { postAxios } from "../../service/axios";
 
-
 const useNotificationCenter = () => {
   let msg = "";
   const [user, setUser] = useRecoilState(userState);

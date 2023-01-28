@@ -105,10 +105,8 @@ const Search = () => {
                           {searchedUser.friendStatus === "Friends" ? (
                             <sup>{searchedUser.friendStatus}</sup>
                           ) : (
-                            <sup>{searchedUser.friendStatus[0]}
-                             </sup>
+                            <sup>{searchedUser.friendStatus[0]}</sup>
                           )}
-                         
                         </div>
                       )
                     ) : (

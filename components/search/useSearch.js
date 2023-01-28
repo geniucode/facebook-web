@@ -5,7 +5,6 @@ import { searchUsersState } from "../../atoms/users";
 import { userState } from "../../atoms/user";
 import { loadingState } from "../../atoms/loading";
 
-
 const useSearch = () => {
   const [error, setError] = useState();
   const [friendsStatus, setFriendsStatus] = useState();
@@ -92,7 +91,6 @@ const useSearch = () => {
     checkRequest,
     onClickAddFriend,
     onClickSearch,
-    
   };
 };
 
