@@ -39,7 +39,6 @@ const useSearch = () => {
 
   const onClickAddFriend = async (id) => {
     setLoading(true);
-    
     const receiverId = id;
     const senderId = user._id;
     const response = await postAxios("friend-request", {

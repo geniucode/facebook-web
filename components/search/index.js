@@ -101,7 +101,7 @@ const Search = () => {
                         </div>
                       )
                     ) : (
-                      <div>
+                      <div >
                         <button
                           className={styles.acceptButton}
                           onClick={() => {
@@ -112,7 +112,7 @@ const Search = () => {
                           {loading ? (
                             <div className={styles.loadingSpinner}></div>
                           ) : (
-                            "Add friend"
+                            "Add Friend"
                           )}
                         </button>
                       </div>

@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { userState } from "../../atoms/user";
 import { getAxios, postAxios } from "../../service/axios";
+import { loadingState } from "../../atoms/loading";
+
 
 const useHomeHeader = (props) => {
   let msg = "";
   const [user, setUser] = useRecoilState(userState);
   const [notifications, setNotifications] = useState();
   const [snackMsg, setSnackMsg] = useState(null);
+  const setLoading = useSetRecoilState(loadingState);
 
   const getNotifications = async () => {
     const response = await getAxios(`user/friend-notifications`);
@@ -50,6 +53,7 @@ const useHomeHeader = (props) => {
   };
 
   const onClickRemoveRequestHandle = async (id) => {
+    setLoading (true);
     const response = await postAxios("remove-friend-request", {
       id,
     });
@@ -58,6 +62,7 @@ const useHomeHeader = (props) => {
     } else {
       msg = response.message;
     }
+    setLoading (false);
     console.log(msg);
     setSnackMsg(msg);
   };

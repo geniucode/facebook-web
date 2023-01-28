@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Image from "next/image";
-
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { TopMenuInProfilePage } from "../topMenuInProfilePage";
 import { useProfileAsOtherSeen } from "./useProfileAsOtherSeen";
 import styles from "../../styles/profileAsOtherSeen.module.css";
@@ -11,11 +11,14 @@ import addfriendWhite from "./images/addfriendwhite.png";
 import message from "./images/message.png";
 import { useSearch } from "../search/useSearch";
 import { useHomeHeader } from "../homeHeader/useHomeHeader";
+import { loadingState } from "../../atoms/loading";
 
 const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
   const { onClickRemoveRequestHandle } = useHomeHeader();
-  const { friendsStatus, checkRequest, onClickAddFriend, loading, isLoading } =
+  const { friendsStatus, checkRequest, onClickAddFriend, isLoading } =
     useSearch();
+  const [loading, setLoading] = useRecoilState(loadingState);
+
   const {
     user,
     menuItems,
@@ -28,6 +31,7 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
     getAxiosAllUserPostsByHisId,
   } = useProfileAsOtherSeen();
   var id;
+
   useEffect(() => {
     id = router.query["id"];
 
@@ -67,9 +71,8 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
                       {loading ? (
                         <div className={styles.loadingSpinner}></div>
                       ) : (
-                        "Add friend"
-                        
-                      )}{" "}
+                        "Add Friend"
+                      )}
                     </div>
                   )}
                   {friendsStatus === "Friends" && (
@@ -85,21 +88,31 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
                   {friendsStatus && friendsStatus !== "Friends" && (
                     <div className={styles.addToStory}>
                       {friendsStatus[0] === "pending" && (
-                        <span
+                        <div
                           onClick={() =>
                             onClickRemoveRequestHandle(router.query["id"])
                           }
+                          disabled={isLoading}
                         >
-                          Cancel Request
-                        </span>
+                          {loading ? (
+                            <div className={styles.loadingSpinner}></div>
+                          ) : (
+                            "Cancel Request"
+                          )}
+                        </div>
                       )}
                       {friendsStatus[0] === "Received request" && (
                         <span
                           onClick={() =>
                             onClickRemoveRequestHandle(router.query["id"])
                           }
+                          disabled={isLoading}
                         >
-                          Decline Request
+                          {loading ? (
+                            <div className={styles.loadingSpinner}></div>
+                          ) : (
+                            "Decline Request"
+                          )}{" "}
                         </span>
                       )}
                     </div>
