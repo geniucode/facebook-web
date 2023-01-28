@@ -13,6 +13,8 @@ const useSearch = () => {
   const [users, setUsers] = useRecoilState(searchUsersState);
   let msg = "";
   const setLoading = useSetRecoilState(loadingState);
+  const [isLoading, setIsLoading] = useState(false);
+
   const checkRequest = async (recipient) => {
     try {
       if (user._id === recipient) {
@@ -40,6 +42,8 @@ const useSearch = () => {
     const response = await postAxios("friend-request", {
       recipient: receiverId,
     });
+    setIsLoading(true);
+    setLoading(true);
     if (response.success) {
       console.log(response.success);
       msg = response.message;
@@ -48,6 +52,8 @@ const useSearch = () => {
       msg = response.message;
     }
     setLoading(false);
+    setIsLoading(false);
+
     setSnackMsg(msg);
   };
 
@@ -79,11 +85,13 @@ const useSearch = () => {
     users,
     snackMsg,
     friendsStatus,
+    isLoading,
     setUsers,
     setSnackMsg,
     checkRequest,
     onClickAddFriend,
     onClickSearch,
+    
   };
 };
 

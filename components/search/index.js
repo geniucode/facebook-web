@@ -20,6 +20,7 @@ const Search = () => {
     checkRequest,
     onClickSearch,
     onClickAddFriend,
+    isLoading,
   } = useSearch();
 
   const { onClickConfirmRequestHandle, onClickRejectRequestHandle } =
@@ -106,8 +107,13 @@ const Search = () => {
                           onClick={() => {
                             onClickAddFriend(searchedUser._id);
                           }}
+                          disabled={isLoading}
                         >
-                          Add Friend
+                          {loading ? (
+                            <div className={styles.loadingSpinner}></div>
+                          ) : (
+                            "add friend"
+                          )}
                         </button>
                       </div>
                     )}
