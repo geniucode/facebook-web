@@ -30,7 +30,7 @@ const Search = () => {
 
   useEffect(() => {
     setUsers(searchUsersState);
-  }, [loading]);
+  }, [isLoading]);
 
   return (
     <div className={styles.inputContainer}>
@@ -49,7 +49,7 @@ const Search = () => {
           onClickSearch(searchValue);
         }}
       />
-      {!loading && (
+      { (
         <div className={styles.searchResults}>
           {users?.length > 0 &&
             users?.map((searchedUser) => {

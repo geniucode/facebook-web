@@ -38,13 +38,14 @@ const useSearch = () => {
   };
 
   const onClickAddFriend = async (id) => {
+    setLoading(true);
+
     const receiverId = id;
     const senderId = user._id;
     const response = await postAxios("friend-request", {
       recipient: receiverId,
     });
     setIsLoading(true);
-    setLoading(true);
     if (response.success) {
       console.log(response.success);
       msg = response.message;
