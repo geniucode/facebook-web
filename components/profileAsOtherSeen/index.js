@@ -61,13 +61,14 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
                   {!friendsStatus && (
                     <div
                       onClick={() => onClickAddFriend(router.query["id"])}
-                      enabled={isLoading}
+                      disabled={isLoading}
                       className={styles.addToStory}
                     >
                       {loading ? (
                         <div className={styles.loadingSpinner}></div>
                       ) : (
-                        "add friend"
+                        "Add friend"
+                        
                       )}{" "}
                     </div>
                   )}

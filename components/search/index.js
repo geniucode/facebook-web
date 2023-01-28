@@ -65,7 +65,7 @@ const Search = () => {
                       {searchedUser.name}
                     </Link>
                   </div>
-                  <div>
+                  <div> 
                     {searchedUser.friendStatus ? (
                       searchedUser.friendStatus[0] === "Received request" ? (
                         <div className={styles.notificationButtons}>
@@ -112,7 +112,7 @@ const Search = () => {
                           {loading ? (
                             <div className={styles.loadingSpinner}></div>
                           ) : (
-                            "add friend"
+                            "Add friend"
                           )}
                         </button>
                       </div>

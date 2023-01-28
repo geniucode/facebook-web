@@ -77,6 +77,8 @@
   align-items: center;
   margin-top: 3px;
   cursor: pointer;
+  justify-content:space-between;
+
 }
 
 .headerContent > .haederIconsContainer {
