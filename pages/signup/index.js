@@ -1,5 +1,6 @@
 import Head from "next/head.js";
 import Link from "next/link";
+import { FbSnackBar } from "../../components/snackBar";
 import CountrySelector from "./countrySelector.js";
 import DateSelector from "./dateSelector.js";
 import { useSignup } from "./useSignup.js";
@@ -8,22 +9,25 @@ import styles from "../../styles/signup.module.css";
 const Signup = () => {
   const {
     firstName,
-    onChangeFirstName,
     lastName,
-    onChangeLastName,
     email,
-    onChangeEmail,
     password,
-    onChangePassword,
     birthDay,
-    setBirthDay,
     gender,
-    onClickGender,
     country,
+    isLoading,
+    snackMsg,
+    setSnackMsg,
+    onChangeFirstName,
+    onChangeLastName,
+    onChangeEmail,
+    onChangePassword,
+    setBirthDay,
+    onClickGender,
     setCountry,
     onClickBtn,
-    isLoading,
   } = useSignup();
+
   return (
     <>
       <Head>
@@ -165,6 +169,13 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      {snackMsg && (
+        <FbSnackBar
+          message={snackMsg}
+          open={snackMsg && true}
+          setOpen={() => setSnackMsg("")}
+        />
+      )}
     </>
   );
 };
