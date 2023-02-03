@@ -37,7 +37,7 @@ const HomeHeader = ({}) => {
   return (
     <div className={styles.headerContainer}>
       <div className={styles.headerContent}>
-        <Link href={"/home"}>
+        <Link href={"/home"} style={{ width: 136 }}>
           <svg height="22" viewBox="100 100 822.51 160">
             <title>Facebook</title>
             <path d="M166.43,126.68c-9.65,0-12.44,4.28-12.44,13.72v15.66h25.74l-2.58,25.3H154v76.78H123.11V181.36H102.3v-25.3h20.81V140.83c0-25.52,10.29-39,39-39a146.17,146.17,0,0,1,18,1.07v23.81Z"></path>

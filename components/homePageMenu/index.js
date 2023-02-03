@@ -39,7 +39,7 @@ const HomePageMneu = () => {
           }
         >
           <div className={styles.userIcon}>
-            <Image src={userIcon} />
+            <Image src={userIcon} alt=""/>
           </div>
           <div className={styles.userEmail}>{user.name}</div>
         </div>
@@ -50,7 +50,7 @@ const HomePageMneu = () => {
         {/* find friends */}
         {items.map((item) => {
           return (
-            <Link href={item.href}>
+            <Link href={item.href} key={item.title}>
               <div
                 className={styles.findFriendsToSeeAllContanier}
                 onClick={onClickNotHomeIcon}
@@ -69,7 +69,7 @@ const HomePageMneu = () => {
         <Link href="">
           <div className={styles.seeAllContanier} onClick={onClickNotHomeIcon}>
             <div className={styles.seeAllIcon}>
-              <Image src={seeAllIcon} />
+              <Image src={seeAllIcon} alt=""/>
             </div>
             <div className={styles.seeAllTitle}>See all</div>
           </div>
@@ -85,7 +85,7 @@ const HomePageMneu = () => {
             onClick={onClickNotHomeIcon}
           >
             <div className={styles.seeAllGroupsIcon}>
-              <Image src={seeAllGroupsIcon} />
+              <Image src={seeAllGroupsIcon} alt=""/>
             </div>
             <div
               className={styles.seeAllGroupsTitle}

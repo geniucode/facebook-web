@@ -12,7 +12,7 @@ const useActivate = () => {
 
   const activateUser = async () => {
     const response = await getAxios(`user/activate-account/${hash}`);
-    await delay(1500);
+    await delay(1000);
     setIsLoading(false);
     if (response?.success) {
       setIsActivted(true);
@@ -20,7 +20,7 @@ const useActivate = () => {
     } else {
       setSnackMsg(response?.message);
     }
-    await delay(2000);
+    await delay(4000);
     router.push("/login");
   };
 

@@ -1,10 +1,24 @@
+.changeProfilePicButton {
+  border-radius: 50% !important;
+  min-width: 0 !important;
+  width: 37px !important;
+  height: 35px !important;
+  background-color: #e4e6eb !important;
+  padding: 0 0 2px !important;
+}
+
+.changeProfilePicButton>img {
+  width: 22px;
+  height: 20px;
+}
+
 .inputFile {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.inputFile > label {
+.inputFile>label {
   border: 1px solid #ecf3ff;
   background-color: #ecf3ff;
   border-radius: 5px;
@@ -13,7 +27,7 @@
   cursor: pointer;
 }
 
-.inputFile > div {
+.inputFile>div {
   border: 1px solid #ecf3ff;
   background-color: #ecf3ff;
   border-radius: 5px;
@@ -22,18 +36,19 @@
   cursor: pointer;
 }
 
-.inputFile > div:hover {
+.inputFile>div:hover {
   background-color: #e4f0f6;
 }
+
 .line {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.inputFile > input[type="file"] {
+.inputFile>input[type="file"] {
   display: none;
 }
 
-.avatar > button {
+.avatar>button {
   border: 1px solid #ecf3ff;
   background-color: #ecf3ff;
   border-radius: 5px;
@@ -42,7 +57,7 @@
   cursor: pointer;
 }
 
-.frame > button {
+.frame>button {
   border: 1px solid #ecf3ff;
   background-color: #ecf3ff;
   border-radius: 5px;
@@ -51,7 +66,7 @@
   cursor: pointer;
 }
 
-.thumbnail > button {
+.thumbnail>button {
   border: 1px solid #ecf3ff;
   background-color: #ecf3ff;
   border-radius: 5px;

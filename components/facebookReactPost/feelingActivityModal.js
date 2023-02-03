@@ -65,6 +65,7 @@ export default function FeelingActivityModal(props) {
                 return (
                   <li
                     className={styles.feeling}
+                    key={item.feeling}
                     onClick={props.onClickChangeFeeling}
                   >
                     <div className={styles.icon}>

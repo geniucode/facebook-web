@@ -8,22 +8,23 @@ import FeelingActivityModal from "./feelingActivityModal.js";
 
 const FacebookReactPost = () => {
   const {
-    onChangePost,
-    onClickAddPost,
     snackMsg,
-    setSnackMsg,
-    handleUploadFile,
     uploadRef,
     postField,
     open,
+    feeling,
+    search,
+    isLoading,
+    isPendingUser,
+    onChangePost,
+    onClickAddPost,
+    setSnackMsg,
+    handleUploadFile,
     handleOpen,
     handleClose,
-    feeling,
     onClickChangeFeeling,
     onClickRemoveFeeling,
-    search,
     onChangeSearchValue,
-    isLoading,
   } = usePost();
   return (
     <>
