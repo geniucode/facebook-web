@@ -22,27 +22,27 @@ const useHomePageMenu = () => {
   };
   const items = [
     {
-      icon: <Image src={friendsIcon} />,
+      icon: <Image src={friendsIcon} alt=""/>,
       title: "Find friends",
       href: "",
     },
     {
-      icon: <Image src={marketplaceIcon} />,
+      icon: <Image src={marketplaceIcon} alt=""/>,
       title: "Marketplace",
       href: "",
     },
     {
-      icon: <Image src={memoriesIcon} />,
+      icon: <Image src={memoriesIcon} alt=""/>,
       title: "Memories",
       href: "",
     },
     {
-      icon: <Image src={savedIcon} />,
+      icon: <Image src={savedIcon} alt=""/>,
       title: "Saved",
       href: "",
     },
     {
-      icon: <Image src={pagesIcon} />,
+      icon: <Image src={pagesIcon} alt=""/>,
       title: "Pages",
       href: "",
     },

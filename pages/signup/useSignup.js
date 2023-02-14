@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 import { postAxios } from "../../service/axios";
 
 const useSignup = () => {
@@ -25,6 +24,7 @@ const useSignup = () => {
   const [gender, setGender] = useState({ value: "", accepted: true });
   const [country, setCountry] = useState({ value: "", accepted: true });
   const [isLoading, setIsLoading] = useState(false);
+  const [snackMsg, setSnackMsg] = useState("");
 
   const onChangeFirstName = (event) => {
     setFirstName({
@@ -80,6 +80,7 @@ const useSignup = () => {
       });
     }
   };
+
   const onClickBtn = async () => {
     setIsLoading(true);
     const response = await postAxios("user/signup", {
@@ -118,38 +119,40 @@ const useSignup = () => {
       }
       setIsLoading(false);
     } else {
-      const response = await postAxios("user/login", {
-        email: email.value,
-        password: password.value,
-      });
       setIsLoading(false);
-      if (!response.success) {
+      if (response.success) {
+        setSnackMsg("Please check your email to activate your account");
+        await delay(4000);
         router.push("/login");
       } else {
-        const jwtToken = response.jwtToken;
-        localStorage.setItem("token", jwtToken);
-        router.push("/home");
+        setSnackMsg(response.message);
       }
     }
   };
 
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+
   return {
     firstName,
-    onChangeFirstName,
     lastName,
-    onChangeLastName,
     email,
-    onChangeEmail,
     password,
-    onChangePassword,
     birthDay,
-    setBirthDay,
     gender,
-    onClickGender,
     country,
+    isLoading,
+    snackMsg,
+    setSnackMsg,
+    onChangeFirstName,
+    onChangeLastName,
+    onChangeEmail,
+    onChangePassword,
+    setBirthDay,
+    onClickGender,
     setCountry,
     onClickBtn,
-    isLoading,
   };
 };
 

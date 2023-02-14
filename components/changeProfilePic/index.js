@@ -1,12 +1,14 @@
 import React from "react";
 import { useState } from "react";
+import Image from "next/image";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { FbSnackBar } from "../snackBar";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { FbSnackBar } from "../snackBar";
+import { postWithImageAxios, putAxios } from "../../service/axios";
+import cameraForProfilePhoto from "./images/camera-for-profile-photo.png";
 import styles from "../../styles/changeProfilePic.module.css";
-import { postAxios, postWithImageAxios, putAxios } from "../../service/axios";
 
 const style = {
   position: "absolute",
@@ -65,7 +67,9 @@ const ChangeProfilePic = () => {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Update Profile Picture</Button>
+      <Button onClick={handleOpen} className={styles.changeProfilePicButton}>
+        <Image src={cameraForProfilePhoto} alt=""/>
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -99,16 +103,16 @@ const ChangeProfilePic = () => {
             </div>
             <Button onClick={onClickChangeProfilePic}>Save</Button>
           </Typography>
-          {snackMsg && (
-            <FbSnackBar
-              message={snackMsg}
-              open={snackMsg && true}
-              setOpen={() => setSnackMsg(null)}
-              autoHideDuration={5000}
-            />
-          )}
         </Box>
       </Modal>
+      {snackMsg && (
+        <FbSnackBar
+          message={snackMsg}
+          open={snackMsg && true}
+          setOpen={() => setSnackMsg(null)}
+          autoHideDuration={5000}
+        />
+      )}
     </div>
   );
 };

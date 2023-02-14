@@ -16,8 +16,9 @@ import { postButtonState } from "../../atoms/urlImage";
 import { ShareButtonState } from "../../atoms/shareButton";
 import { FacebookPost } from "../../components/facebookPost";
 import ProfileAsOtherSeen from "../../components/profileAsOtherSeen";
+import { ChangeProfilePic } from "../../components/changeProfilePic/index.js";
+import CoverPhotoButton from "../../components/coverPhotoButton";
 import { FacebookReactPost } from "../../components/facebookReactPost";
-import cameraForProfilePhoto from "./images/camera-for-profile-photo.png";
 import { TopMenuInProfilePage } from "../../components/topMenuInProfilePage";
 
 const Profile = () => {
@@ -53,31 +54,33 @@ const Profile = () => {
           <div className={styles.ProfileTopBody}>
             <div className={styles.coverPhotoContainer}>
               <div className={styles.coverPhoto} alt="Add Cover photo" />
-              <div className={styles.AddCoverPhotoWithCameraContainer}>
-                <Image className={styles.smallCamera} src={smallCamera1} />
-                <div className={styles.AddCoverPhoto}>Add cover photo</div>
+              <div style={{ position: "absolute", right: "3%", bottom: "5%" }}>
+                <CoverPhotoButton />
               </div>
             </div>
 
             <div className={styles.profilePhotoContainer}>
               <div className={styles.AddprofilePhotoWithCameraContainer}>
-                <Image src={profilePhoto} className={styles.profilePhoto} />
-                <div className={styles.cycle}>
-                  <Image
-                    className={styles.smallCameraForProfilePhoto}
-                    src={cameraForProfilePhoto}
-                  />
+                <Image src={profilePhoto} className={styles.profilePhoto} alt=""/>
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: "33px",
+                    left: "129px",
+                  }}
+                >
+                  <ChangeProfilePic />
                 </div>
               </div>
               <div className={styles.userNameAndButtonsContainer}>
                 <div className={styles.userName}>{userFromUrl}</div>
                 <div className={styles.buttons}>
                   <div className={styles.addToStoryContainer}>
-                    <Image src={plus} className={styles.plusImg} />
+                    <Image src={plus} className={styles.plusImg} alt=""/>
                     <div className={styles.addToStory}>Add to story</div>
                   </div>
                   <div className={styles.addEditProfileContainer}>
-                    <Image src={pin} className={styles.pinImg} />
+                    <Image src={pin} className={styles.pinImg} alt=""/>
                     <div className={styles.editProfile}>Edit profile</div>
                   </div>
                 </div>
@@ -93,6 +96,7 @@ const Profile = () => {
                       <>
                         <TopMenuInProfilePage
                           item={item}
+                          key={item}
                           menuItemState={menuItemState}
                           setmenuItemState={setmenuItemState}
                         />
@@ -101,7 +105,7 @@ const Profile = () => {
                   })}
                   <div className={styles.moreContainer}>
                     <div className={styles.more}>More</div>
-                    <Image className={styles.moreImg} src={moreImg} />
+                    <Image className={styles.moreImg} src={moreImg} alt=""/>
                   </div>
                 </div>
                 <div className={styles.threePoints}>

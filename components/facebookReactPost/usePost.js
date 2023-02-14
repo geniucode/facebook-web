@@ -24,6 +24,7 @@ const usePost = () => {
   const [search, setSearch] = useState("");
   const [feeling, setFeeling] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const isPendingUser = useRecoilValue(userState).pending;
 
   const router = useRouter();
   useEffect(() => {
@@ -93,9 +94,7 @@ const usePost = () => {
           feeling,
         });
         setFeeling("");
-        if (res) {
-          msg = "Post Added Successfully";
-        }
+        msg = res?.message;
         setIsLoading(false);
         setButton(true);
         setPostField("");
@@ -125,22 +124,23 @@ const usePost = () => {
   }, [feeling]);
 
   return {
-    onChangePost,
-    onClickAddPost,
     snackMsg,
-    setSnackMsg,
-    handleUploadFile,
     uploadRef,
     postField,
     open,
+    feeling,
+    search,
+    isLoading,
+    isPendingUser,
+    onChangePost,
+    onClickAddPost,
+    setSnackMsg,
+    handleUploadFile,
     handleOpen,
     handleClose,
-    feeling,
     onClickChangeFeeling,
     onClickRemoveFeeling,
-    search,
     onChangeSearchValue,
-    isLoading,
   };
 };
 

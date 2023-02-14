@@ -34,21 +34,6 @@
     position: relative;
     height: 115px;
 }
-.AddCoverPhotoWithCameraContainer{
-    display:flex;
-    position: absolute;
-    right: 3%;
-    bottom: 5%;
-    width: 170px;
-    height: 35px;
-    background-color:#ffffff ;
-    align-items: center;
-    justify-content: center;
-     border-radius: 5px; 
-     font-size: 500;
-     font-weight: 500;
-     padding: 0px;
-}
 .profilePhoto{
     width:184px ;
     height: 184px;
@@ -59,24 +44,7 @@
     
     
 }
-.cycle{
-    display: flex;
-    border-radius: 50%;
-    width: 37px;
-    height: 35px;
-    background-color: #e4e6eb;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    bottom: 33px; 
-    left: 129px;
-    padding-bottom: 2px;
 
-}
-.smallCameraForProfilePhoto{
-    width: 22px;
-    height: 20px;
-}
 .userNameAndButtonsContainer{
     margin-left: 24%;
     display: flex;
