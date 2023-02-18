@@ -193,7 +193,7 @@ const ProfileAsOtherSeen = () => {
       </div>
     </>
   );
+        } 
 };
 export default ProfileAsOtherSeen;
 
-//test
