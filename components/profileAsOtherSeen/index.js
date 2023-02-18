@@ -8,7 +8,7 @@ import { FacebookPost } from "../facebookPost";
 import moreImg from "./images/moreImg.png";
 import profilePhoto from "./images/pfp.jpg";
 import addfriendWhite from "./images/addfriendwhite.png";
-import message from "./images/message.png";
+// import message from "./images/message.png";
 import { useSearch } from "../search/useSearch";
 import { useHomeHeader } from "../homeHeader/useHomeHeader";
 import { loadingState } from "../../atoms/loading";
@@ -145,7 +145,7 @@ const ProfileAsOtherSeen = () => {
                 </div> } */}
 
                 <div className={styles.addEditProfileContainer}>
-                  <Image src={message} className={styles.pinImg} />
+                  {/* <Image src={message} className={styles.pinImg} /> */}
                   <div className={styles.editProfile}>Message</div>
                 </div>
               </div>
