@@ -1,31 +1,39 @@
 import { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { userState } from "../../atoms/user";
+import { loadingState } from "../../atoms/loading";
 import { postAxios } from "../../service/axios";
 
 const useNotificationCenter = () => {
   let msg = "";
   const [user, setUser] = useRecoilState(userState);
-  const [snackMsg, setSnackMsg] = useState(null);
+  const setLoading = useSetRecoilState(loadingState);
+  const [isLoading, setIsLoading] = useState(false);
 
+  const [snackMsg, setSnackMsg] = useState(null);
   const onMouseEnterupdateNotification = (id) => {
     const setNotificationsTrue = postAxios("update-notification", {
       id,
     });
   };
   const onClickConfirmRequestHandle = async (id) => {
+    setLoading(true);
+    setIsLoading(true);
     const response = await postAxios("accept-friend-request", {
       id,
     });
-    console.log("accept friend request: ", response);
     if (response?.success) {
       msg = response.message;
     } else {
       msg = response.message;
     }
+    setLoading(false);
+    setIsLoading(false);
     setSnackMsg(msg);
   };
   const onClickRejectRequestHandle = async (id) => {
+    setLoading(true);
+    setIsLoading(true);
     const response = await postAxios("reject-friend-request", {
       id,
     });
@@ -34,11 +42,14 @@ const useNotificationCenter = () => {
     } else {
       msg = response.message;
     }
+    setLoading(false);
+    setIsLoading(false);
     setSnackMsg(msg);
   };
 
   return {
     snackMsg,
+    isLoading,
     setSnackMsg,
     onMouseEnterupdateNotification,
     onClickConfirmRequestHandle,

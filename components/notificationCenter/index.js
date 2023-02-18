@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import Image from "next/image";
 import { useNotificationCenter } from "./useNotificationCenter";
 import { FbSnackBar } from "../snackBar";
@@ -8,17 +9,21 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import usrImg from "./images/user.png";
+import pfp from "../../generalImages/pfp.jpg";
+import { loadingState } from "../../atoms/loading";
 
 const NotificationCenter = () => {
   const {
     snackMsg,
+    isLoading,
     setSnackMsg,
     onMouseEnterupdateNotification,
     onClickConfirmRequestHandle,
     onClickRejectRequestHandle,
   } = useNotificationCenter();
   const [notifications, setNotifications] = useState();
+  const [loading, setLoading] = useRecoilState(loadingState);
+
   let msg = "";
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -26,7 +31,6 @@ const NotificationCenter = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -35,9 +39,6 @@ const NotificationCenter = () => {
     const response = await getAxios(`user/friend-notifications`);
     if (response?.success) {
       setNotifications(response.notifications);
-      console.log(response);
-    } else {
-      console.log(response);
     }
   };
   useEffect(() => {
@@ -92,7 +93,7 @@ const NotificationCenter = () => {
                       <div className={styles.notificationHeader}>
                         <Image
                           className={styles.profiePictureImg}
-                          src={usrImg}
+                          src={pfp}
                           alt="profilePic"
                         />
                         <span>
@@ -102,22 +103,33 @@ const NotificationCenter = () => {
                           request.
                         </span>
                       </div>
+                      <br></br>
                       <div className={styles.notificationButtons}>
                         <div
                           className={styles.acceptButton}
                           onClick={() =>
                             onClickConfirmRequestHandle(notification._id)
                           }
+                          disabled={isLoading}
                         >
-                          Confirm
+                          {loading ? (
+                            <div className={styles.loadingSpinner}></div>
+                          ) : (
+                            "Confirm"
+                          )}{" "}
                         </div>
                         <div
                           className={styles.deleteButton}
                           onClick={() =>
                             onClickRejectRequestHandle(notification._id)
                           }
+                          disabled={isLoading}
                         >
-                          Decline
+                          {loading ? (
+                            <div className={styles.loadingSpinner}></div>
+                          ) : (
+                            "Decline"
+                          )}
                         </div>
                       </div>
                     </div>
@@ -133,6 +145,7 @@ const NotificationCenter = () => {
           </MenuItem>
         )}
       </Menu>
+
       {snackMsg && (
         <FbSnackBar
           message={snackMsg}

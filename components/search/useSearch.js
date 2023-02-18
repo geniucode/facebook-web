@@ -1,15 +1,21 @@
 import { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { getAxios, postAxios } from "../../service/axios";
 import { searchUsersState } from "../../atoms/users";
 import { userState } from "../../atoms/user";
+import { loadingState } from "../../atoms/loading";
+import {loadRefreshContent} from "../../service/refresh"
 
 const useSearch = () => {
   const [error, setError] = useState();
+  const [friendsStatus, setFriendsStatus] = useState();
   const [snackMsg, setSnackMsg] = useState(null);
+  const user = useRecoilValue(userState);
   const [users, setUsers] = useRecoilState(searchUsersState);
-  const [user, setUser] = useRecoilState(userState);
   let msg = "";
+  const setLoading = useSetRecoilState(loadingState);
+  const [isLoading, setIsLoading] = useState(false);
+
   const checkRequest = async (recipient) => {
     try {
       if (user._id === recipient) {
@@ -20,8 +26,10 @@ const useSearch = () => {
         {}
       );
       if (response?.success) {
+        setFriendsStatus(response.message);
         return response.message;
       } else {
+        setFriendsStatus(false);
         return false;
       }
     } catch (error) {
@@ -30,11 +38,14 @@ const useSearch = () => {
   };
 
   const onClickAddFriend = async (id) => {
+    setLoading(true);
+    loadRefreshContent;
     const receiverId = id;
     const senderId = user._id;
     const response = await postAxios("friend-request", {
       recipient: receiverId,
     });
+    setIsLoading(true);
     if (response.success) {
       console.log(response.success);
       msg = response.message;
@@ -42,10 +53,10 @@ const useSearch = () => {
       console.log(response.message);
       msg = response.message;
     }
+    setLoading(false);
+    setIsLoading(false);
+
     setSnackMsg(msg);
-    setTimeout(function () {
-      //render document only here if possible
-    }, 3000);
   };
 
   const onClickSearch = async (searchValue) => {
@@ -75,6 +86,9 @@ const useSearch = () => {
   return {
     users,
     snackMsg,
+    friendsStatus,
+    isLoading,
+    setUsers,
     setSnackMsg,
     checkRequest,
     onClickAddFriend,
@@ -83,3 +97,5 @@ const useSearch = () => {
 };
 
 export { useSearch };
+
+//for merge

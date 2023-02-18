@@ -17,15 +17,19 @@ const useProfileAsOtherSeen = () => {
   const [userIdFromUrl, setIdUserFromUrl] = useState();
   const router = useRouter();
   const [menuItemState, setmenuItemState] = useState("Post");
+
+
   const [snackMsg, setSnackMsg] = useState(null);
   const getUserByUrlID = async (id) => {
     const response = await getAxios(`user/by-id?id=${id}`);
     if (response?.success) {
       console.log(response.userFound.name);
+      console.log(response.userFound._id);
       setUserFromUrl(response.userFound.name);
       setIdUserFromUrl(response.userFound._id);
     }
   };
+
   const getAxiosAllUserPostsByHisId = async (id) => {
     const responsea = await getAxios(`user/posts/by-id?id=${id}`);
     if (responsea?.success) {

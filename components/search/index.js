@@ -1,20 +1,37 @@
-import { useRecoilState } from "recoil";
+import { useEffect } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { DebounceInput } from "react-debounce-input";
+import Link from "next/link";
 import { useSearch } from "./useSearch";
 import { FbSnackBar } from "../snackBar";
+import { ActivityLoader } from "../activityLoader";
+import { useNotificationCenter } from "../notificationCenter/useNotificationCenter";
 import { userState } from "../../atoms/user";
+import { searchUsersState } from "../../atoms/users";
+import { loadingState } from "../../atoms/loading";
 import styles from "../../styles/homeHeader.module.css";
 
 const Search = () => {
-  const [user, setUser] = useRecoilState(userState);
   const {
     users,
     snackMsg,
+    setUsers,
     setSnackMsg,
     checkRequest,
     onClickSearch,
     onClickAddFriend,
+    isLoading,
   } = useSearch();
+
+  const { onClickConfirmRequestHandle, onClickRejectRequestHandle } =
+    useNotificationCenter();
+
+  const [loading, setLoading] = useRecoilState(loadingState);
+
+  useEffect(() => {
+    setUsers(searchUsersState);
+  }, [isLoading]);
+
   return (
     <div className={styles.inputContainer}>
       <div className={styles.searchIcon}>
@@ -32,36 +49,92 @@ const Search = () => {
           onClickSearch(searchValue);
         }}
       />
-      <div className={styles.searchResults}>
-        {users?.length > 0 &&
-          users?.map((searchedUser) => {
-            return (
-              <div className={styles.userSearchedFor}>
-                <div>{searchedUser.name}</div>
-                <div>
-                  {searchedUser.friendStatus ? (
-                    <sup>{searchedUser.friendStatus}</sup>
-                  ) : (
-                    <div>
-                      <button
-                        className={styles.acceptButton}
-                        onClick={() => {
-                          onClickAddFriend(searchedUser._id);
-                        }}
-                      >
-                        Add Friend
-                      </button>
-                    </div>
-                  )}
+      {
+        <div className={styles.searchResults}>
+          {users?.length > 0 &&
+            users?.map((searchedUser) => {
+              return (
+                <div className={styles.userSearchedFor}>
+                  <div>
+                    <Link
+                      onClick={() => {
+                        setUsers();
+                      }}
+                      href={`profile?id=${searchedUser._id}`}
+                    >
+                      {searchedUser.name}
+                    </Link>
+                  </div>
+                  <div>
+                    {searchedUser.friendStatus ? (
+                      searchedUser.friendStatus[0] === "Received request" ? (
+                        <div className={styles.notificationButtons}>
+                          <div
+                            className={styles.acceptButton}
+                            onClick={() =>
+                              onClickConfirmRequestHandle(
+                                searchedUser.friendStatus[1]
+                              )
+                            }
+                            disabled={isLoading}
+                          >
+                            {loading ? (
+                              <div className={styles.loadingSpinner}></div>
+                            ) : (
+                              "Confirm"
+                            )}
+                          </div>
+                          <div
+                            className={styles.deleteButton}
+                            onClick={() => {
+                              onClickRejectRequestHandle(
+                                searchedUser.friendStatus[1]
+                              );
+                            }}
+                            disabled={isLoading}
+                          >
+                            {loading ? (
+                              <div className={styles.loadingSpinner}></div>
+                            ) : (
+                              "Decline"
+                            )}
+                          </div>
+                        </div>
+                      ) : (
+                        <div>
+                          {searchedUser.friendStatus === "Friends" ? (
+                            <sup>{searchedUser.friendStatus}</sup>
+                          ) : (
+                            <sup>{searchedUser.friendStatus[0]}</sup>
+                          )}
+                        </div>
+                      )
+                    ) : (
+                      <div>
+                        <button
+                          className={styles.acceptButton}
+                          onClick={() => {
+                            onClickAddFriend(searchedUser._id);
+                          }}
+                          disabled={isLoading}
+                        >
+                          {loading ? (
+                            <div className={styles.loadingSpinner}></div>
+                          ) : (
+                            "Add Friend"
+                          )}
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            );
-            {
-            }
-          })}
-        {console.log(users)}
-        {users?.length === 0 && <div>No users found</div>}
-      </div>
+              );
+              {
+              }
+            })}
+          {users?.length === 0 && <div>No users found</div>}
+        </div>
+      }
       {snackMsg && (
         <FbSnackBar
           message={snackMsg}
@@ -69,6 +142,7 @@ const Search = () => {
           setOpen={() => setSnackMsg(null)}
         />
       )}
+      <ActivityLoader loading={loading} />
     </div>
   );
 };

@@ -1,29 +1,138 @@
-.ProfileTopBody{
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+.ProfileTopBody {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
-.coverPhotoContainer{
-    display: flex;
-    justify-content: center;
-    position: relative;
-    width: 60%;
-    height: 350px;
+.coverPhotoContainer {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 60%;
+  height: 350px;
 }
-.coverPhoto{
-    background-color:#f0f2f5 ;
-    width: 100%;
-    border-radius: 0 0 15px 15px ;
-    background: -webkit-linear-gradient(bottom,#959698 ,#f0f2f5 20% );
+.coverPhoto {
+  background-color: #f0f2f5;
+  width: 100%;
+  border-radius: 0 0 15px 15px;
+  background: -webkit-linear-gradient(bottom, #959698, #f0f2f5 20%);
 }
 
-.smallCamera{
-    width: 20px;
-    height: 17px;
-    margin-right: 2px;
-    padding-bottom: .5px;
+.smallCamera {
+  width: 20px;
+  height: 17px;
+  margin-right: 2px;
+  padding-bottom: 0.5px;
+}
+.profilePhotoContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  justify-content: center;
+  width: 56%;
+  position: relative;
+  height: 115px;
+}
+.AddCoverPhotoWithCameraContainer {
+  display: flex;
+  position: absolute;
+  right: 3%;
+  bottom: 5%;
+  width: 170px;
+  height: 35px;
+  background-color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 500;
+  font-weight: 500;
+  padding: 0px;
+}
+.profilePhoto {
+  width: 184px;
+  height: 184px;
+  top: -75%;
+  border-radius: 50%;
+  border: #ffffff solid 5px;
+  position: absolute;
+}
+.cycle {
+  display: flex;
+  border-radius: 50%;
+  width: 37px;
+  height: 35px;
+  background-color: #e4e6eb;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 33px;
+  left: 129px;
+  padding-bottom: 2px;
+}
+.smallCameraForProfilePhoto {
+  width: 22px;
+  height: 20px;
+}
+.userNameAndButtonsContainer {
+  margin-left: 24%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.userName {
+  font-weight: 700;
+  font-size: x-large;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+.addToStoryContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 35px;
+  background-color: #1b74e4;
+  gap: 3px;
+  border-radius: 6px;
+  cursor: pointer !important;
+}
+.addToStory {
+  color: #ffffff;
+  font-weight: 500;
+  padding-bottom: 3px;
+  cursor: pointer !important;
+}
+.plusImg {
+  width: 18px;
+  height: 18px;
+}
+.addEditProfileContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 125px;
+  height: 35px;
+  background-color: #e4e6eb;
+  gap: 3px;
+  border-radius: 6px;
+}
+.editProfile {
+  font-weight: 500;
+  padding-bottom: 3px;
+}
+.pinImg {
+  width: 18px;
+  height: 18px;
+}
+.lineAndMenuContainer {
+  display: flex;
+  flex-direction: column;
+  width: 56%;
 }
 .profilePhotoContainer{
     display: flex;
@@ -95,118 +204,105 @@
 .editProfile{
     font-weight: 500;
     padding-bottom: 3px;
-
 }
-.pinImg{
-    width: 18px;
-    height: 18px;
-}
-.lineAndMenuContainer{
-    display: flex;
-    flex-direction: column;
-    width: 56%;
+.line {
+  border-top: 2px solid #cccdce;
 }
 
-.line{
-    border-top: 2px solid #cccdce;   
+.menu {
+  display: flex;
+  color: #8f9092;
+  width: 74%;
+  font-weight: bolder;
+  justify-content: space-around;
 }
+.moreContainer {
+  display: flex;
+  gap: 5px;
 
-.menu{
-    display: flex;
-    color:#8f9092;
-    width: 74%;
-    font-weight: bolder;
-    justify-content: space-around;
+  justify-content: space-between;
+  padding: 17px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border-radius: 5px;
 }
-.moreContainer{
-    display: flex;
-    gap:5px;
-   
-    justify-content: space-between;
-    padding: 17px; 
-    margin-top: 2px;
-    margin-bottom: 2px;
-    border-radius: 5px;
-    
+.menuItems {
+  padding: 17px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border-radius: 5px;
 }
-.menuItems{
-   padding: 17px; 
-   margin-top: 2px;
-   margin-bottom: 2px;
-   border-radius: 5px;
+.moreImg {
+  margin-top: 7px;
 }
-.moreImg{
-    margin-top: 7px;
+.menuItems:hover,
+.moreContainer:hover {
+  background-color: #e4e6eb;
 }
-.menuItems:hover,.moreContainer:hover{ 
-    background-color: #e4e6eb;     
+.menuAndThreePointsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.menuAndThreePointsContainer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.threePoints {
+  padding: 0px 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  background-color: #d8dadf;
+  font-weight: bolder;
+  font-size: larger;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.threePoints{
-    padding: 0px 15px ; 
-    margin-top: 10px;
-    border-radius: 5px;
-    background-color: #d8dadf;
-    font-weight: bolder;
-    font-size: larger;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.threePoints:hover {
+  background-color: #c8c9ca;
 }
-.threePoints:hover{
-    background-color: #c8c9ca;
+.threePoints > div {
+  margin-bottom: 10px;
 }
-.threePoints>div{
-    margin-bottom: 10px;
-}
-.addEditProfileContainer:hover{
-    background-color: #dadadd;
+.addEditProfileContainer:hover {
+  background-color: #dadadd;
 }
 @media screen and (max-width: 1278px) {
-    .profilePhotoContainer{
-        display: flex;
-        flex-direction: row;
-        
-    }
-    .userNameAndButtonsContainer{
-       
-        display: flex;
-        flex-direction: column;
-        
-    }
-    .buttons{flex-direction: column;}
-    .threePoints{
-        display: none;
-    }
-    .cycle{
-        display:none ;
-    }
-    .profilePhoto{
-        top: -220%;
-    }
-    .menu{
-        display: none;
-    }
-    .ProfileTopBody{
-        height: 510px;
-    }
-    .line{
-        display: none;
-    }
+  .profilePhotoContainer {
+    display: flex;
+    flex-direction: row;
+  }
+  .userNameAndButtonsContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .buttons {
+    flex-direction: column;
+  }
+  .threePoints {
+    display: none;
+  }
+  .cycle {
+    display: none;
+  }
+  .profilePhoto {
+    top: -220%;
+  }
+  .menu {
+    display: none;
+  }
+  .ProfileTopBody {
+    height: 510px;
+  }
+  .line {
+    display: none;
+  }
 }
 @media screen and (max-width: 340px) {
-    .profilePhoto{
-        display: none;
-    }
+  .profilePhoto {
+    display: none;
+  }
 }
 @media screen and (max-width: 305px) {
-    .AddCoverPhotoWithCameraContainer{
-        display: none;
-    }
+  .AddCoverPhotoWithCameraContainer {
+    display: none;
+  }
 }
-
