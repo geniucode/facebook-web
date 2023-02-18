@@ -1,5 +1,6 @@
 import Head from "next/head.js";
 import Link from "next/link";
+import { FbSnackBar } from "../../components/snackBar";
 import CountrySelector from "./countrySelector.js";
 import DateSelector from "./dateSelector.js";
 import { useSignup } from "./useSignup.js";
@@ -8,21 +9,25 @@ import styles from "../../styles/signup.module.css";
 const Signup = () => {
   const {
     firstName,
-    onChangeFirstName,
     lastName,
-    onChangeLastName,
     email,
-    onChangeEmail,
     password,
-    onChangePassword,
     birthDay,
-    setBirthDay,
     gender,
-    onClickGender,
     country,
+    isLoading,
+    snackMsg,
+    setSnackMsg,
+    onChangeFirstName,
+    onChangeLastName,
+    onChangeEmail,
+    onChangePassword,
+    setBirthDay,
+    onClickGender,
     setCountry,
     onClickBtn,
   } = useSignup();
+
   return (
     <>
       <Head>
@@ -153,11 +158,24 @@ const Signup = () => {
               . You may receive SMS Notifications from us and can opt out any
               time.
             </p>
-            <button onClick={onClickBtn}>Sign Up</button>
+            <button onClick={onClickBtn} disabled={isLoading}>
+              {isLoading ? (
+                <div className={styles.loadingSpinner}></div>
+              ) : (
+                "Sign Up"
+              )}
+            </button>
             <Link href="/login">Already have an account?</Link>
           </div>
         </div>
       </div>
+      {snackMsg && (
+        <FbSnackBar
+          message={snackMsg}
+          open={snackMsg && true}
+          setOpen={() => setSnackMsg("")}
+        />
+      )}
     </>
   );
 };

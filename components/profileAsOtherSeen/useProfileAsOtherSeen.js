@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { userState } from "../../atoms/user";
 import { getAxios } from "../../service/axios";
-import { useRecoilState } from "recoil";
 import { timeByMoment } from "../../service/timeByMoment";
 
 const useProfileAsOtherSeen = () => {
@@ -14,13 +12,14 @@ const useProfileAsOtherSeen = () => {
     "Videos",
     "Check-ins",
   ];
-  const [user] = useRecoilState(userState);
   const [userpostsFromDb, setUserpostsFromDb] = useState([]);
   const [userFromUrl, setUserFromUrl] = useState();
   const [userIdFromUrl, setIdUserFromUrl] = useState();
   const router = useRouter();
   const [menuItemState, setmenuItemState] = useState("Post");
 
+
+  const [snackMsg, setSnackMsg] = useState(null);
   const getUserByUrlID = async (id) => {
     const response = await getAxios(`user/by-id?id=${id}`);
     if (response?.success) {
@@ -36,13 +35,22 @@ const useProfileAsOtherSeen = () => {
     if (responsea?.success) {
       const userpostsInformationFromDb = await responsea?.userPosts?.map(
         (item) => {
-          return [
-            userFromUrl,
-            item.postBody,
-            timeByMoment(item.createdAt),
-            item.postImg,
-            userIdFromUrl,
-          ];
+          return {
+            createdByName: item?.createdBy?.name,
+            createdById: item?.createdBy?._id,
+            postUserName: item?.user?.name,
+            postUserId: item?.user?._id,
+            sharedByName: item?.sharedBy?.name,
+            sharedById: item.sharedBy?._id,
+            postBody: item?.postBody,
+            postImg: item?.postImg,
+            createdAt: timeByMoment(item.createdAt),
+            postId: item?._id,
+            shareNumber: item?.shareNumber,
+            isCopy: item?.isCopy,
+
+            // userName: item?.createdBy?.name,
+          };
         }
       );
       setUserpostsFromDb(userpostsInformationFromDb);
@@ -50,12 +58,13 @@ const useProfileAsOtherSeen = () => {
   };
   return {
     menuItems,
-    user,
     userFromUrl,
     userIdFromUrl,
     router,
     menuItemState,
     userpostsFromDb,
+    snackMsg,
+    setSnackMsg,
     setUserFromUrl,
     setmenuItemState,
     getUserByUrlID,

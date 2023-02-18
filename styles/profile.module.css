@@ -134,6 +134,76 @@
   flex-direction: column;
   width: 56%;
 }
+.profilePhotoContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    justify-content: center;
+    width: 56%;
+    position: relative;
+    height: 115px;
+}
+.profilePhoto{
+    width:184px ;
+    height: 184px;
+    top: -75%;
+    border-radius: 50% ;
+    border: #ffffff solid 5px;
+    position: absolute;
+    
+    
+}
+
+.userNameAndButtonsContainer{
+    margin-left: 24%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.userName{
+    font-weight: 700;
+    font-size: x-large;
+  
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+.addToStoryContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 130px;
+    height: 35px;
+    background-color: #1b74e4;
+    gap: 3px;
+    border-radius: 6px;
+}
+.addToStory{
+    color: #ffffff;
+    font-weight: 500;
+    padding-bottom: 3px;
+}
+.plusImg{
+    width: 18px;
+    height: 18px;
+    
+}
+.addEditProfileContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 125px;
+    height: 35px;
+    background-color: #e4e6eb;
+    gap: 3px;
+    border-radius: 6px;
+}
+.editProfile{
+    font-weight: 500;
+    padding-bottom: 3px;
 
 .line {
   border-top: 2px solid #cccdce;

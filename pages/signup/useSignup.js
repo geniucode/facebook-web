@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 import { postAxios } from "../../service/axios";
 
 const useSignup = () => {
@@ -24,6 +23,8 @@ const useSignup = () => {
   });
   const [gender, setGender] = useState({ value: "", accepted: true });
   const [country, setCountry] = useState({ value: "", accepted: true });
+  const [isLoading, setIsLoading] = useState(false);
+  const [snackMsg, setSnackMsg] = useState("");
 
   const onChangeFirstName = (event) => {
     setFirstName({
@@ -79,7 +80,9 @@ const useSignup = () => {
       });
     }
   };
+
   const onClickBtn = async () => {
+    setIsLoading(true);
     const response = await postAxios("user/signup", {
       name: `${firstName.value} ${lastName.value}`,
       email: email.value,
@@ -93,53 +96,61 @@ const useSignup = () => {
     if (errors) {
       console.log(errors);
       if (errors.includes("name")) {
-        setFirstName({ value: "", accepted: false });
-        setLastName({ value: "", accepted: false });
+        setFirstName({ value: firstName.value, accepted: false });
+        setLastName({ value: lastName.value, accepted: false });
       }
       if (errors.includes("email")) {
-        setEmail({ value: "", accepted: false });
+        setEmail({ value: email.value, accepted: false });
       }
       if (errors.includes("password")) {
-        setPassword({ value: "", accepted: false });
+        setPassword({ value: password.value, accepted: false });
       }
       if (errors.includes("birthDay")) {
-        setBirthDay({ value: "", accepted: false });
+        setBirthDay({
+          value: birthDay.value,
+          accepted: false,
+        });
       }
       if (errors.includes("gender")) {
-        setGender({ value: "", accepted: false });
+        setGender({ value: gender.value, accepted: false });
       }
       if (errors.includes("country")) {
-        setCountry({ value: "", accepted: false });
+        setCountry({ value: country.value, accepted: false });
       }
+      setIsLoading(false);
     } else {
-      router.push("/login");
+      setIsLoading(false);
+      if (response.success) {
+        setSnackMsg("Please check your email to activate your account");
+        await delay(4000);
+        router.push("/login");
+      } else {
+        setSnackMsg(response.message);
+      }
     }
   };
 
-  useEffect(() => {}, [
-    firstName,
-    lastName,
-    email,
-    password,
-    birthDay,
-    gender,
-    country,
-  ]);
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
 
   return {
     firstName,
-    onChangeFirstName,
     lastName,
-    onChangeLastName,
     email,
-    onChangeEmail,
     password,
-    onChangePassword,
     birthDay,
-    setBirthDay,
     gender,
-    onClickGender,
     country,
+    isLoading,
+    snackMsg,
+    setSnackMsg,
+    onChangeFirstName,
+    onChangeLastName,
+    onChangeEmail,
+    onChangePassword,
+    setBirthDay,
+    onClickGender,
     setCountry,
     onClickBtn,
   };

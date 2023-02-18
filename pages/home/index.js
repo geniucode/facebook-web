@@ -8,7 +8,7 @@ import { useHome } from "./useHome.js";
 import { postsInformationState } from "../../atoms/postsInformation.js";
 import { useRecoilState } from "recoil";
 import { postButtonState, urlImageState } from "../../atoms/urlImage.js";
-import { ChangeProfilePic } from "../../components/changeProfilePic/index.js";
+import { ShareButtonState } from "../../atoms/shareButton.js";
 
 const Home = () => {
   const { setHomeIcon, getAxiosGetAllPosts } = useHome();
@@ -16,12 +16,17 @@ const Home = () => {
     postsInformationState
   );
   const [button, setButton] = useRecoilState(postButtonState);
+  const [shareButton, setShareButton] = useRecoilState(ShareButtonState);
   useEffect(() => {
     getAxiosGetAllPosts();
-  }, [button]);
+  }, [button, shareButton]);
+
   useEffect(() => {
     getAxiosGetAllPosts(), setHomeIcon(true);
   }, []);
+  // useEffect(() => {
+  //   getAxiosGetAllPosts();
+  // }, [postsInformation]);
   return (
     <Auth>
       <HomeHeader />
@@ -37,17 +42,18 @@ const Home = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            height: "fit-content",
             marginTop: 25,
           }}
         >
           <div
             style={{
               width: "80%",
+              height: "fit-content",
               marginBottom: 10,
             }}
           >
             <FacebookReactPost />
-            <ChangeProfilePic />
           </div>
           <FacebookPost postsInformation={postsInformation} />
         </div>

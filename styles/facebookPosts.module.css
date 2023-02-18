@@ -34,7 +34,7 @@
   background-color: blueviolet;
 }
 .postHeaderLeft img:hover {
-  cursor: pointer
+  cursor: pointer;
 }
 
 .postHeaderLeft {
@@ -62,9 +62,9 @@
   color: black;
 }
 .postProfileName:hover {
-  cursor: pointer
+  cursor: pointer;
 }
-.postFeeling{
+.postFeeling {
   display: flex;
   align-items: center;
   color: #65676b;
@@ -72,7 +72,7 @@
   font-weight: 400;
   font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
 }
-.postFeeling > img{
+.postFeeling > img {
   width: 16px;
   height: 16px;
   margin: 0 4px;
@@ -89,20 +89,17 @@
   font-size: 12px;
   color: black;
 }
-.dotHover{
-
+.dotHover {
   margin-right: 9px;
   padding-top: 1px;
   padding-right: 10px;
   padding-bottom: 1px;
   padding-left: 10px;
-  
 }
 .dotHover:hover {
   background-color: #f0f2f5;
   border-radius: 50%;
   cursor: pointer;
-  
 }
 
 .postText {

@@ -36,6 +36,7 @@
   width: 480px;
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .postField > input {
@@ -47,14 +48,55 @@
   background-color: #f2f3f5;
   border-radius: 30px;
   border-style: none;
-  text-align: match-parent;
-  padding: 10px;
+  padding: 10px 16px;
+}
+
+.postFeeling{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: oblique;
+  height: 21px;
+  gap: 4px;
+  position: absolute;
+  top: 9px;
+  right: 15px;
+  z-index: 1;
+  background: #f2f3f5;
+}
+
+.postFeeling > img{
+  margin-top: 3px;
+}
+
+.postFeeling:hover::after{
+  width: 100%;
+  height: 100%;
+  content: "×";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  padding: 0 2px 3px;
+  position: absolute;
+  font-size: 20px;
+  font-weight: 500;
+  top: -1px;
+  right: 0;
+  z-index: 2;
+  color: rgb(220, 0, 0);
+  border: 1px solid rgb(220, 0, 0);
+  background: rgb(255, 170, 170);
+  cursor: pointer;
 }
 
 .postButton > button {
   height: 35px;
   width: 60px;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #1877f2;
   outline: none;
   border: none;
@@ -71,6 +113,24 @@
   height: 20px;
   border: 3px solid white;
   border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingSpinner{
+  width: 20px;
+  height: 20px;
+  border: 3px solid white; 
+  border-top: 3px solid transparent; 
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
 }

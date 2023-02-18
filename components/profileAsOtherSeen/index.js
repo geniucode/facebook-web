@@ -18,11 +18,13 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
     useSearch();
   const [loading, setLoading] = useRecoilState(loadingState);
 
+
+const ProfileAsOtherSeen = () => {
   const {
-    user,
     menuItems,
     userFromUrl,
     router,
+    userIdFromUrl,
     menuItemState,
     userpostsFromDb,
     setmenuItemState,
@@ -38,10 +40,11 @@ const ProfileAsOtherSeen = ({ userIdFromUrl }) => {
       getUserByUrlID(id);
       checkRequest(id);
     }
+    if (id) getUserByUrlID(id);
   }, [router]);
 
   useEffect(() => {
-    if (userIdFromUrl) getAxiosAllUserPostsByHisId(userIdFromUrl);
+    if (userIdFromUrl) getAxiosAllUserPostsByHisId(id);
   }, [router]);
 
   return (
